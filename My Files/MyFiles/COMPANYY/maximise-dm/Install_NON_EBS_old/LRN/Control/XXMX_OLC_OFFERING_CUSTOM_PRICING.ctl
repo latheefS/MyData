@@ -1,0 +1,17 @@
+LOAD DATA
+INFILE XXMX_OLC_OFFERING_CUSTOM_PRICING.dat
+REPLACE 
+INTO  TABLE XXMX_OLC_OFFER_CUST_PRICE_STG
+FIELDS TERMINATED BY "|" TRAILING NULLCOLS 
+(MIGRATION_SET_ID               ,
+MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               ,
+BG_NAME                        ,
+BG_ID                          ,
+EFFECTIVE_START_DATE           ,
+EFFECTIVE_END_DATE             ,
+PRICING_RULE_NUMBER            ,
+CURRENCY_CODE                  ,
+OFFERING_NUMBER                
+)
+

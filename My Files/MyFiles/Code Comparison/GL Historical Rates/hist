@@ -1,0 +1,230 @@
+create or replace PACKAGE BODY xxmx_gl_historical_rates_pkg
+AS
+     --**********************
+     --** Global Declarations
+     --**********************
+     --
+     /* Maximise Integration Globals */
+     --
+     /* Global Constants for use in all xxmx_gl_historicalrates_pkg Procedure/Function Calls within this package */
+     --
+     gcv_PackageName                 CONSTANT  VARCHAR2(30)                                 := 'xxmx_gl_historical_rates_pkg';
+     gct_ApplicationSuite            CONSTANT  xxmx_module_messages.application_suite%TYPE  := 'FIN';
+     gct_Application                 CONSTANT  xxmx_module_messages.application%TYPE        := 'GL';
+     gct_StgSchema                   CONSTANT  VARCHAR2(10)                                 := 'xxmx_stg';
+     gct_XfmSchema                   CONSTANT  VARCHAR2(10)                                 := 'xxmx_xfm';
+     gct_CoreSchema                  CONSTANT  VARCHAR2(10)                                 := 'xxmx_core';
+     gct_BusinessEntity              CONSTANT  xxmx_migration_metadata.business_entity%TYPE := 'HISTORICAL_RATES';
+     gct_SubEntity                   CONSTANT  xxmx_module_messages.sub_entity%TYPE         := 'HISTORICAL_RATES';
+     --
+     /* Global Progress Indicator Variable for use in all Procedures/Functions within this package */
+     --
+     gvv_ProgressIndicator                     VARCHAR2(100);
+     --
+     /* Global Variables for receiving Status/Messages from certain Procedure/Function Calls (e.g. xxmx_utilities_pkg.clear_messages */
+     --
+     gvv_ReturnStatus                          VARCHAR2(1);
+     gvt_ReturnMessage                         xxmx_module_messages.module_message%TYPE;
+     --
+     /* Global Variables for data existence checking */
+     --
+     gvn_ExistenceCount                        NUMBER;
+     --
+     /* Global Variables for Exception Handlers */
+     --
+     gvt_Severity                              xxmx_module_messages.severity%TYPE;
+     gvt_ModuleMessage                         xxmx_module_messages.module_message%TYPE;
+     gvt_OracleError                           xxmx_module_messages.oracle_error%TYPE;
+     e_moduleerror                             EXCEPTION;
+     e_dateerror                               EXCEPTION;
+     --
+     /* Global Variables for Exception Handlers */
+     --
+     gvt_MigrationSetName                      xxmx_migration_headers.migration_set_name%TYPE;
+     --
+     /* Global constants and variables for dynamic SQL usage */
+     --
+     gcv_SQLSpace                    CONSTANT  VARCHAR2(1) := ' ';
+     gvv_SQLAction                             VARCHAR2(20);
+     gvv_SQLTableClause                        VARCHAR2(100);
+     gvv_SQLColumnList                         VARCHAR2(4000);
+     gvv_SQLValuesList                         VARCHAR2(4000);
+     gvv_SQLWhereClause                        VARCHAR2(4000);
+     gvv_SQLStatement                          VARCHAR2(32000);
+     gvv_SQLResult                             VARCHAR2(4000);
+     --
+     /* Global variables for holding table row counts */
+     --
+     gvn_RowCount                              NUMBER;
+     --
+     /* Global variables for transform procedures */
+     --
+     gvb_SimpleTransformsRequired              BOOLEAN;
+     gvt_TransformCategoryCode                 xxmx_simple_transforms.category_code%TYPE;
+     gvb_MissingSimpleTransforms               BOOLEAN;
+     gvb_DataEnrichmentRequired                BOOLEAN;
+     gvt_ParameterCode                         xxmx_migration_parameters.parameter_code%TYPE;
+     gvv_ParameterCheckResult                  VARCHAR2(10);
+     gvb_MissingDataEnrichment                 BOOLEAN;
+     gvb_ComplexTransformsRequired             BOOLEAN;
+     gvb_PerformComplexTransforms              BOOLEAN;
+
+     --
+     PROCEDURE gl_historical_rates_xfm
+                    (
+                     pt_i_ClientCode                 IN      xxmx_client_config_parameters.client_code%TYPE
+                    ,pt_i_MigrationSetName           IN      xxmx_migration_headers.migration_set_name%TYPE
+--                    ,pv_cutoffdate IN VARCHAR2
+                    )
+     IS
+     BEGIN
+        null;
+     END gl_historical_rates_xfm;
+
+     --*******************
+     --** PROCEDURE: purge
+     --*******************
+     --
+     PROCEDURE purge
+                    (
+                     pt_i_ClientCode                 IN      xxmx_client_config_parameters.client_code%TYPE
+                    ,pt_i_MigrationSetID             IN      xxmx_migration_headers.migration_set_id%TYPE
+                    )
+     IS
+          --
+          --
+          --**********************
+          --** Cursor Declarations
+          --**********************
+          --
+          CURSOR PurgingMetadata_cur
+                      (
+                       pt_ApplicationSuite             xxmx_migration_metadata.application_suite%TYPE
+                      ,pt_Application                  xxmx_migration_metadata.application%TYPE
+                      ,pt_BusinessEntity               xxmx_migration_metadata.business_entity%TYPE
+                      )
+          IS
+               --
+               --
+               SELECT  xmm.stg_table
+                      ,xmm.xfm_table
+               FROM    xxmx_migration_metadata  xmm
+               WHERE   1 = 1
+               AND     xmm.application_suite = pt_ApplicationSuite
+               AND     xmm.application       = pt_Application
+               AND     xmm.business_entity   = pt_BusinessEntity
+               ORDER BY xmm.sub_entity_seq;
+               --
+               --
+          --** END CURSOR PurgingMetadata_cur
+           --
+          --**********************
+          --** Record Declarations
+          --**********************
+          --
+          --
+          --************************
+          --** Constant Declarations
+          --************************
+          --
+          --** ISV 21/10/2020 - Add new constant for Staging Schema andf Table Name as will no longer be passed as parameters.
+          --
+          cv_ProcOrFuncName               CONSTANT  VARCHAR2(30)                         := 'purge';
+          ct_SubEntity                    CONSTANT  xxmx_module_messages.sub_entity%TYPE := 'ALL';
+          ct_Phase                        CONSTANT  xxmx_module_messages.phase%TYPE      := 'CORE';
+          --
+          --************************
+          --** Variable Declarations
+          --************************
+          --
+          vt_ConfigParameter              xxmx_client_config_parameters.config_parameter%TYPE;
+          vt_ClientSchemaName             xxmx_client_config_parameters.config_value%TYPE;
+          vv_PurgeTableName               VARCHAR2(30);
+          --
+          --*************************
+          --** Exception Declarations
+          --*************************
+          --
+          --** Set gvt_Severity, gvv_ProgressIndicator and gvt_ModuleMessage
+          --** before raising this exception.
+          --
+          e_ModuleError                   EXCEPTION;
+          --
+          --
+     --** END Declarations **
+     --
+     --
+     BEGIN
+          --
+          gvv_ProgressIndicator := '0010';
+          --
+    delete from xxmx_stg.xxmx_gl_historicalrates_stg where migration_set_id=pt_i_MigrationSetID;
+    commit;
+
+          --
+          EXCEPTION
+               --
+               WHEN e_ModuleError
+               THEN
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => ct_SubEntity
+                         ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => gvt_Severity
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => gvt_ModuleMessage
+                         ,pt_i_OracleError       => NULL
+                         );
+                    --
+                    RAISE;
+                    --
+               --** END e_ModuleError Exception
+               --
+               WHEN OTHERS
+               THEN
+                    --
+                    ROLLBACK;
+                    --
+                    gvt_OracleError := SUBSTR(
+                                              SQLERRM
+                                            ||'** ERROR_BACKTRACE: '
+                                            ||dbms_utility.format_error_backtrace
+                                             ,1
+                                             ,4000
+                                             );
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => ct_SubEntity
+                         ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'ERROR'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => 'Oracle error encounted after Progress Indicator.'
+                         ,pt_i_OracleError       => gvt_OracleError
+                         );
+                    --
+                    RAISE;
+                    --
+               --** END OTHERS Exception
+               --
+          --** END Exception Handler
+          --
+     END purge;
+     --
+     --
+
+
+END xxmx_gl_historical_rates_pkg;

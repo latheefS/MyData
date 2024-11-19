@@ -1,0 +1,221 @@
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'GOAL'
+         ,'GOAL'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+/*********************************************************************************/
+--
+/*
+** Sub-Entity Types
+*/
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_types
+          (
+           application
+          ,lookup_type
+          ,customisation_level
+          )
+VALUES
+          (
+           'XXMX'
+          ,'SUB-ENTITIES'
+          ,'S'
+          );
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'GOAL'
+         ,'GOAL'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'GTARGT_OUTCME_PROFILE_ITM'
+         ,'GTARGT OUTCME PROFILE ITM'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'GOAL_ACCESS'
+         ,'GOAL ACCESS'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'GOAL_ACTION'
+         ,'GOAL ACTION'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'GOAL_ALIGNMENT'
+         ,'GOAL ALIGNMENT'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'GOAL_PLAN_GOAL'
+         ,'GOAL PLAN GOAL'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'GTARGET_OUTCOME'
+         ,'GTARGET OUTCOME'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'GOAL_MEASUREMENT'
+         ,'GOAL MEASUREMENT'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--

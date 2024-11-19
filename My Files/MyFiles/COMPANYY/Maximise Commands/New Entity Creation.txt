@@ -1,0 +1,75 @@
+stg table
+xfm table
+ext table
+Archival Tables
+
+metadata
+stg populate
+xfm populate
+stg col populate
+xfm col populate
+
+xxmx_populate_lookups
+
+xxmx_populate_fusion_job_defs + xxmx_fusion_job_parameters
+
+xxmx_populate_default_migration_parameters
+
+xxmx_dm_subentity_file_map
+
+select * from XXMX_DM_FUSION_DAS;
+
+directory
+
+
+xxmx_populate_operating_units 								-=====-NR
+
+xxmx_populate_file_locations								-=====-NR
+
+xxmx_populate_file_groups									-=====-NR
+
+xxmx_populate_datafile 										-=====-NR
+
+
+
+
+
+
+
+
+Create lookup populate script and install.
+Create Stg table script and install.
+Create Xfm table script and install.
+Create Ext table script and install.
+Create Archive tables by running the provided script.
+Create Metadata script and Install.
+Create Xfm table populate script and install.
+Create Stg table populate script and install.
+Create Xfm table columns excel file and install.
+Create Stg table columns excel file and install. --for Non-EBS
+Create directory script and install.
+Create migration parameters script and install.
+Create dm subentity file map script and install.
+Create ess job definitions script and install.
+Create packages for extraction and install.
+
+
+
+xxmx_populate_fusion_job_defs + xxmx_fusion_job_parameters
+
+xxmx_populate_default_migration_parameters
+
+xxmx_dm_subentity_file_map
+
+select * from XXMX_DM_FUSION_DAS;
+
+directory
+
+
+xxmx_populate_operating_units 								-=====-NR
+
+xxmx_populate_file_locations								-=====-NR
+
+xxmx_populate_file_groups									-=====-NR
+
+xxmx_populate_datafile 										-=====-NR

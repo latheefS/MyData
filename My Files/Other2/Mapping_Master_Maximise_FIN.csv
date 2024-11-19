@@ -1,0 +1,1196 @@
+﻿SIMPLE_OR_COMPLEX|APPLICATION_SUITE|APPLICATION|SOURCE_VALUE|Input Value 2|Input Value 3|Input Value 4|INPUT_CODE_5      |INPUT_CODE_6      |CATEGORY_CODE|TARGET_VALUE|OUTPUT_CODE_1_DESC|OUTPUT_CODE_2     |OUTPUT_CODE_2_DESC|OUTPUT_CODE_3     |OUTPUT_CODE_3_DESC|OUTPUT_CODE_4     |OUTPUT_CODE_4_DESC|OUTPUT_CODE_5     |OUTPUT_CODE_5_DESC|OUTPUT_CODE_6     |OUTPUT_CODE_6_DESC
+C|FIN|GL|4400| |||||COMPANY|4400|Citco Bank and Trust Company (Bahamas) Limited - Bank|BS01|||||||||
+C|FIN|GL|7920||||||COMPANY|7920|Citco (Bahamas) Limited - Governance|BS01|||||||||
+C|FIN|GL|1050||||||COMPANY|1050|Citco III Limited|KY01|||||||||
+C|FIN|GL|1070||||||COMPANY|1070|The Citco Group Limited|KY01|||||||||
+C|FIN|GL|1100||||||COMPANY|1100|The Citco Group (Nyon Branch) Limited|CH01|||||||||
+C|FIN|GL|1120||||||COMPANY|1120|Citco Funding LLC|US09|||||||||
+C|FIN|GL|1130||||||COMPANY|1130|Citco Group Services Limited|KY01|||||||||
+C|FIN|GL|1150||||||COMPANY|1150|The Citco Group (Monaco) S.A.M.|MC01|||||||||
+C|FIN|GL|1160||||||COMPANY|1160|7 Albemarle Street Limited|UK01|||||||||
+C|FIN|GL|1170||||||COMPANY|1170|Citco (UK) Limited|UK01|||||||||
+C|FIN|GL|1190||||||COMPANY|1190|AREDVI GmbH|AT01|||||||||
+C|FIN|GL|1200||||||COMPANY|1200|LR60-296 Florida Holdings, Inc.|US06|||||||||
+C|FIN|GL|1250||||||COMPANY|1250|CHC Holdings Limited|CY01|||||||||
+C|FIN|GL|1260||||||COMPANY|1260|Citco Marketing Services (Hong Kong) Limited|HK01|||||||||
+C|FIN|GL|1320||||||COMPANY|1320|Citco International Support Services Limited|KY01|||||||||
+C|FIN|GL|1330||||||COMPANY|1330|Citco International Support Services Limited - Philippine Branch|PH02|||||||||
+C|FIN|GL|1350||||||COMPANY|1350|Citco International Support Services Limited - Philippine ROHQ|PH01|||||||||
+C|FIN|GL|1400||||||COMPANY|1400|TH Holdings Limited|KY01|||||||||
+C|FIN|GL|1450||||||COMPANY|1450|Citco (USA) Holdings Inc.|US03|||||||||
+C|FIN|GL|1480||||||COMPANY|1480|Citco Technology Management Canada Limited|CA00|||||||||
+C|FIN|GL|1481||||||COMPANY|1480|Citco Technology Management Canada Limited - Toronto|CA02|||||||||
+C|FIN|GL|1482||||||COMPANY|1480|Citco Technology Management Canada Limited - Halifax|CA01|||||||||
+C|FIN|GL|1520||||||COMPANY|1520|Citco Technology Management Ireland Limited|IE00|||||||||
+C|FIN|GL|1521||||||COMPANY|1520|Citco Technology Management Ireland Limited - Cork|IE01|||||||||
+C|FIN|GL|1522||||||COMPANY|1520|Citco Technology Management Ireland Limited - Dublin|IE02|||||||||
+C|FIN|GL|1530||||||COMPANY|1530|Citco Technology Management, Inc.|US00|||||||||
+C|FIN|GL|1531||||||COMPANY|1530|Citco Technology Management, Inc. - Florida|US03|||||||||
+C|FIN|GL|1532||||||COMPANY|1530|Citco Technology Management, Inc. - North Carolina|US01|||||||||
+C|FIN|GL|1533||||||COMPANY|1530|Citco Technology Management, Inc. - New Jersey|US04|||||||||
+C|FIN|GL|1534||||||COMPANY|1530|Citco Technology Management, Inc. - New York|US07|||||||||
+C|FIN|GL|1620||||||COMPANY|1620|Citco Technology Management (Switzerland) SA|CH01|||||||||
+C|FIN|GL|1700||||||COMPANY|1700|Citco Loan Services (USA), Inc.|US04|||||||||
+C|FIN|GL|2050||||||COMPANY|2050|Citco Fund Services (Holdings) Limited|KY01|||||||||
+C|FIN|GL|2070||||||COMPANY|2070|Citco Fund Services (Curaçao) B.V.|CW01|||||||||
+C|FIN|GL|2100||||||COMPANY|2100|Citco Fund Services (Nederland) B.V.|NL01|||||||||
+C|FIN|GL|2110||||||COMPANY|2110|Citco (Canada) Inc.|CA00|||||||||
+C|FIN|GL|2120||||||COMPANY|2110|Citco (Canada) Inc. - Toronto|CA02|||||||||
+C|FIN|GL|2130||||||COMPANY|2110|Citco (Canada) Inc. - Halifax|CA01|||||||||
+C|FIN|GL|2970||||||COMPANY|2970|CFS of America, Inc.|US04|||||||||
+C|FIN|GL|2190||||||COMPANY|2190|Citco Fund Services (USA) Inc.|US00|||||||||
+C|FIN|GL|2200||||||COMPANY|2190|Citco Fund Services (USA) Inc. NY - North Carolina|US01|||||||||
+C|FIN|GL|2210||||||COMPANY|2190|Citco Fund Services (USA) Inc. NY - Jersey|US04|||||||||
+C|FIN|GL|2220||||||COMPANY|2190|Citco Fund Services (USA) Inc. NY - New York|US07|||||||||
+C|FIN|GL|2230||||||COMPANY|2230|Citco Fund Services (San Francisco), Inc.|US08|||||||||
+C|FIN|GL|2250||||||COMPANY|2250|Citco Fund Services (Australia) Pty. Ltd.|AU01|||||||||
+C|FIN|GL|2270||||||COMPANY|2270|Citco (Bahamas) Limited - Funds|BS01|||||||||
+C|FIN|GL|2300||||||COMPANY|2300|Citco Fund Services (Bermuda) Limited|BM01|||||||||
+C|FIN|GL|2350||||||COMPANY|2350|Citco (BVI) Services Ltd.|VG01|||||||||
+C|FIN|GL|2370||||||COMPANY|2370|Citco Fund Services (Cayman Islands) Limited|KY01|||||||||
+C|FIN|GL|2400||||||COMPANY|2400|Citco REIF Services (Canada) Ltd.|CA01|||||||||
+C|FIN|GL|2420||||||COMPANY|2420|Citco Bewaarder B.V.|NL01|||||||||
+C|FIN|GL|2500||||||COMPANY|2500|CFA Holdings Limited|KY01|||||||||
+C|FIN|GL|2520||||||COMPANY|2520|Citco Fund Services (Guernsey) Limited|GG01|||||||||
+C|FIN|GL|2540||||||COMPANY|2540|Citco Fund Services Lithuania, UAB|LT01|||||||||
+C|FIN|GL|2550||||||COMPANY|2550|Citco Fund Services (Jersey) Limited|JE01|||||||||
+C|FIN|GL|2600||||||COMPANY|2600|Citco Fund Services (Luxembourg) S.A.|LU01|||||||||
+C|FIN|GL|2620||||||COMPANY|2620|Citco Fund Services (Europe) B.V.|NL01|||||||||
+C|FIN|GL|2640||||||COMPANY|2640|Citco Fund Administration (Cayman Islands) Limited|KY01|||||||||
+C|FIN|GL|2690||||||COMPANY|2690|Citco Fund Services (Ireland) Limited|IE00|||||||||
+C|FIN|GL|2700||||||COMPANY|2690|Citco Fund Services (Ireland) Limited - Cork|IE01|||||||||
+C|FIN|GL|2710||||||COMPANY|2690|Citco Fund Services (Ireland) Limited - Dublin|IE02|||||||||
+C|FIN|GL|2730||||||COMPANY|2730|Citco Fund Services (Malta) Limited|MT01|||||||||
+C|FIN|GL|2750||||||COMPANY|2750|Citco Fund Services (Singapore) Pte. Ltd.|SG01|||||||||
+C|FIN|GL|2780||||||COMPANY|2780|Citco Fund Services (Shanghai) Limited|CN01|||||||||
+C|FIN|GL|2810||||||COMPANY|2810|Citco Shared Services (India) Private Limited|IN01|||||||||
+C|FIN|GL|2830||||||COMPANY|2830|Citco Group Services (India) LLP|IN02|||||||||
+C|FIN|GL|2840||||||COMPANY|2840|Citco Group Services (India) LLP Hyderabad Branch|IN03|||||||||
+C|FIN|GL|2850||||||COMPANY|2850|Citco Capital Solutions Inc.|US07|||||||||
+C|FIN|GL|2870||||||COMPANY|2870|Citco Fund Services (Malvern) Inc.|US05|||||||||
+C|FIN|GL|2920||||||COMPANY|2920|Citco Risk and Transparency Products (USA) Inc.|US04|||||||||
+C|FIN|GL|2930||||||COMPANY|2930|Citco Middle East Limited|AE01|||||||||
+C|FIN|GL|2950||||||COMPANY|2950|Citco Transparency Platform Limited|KY01|||||||||
+C|FIN|GL|3050||||||COMPANY|3050|Citco Global Securities Services (Canada) Limited|CA02|||||||||
+C|FIN|GL|3070||||||COMPANY|3070|Citco Fund Distribution Services (Switzerland) SA|CH01|||||||||
+C|FIN|GL|3120||||||COMPANY|3120|Citco Global Custody N.V.|NL01|||||||||
+C|FIN|GL|3160||||||COMPANY|3160|Citco Custody (UK) Limited|UK01|||||||||
+C|FIN|GL|3170||||||COMPANY|3170|Citco Custody (Holdings) Limited|MT01|||||||||
+C|FIN|GL|3200||||||COMPANY|3200|Citco Custody Limited|MT01|||||||||
+C|FIN|GL|3220||||||COMPANY|3220|Citco Custody Ireland Branch|IE02|||||||||
+C|FIN|GL|4050||||||COMPANY|4050|Amathea Funding Public Limited Company|IE02|||||||||
+C|FIN|GL|4070||||||COMPANY|4070|Amathea Lending Limited ICC|JE01|||||||||
+C|FIN|GL|4080||||||COMPANY|4080|Amathea Lending Designated Activity Company|IE02|||||||||
+C|FIN|GL|4100||||||COMPANY|4100|Demeter (Holdings) Ltd.|KY01|||||||||
+C|FIN|GL|4120||||||COMPANY|4120|Citco Financial Products (London) Limited|UK01|||||||||
+C|FIN|GL|4220||||||COMPANY|4220|Citco Bank Holding N.V.|CW01|||||||||
+C|FIN|GL|4250||||||COMPANY|4250|CBC Holdings N.V.|CW01|||||||||
+C|FIN|GL|4270||||||COMPANY|4270|Citco Banking Corporation N.V.|CW01|||||||||
+C|FIN|GL|4320||||||COMPANY|4320|Citco Bank Nederland N.V.|NL01|||||||||
+C|FIN|GL|4350||||||COMPANY|4350|Citco Bank Nederland N.V. Dublin Branch|IE02|||||||||
+C|FIN|GL|4370||||||COMPANY|4370|Citco Bank Nederland N.V. Luxembourg Branch|LU01|||||||||
+C|FIN|GL|4420||||||COMPANY|4420|Citco Bank Canada|CA02|||||||||
+C|FIN|GL|4450||||||COMPANY|4450|Citco Bank and Trust Company Limited|KY01|||||||||
+C|FIN|GL|4470||||||COMPANY|4470|B&C Technology Ltd.|KY01|||||||||
+C|FIN|GL|4520||||||COMPANY|4520|Citco Securities Inc.|CA02|||||||||
+C|FIN|GL|4550||||||COMPANY|4550|Citco Global Custody (N.A.) N.V.|CW01|||||||||
+C|FIN|GL|5050||||||COMPANY|5050|Citco C&T Holdings Limited|KY01|||||||||
+C|FIN|GL|5070||||||COMPANY|5070|CCT Holdings (Cyprus) Limited|CY01|||||||||
+C|FIN|GL|5100||||||COMPANY|5100|CCT Finance (Luxembourg) S.à.r.l.|LU01|||||||||
+C|FIN|GL|5150||||||COMPANY|5150|CC & T Holdings Limited|CY01|||||||||
+C|FIN|GL|5200||||||COMPANY|5200|Citco C&T Holdings (Luxembourg) S.à r.l.|LU01|||||||||
+C|FIN|GL|5220||||||COMPANY|5220|CCT Holdings (Luxembourg) S.à.r.l.|LU01|||||||||
+C|FIN|GL|5250||||||COMPANY|5250|Citco (Australia) Pty. Ltd.|AU01|||||||||
+C|FIN|GL|5300||||||COMPANY|5300|Citco (Suisse) S.A.|CH01|||||||||
+C|FIN|GL|5350||||||COMPANY|5350|Citco (Denmark) ApS|DK01|||||||||
+C|FIN|GL|5370||||||COMPANY|5370|Citco Belgium NV|BE01|||||||||
+C|FIN|GL|5380||||||COMPANY|5380|Citco Governance Services Lithuania, UAB|LT01|||||||||
+C|FIN|GL|5400||||||COMPANY|5400|Citco Mercator, UAB|LT01|||||||||
+C|FIN|GL|5420||||||COMPANY|5420|Brickell South Florida Holdings B.V.|NL01|||||||||
+C|FIN|GL|5450||||||COMPANY|5450|C.A.S. Services S.A.|LU01|||||||||
+C|FIN|GL|5470||||||COMPANY|5470|Citco Corporate Management (Madrid) S.L.|ES01|||||||||
+C|FIN|GL|5480||||||COMPANY|5480|Governance Services ManagementCo (Madrid), S.L.U.|ES01|||||||||
+C|FIN|GL|5500||||||COMPANY|5500|Citco Corporate Services (Ireland) Limited|IE02|||||||||
+C|FIN|GL|5520||||||COMPANY|5520|CCY Services Limited|CY01|||||||||
+C|FIN|GL|5550||||||COMPANY|5550|CNE Corporate Services B.V.|NL01|||||||||
+C|FIN|GL|5570||||||COMPANY|5570|Citco C&T (Luxembourg) S.A.|LU01|||||||||
+C|FIN|GL|5600||||||COMPANY|5600|CCT Corporate Nominees Limited|IE02|||||||||
+C|FIN|GL|5650||||||COMPANY|5650|CCT Secretarial Limited|IE02|||||||||
+C|FIN|GL|5670||||||COMPANY|5670|CCY Management Limited|CY01|||||||||
+C|FIN|GL|5700||||||COMPANY|5700|Citco (Cyprus) Limited|CY01|||||||||
+C|FIN|GL|5750||||||COMPANY|5750|Citco Escrow Services B.V.|NL01|||||||||
+C|FIN|GL|5770||||||COMPANY|5770|Citco Deutschland GmbH|DE01|||||||||
+C|FIN|GL|5800||||||COMPANY|5800|Europe Management Company B.V.|NL01|||||||||
+C|FIN|GL|5850||||||COMPANY|5850|Citco France SARL|FR01|||||||||
+C|FIN|GL|5900||||||COMPANY|5900|Itcon B.V.|NL01|||||||||
+C|FIN|GL|5950||||||COMPANY|5950|Gateway Luxembourg S.A.|LU01|||||||||
+C|FIN|GL|5970||||||COMPANY|5970|CL Management S.A.|LU01|||||||||
+C|FIN|GL|6000||||||COMPANY|6000|Gateway Amsterdam B.V.|NL01|||||||||
+C|FIN|GL|6020||||||COMPANY|6020|Luxembourg Corporation Company S.A.|LU01|||||||||
+C|FIN|GL|6070||||||COMPANY|6070|Citco (Malta) Limited|MT01|||||||||
+C|FIN|GL|6100||||||COMPANY|6100|Management Company Strawinsky B.V.|NL01|||||||||
+C|FIN|GL|6120||||||COMPANY|6120|Management Company Teleport B.V.|NL01|||||||||
+C|FIN|GL|6150||||||COMPANY|6150|CMM Management Limited|MT01|||||||||
+C|FIN|GL|6200||||||COMPANY|6200|CMS Management Services S.A.|LU01|||||||||
+C|FIN|GL|6220||||||COMPANY|6220|Citco Nederland B.V.|NL01|||||||||
+C|FIN|GL|6230||||||COMPANY|6230|Citco Governance Services (Netherlands) B.V.|NL01|||||||||
+C|FIN|GL|6250||||||COMPANY|6250|Notic Finance B.V.|NL01|||||||||
+C|FIN|GL|6270||||||COMPANY|6270|The Netherlands International Trust Company B.V.|NL01|||||||||
+C|FIN|GL|6300||||||COMPANY|6300|Pimiento Limited|CY01|||||||||
+C|FIN|GL|6350||||||COMPANY|6350|Citco REIF Services (Luxembourg) S.A.|LU01|||||||||
+C|FIN|GL|6370||||||COMPANY|6370|Citco (Sweden) AB|SE01|||||||||
+C|FIN|GL|6420||||||COMPANY|6420|T.C.G. Gestion S.A.|LU01|||||||||
+C|FIN|GL|6450||||||COMPANY|6450|Trust International Management (T.I.M.) B.V.|NL01|||||||||
+C|FIN|GL|6500||||||COMPANY|6500|Citco Jersey Limited|JE01|||||||||
+C|FIN|GL|6520||||||COMPANY|6520|Citco London Limited|UK01|||||||||
+C|FIN|GL|6600||||||COMPANY|6600|Citco REIF Services UK Limited|UK01|||||||||
+C|FIN|GL|6620||||||COMPANY|6620|Citco Management (UK) Limited|UK01|||||||||
+C|FIN|GL|6770||||||COMPANY|6770|Citco Singapore Pte. Ltd.|SG01|||||||||
+C|FIN|GL|6850||||||COMPANY|6850|Citco Hong Kong Limited|HK01|||||||||
+C|FIN|GL|6870||||||COMPANY|6870|Citco (Mauritius) Limited|MU01|||||||||
+C|FIN|GL|6920||||||COMPANY|6920|Citco Trustees (New Zealand) Limited|NZ01|||||||||
+C|FIN|GL|6930||||||COMPANY|6930|Paris Hoche Management Company SARL|FR01|||||||||
+C|FIN|GL|6950||||||COMPANY|6950|Citco C&T Holdings II Ltd.|KY01|||||||||
+C|FIN|GL|6990||||||COMPANY|6990|Citco Gateway New York LLC|US07|||||||||
+C|FIN|GL|7050||||||COMPANY|7050|Curaçao International Trust Company B.V.|CW01|||||||||
+C|FIN|GL|7100||||||COMPANY|7100|Eurofiduciary Management N.V.|CW01|||||||||
+C|FIN|GL|7120||||||COMPANY|7120|Execman Management Services N.V.|CW01|||||||||
+C|FIN|GL|7150||||||COMPANY|7150|Executrust Corporation N.V.|CW01|||||||||
+C|FIN|GL|7170||||||COMPANY|7170|Fiduciaire De Famille N.V.|CW01|||||||||
+C|FIN|GL|7220||||||COMPANY|7220|Netherlands Antilles Corporation Company N.V.|CW01|||||||||
+C|FIN|GL|7250||||||COMPANY|7250|Netherlands Antilles Corporation Company (St. Maarten) N.V.|SX01|||||||||
+C|FIN|GL|7300||||||COMPANY|7300|St. Maarten Corporation Company N.V.|SX01|||||||||
+C|FIN|GL|7350||||||COMPANY|7350|Citco St. Maarten N.V.|SX01|||||||||
+C|FIN|GL|7370||||||COMPANY|7370|Trust Company of Willemstad N.V.|CW01|||||||||
+C|FIN|GL|7400||||||COMPANY|7400|Curaçao Corporation Company N.V.|CW01|||||||||
+C|FIN|GL|7450||||||COMPANY|7450|Aruba International Trust Company N.V.|AW01|||||||||
+C|FIN|GL|7600||||||COMPANY|7600|Citco (Bermuda) Limited|BM01|||||||||
+C|FIN|GL|7620||||||COMPANY|7620|Citco B.V.I. Limited|VG01|||||||||
+C|FIN|GL|7700||||||COMPANY|7700|CI Trustees Ltd.|KY01|||||||||
+C|FIN|GL|7720||||||COMPANY|7720|Citco Corporate Management (Barbados) Limited|BB01|||||||||
+C|FIN|GL|7750||||||COMPANY|7750|Citco Corporate Services Inc., Miami|US06|||||||||
+C|FIN|GL|7820||||||COMPANY|7820|Citco (Delaware) Inc.|US02|||||||||
+C|FIN|GL|7840||||||COMPANY|7840|Citco Insurance Services LLC, FL|US06|||||||||
+C|FIN|GL|7900||||||COMPANY|7900|Citco Management Services Trust|US02|||||||||
+C|FIN|GL|7950||||||COMPANY|7950|Citco Trust Corporation Limited|VG01|||||||||
+C|FIN|GL|7970||||||COMPANY|7970|Citco Trustees (Cayman) Limited|KY01|||||||||
+C|FIN|GL|7980||||||COMPANY|7980|Citco Family Advisors S.A.|UY01|||||||||
+C|FIN|GL|7990||||||COMPANY|7990|Citco Governance Services (Uruguay) S.A.|UY01|||||||||
+C|FIN|GL|1999||||||COMPANY|1999|Consolidation Company Group Services|KY01|||||||||
+C|FIN|GL|2999||||||COMPANY|2999|Consolidation Company Fund Services|KY01|||||||||
+C|FIN|GL|3999||||||COMPANY|3999|Consolidation Company Custody|KY01|||||||||
+C|FIN|GL|4999||||||COMPANY|4999|Consolidation Company Treasury & Lending|KY01|||||||||
+C|FIN|GL|7999||||||COMPANY|7999|Consolidation Company Corporate & Trust|KY01|||||||||
+C|FIN|GL|1998||||||COMPANY|1998|Consolidation Company Citco Group|KY01|||||||||
+C|FIN|GL|9650||||||COMPANY|9650|Stichting Derdengelden|CW01|||||||||
+C|FIN|GL|9700||||||COMPANY|9700|SFCT Investments Limited|VG01|||||||||
+C|FIN|GL|4351||||||COMPANY|4350|Citco Bank Nederland N.V. Dublin Branch - Depositary|IE02|||||||||
+C|FIN|GL|4371||||||COMPANY|4370|Citco Bank Nederland N.V. Luxembourg Branch - Depositary|LU01|||||||||
+C|FIN|GL|4421||||||COMPANY|4420|Citco Bank Canada - Custody|CA02|||||||||
+C|FIN|GL|2430||||||COMPANY|2430|AExeo Technology Ltd.|KY01|||||||||
+C|FIN|GL|11001||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11031||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11201||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11211||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11221||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11231||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11241||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11301||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11311||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11321||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11331||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11341||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11401||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11421||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|11431||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12001||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12021||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12031||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12101||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12121||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12131||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12201||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12221||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12231||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12301||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12321||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12331||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12401||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12421||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12431||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12501||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12521||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12531||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12601||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12621||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12631||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12701||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12721||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12731||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12801||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12821||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12901||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12921||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12931||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|12999||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13200||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13300||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13400||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13900||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13950||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13951||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13955||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13956||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13990||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13994||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13995||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13996||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|13997||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|14000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|15000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|15100||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|15101||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|16000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|17000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21050||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21052||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21053||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21054||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21055||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21056||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21057||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21060||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21070||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21090||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21091||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21095||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21096||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21097||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21098||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21099||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21110||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21200||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21201||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21205||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21210||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21215||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21400||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21500||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21600||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21700||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21800||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21840||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21852||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21900||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21910||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21920||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21990||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|21999||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|22000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|22050||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|22100||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|22199||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|22899||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23200||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23300||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23901||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23950||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23951||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23955||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23956||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23990||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23991||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23994||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23995||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23996||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23997||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|23999||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|24000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|24100||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|25000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26001||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26002||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26003||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26004||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26005||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26006||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26007||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26008||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26009||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26050||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26100||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26101||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26102||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26103||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26104||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26105||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26106||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26107||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26108||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26109||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26110||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26111||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26112||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26113||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26114||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26120||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26200||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|26300||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27001||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27002||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27003||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27004||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27005||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27006||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27007||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27008||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27009||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27101||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27102||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27103||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27104||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27105||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27106||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27107||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27108||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27109||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27110||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27111||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27112||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27113||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27114||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27150||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27198||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27199||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27200||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27300||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27400||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|27500||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|28000||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|28100||||||LOCATION|A|Asset||||||||||
+C|FIN|GL|31000||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31099||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31100||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31101||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31102||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31110||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31200||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31201||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31205||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31210||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31215||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31400||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31460||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31461||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31462||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31500||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31550||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31600||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31700||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31800||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31801||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31802||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31803||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31804||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31805||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31806||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31807||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31808||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31809||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31810||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31820||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31830||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31840||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31995||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|31999||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|32500||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|32900||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|33000||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|33101||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|33200||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|33202||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|33903||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|33999||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|34000||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|34100||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|34200||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35001||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35002||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35003||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35004||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35005||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35006||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35007||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35008||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35009||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35200||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|35300||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|36000||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|36100||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|36200||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|37000||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|37300||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|37401||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|38900||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|38910||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|38920||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|38930||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|41200||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|41400||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|41410||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|41900||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|41994||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|41995||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|43000||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|43500||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|43510||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|44000||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|46000||||||LOCATION|L|Liability||||||||||
+C|FIN|GL|80000||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81000||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81020||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81040||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81050||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81100||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81110||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81200||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81300||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81310||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81400||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81410||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81500||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81505||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81510||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81600||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|81700||||||LOCATION|O|Owner's Equity||||||||||
+C|FIN|GL|401000||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401001||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401500||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401900||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401901||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401902||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401905||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401910||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401915||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401920||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401921||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401930||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401932||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401940||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401950||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401952||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401959||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401960||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401961||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401962||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401963||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401964||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401965||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401966||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401967||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401968||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401969||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401970||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|401980||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403100||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403102||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403104||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403105||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403106||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403110||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403111||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403112||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403113||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403200||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403902||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403903||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403904||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403905||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403906||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403907||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403908||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403910||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403912||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403915||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|403921||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405010||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405015||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405016||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405020||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405021||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405030||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405031||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405100||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405101||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405210||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405300||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|405301||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406000||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406200||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406301||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406303||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406304||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406305||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406306||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406400||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406402||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406403||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406500||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406501||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406600||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406901||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406902||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406903||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406906||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406908||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406920||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406940||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406941||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406945||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406950||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406960||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406970||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|406990||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|407000||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|407005||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|407900||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408100||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408600||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408900||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408905||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408906||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408907||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408910||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408920||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408930||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408970||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408975||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408980||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408985||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408990||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408995||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|408996||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409090||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409095||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409099||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409109||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409129||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409137||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409149||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409159||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409199||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409209||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409298||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|409299||||||LOCATION|R|Revenue||||||||||
+C|FIN|GL|551000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551001||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551002||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551003||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551004||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551020||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551021||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551022||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551023||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551024||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551026||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551027||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551030||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551040||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551050||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551060||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551070||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551075||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551080||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551081||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551101||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551120||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551122||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551123||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551800||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551810||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551920||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551930||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551940||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551950||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551990||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|551999||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|552000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|552020||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|552040||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|552060||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|552080||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|552099||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|552100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553009||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553010||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553019||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553020||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553029||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553030||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553039||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553040||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553049||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553050||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553060||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553090||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553099||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553900||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553901||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553902||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553903||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553905||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553910||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553915||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553930||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553931||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553932||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553933||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553939||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553950||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553959||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553960||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|553999||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554020||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554030||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554040||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554110||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554120||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554130||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554140||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554150||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554160||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554170||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554180||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554190||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554200||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554210||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554220||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554230||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554240||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554250||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554300||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554310||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554320||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554330||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554340||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554350||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554360||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554370||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554380||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554390||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554900||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|554990||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|555000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|555100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|555150||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|555200||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|555316||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|555321||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|555331||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556600||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556900||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556905||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556906||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556907||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556910||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556920||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556930||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556941||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556970||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556975||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556980||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556985||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|556990||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557009||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557010||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557020||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557030||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557040||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557050||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557060||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557080||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557099||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557120||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557140||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557160||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557170||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557180||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557199||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557300||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557310||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557350||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557360||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557370||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557380||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557390||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557399||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557903||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557907||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557909||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557910||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557911||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557920||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557922||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557929||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557932||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557933||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557934||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557935||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557936||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557937||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557940||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557960||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557971||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557972||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557975||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557998||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|557999||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601101||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601200||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601201||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601204||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601205||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601210||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601300||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601301||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|601400||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|602100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|602110||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|602300||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|602400||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|602450||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|602451||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|602452||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|603000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|603100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|605000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|606000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607000||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607100||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607200||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607300||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607350||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607400||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607410||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607420||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607430||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607440||||||LOCATION|E|Expense||||||||||
+C|FIN|GL|607450||||||LOCATION|E|Expense||||||||||
+S|FIN|ALL|Denmark DKK||||||LEDGER|Denmark DKK|||||||||||
+S|FIN|ALL|United States of America USD||||||LEDGER|United States of America USD|||||||||||
+S|FIN|GL|2021||||||LEDGER_ID|3E+14|||||||||||
+S|FIN|GL|2109||||||LEDGER_ID|3E+14|||||||||||
+S|FIN|GL|Denmark DKK||||||LEDGER_NAME|Denmark DKK|||||||||||
+S|FIN|GL|United States of America USD||||||LEDGER_NAME|United States of America USD|||||||||||
+S|FIN|AP|United States of America USD||||||LEDGER_NAME|United States of America USD|||||||||||
+S|FIN|AP|Denmark DKK||||||LEDGER_NAME|Denmark DKK|||||||||||
+S|FIN|ALL|AED||||||CURRENCY|AED|||||||||||
+S|FIN|ALL|ANG||||||CURRENCY|ANG|||||||||||
+S|FIN|ALL|AUD||||||CURRENCY|AUD|||||||||||
+S|FIN|ALL|AWG||||||CURRENCY|AWG|||||||||||
+S|FIN|ALL|BGN||||||CURRENCY|BGN|||||||||||
+S|FIN|ALL|BMD||||||CURRENCY|BMD|||||||||||
+S|FIN|ALL|BRL||||||CURRENCY|BRL|||||||||||
+S|FIN|ALL|BSD||||||CURRENCY|BSD|||||||||||
+S|FIN|ALL|CAD||||||CURRENCY|CAD|||||||||||
+S|FIN|ALL|CHF||||||CURRENCY|CHF|||||||||||
+S|FIN|ALL|CNH||||||CURRENCY|CNH|||||||||||
+S|FIN|ALL|CNY||||||CURRENCY|CNY|||||||||||
+S|FIN|ALL|CZK||||||CURRENCY|CZK|||||||||||
+S|FIN|ALL|DKK||||||CURRENCY|DKK|||||||||||
+S|FIN|ALL|EUR||||||CURRENCY|EUR|||||||||||
+S|FIN|ALL|GBP||||||CURRENCY|GBP|||||||||||
+S|FIN|ALL|HKD||||||CURRENCY|HKD|||||||||||
+S|FIN|ALL|HUF||||||CURRENCY|HUF|||||||||||
+S|FIN|ALL|INR||||||CURRENCY|INR|||||||||||
+S|FIN|ALL|JPY||||||CURRENCY|JPY|||||||||||
+S|FIN|ALL|KYD||||||CURRENCY|KYD|||||||||||
+S|FIN|ALL|MUR||||||CURRENCY|MUR|||||||||||
+S|FIN|ALL|MXN||||||CURRENCY|MXN|||||||||||
+S|FIN|ALL|MYR||||||CURRENCY|MYR|||||||||||
+S|FIN|ALL|NOK||||||CURRENCY|NOK|||||||||||
+S|FIN|ALL|NZD||||||CURRENCY|NZD|||||||||||
+S|FIN|ALL|PHP||||||CURRENCY|PHP|||||||||||
+S|FIN|ALL|PLN||||||CURRENCY|PLN|||||||||||
+S|FIN|ALL|RON||||||CURRENCY|RON|||||||||||
+S|FIN|ALL|SAR||||||CURRENCY|SAR|||||||||||
+S|FIN|ALL|SEK||||||CURRENCY|SEK|||||||||||
+S|FIN|ALL|SGD||||||CURRENCY|SGD|||||||||||
+S|FIN|ALL|USD||||||CURRENCY|USD|||||||||||
+S|FIN|ALL|UYU||||||CURRENCY|UYU|||||||||||
+S|FIN|ALL|ZAR||||||CURRENCY|ZAR|||||||||||
+S|FIN|AP|USD||||||CURRENCY_CODE|USD|||||||||||
+S|FIN|AP|GBP||||||CURRENCY_CODE|GBP|||||||||||
+S|FIN|AP|DKK||||||CURRENCY_CODE|DKK|||||||||||
+S|FIN|AP|EUR||||||CURRENCY_CODE|EUR|||||||||||
+S|FIN|AP|USD||||||INVOICE_CURRENCY|USD|||||||||||
+S|FIN|AP|GBP||||||INVOICE_CURRENCY|GBP|||||||||||
+S|FIN|AP|DKK||||||INVOICE_CURRENCY|DKK|||||||||||
+S|FIN|AP|EUR||||||INVOICE_CURRENCY|EUR|||||||||||
+S|FIN|AP|CAD||||||INVOICE_CURRENCY|CAD|||||||||||
+S|FIN|AP|USD||||||PAYMENT_CURRENCY|USD|||||||||||
+S|FIN|AP|GBP||||||PAYMENT_CURRENCY|GBP|||||||||||
+S|FIN|AP|DKK||||||PAYMENT_CURRENCY|DKK|||||||||||
+S|FIN|AP|EUR||||||PAYMENT_CURRENCY|EUR|||||||||||
+S|FIN|AP|CAD||||||PAYMENT_CURRENCY|CAD|||||||||||
+S|FIN|AP|USD||||||INVOICE_CURRENCY_CODE|USD|||||||||||
+S|FIN|AP|DKK||||||INVOICE_CURRENCY_CODE|DKK|||||||||||
+S|FIN|AP|EUR||||||INVOICE_CURRENCY_CODE|EUR|||||||||||
+S|FIN|AP|USD||||||PAYMENT_CURRENCY_CODE|USD|||||||||||
+S|FIN|AP|DKK||||||PAYMENT_CURRENCY_CODE|DKK|||||||||||
+S|FIN|AP|EUR||||||PAYMENT_CURRENCY_CODE|EUR|||||||||||
+S|FIN|ALL|AU2250||||||LEGAL_ENTITY|AU2250|||||||||||
+S|FIN|ALL|AU5250||||||LEGAL_ENTITY|AU5250|||||||||||
+S|FIN|ALL|AW7450||||||LEGAL_ENTITY|AW7450|||||||||||
+S|FIN|ALL|BB7720||||||LEGAL_ENTITY|BB7720|||||||||||
+S|FIN|ALL|BE5370||||||LEGAL_ENTITY|BE5370|||||||||||
+S|FIN|ALL|BM2300||||||LEGAL_ENTITY|BM2300|||||||||||
+S|FIN|ALL|BM2430||||||LEGAL_ENTITY|BM2430|||||||||||
+S|FIN|ALL|BM7600||||||LEGAL_ENTITY|BM7600|||||||||||
+S|FIN|ALL|BS2270||||||LEGAL_ENTITY|BS2270|||||||||||
+S|FIN|ALL|BS4400||||||LEGAL_ENTITY|BS4400|||||||||||
+S|FIN|ALL|BS7920||||||LEGAL_ENTITY|BS7920|||||||||||
+S|FIN|ALL|CA2400||||||LEGAL_ENTITY|CA2400|||||||||||
+S|FIN|ALL|CA4420||||||LEGAL_ENTITY|CA4420|||||||||||
+S|FIN|ALL|CA4421||||||LEGAL_ENTITY|CA4421|||||||||||
+S|FIN|ALL|CH3070||||||LEGAL_ENTITY|CH3070|||||||||||
+S|FIN|ALL|CW2070||||||LEGAL_ENTITY|CW2070|||||||||||
+S|FIN|ALL|CW4270||||||LEGAL_ENTITY|CW4270|||||||||||
+S|FIN|ALL|CW7050||||||LEGAL_ENTITY|CW7050|||||||||||
+S|FIN|ALL|CW7120||||||LEGAL_ENTITY|CW7120|||||||||||
+S|FIN|ALL|CW7150||||||LEGAL_ENTITY|CW7150|||||||||||
+S|FIN|ALL|CY5700||||||LEGAL_ENTITY|CY5700|||||||||||
+S|FIN|ALL|DE5770||||||LEGAL_ENTITY|DE5770|||||||||||
+S|FIN|ALL|DK5350||||||LEGAL_ENTITY|DK5350|||||||||||
+S|FIN|ALL|ES5470||||||LEGAL_ENTITY|ES5470|||||||||||
+S|FIN|ALL|FR5850||||||LEGAL_ENTITY|FR5850|||||||||||
+S|FIN|ALL|GB3160||||||LEGAL_ENTITY|GB3160|||||||||||
+S|FIN|ALL|GB6520||||||LEGAL_ENTITY|GB6520|||||||||||
+S|FIN|ALL|GB6600||||||LEGAL_ENTITY|GB6600|||||||||||
+S|FIN|ALL|GG2520||||||LEGAL_ENTITY|GG2520|||||||||||
+S|FIN|ALL|HK6800||||||LEGAL_ENTITY|HK6800|||||||||||
+S|FIN|ALL|HK6850||||||LEGAL_ENTITY|HK6850|||||||||||
+S|FIN|ALL|IE2690||||||LEGAL_ENTITY|IE2690|||||||||||
+S|FIN|ALL|IE4050||||||LEGAL_ENTITY|IE4050|||||||||||
+S|FIN|ALL|IE4350||||||LEGAL_ENTITY|IE4350|||||||||||
+S|FIN|ALL|IE4351||||||LEGAL_ENTITY|IE4351|||||||||||
+S|FIN|ALL|IE5500||||||LEGAL_ENTITY|IE5500|||||||||||
+S|FIN|ALL|IN6650||||||LEGAL_ENTITY|IN6650|||||||||||
+S|FIN|ALL|JE2550||||||LEGAL_ENTITY|JE2550|||||||||||
+S|FIN|ALL|JE6500||||||LEGAL_ENTITY|JE6500|||||||||||
+S|FIN|ALL|KY1070||||||LEGAL_ENTITY|KY1070|||||||||||
+S|FIN|ALL|KY2050||||||LEGAL_ENTITY|KY2050|||||||||||
+S|FIN|ALL|KY2370||||||LEGAL_ENTITY|KY2370|||||||||||
+S|FIN|ALL|KY2640||||||LEGAL_ENTITY|KY2640|||||||||||
+S|FIN|ALL|KY2950||||||LEGAL_ENTITY|KY2950|||||||||||
+S|FIN|ALL|KY4100||||||LEGAL_ENTITY|KY4100|||||||||||
+S|FIN|ALL|KY4450||||||LEGAL_ENTITY|KY4450|||||||||||
+S|FIN|ALL|KY4470||||||LEGAL_ENTITY|KY4470|||||||||||
+S|FIN|ALL|KY7700||||||LEGAL_ENTITY|KY7700|||||||||||
+S|FIN|ALL|KY7970||||||LEGAL_ENTITY|KY7970|||||||||||
+S|FIN|ALL|LT2540||||||LEGAL_ENTITY|LT2540|||||||||||
+S|FIN|ALL|LT5380||||||LEGAL_ENTITY|LT5380|||||||||||
+S|FIN|ALL|LT5400||||||LEGAL_ENTITY|LT5400|||||||||||
+S|FIN|ALL|LU2600||||||LEGAL_ENTITY|LU2600|||||||||||
+S|FIN|ALL|LU4370||||||LEGAL_ENTITY|LU4370|||||||||||
+S|FIN|ALL|LU4371||||||LEGAL_ENTITY|LU4371|||||||||||
+S|FIN|ALL|LU5200||||||LEGAL_ENTITY|LU5200|||||||||||
+S|FIN|ALL|LU5570||||||LEGAL_ENTITY|LU5570|||||||||||
+S|FIN|ALL|LU5950||||||LEGAL_ENTITY|LU5950|||||||||||
+S|FIN|ALL|LU6350||||||LEGAL_ENTITY|LU6350|||||||||||
+S|FIN|ALL|MT2730||||||LEGAL_ENTITY|MT2730|||||||||||
+S|FIN|ALL|MT3200||||||LEGAL_ENTITY|MT3200|||||||||||
+S|FIN|ALL|MT6070||||||LEGAL_ENTITY|MT6070|||||||||||
+S|FIN|ALL|MU6870||||||LEGAL_ENTITY|MU6870|||||||||||
+S|FIN|ALL|MU6900||||||LEGAL_ENTITY|MU6900|||||||||||
+S|FIN|ALL|NL2420||||||LEGAL_ENTITY|NL2420|||||||||||
+S|FIN|ALL|NL2620||||||LEGAL_ENTITY|NL2620|||||||||||
+S|FIN|ALL|NL4320||||||LEGAL_ENTITY|NL4320|||||||||||
+S|FIN|ALL|NL6000||||||LEGAL_ENTITY|NL6000|||||||||||
+S|FIN|ALL|NL6220||||||LEGAL_ENTITY|NL6220|||||||||||
+S|FIN|ALL|NL6230||||||LEGAL_ENTITY|NL6230|||||||||||
+S|FIN|ALL|NZ6920||||||LEGAL_ENTITY|NZ6920|||||||||||
+S|FIN|ALL|SE6370||||||LEGAL_ENTITY|SE6370|||||||||||
+S|FIN|ALL|SG2750||||||LEGAL_ENTITY|SG2750|||||||||||
+S|FIN|ALL|SG6750||||||LEGAL_ENTITY|SG6750|||||||||||
+S|FIN|ALL|SG6770||||||LEGAL_ENTITY|SG6770|||||||||||
+S|FIN|ALL|SX7350||||||LEGAL_ENTITY|SX7350|||||||||||
+S|FIN|ALL|US1530||||||LEGAL_ENTITY|US1530|||||||||||
+S|FIN|ALL|US2190||||||LEGAL_ENTITY|US2190|||||||||||
+S|FIN|ALL|US2230||||||LEGAL_ENTITY|US2230|||||||||||
+S|FIN|ALL|US2450||||||LEGAL_ENTITY|US2450|||||||||||
+S|FIN|ALL|US2850||||||LEGAL_ENTITY|US2850|||||||||||
+S|FIN|ALL|US2870||||||LEGAL_ENTITY|US2870|||||||||||
+S|FIN|ALL|US6990||||||LEGAL_ENTITY|US6990|||||||||||
+S|FIN|ALL|US7900||||||LEGAL_ENTITY|US7900|||||||||||
+S|FIN|ALL|VG7620||||||LEGAL_ENTITY|VG7620|||||||||||
+S|FIN|ALL|AExeo Technology Ltd.||||||LEGAL_ENTITY_NAME|AExeo Technology Ltd.|||||||||||
+S|FIN|ALL|Amathea Funding Public Limited Company||||||LEGAL_ENTITY_NAME|Amathea Funding Public Limited Company|||||||||||
+S|FIN|ALL|Aruba International Trust Company N.V.||||||LEGAL_ENTITY_NAME|Aruba International Trust Company N.V.|||||||||||
+S|FIN|ALL|B&C Technology Ltd.||||||LEGAL_ENTITY_NAME|B&C Technology Ltd.|||||||||||
+S|FIN|ALL|CI Trustees Ltd.||||||LEGAL_ENTITY_NAME|CI Trustees Ltd.|||||||||||
+S|FIN|ALL|Citco (Australia) Pty. Ltd.||||||LEGAL_ENTITY_NAME|Citco (Australia) Pty. Ltd.|||||||||||
+S|FIN|ALL|Citco (Bahamas) Limited – Funds||||||LEGAL_ENTITY_NAME|Citco (Bahamas) Limited – Funds|||||||||||
+S|FIN|ALL|Citco (Bahamas) Limited – Governance||||||LEGAL_ENTITY_NAME|Citco (Bahamas) Limited – Governance|||||||||||
+S|FIN|ALL|Citco (Bermuda) Limited||||||LEGAL_ENTITY_NAME|Citco (Bermuda) Limited|||||||||||
+S|FIN|ALL|Citco (Cyprus) Limited||||||LEGAL_ENTITY_NAME|Citco (Cyprus) Limited|||||||||||
+S|FIN|ALL|Citco (Denmark) ApS||||||LEGAL_ENTITY_NAME|Citco (Denmark) ApS|||||||||||
+S|FIN|ALL|Citco (Malta) Limited||||||LEGAL_ENTITY_NAME|Citco (Malta) Limited|||||||||||
+S|FIN|ALL|Citco (Mauritius) Limited||||||LEGAL_ENTITY_NAME|Citco (Mauritius) Limited|||||||||||
+S|FIN|ALL|Citco (Sweden) AB||||||LEGAL_ENTITY_NAME|Citco (Sweden) AB|||||||||||
+S|FIN|ALL|Citco B.V.I. Limited||||||LEGAL_ENTITY_NAME|Citco B.V.I. Limited|||||||||||
+S|FIN|ALL|Citco Bank Canada||||||LEGAL_ENTITY_NAME|Citco Bank Canada|||||||||||
+S|FIN|ALL|Citco Bank Canada - Custody||||||LEGAL_ENTITY_NAME|Citco Bank Canada - Custody|||||||||||
+S|FIN|ALL|Citco Bank Nederland N.V.||||||LEGAL_ENTITY_NAME|Citco Bank Nederland N.V.|||||||||||
+S|FIN|ALL|Citco Bank Nederland N.V. Dublin Branch||||||LEGAL_ENTITY_NAME|Citco Bank Nederland N.V. Dublin Branch|||||||||||
+S|FIN|ALL|Citco Bank Nederland N.V. Dublin Branch - Depository||||||LEGAL_ENTITY_NAME|Citco Bank Nederland N.V. Dublin Branch - Depository|||||||||||
+S|FIN|ALL|Citco Bank Nederland N.V. Luxembourg Branch||||||LEGAL_ENTITY_NAME|Citco Bank Nederland N.V. Luxembourg Branch|||||||||||
+S|FIN|ALL|Citco Bank Nederland N.V. Luxembourg Branch - Depositary||||||LEGAL_ENTITY_NAME|Citco Bank Nederland N.V. Luxembourg Branch - Depositary|||||||||||
+S|FIN|ALL|Citco Bank and Trust Company (Bahamas) Limited - Bank||||||LEGAL_ENTITY_NAME|Citco Bank and Trust Company (Bahamas) Limited - Bank|||||||||||
+S|FIN|ALL|Citco Bank and Trust Company Limited||||||LEGAL_ENTITY_NAME|Citco Bank and Trust Company Limited|||||||||||
+S|FIN|ALL|Citco Banking Corporation N.V.||||||LEGAL_ENTITY_NAME|Citco Banking Corporation N.V.|||||||||||
+S|FIN|ALL|Citco Belgium NV||||||LEGAL_ENTITY_NAME|Citco Belgium NV|||||||||||
+S|FIN|ALL|Citco Bewaarder B.V.||||||LEGAL_ENTITY_NAME|Citco Bewaarder B.V.|||||||||||
+S|FIN|ALL|Citco C&T (Luxembourg) S.A.||||||LEGAL_ENTITY_NAME|Citco C&T (Luxembourg) S.A.|||||||||||
+S|FIN|ALL|Citco C&T Holdings (Luxembourg) S.à r.l.||||||LEGAL_ENTITY_NAME|Citco C&T Holdings (Luxembourg) S.à r.l.|||||||||||
+S|FIN|ALL|Citco Capital Solutions Inc.||||||LEGAL_ENTITY_NAME|Citco Capital Solutions Inc.|||||||||||
+S|FIN|ALL|Citco Corporate Management (Barbados) Limited||||||LEGAL_ENTITY_NAME|Citco Corporate Management (Barbados) Limited|||||||||||
+S|FIN|ALL|Citco Corporate Management (Madrid) S.L.||||||LEGAL_ENTITY_NAME|Citco Corporate Management (Madrid) S.L.|||||||||||
+S|FIN|ALL|Citco Corporate Services (Ireland) Limited||||||LEGAL_ENTITY_NAME|Citco Corporate Services (Ireland) Limited|||||||||||
+S|FIN|ALL|Citco Custody (UK) Limited||||||LEGAL_ENTITY_NAME|Citco Custody (UK) Limited|||||||||||
+S|FIN|ALL|Citco Custody Limited||||||LEGAL_ENTITY_NAME|Citco Custody Limited|||||||||||
+S|FIN|ALL|Citco Deutschland GmbH||||||LEGAL_ENTITY_NAME|Citco Deutschland GmbH|||||||||||
+S|FIN|ALL|Citco France SARL||||||LEGAL_ENTITY_NAME|Citco France SARL|||||||||||
+S|FIN|ALL|Citco Fund Administration (Cayman Islands) Limited||||||LEGAL_ENTITY_NAME|Citco Fund Administration (Cayman Islands) Limited|||||||||||
+S|FIN|ALL|Citco Fund Distribution Services (Switzerland) SA||||||LEGAL_ENTITY_NAME|Citco Fund Distribution Services (Switzerland) SA|||||||||||
+S|FIN|ALL|Citco Fund Services (Australia) Pty. Ltd.||||||LEGAL_ENTITY_NAME|Citco Fund Services (Australia) Pty. Ltd.|||||||||||
+S|FIN|ALL|Citco Fund Services (Bermuda) Limited||||||LEGAL_ENTITY_NAME|Citco Fund Services (Bermuda) Limited|||||||||||
+S|FIN|ALL|Citco Fund Services (Cayman Islands) Limited||||||LEGAL_ENTITY_NAME|Citco Fund Services (Cayman Islands) Limited|||||||||||
+S|FIN|ALL|Citco Fund Services (Curaçao) B.V.||||||LEGAL_ENTITY_NAME|Citco Fund Services (Curaçao) B.V.|||||||||||
+S|FIN|ALL|Citco Fund Services (Europe) B.V.||||||LEGAL_ENTITY_NAME|Citco Fund Services (Europe) B.V.|||||||||||
+S|FIN|ALL|Citco Fund Services (Guernsey) Limited||||||LEGAL_ENTITY_NAME|Citco Fund Services (Guernsey) Limited|||||||||||
+S|FIN|ALL|Citco Fund Services (Holdings) Limited||||||LEGAL_ENTITY_NAME|Citco Fund Services (Holdings) Limited|||||||||||
+S|FIN|ALL|Citco Fund Services (Ireland) Limited||||||LEGAL_ENTITY_NAME|Citco Fund Services (Ireland) Limited|||||||||||
+S|FIN|ALL|Citco Fund Services (Jersey) Limited||||||LEGAL_ENTITY_NAME|Citco Fund Services (Jersey) Limited|||||||||||
+S|FIN|ALL|Citco Fund Services (Luxembourg) S.A.||||||LEGAL_ENTITY_NAME|Citco Fund Services (Luxembourg) S.A.|||||||||||
+S|FIN|ALL|Citco Fund Services (Malta) Limited||||||LEGAL_ENTITY_NAME|Citco Fund Services (Malta) Limited|||||||||||
+S|FIN|ALL|Citco Fund Services (Malvern) Inc.||||||LEGAL_ENTITY_NAME|Citco Fund Services (Malvern) Inc.|||||||||||
+S|FIN|ALL|Citco Fund Services (San Francisco), Inc.||||||LEGAL_ENTITY_NAME|Citco Fund Services (San Francisco), Inc.|||||||||||
+S|FIN|ALL|Citco Fund Services (Singapore) Pte. Ltd.||||||LEGAL_ENTITY_NAME|Citco Fund Services (Singapore) Pte. Ltd.|||||||||||
+S|FIN|ALL|Citco Fund Services (USA) Inc.||||||LEGAL_ENTITY_NAME|Citco Fund Services (USA) Inc.|||||||||||
+S|FIN|ALL|Citco Fund Services Lithuania, UAB||||||LEGAL_ENTITY_NAME|Citco Fund Services Lithuania, UAB|||||||||||
+S|FIN|ALL|Citco Gateway New York LLC||||||LEGAL_ENTITY_NAME|Citco Gateway New York LLC|||||||||||
+S|FIN|ALL|Citco Gateway Pte. Ltd.||||||LEGAL_ENTITY_NAME|Citco Gateway Pte. Ltd.|||||||||||
+S|FIN|ALL|Citco Governance Services (Netherlands) B.V.||||||LEGAL_ENTITY_NAME|Citco Governance Services (Netherlands) B.V.|||||||||||
+S|FIN|ALL|Citco Governance Services Lithuania, UAB||||||LEGAL_ENTITY_NAME|Citco Governance Services Lithuania, UAB|||||||||||
+S|FIN|ALL|Citco Hong Kong Limited||||||LEGAL_ENTITY_NAME|Citco Hong Kong Limited|||||||||||
+S|FIN|ALL|Citco India Services Private Limited||||||LEGAL_ENTITY_NAME|Citco India Services Private Limited|||||||||||
+S|FIN|ALL|Citco Jersey Limited||||||LEGAL_ENTITY_NAME|Citco Jersey Limited|||||||||||
+S|FIN|ALL|Citco London Limited||||||LEGAL_ENTITY_NAME|Citco London Limited|||||||||||
+S|FIN|ALL|Citco Management Services Trust||||||LEGAL_ENTITY_NAME|Citco Management Services Trust|||||||||||
+S|FIN|ALL|Citco Mercator, UAB||||||LEGAL_ENTITY_NAME|Citco Mercator, UAB|||||||||||
+S|FIN|ALL|Citco Nederland B.V.||||||LEGAL_ENTITY_NAME|Citco Nederland B.V.|||||||||||
+S|FIN|ALL|Citco REIF Services (Canada) Ltd.||||||LEGAL_ENTITY_NAME|Citco REIF Services (Canada) Ltd.|||||||||||
+S|FIN|ALL|Citco REIF Services (Luxembourg) S.A.||||||LEGAL_ENTITY_NAME|Citco REIF Services (Luxembourg) S.A.|||||||||||
+S|FIN|ALL|Citco REIF Services UK Limited||||||LEGAL_ENTITY_NAME|Citco REIF Services UK Limited|||||||||||
+S|FIN|ALL|Citco Singapore Pte. Ltd.||||||LEGAL_ENTITY_NAME|Citco Singapore Pte. Ltd.|||||||||||
+S|FIN|ALL|Citco St. Maarten N.V.||||||LEGAL_ENTITY_NAME|Citco St. Maarten N.V.|||||||||||
+S|FIN|ALL|Citco Technology Management, Inc.||||||LEGAL_ENTITY_NAME|Citco Technology Management, Inc.|||||||||||
+S|FIN|ALL|Citco Transparency Platform Limited||||||LEGAL_ENTITY_NAME|Citco Transparency Platform Limited|||||||||||
+S|FIN|ALL|Citco Trustees (Cayman) Limited||||||LEGAL_ENTITY_NAME|Citco Trustees (Cayman) Limited|||||||||||
+S|FIN|ALL|Citco Trustees (Mauritius) Limited||||||LEGAL_ENTITY_NAME|Citco Trustees (Mauritius) Limited|||||||||||
+S|FIN|ALL|Citco Trustees (New Zealand) Limited||||||LEGAL_ENTITY_NAME|Citco Trustees (New Zealand) Limited|||||||||||
+S|FIN|ALL|Curaçao International Trust Company B.V.||||||LEGAL_ENTITY_NAME|Curaçao International Trust Company B.V.|||||||||||
+S|FIN|ALL|DMO Corporate Services Limited||||||LEGAL_ENTITY_NAME|DMO Corporate Services Limited|||||||||||
+S|FIN|ALL|Demeter (Holdings) Ltd.||||||LEGAL_ENTITY_NAME|Demeter (Holdings) Ltd.|||||||||||
+S|FIN|ALL|Emphasis Software Development, LLC||||||LEGAL_ENTITY_NAME|Emphasis Software Development, LLC|||||||||||
+S|FIN|ALL|Execman Management Services N.V.||||||LEGAL_ENTITY_NAME|Execman Management Services N.V.|||||||||||
+S|FIN|ALL|Executrust Corporation N.V.||||||LEGAL_ENTITY_NAME|Executrust Corporation N.V.|||||||||||
+S|FIN|ALL|Gateway Amsterdam B.V.||||||LEGAL_ENTITY_NAME|Gateway Amsterdam B.V.|||||||||||
+S|FIN|ALL|Gateway Luxembourg S.A.||||||LEGAL_ENTITY_NAME|Gateway Luxembourg S.A.|||||||||||
+S|FIN|ALL|The Citco Group Limited||||||LEGAL_ENTITY_NAME|The Citco Group Limited|||||||||||
+S|FIN|AP|Citco (Denmark) ApS||||||LEGAL_ENTITY_NAME|Citco (Denmark) ApS|||||||||||
+S|FIN|AP|Citco Fund Services (San Francisco), Inc.||||||LEGAL_ENTITY_NAME|Citco Fund Services (San Francisco), Inc.|||||||||||
+S|FIN|ALL|CHECK||||||PAYMENT_METHOD|CHECK|||||||||||
+S|FIN|ALL|EFT||||||PAYMENT_METHOD|EFT|||||||||||
+S|FIN|ALL|WIRE||||||PAYMENT_METHOD|WIRE|||||||||||
+S|FIN|AP|EFT||||||DEFAULT_PAYMENT_METHOD_CODE|EFT|||||||||||
+S|FIN|AP|CHECK||||||DEFAULT_PAYMENT_METHOD_CODE|CHECK|||||||||||
+S|FIN|AP|WIRE||||||DEFAULT_PAYMENT_METHOD_CODE|WIRE|||||||||||
+S|FIN|AP|EFT||||||PAYMENT_METHOD_CODE|EFT|||||||||||
+S|FIN|AP|WIRE||||||PAYMENT_METHOD_CODE|WIRE|||||||||||
+S|FIN|ALL|CBN DKK *8847||||||PAY_GROUP|CBN DKK *8847|||||||||||
+S|FIN|ALL|CBN EUR *6114||||||PAY_GROUP|CBN EUR *6114|||||||||||
+S|FIN|ALL|DIRECT DEBIT||||||PAY_GROUP|DIRECT DEBIT|||||||||||
+S|FIN|ALL|INTERCOMPANY||||||PAY_GROUP|INTERCOMPANY|||||||||||
+S|FIN|ALL|NORDEA DKK *8442||||||PAY_GROUP|NORDEA DKK *8442|||||||||||
+S|FIN|ALL|NORDEA EUR *3605||||||PAY_GROUP|NORDEA EUR *3605|||||||||||
+S|FIN|ALL|SUPPLIER||||||PAY_GROUP|SUPPLIER|||||||||||
+S|FIN|ALL|WELLS USD *3632||||||PAY_GROUP|WELLS USD *3632|||||||||||
+S|FIN|ALL|WELLS USD *7883||||||PAY_GROUP|WELLS USD *7883|||||||||||
+S|FIN|ALL|WELLS USD *7909||||||PAY_GROUP|WELLS USD *7909|||||||||||
+S|FIN|AP|INTERCOMPANY||||||PAY_GROUP_LOOKUP_CODE|INTERCOMPANY|||||||||||
+S|FIN|AP|WELLS USD *3632||||||PAY_GROUP_LOOKUP_CODE|WELLS USD *3632|||||||||||
+S|FIN|AP|CBN DKK *8847||||||PAY_GROUP_LOOKUP_CODE|CBN DKK *8847|||||||||||
+S|FIN|AP|CBN EUR *6114||||||PAY_GROUP_LOOKUP_CODE|CBN EUR *6114|||||||||||
+S|FIN|ALL|DE||||||COUNTRY_CODE|DE|||||||||||
+S|FIN|ALL|DK||||||COUNTRY_CODE|DK|||||||||||
+S|FIN|ALL|FI||||||COUNTRY_CODE|FI|||||||||||
+S|FIN|ALL|GB||||||COUNTRY_CODE|GB|||||||||||
+S|FIN|ALL|LU||||||COUNTRY_CODE|LU|||||||||||
+S|FIN|ALL|NL||||||COUNTRY_CODE|NL|||||||||||
+S|FIN|ALL|SE||||||COUNTRY_CODE|SE|||||||||||
+S|FIN|ALL|US||||||COUNTRY_CODE|US|||||||||||
+S|FIN|AP|FI||||||TAXATION_COUNTRY|FI|||||||||||
+S|FIN|AP|DK||||||TAXATION_COUNTRY|DK|||||||||||
+S|FIN|AP|US||||||TAXATION_COUNTRY|US|||||||||||
+S|FIN|ALL|DK VAT EXEMPT||||||TAX_CLASSIFICATION_CODE|DK VAT EXEMPT|||||||||||
+S|FIN|ALL|DK VAT REVERSED||||||TAX_CLASSIFICATION_CODE|DK VAT REVERSED|||||||||||
+S|FIN|ALL|DK VAT STANDARD||||||TAX_CLASSIFICATION_CODE|DK VAT STANDARD|||||||||||
+S|FIN|AP|DK VAT STANDARD||||||TAX_CLASSIFICATION_CODE|DK STANDARD|||||||||||
+S|FIN|AP|DK VAT EXEMPT||||||TAX_CLASSIFICATION_CODE|EXEMPT|||||||||||
+S|FIN|AP|DK VAT REVERSED||||||TAX_CLASSIFICATION_CODE|DK REVERSED|||||||||||
+S|FIN|ALL|DK.Copenhagen||||||LOCATION|DK.Copenhagen|||||||||||
+S|FIN|ALL|US.Jersey City||||||LOCATION|US.Jersey City|||||||||||
+S|FIN|ALL|US.San Francisco||||||LOCATION|US.San Francisco|||||||||||
+S|FIN|AP|US.San Francisco||||||BILL_TO_LOCATION|US.San Francisco|||||||||||
+S|FIN|AP|DK.Copenhagen||||||BILL_TO_LOCATION|DK.Copenhagen|||||||||||
+S|FIN|AP|US.San Francisco||||||SHIP_TO_LOCATION|US.San Francisco|||||||||||
+S|FIN|AP|DK.Copenhagen||||||SHIP_TO_LOCATION|DK.Copenhagen|||||||||||
+S|FIN|AP|US.San Francisco||||||SHIP_TO_LOCATION_CODE|US.San Francisco|||||||||||
+S|FIN|AP|DK.Copenhagen||||||SHIP_TO_LOCATION_CODE|DK.Copenhagen|||||||||||
+S|FIN|ALL|AU2250||||||BUSINESS_UNIT|AU2250|||||||||||
+S|FIN|ALL|AU5250||||||BUSINESS_UNIT|AU5250|||||||||||
+S|FIN|ALL|AW7450||||||BUSINESS_UNIT|AW7450|||||||||||
+S|FIN|ALL|BB7720||||||BUSINESS_UNIT|BB7720|||||||||||
+S|FIN|ALL|BE5370||||||BUSINESS_UNIT|BE5370|||||||||||
+S|FIN|ALL|BM2300||||||BUSINESS_UNIT|BM2300|||||||||||
+S|FIN|ALL|BM2430||||||BUSINESS_UNIT|BM2430|||||||||||
+S|FIN|ALL|BM7600||||||BUSINESS_UNIT|BM7600|||||||||||
+S|FIN|ALL|BS2270||||||BUSINESS_UNIT|BS2270|||||||||||
+S|FIN|ALL|BS4400||||||BUSINESS_UNIT|BS4400|||||||||||
+S|FIN|ALL|BS7920||||||BUSINESS_UNIT|BS7920|||||||||||
+S|FIN|ALL|CA2400||||||BUSINESS_UNIT|CA2400|||||||||||
+S|FIN|ALL|CA4420||||||BUSINESS_UNIT|CA4420|||||||||||
+S|FIN|ALL|CA4421||||||BUSINESS_UNIT|CA4421|||||||||||
+S|FIN|ALL|CH3070||||||BUSINESS_UNIT|CH3070|||||||||||
+S|FIN|ALL|CW2070||||||BUSINESS_UNIT|CW2070|||||||||||
+S|FIN|ALL|CW4270||||||BUSINESS_UNIT|CW4270|||||||||||
+S|FIN|ALL|CW7050||||||BUSINESS_UNIT|CW7050|||||||||||
+S|FIN|ALL|CW7120||||||BUSINESS_UNIT|CW7120|||||||||||
+S|FIN|ALL|CW7150||||||BUSINESS_UNIT|CW7150|||||||||||
+S|FIN|ALL|CY5700||||||BUSINESS_UNIT|CY5700|||||||||||
+S|FIN|ALL|DE5770||||||BUSINESS_UNIT|DE5770|||||||||||
+S|FIN|ALL|DK5350||||||BUSINESS_UNIT|DK5350|||||||||||
+S|FIN|ALL|ES5470||||||BUSINESS_UNIT|ES5470|||||||||||
+S|FIN|ALL|FR5850||||||BUSINESS_UNIT|FR5850|||||||||||
+S|FIN|ALL|GB3160||||||BUSINESS_UNIT|GB3160|||||||||||
+S|FIN|ALL|GB6520||||||BUSINESS_UNIT|GB6520|||||||||||
+S|FIN|ALL|GB6600||||||BUSINESS_UNIT|GB6600|||||||||||
+S|FIN|ALL|GG2520||||||BUSINESS_UNIT|GG2520|||||||||||
+S|FIN|ALL|HK6800||||||BUSINESS_UNIT|HK6800|||||||||||
+S|FIN|ALL|HK6850||||||BUSINESS_UNIT|HK6850|||||||||||
+S|FIN|ALL|IE2690||||||BUSINESS_UNIT|IE2690|||||||||||
+S|FIN|ALL|IE4050||||||BUSINESS_UNIT|IE4050|||||||||||
+S|FIN|ALL|IE4350||||||BUSINESS_UNIT|IE4350|||||||||||
+S|FIN|ALL|IE4351||||||BUSINESS_UNIT|IE4351|||||||||||
+S|FIN|ALL|IE5500||||||BUSINESS_UNIT|IE5500|||||||||||
+S|FIN|ALL|IN6650||||||BUSINESS_UNIT|IN6650|||||||||||
+S|FIN|ALL|JE2550||||||BUSINESS_UNIT|JE2550|||||||||||
+S|FIN|ALL|JE6500||||||BUSINESS_UNIT|JE6500|||||||||||
+S|FIN|ALL|KY1070||||||BUSINESS_UNIT|KY1070|||||||||||
+S|FIN|ALL|KY2050||||||BUSINESS_UNIT|KY2050|||||||||||
+S|FIN|ALL|KY2370||||||BUSINESS_UNIT|KY2370|||||||||||
+S|FIN|ALL|KY2640||||||BUSINESS_UNIT|KY2640|||||||||||
+S|FIN|ALL|KY2950||||||BUSINESS_UNIT|KY2950|||||||||||
+S|FIN|ALL|KY4100||||||BUSINESS_UNIT|KY4100|||||||||||
+S|FIN|ALL|KY4450||||||BUSINESS_UNIT|KY4450|||||||||||
+S|FIN|ALL|KY4470||||||BUSINESS_UNIT|KY4470|||||||||||
+S|FIN|ALL|KY7700||||||BUSINESS_UNIT|KY7700|||||||||||
+S|FIN|ALL|KY7970||||||BUSINESS_UNIT|KY7970|||||||||||
+S|FIN|ALL|LT2540||||||BUSINESS_UNIT|LT2540|||||||||||
+S|FIN|ALL|LT5380||||||BUSINESS_UNIT|LT5380|||||||||||
+S|FIN|ALL|LT5400||||||BUSINESS_UNIT|LT5400|||||||||||
+S|FIN|ALL|LU2600||||||BUSINESS_UNIT|LU2600|||||||||||
+S|FIN|ALL|LU4370||||||BUSINESS_UNIT|LU4370|||||||||||
+S|FIN|ALL|LU4371||||||BUSINESS_UNIT|LU4371|||||||||||
+S|FIN|ALL|LU5200||||||BUSINESS_UNIT|LU5200|||||||||||
+S|FIN|ALL|LU5570||||||BUSINESS_UNIT|LU5570|||||||||||
+S|FIN|ALL|LU5950||||||BUSINESS_UNIT|LU5950|||||||||||
+S|FIN|ALL|LU6350||||||BUSINESS_UNIT|LU6350|||||||||||
+S|FIN|ALL|MT2730||||||BUSINESS_UNIT|MT2730|||||||||||
+S|FIN|ALL|MT3200||||||BUSINESS_UNIT|MT3200|||||||||||
+S|FIN|ALL|MT6070||||||BUSINESS_UNIT|MT6070|||||||||||
+S|FIN|ALL|MU6870||||||BUSINESS_UNIT|MU6870|||||||||||
+S|FIN|ALL|MU6900||||||BUSINESS_UNIT|MU6900|||||||||||
+S|FIN|ALL|NL2420||||||BUSINESS_UNIT|NL2420|||||||||||
+S|FIN|ALL|NL2620||||||BUSINESS_UNIT|NL2620|||||||||||
+S|FIN|ALL|NL4320||||||BUSINESS_UNIT|NL4320|||||||||||
+S|FIN|ALL|NL6000||||||BUSINESS_UNIT|NL6000|||||||||||
+S|FIN|ALL|NL6220||||||BUSINESS_UNIT|NL6220|||||||||||
+S|FIN|ALL|NL6230||||||BUSINESS_UNIT|NL6230|||||||||||
+S|FIN|ALL|NZ6920||||||BUSINESS_UNIT|NZ6920|||||||||||
+S|FIN|ALL|SE6370||||||BUSINESS_UNIT|SE6370|||||||||||
+S|FIN|ALL|SG2750||||||BUSINESS_UNIT|SG2750|||||||||||
+S|FIN|ALL|SG6750||||||BUSINESS_UNIT|SG6750|||||||||||
+S|FIN|ALL|SG6770||||||BUSINESS_UNIT|SG6770|||||||||||
+S|FIN|ALL|SX7350||||||BUSINESS_UNIT|SX7350|||||||||||
+S|FIN|ALL|US1530||||||BUSINESS_UNIT|US1530|||||||||||
+S|FIN|ALL|US2190||||||BUSINESS_UNIT|US2190|||||||||||
+S|FIN|ALL|US2230||||||BUSINESS_UNIT|US2230|||||||||||
+S|FIN|ALL|US2450||||||BUSINESS_UNIT|US2450|||||||||||
+S|FIN|ALL|US2850||||||BUSINESS_UNIT|US2850|||||||||||
+S|FIN|ALL|US2870||||||BUSINESS_UNIT|US2870|||||||||||
+S|FIN|ALL|US6990||||||BUSINESS_UNIT|US6990|||||||||||
+S|FIN|ALL|US7900||||||BUSINESS_UNIT|US7900|||||||||||
+S|FIN|ALL|VG7620||||||BUSINESS_UNIT|VG7620|||||||||||
+S|FIN|AP|US2230||||||PROCUREMENT_BU|US2230|||||||||||
+S|FIN|AP|DK5350||||||PROCUREMENT_BU|DK5350|||||||||||
+S|FIN|AP|US2230||||||CLIENT_BU|US2230|||||||||||
+S|FIN|AP|DK5350||||||CLIENT_BU|DK5350|||||||||||
+S|FIN|AP|US2230||||||BILL_TO_BU|US2230|||||||||||
+S|FIN|AP|DK5350||||||BILL_TO_BU|DK5350|||||||||||
+S|FIN|AP|10 NET||||||PAYMENT_TERMS|10 NET|||||||||||
+S|FIN|AP|15 NET||||||PAYMENT_TERMS|15 NET|||||||||||
+S|FIN|AP|30 NET||||||PAYMENT_TERMS|30 NET|||||||||||
+S|FIN|AP|IMMEDIATE||||||PAYMENT_TERMS|IMMEDIATE|||||||||||
+S|FIN|AP|30 NET||||||TERMS_NAME|30 NET|||||||||||
+S|FIN|AP|IMMEDIATE||||||TERMS_NAME|IMMEDIATE|||||||||||
+S|FIN|AP|10 NET||||||TERMS_NAME|10 NET|||||||||||
+S|FIN|AP|CREDIT||||||INVOICE_TYPE_LOOKUP_CODE|CREDIT|||||||||||
+S|FIN|AP|STANDARD||||||INVOICE_TYPE_LOOKUP_CODE|STANDARD|||||||||||
+S|FIN|AP|CRM INV||||||DOC_CATEGORY_CODE|CRM INV|||||||||||
+S|FIN|AP|STD INV||||||DOC_CATEGORY_CODE|STD INV|||||||||||
+S|FIN|AP|PURCHASE_TRANSACTION||||||TRX_BUSINESS_CATEGORY|PURCHASE_TRANSACTION|||||||||||
+S|FIN|AP|INTERCOMPANY||||||SUPPLIER_TYPE|INTERCOMPANY|||||||||||
+S|FIN|AP|VENDOR||||||SUPPLIER_TYPE|VENDOR|||||||||||
+S|FIN|ALL|MISC1||||||FEDERAL_INCOME_TAX_TYPE|MISC1|||||||||||
+S|FIN|ALL|MISC3||||||FEDERAL_INCOME_TAX_TYPE|MISC3|||||||||||
+S|FIN|ALL|MISC7||||||FEDERAL_INCOME_TAX_TYPE|MISC7|||||||||||
+S|FIN|AP|Bloomberg LP||||||TAX_REPORTING_NAME|Bloomberg LP|||||||||||
+S|FIN|AP|Camaro Parent, LLC||||||TAX_REPORTING_NAME|Camaro Parent, LLC|||||||||||
+S|FIN|AP|Corporation Service Company||||||TAX_REPORTING_NAME|Corporation Service Company|||||||||||
+S|FIN|AP|D3 Synergy Graphics, LLC||||||TAX_REPORTING_NAME|D3 Synergy Graphics, LLC|||||||||||
+S|FIN|AP|Fragomen, Del Rey, Bernsen & Loewy, LLP||||||TAX_REPORTING_NAME|Fragomen, Del Rey, Bernsen & Loewy, LLP|||||||||||
+S|FIN|AP|Hogan Lovells US LLP||||||TAX_REPORTING_NAME|Hogan Lovells US LLP|||||||||||
+S|FIN|AP|Level 3 Financing Inc.||||||TAX_REPORTING_NAME|Level 3 Financing Inc.|||||||||||
+S|FIN|AP|Lockton Companies||||||TAX_REPORTING_NAME|Lockton Companies|||||||||||
+S|FIN|AP|Loeb & Loeb LLP||||||TAX_REPORTING_NAME|Loeb & Loeb LLP|||||||||||
+S|FIN|AP|NOP 560 Mission LLC||||||TAX_REPORTING_NAME|NOP 560 Mission LLC|||||||||||
+S|FIN|AP|PricewaterhouseCoopers LLP||||||TAX_REPORTING_NAME|PricewaterhouseCoopers LLP|||||||||||
+S|FIN|AP|Robert Half International, Inc||||||TAX_REPORTING_NAME|Robert Half International, Inc|||||||||||
+S|FIN|AP|Citco Goods Tolerances||||||QUANTITY_TOLERANCES|Citco Goods Tolerances|||||||||||
+S|FIN|AP|XXCITCO Goods Zero Tolerance||||||QUANTITY_TOLERANCES|XXCITCO Goods Zero Tolerance|||||||||||
+S|FIN|AP|Invoice||||||TERMS_DATE_BASIS|Invoice|||||||||||
+S|FIN|AP|DISCOUNT||||||PAY_DATE_BASIS|DISCOUNT|||||||||||

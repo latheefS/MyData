@@ -1,0 +1,165 @@
+EY:
+---
+OIC
+----
+
+
+We are looking for an Oracle Integration Cloud Technical Consultant with total experience of 3+ years who can understand business requirement and other technical specifications.
+
+Experience
+
+Should have experience building integration in OIC using REST/SOAP Services.
+Should have experience building integrations in OIC, building and uploading FBDI Files to Oracle ERP Cloud
+Hands-On Experience on data migration/integration methods i.e., SOAP and Rest Web Services, FBDI and ADFDI
+Hands-On Experience on reporting tools such as OTBI, BI Publisher, Smart View and FRS reports
+Good Knowledge on building custom ESS jobs
+Hands-on with development & unit testing of integration components & web services (SOAP/REST) using OIC
+Technical requirements: OIC, Oracle Cloud ERP, BIP, VBCS (Optional), APEX 
+Good to have experience in any Database, SQL, PL/SQL, XSLT, SQL, PL/SQL
+Oracle ERP and HCM integration delivery using Oracle Integration Cloud 
+Oracle ERP Cloud, Oracle Integration Cloud and Oracle E-Business support experience.
+Willing to learn and work on new technologies
+Experience of having worked in a CMMI environment would be a plus
+Should have the ability to collect requirements, build high level design documents, low level design documents, and deployments documents.
+Multi domain expertise and knowledge on other integration tools is an advantage.
+Knowledge on Agile scrum and waterfall methodology
+Strong communication skills both written and verbal
+Any Oracle Certification is an added key advantage.
+
+Must Have Skills:
+
+Must have minimum 3+ years of technical experience with at least 2 years in Oracle Integration Cloud (At least 2 End-to-End implementations experience)
+Excellent Oracle technical skills with the ability to build complex Oracle integrations using OIC.
+Experience building integration in OIC using REST/SOAP Services.
+Experience building integrations in OIC, building and uploading FBDI Files to Oracle ERP Cloud
+Must have good experience translating business requirements and design into technical solutions
+Awareness of VBCS would be a plus
+Knowledge of Oracle Interface tables in financial and procurement modules.
+Ability to research, learn, troubleshoot and support complex system customizations
+Ability to multi-task and prioritize across concurrent workload may be required.
+Good Knowledge on building custom ESS jobs
+Excellent communication skills, able to discuss technical & functional issues/solutions, in highly escalated situations, with executives, support & customer personnel.
+
+Key Responsibilities
+
+Ability to work with clients to identify business challenges and contribute to client deliverables 
+Technical Design, Identification and Implementation of re-usable assets/components
+Identification of root causes and providing necessary technical solution and implementation
+Contribution to process review and improvement
+Deliver PoCs, Mentoring team
+Implement best practices, following development life cycle process
+
+====================================
+ERP:
+---
+
+We are looking for an Oracle Cloud ERP Technical Consultant with total experience of 3+ years who can understand business requirement and other technical specifications.
+
+Experience
+
+Should be technically strong on SQL, PLSQL and developing RICE components in Oracle EBS environment.
+Proficient in Oracle Forms, Oracle Reports (BI / XML / RDF), Oracle Workflow and Oracle RDBMS 10g.
+Should have worked on Data Migration, Integration of Oracle modules with third Party Applications.
+Experience working on Integrations using webservices/REST Services
+Should have working knowledge on Reports development in Oracle Cloud ERP using OTBI and BIP.
+Willing to learn and work on new technologies
+Experience of having worked in a CMMI environment would be a plus
+Should have the ability to collect requirements, build high level design documents, low level design documents, and deployments documents.
+Multi domain expertise and knowledge on other integration tools is an advantage.
+Knowledge on Agile scrum and waterfall methodology
+Strong communication skills both written and verbal
+Any Oracle Certification is an added key advantage.
+
+Must Have Skills:
+
+Must have minimum 3+ years of technical experience with at least 2 years in Oracle Cloud Fusion (At least 2 End-to-End implementations experience)
+Excellent Oracle technical skills with the ability to build complex Oracle RICE components using PL/SQL and SQL.
+Experience in integrating ERP /Thirty party application with cloud using Web Services/Rest API through OIC.
+Experience in ADFDI, FBDI, HCM Data Loader (HDL) and Web Services in Oracle Cloud environment
+Must have experience in functional specifications, OTBI reports and analytics, configuration of Oracle templates in BI Publisher
+Should have working knowledge on Role based Security model in Oracle Cloud ERP.
+Awareness of SOA would be a plus
+Knowledge on additional reporting Tools i.e. Analysis Dashboard / ESS Base Financial reporting studio (FRS) and SmartView reports would be a plus
+Excellent communication skills, able to discuss technical & functional issues/solutions, in highly escalated situations, with executives, support & customer personnel.
+
+Key Responsibilities
+
+Ability to work with clients to identify business challenges and contribute to client deliverables
+Technical Design, Identification and Implementation of re-usable assets/components
+Identification of root causes and providing necessary technical solution and implementation
+Contribution to process review and improvement
+ Deliver PoCs, Mentoring team
+ Implement best practices, following development life cycle process
+
+====================================
+ERP:
+---
+
+Manager:
+--------
+Oracle Manager Position:
+
+This Manager position is responsible for the team and business operations within area of responsibility including people & delivery management and sales enablement. He/she would also be responsible for project oversight of staff augmentation projects. Accountable for fulfilling business goals, meeting budgets, maintaining strategic direction, and ensuring quality of delivery by consultants within their engagements.
+
+This position is based in India and is responsible for an increasingly diverse Oracle EBS and Cloud implementation practice across the globe based upon complexity of the customers and solutions. This candidate is responsible for directing business operations and consulting resources to assist clients in implementing Oracle EBS and Cloud solutions.
+
+Actively develops new approaches and opportunities for expanding customer base. Creates and implements operational policies and processes to drive consistency and support achievement of business strategy. Interacts with executive levels, both internally and externally, regarding matters that influence policies and strategies. Assesses and manages business risks in pursuit of overall business goals.
+
+Responsibilities:
+
+Experience with Oracle EBS and Cloud implementations.
+Experience with managing functional, technical solutions and Reporting.
+Managing the three main pillars of a practice: people management, portfolio/delivery management and sales enablement.
+Has profit and loss responsibility or financial/expense management of practice.
+Accountable for operational/financial/people metrics and overall business results of competency.
+Responsible for maintaining strategic direction, ensuring profitable growth of the practice, quality of consulting delivery, and maintaining customer reference ability.
+Develops strategy and plans to successfully implement operational policies and achieve business objectives.
+Typically manages multiple senior/staff level individual contributors.
+Resolves staffing issue in complex engagements.
+May serve as advisor or project sponsor role for moderately complex engagements.
+
+Requirements:
+
+10 - 16 years of experience relevant to this position including 5 years of consulting experience and 2 years of project management leadership experience.
+Functional professional with 5+ ERP implementations (e.g., Oracle ERP Cloud, Oracle R12) and a senior team member, team lead or Project Manager on at least 3 full cycle implementations.
+A minimum of 10 years of experience implementing some combination of Oracle EBS or Cloud applications
+Good to have knowledge in other Oracle platforms like VBCS, Workflows, OAF and OIC
+Demonstrated experience as a senior resource leading in the definition of systems strategy, gathering and documenting business requirements, leading fit-gap analysis, as-is and to- be business process designs, conference room pilots (CRPs) functional configuration, testing, client user training. 
+Experience reporting to client contacts, managing teams, in addition to on- and off-site, and off-shore functional and technical teams
+Big-4 / Consulting experience highly desirable
+Ability to develop and maintain relationships at the executive level highly desirable
+Product, technology or industry expertise relevant to the practice focus.
+Ability to develop and maintain relationships at the executive level.
+Masters or higher degree highly desirable.
+
+=====
+
+Senior Manager(Presale):
+---------------
+
+Job Description:
+
+We are seeking a seasoned Oracle ERP Pre-Sales Consultant with expertise in both on-premise and cloud solutions. The ideal candidate will possess strong pre-sales skills, adeptness in solutions detailing, deal management, staffing, and estimating. Experience in Oracle Cloud Financials/Supply chain modules such as General Ledger (GL), Procurement, Inventory, Accounts Payable (AP), Accounts Receivable (AR), Manufacturing and Fixed Assets (FA) will be highly beneficial.
+
+Responsibilities:
+
+ Engage in pre-sales activities including solution presentations, product demonstrations, and client workshops to showcase the capabilities of Oracle ERP solutions.
+ Collaborate with sales teams to understand customer requirements and tailor Oracle ERP solutions to meet their needs.
+ Provide expertise in detailing Oracle ERP solutions, including configuration options, implementation timelines, and resource requirements.
+ Manage the end-to-end deal process from RFP response preparation to contract negotiation, ensuring alignment with customer expectations and company objectives.
+ Develop staffing plans and resource estimates for Oracle ERP implementation projects.
+ Stay abreast of industry trends, competitor offerings, and market demands to inform pre-sales strategies and solution positioning.
+ Act as a subject matter expert on Oracle Cloud Financials modules and related functionalities.
+ Leverage your 10+ years of hands-on delivery experience to provide insights and guidance to clients during the pre-sales process.
+
+**Requirements:**
+
+ Bachelor's degree in Computer Science, Business Administration, or a related field.
+ Minimum of 10 years of hands-on experience in Oracle ERP implementation and delivery.
+ At least 2 years of experience in responding to RFPs and managing the proposal process.
+ Proven track record of successful pre-sales engagements and deal closures.
+ Strong understanding of Oracle ERP modules and architecture, with a focus on Cloud Financials.
+ Excellent communication, presentation, and interpersonal skills.
+ Ability to work effectively in a fast-paced environment and manage multiple priorities simultaneously.
+ Relevant certifications in Oracle ERP or Cloud technologies (preferred).
+ Flexibility to travel as needed for client meetings and presentations.

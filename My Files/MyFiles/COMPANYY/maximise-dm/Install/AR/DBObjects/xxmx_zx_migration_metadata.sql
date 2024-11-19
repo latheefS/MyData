@@ -1,0 +1,182 @@
+/******************
+** ZX CUSTOMER TAX
+******************/
+--
+/*
+** ZX Customer Party Tax Profile
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'FIN'
+         ,'ZX'
+         ,:vn_BusinessEntitySeq
+         ,'CUSTOMER_TAX'
+         ,:vn_SubEntitySeq
+         ,'TAX_PROFILE'
+         ,'xxmx_zx_customer_tax_pkg'
+         ,NULL
+         ,'zx_tax_profile_stg'
+         ,'XXMX_ZX_TAX_PROFILE_STG'
+         ,NULL
+         ,'XXMX_ZX_TAX_PROFILE_XFM'
+         ,NULL
+         ,'PartyTaxProfileControls'
+         ,'csv'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+--** ZX Customer Tax Registrations
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'FIN'
+         ,'ZX'
+         ,:vn_BusinessEntitySeq
+         ,'CUSTOMER_TAX'
+         ,:vn_SubEntitySeq
+         ,'TAX_REGISTRATION'
+         ,'xxmx_zx_customer_tax_pkg'
+         ,NULL
+         ,'zx_tax_registration_stg'
+         ,'XXMX_ZX_TAX_REGISTRATION_STG'
+         ,NULL
+         ,'XXMX_ZX_TAX_REGISTRATION_XFM'
+         ,NULL
+         ,'TaxRegistrations'
+         ,'csv'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+--** ZX Customer Party Classifications
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'FIN'
+         ,'ZX'
+         ,:vn_BusinessEntitySeq
+         ,'CUSTOMER_TAX'
+         ,:vn_SubEntitySeq
+         ,'PARTY_CLASSIFICATION'
+         ,'xxmx_zx_customer_tax_pkg'
+         ,NULL
+         ,'zx_party_classific_stg'
+         ,'XXMX_ZX_PARTY_CLASSIFIC_STG'
+         ,NULL
+         ,'XXMX_ZX_PARTY_CLASSIFIC_XFM'
+         ,NULL
+         ,'PartyClassifications'
+         ,'csv'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );

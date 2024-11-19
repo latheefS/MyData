@@ -1,0 +1,44 @@
+Performed POC on VBCS Bell Notification.
+Performed research and analysis on the Load File Generation Monitoring screen by collaborating with Manish, Nitish, Mahesh, Dushyanth, and Mohan from NCP.
+Developed Migration Status Tracker for load file generation.
+Performed Cloudbridge configuration enhancements.
+Collaborated and conducted meetings to bring the CITCO team on board in getting the validation scripts and codes.
+Reviewed, integrated, and tested the validation scripts of FA, GL, PO, and AP.
+Reviewed and integrated code comparison of FA, GL, and ZX.
+Developed trackers for validation scripts and code comparison.
+Developed and modified the installation document and validation document with validation details.
+Mentored and monitored the team and reviewed their tasks.
+Conducted sprint planning and scrum calls.
+Supported RBKC, CITCO,  and BoE teams.
+Collaborated with Jim Venn and Sumanth for Intelligent Account Combination Defaulting.
+Collaborated with Praveen for Document Reading and supported the process by validating, reviewing, and providing feedback.
+Developed Python scripts to perform Web Scraping on Oracle websites.
+Performed research and analysis on Visual Builder Studio and its applications.
+Developed POC on VB Studio and highlighted the issues.
+Bought the courses to support the AI deliverables.
+Achieved Oracle Artificial Intelligence 2024 Sales Specialist certification.
+Completed all the organization's mandates and objectives.
+
+Integrated Customer Tax, General Ledger, Fixed Assets, Supplier Tax, Purchase Orders code, and Project Validations from Citco to Cloudbridge.
+Analysed FA validation integration from Citco.
+Researched, Configured, Implemented, and Tested all the HCM Journeys.
+Documented and demonstrated VBS.
+Researched, Developed, and Demonstrated AT Audit Report using Python and Open AI.
+Lead the team in sprint planning and scrum calls.
+Collaborated and supported the teams in achieving the outcomes.
+Collaborated with Citco Teams to bring everyone on the same boat and use resources well.
+Supported RBKC and  AnPost in configuration and resolving issues around it.
+
+
+Collaborated with Ayush to improve the prompt tuning of the AT Audit Report and achieved the desired results.
+Guided and supported Sinchana in achieving the Count Generation segment of the AT Audit Report using Python.
+Integrated total changes and made a final working code of AT Audit Report and submitted the result for review.
+Collaborated with Shireesha for the VBCS screen analysis and development of the DOE Timetable.
+Developed and demonstrated multiple Redwood-themed screens for DOE Timetable.
+Guided and mentored Ayush in understanding the concept of Web Scraping using Python and assisted him in the setting up of the Python environment.
+Developed multiple Redwood-themed screens for Document Understanding.
+Developed a working Redwood Guided-themed screen for Document Understanding and demonstrated it to the team.
+Assisted Ayush by developing the  VBCS Screen for FBDI script creation.
+Researched on the web to mobile conversions in VBCS.
+Developed PWA of Document Understanding VBCS web page.
+Completed the Generative AI certification.

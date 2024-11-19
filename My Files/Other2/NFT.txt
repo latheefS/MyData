@@ -1,0 +1,84 @@
+Things needed for creating an NFT:(Collectible,Wallet,Crypto,Blockchain,Platform)
+
+1.pick your unique collectible. For ex: JPEG image/song/artwork/
+2.Crypto to pay minting fee
+3.crypto wallet to store crypto
+4.Blockchain where you want to create NFT
+
+What type of wallet is needed?
+-	Based on the blockchain network you're going to create NFT, you have to select respective supported wallets.
+-	For ex: If it's an Ethereum token, you will need an Ethereum supporting wallet. 
+	If it's on Tezos, you'll need a wallet that supports Tezos.
+
+Ex: Metamask and Trust Wallet which support a wide variety of blockchains
+
+2) What blockchain Should one use?
+-	There are quite a few blockchains to choose from when minting an NFT.
+Ex: Ethereum, Polkadot, Tron, Tezos etc.
+
+3) Which platform to choose?
+-	It's upto own's choice and what blockchain you use.
+-	If you want to trade your token easily afterward, it's probably best to choose a platform that has a marketplace you are familiar with. This way, you won't need to transfer your NFT to a different place after minting it.
+
+Ex: Bakeryswap, Treasureland, Opensea, Rarible.
+
+-	You can easily transfer your NFTs between marketplaces, so long as the new platform supports your token type. 
+	Few token types like  BEP-721 and BEP-1155
+
+How to transfer NFT from one platform to another:	
+-	To transfer your NFT to another exchange, send the collectible to your wallet. Once you have it safely stored, simply send it to the correct deposit address of the new platform. 
+	Always make sure to double-check that your NFT token standard is supported by your wallet and any platform you transfer it to.
+-	Once you've bought or created your own NFT, you can send it to someone else directly from your wallet. If your wallet has an NFT section, you can simply select any of your NFTs and click the option to send it (Trust Wallet and MetaMask offer this feature).
+-	Note that the recipient of your NFT will have to provide you their correct deposit address for the type of token you have. If you have an ERC-721 NFT on the Ethereum network, the recipient should send you their Ethereum ERC-721 deposit address from their wallet.
+
+Can we have collaboration and share ownership?
+-	When it comes to collaboration, NFTs can currently be a bit tricky. For the most common types of NFT (ERC721, ERC1155, BEP721, BEP1155), it's only possible to have one owner.
+-	However, some projects have plans to allow for the proceeds of a first sale to be split among multiple wallets. 
+	This feature is not built into the token's code but relies on the exchange or marketplace you are using. 
+	
+
+UseCases:
+---------
+
+A) Minting NFT on BakerySwap:
+-----------------------------	
+1. First, head to the BakerySwap NFT Marketplace and connect your wallet in the upper right-hand corner of the screen.
+2. Once you've connected your wallet, click [Mint Artworks] to start creating your NFT.
+3. Fill out the required fields with all the collectible info.
+4. Underneath your NFT's details, click the [+] icon to upload your file. You can also see the current minting fee underneath the anti-plagiarism declaration.
+5. When you're happy with the information you've filled in and successfully uploaded your image, make sure to agree with the anti-plagiarism declaration before clicking [Mint].
+6. If you're using MetaMask, a window will pop up asking you to confirm payment for your minting fee.
+7. Once you have paid, you can view your NFT on the blockchain with BscScan. It's now available to transfer and trade as you wish.
+
+B) Minting NFT on Treasureland:
+-------------------------------
+1. Head over to the Treasureland Create section and connect your crypto wallet to begin. 
+2. You will then land on the NFT creation page, where you can fill in all of your NFT’s details and upload your image or gif.
+3. Note that Treasureland has locked royalties at 10% before creating your NFT.
+4. You can now view your NFT or put it for sale. If you want to transfer it, you will have to pay the minting fee.
+
+
+C) Minting NFT on Opensea:
+--------------------------
+Connect Your Wallet to OpenSea:
+1. Open the MetaMask extension in your browser and unlock it by entering your password.
+2. Navigate to http://www.opensea.io/ in the same browser and select Profile from the top-right corner.
+3. The website will prompt you to connect your crypto wallet, choose MetaMask.
+4. Accept the terms and conditions and enter your email and username to verify the account.
+5. Follow the verification email you receive.
+
+Create NFT:
+After setting up a wallet and connecting it to OpenSea, now you’re ready to create your first NFT. 
+The best way to do so is by creating a collection.You can think of this collection as your digital artwork portfolio. You’re free to add your latest designs, memes, or even drawings of adorable kittens.
+Steps to create Collections:
+1. Navigate to your OpenSea profile and choose My Collection.
+2. Select Create to make a new collection.
+
+Mint the NFT:
+1. Open the collection you just created.
+2. Click on Add Item.
+3. Upload an NFT and give it a name.
+4. Fill in the properties, levels, and other descriptions for the item.
+5. Click Create when finished.
+
+!!And now you can sell or buy NFTs!!

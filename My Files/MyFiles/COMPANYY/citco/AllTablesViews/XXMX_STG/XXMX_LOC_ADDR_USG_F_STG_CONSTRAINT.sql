@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_LOC_ADDR_USG_F_STG
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_STG"."XXMX_LOC_ADDR_USG_F_STG" MODIFY ("LOC_ADDRESS_USAGE_ID" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_LOC_ADDR_USG_F_STG" MODIFY ("EFFECTIVE_START_DATE" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_LOC_ADDR_USG_F_STG" MODIFY ("EFFECTIVE_END_DATE" NOT NULL ENABLE);

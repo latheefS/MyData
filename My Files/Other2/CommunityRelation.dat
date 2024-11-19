@@ -1,0 +1,4 @@
+COMMENT Data for Business Object: CommunityRelation Version: V2 Created on: 08-05-2021 
+METADATA|CommunityRelation|RelationNumber|EffectiveStartDate|CommunityId|CommunityNumber|LearningItemNumber|SourceSystemId|SourceSystemOwner
+MERGE|CommunityRelation|RL634353|2021/08/15|300000056689894|OLC162010|CRS107890|CRL6343531|DATAMIGRATION
+MERGE|CommunityRelation|RL634354|2021/08/15|300000056689894|OLC162010|SPL111222|CRL6343541|DATAMIGRATION

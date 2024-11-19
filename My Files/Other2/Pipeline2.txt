@@ -1,0 +1,61 @@
+trigger:
+- main
+
+resources:
+  repositories:
+  - repository: AuditRepo
+    type: git
+    name: audit-report
+    ref: master
+
+pool:
+  vmImage: ubuntu-latest
+
+strategy:
+  matrix:
+    Python312:
+      python.version: '3.12'
+
+steps:
+  - checkout: AuditRepo
+  
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(python.version)'
+    displayName: 'Use Python $(python.version)'
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    displayName: 'Install dependencies'
+    
+  - script: |
+      python ReportGenerator.py
+    displayName: 'Run Report Generator file'
+    env:
+      inputFile: $(Build.SourcesDirectory)/audit-report/input/x_ve1_maximise_test_results.csv
+      inputTemplate: $(Build.SourcesDirectory)/audit-report/input/AT_Report_Template.docx
+      outputPieChart: $(Build.SourcesDirectory)/audit-report/output/pie_chart.png
+      outputBarChart: $(Build.SourcesDirectory)/audit-report/output/bar_chart.png
+      outputFile: $(Build.SourcesDirectory)/audit-report/output/AT_Audit_Report.docx
+
+    
+  - task: ArchiveFiles@2
+    displayName: 'Archive files'
+    inputs:
+      rootFolderOrFile: $(System.DefaultWorkingDirectory)
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(python.version).zip
+      replaceExistingArchive: true
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+
+  - script: |
+      pip install pytest pytest-azurepipelines
+      pytest
+    displayName: 'pytest'

@@ -1,0 +1,18 @@
+Name                           Null? Type          
+------------------------------ ----- ------------- 
+FILE_SET_ID                          VARCHAR2(30)  
+MIGRATION_SET_ID                     NUMBER        
+MIGRATION_SET_NAME                   VARCHAR2(100) 
+MIGRATION_STATUS                     VARCHAR2(50)  
+PARTY_TYPE_CODE                      VARCHAR2(80)  
+PARTY_NUMBER                         VARCHAR2(30)  
+PARTY_NAME                           VARCHAR2(150) 
+PROCESS_FOR_APPLICABILITY_FLAG       VARCHAR2(3)   
+ROUNDING_LEVEL_CODE                  VARCHAR2(80)  
+ROUNDING_RULE_CODE                   VARCHAR2(80)  
+TAX_CLASSIFICATION_CODE              VARCHAR2(30)  
+INCLUSIVE_TAX_FLAG                   VARCHAR2(3)   
+ALLOW_OFFSET_TAX_FLAG                VARCHAR2(3)   
+COUNTRY_CODE                         VARCHAR2(2)   
+REGISTRATION_TYPE_CODE               VARCHAR2(80)  
+REP_REGISTRATION_NUMBER              VARCHAR2(50)  

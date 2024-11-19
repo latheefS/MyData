@@ -1,0 +1,14738 @@
+--**
+--** Example Values:
+--** ===============
+--**
+--** MIGRATION_APPLICATION = FIN             - for parameters applicable to all functional areas (AP, AR, GL etc)
+--**                         AP              - Accounts Payables specific parameters
+--**                         AR              - Accounts Receivable/Revenue Accounting specific parameters
+--**                         FA              - Fixed Assets specific parameters
+--**                         GL              - General Ledger specific parameters
+--**                         PO              - Purchasing specific parameters
+--** BUSINESS_ENTITY       = ALL             - All entities within the scope of the MIGRATION_APPLICATION
+--** (Defined in             ASSETS
+--**  XXMX_LOOKUP_VALUES     BALANCES
+--**  table)                 CHART_OF_ACCOUNTS
+--**                         CUSTOMERS
+--**                         SUPPLIERS
+--**                         AP_INVOICES
+--**                         AR_INVOICES
+--**                         REQUISITIONS
+--**                         PURCHASE_ORDERS
+--**
+--**
+--
+--ALTER SESSION SET CONTAINER = MXDM_PDB1;
+--
+--** Delete Financial Parameters
+--
+DELETE
+FROM   xxmx_core.xxmx_migration_metadata;
+--
+VARIABLE vn_BusinessEntitySeq      	NUMBER;
+VARIABLE vn_SubEntitySeq 			NUMBER;
+--
+EXECUTE :vn_BusinessEntitySeq      	:= 1;
+EXECUTE :vn_SubEntitySeq 			:= 0;
+--
+PROMPT ****************************
+PROMPT ** POPULATING METADATA TABLE
+PROMPT ****************************
+--
+/*********************************************************************************/
+--
+/************************
+** HCM Banks and Branches
+*************************/
+--
+/*
+** Banks
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'BANKS_AND_BRANCHES'                  
+         ,:vn_SubEntitySeq                      
+         ,'BANKS'                               
+         ,'xxmx_banks_and_branches_pkg'         
+         ,NULL                                  
+         ,'banks_stg'                           
+         ,'XXMX_BANKS_STG'                      
+         ,'OIC'                                 
+         ,'banks_xfm'                           
+         ,'XXMX_BANKS_XFM'                      
+         ,'OIC'                                 
+         ,'banks_gen'                           
+         ,'Bank'                                
+         ,'dat'                                 
+         ,1                                     
+         ,'Y' 
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );
+--
+--
+/*
+** Bank Branches
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'BANKS_AND_BRANCHES'                  
+         ,:vn_SubEntitySeq                      
+         ,'BANK_BRANCHES'                       
+         ,'xxmx_banks_and_branches_pkg'         
+         ,NULL                                  
+         ,'bank_branches_stg'                   
+         ,'XXMX_BANK_BRANCHES_STG'              
+         ,'OIC'                                 
+         ,'bank_branches_xfm'                   
+         ,'XXMX_BANK_BRANCHES_XFM'              
+         ,'OIC'                                 
+         ,'bank_branches_gen'                   
+         ,'BankBranch'                          
+         ,'dat'                                 
+         ,1                                     
+         ,'Y' 
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );
+--
+/*********************************************************************************/
+--
+/*******************
+** HCM Metadata (HR)
+********************/
+--
+/*********************************************************************************/
+--
+/********************
+** HCM Metadata (PAY)
+********************/
+--
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_pae_stg'
+         ,'XXMX_PAY_CALC_CARDS_PAE_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_PAE_XFM'
+         ,NULL
+         ,'CalculationCardPae'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_PAE'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_pae_stg'
+         ,'XXMX_PAY_COMP_DTL_PAE_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_PAE_XFM'
+         ,NULL
+         ,'ComponentDetailPae'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,:vn_SubEntitySeq
+         ,'COMP_ASOC_PAE'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_asoc_pae_stg'
+         ,'XXMX_PAY_COMP_ASOC_PAE_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_ASOC_PAE_XFM'
+         ,NULL
+         ,'ComponentAssociationPae'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,:vn_SubEntitySeq
+         ,'COMP_ASOC_DTL_PAE'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_asoc_dtl_pae_stg'
+         ,'XXMX_PAY_COMP_ASOC_DTL_PAE_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_ASOC_DTL_PAE_XFM'
+         ,NULL
+         ,'ComponentAssociationDetailPae'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** NI and PAYE Calculation Card (Statutory Deductions)
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SD'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_SD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_sd_stg'
+         ,'XXMX_PAY_CALC_CARDS_SD_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_SD_XFM'
+         ,NULL
+         ,'CalculationCardSd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SD'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_SD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_sd_stg'
+         ,'XXMX_PAY_COMP_DTL_SD_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_SD_XFM'
+         ,NULL
+         ,'ComponentDetailSd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** Student Loan Calculation Card
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_sl_stg'
+         ,'XXMX_PAY_CALC_CARDS_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_SL_XFM'
+         ,NULL
+         ,'CalculationCardSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'COMP_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_sl_stg'
+         ,'XXMX_PAY_COMP_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_SL_XFM'
+         ,NULL
+         ,'CardComponentSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'CARD_ASOC_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_card_asoc_sl_stg'
+         ,'XXMX_PAY_CARD_ASOC_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_CARD_ASOC_SL_XFM'
+         ,NULL
+         ,'CardAssociationSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_sl_stg'
+         ,'XXMX_PAY_COMP_DTL_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_SL_XFM'
+         ,NULL
+         ,'ComponentDetailSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'COMP_ASOC_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_asoc_sl_stg'
+         ,'XXMX_PAY_COMP_ASOC_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_ASOC_SL_XFM'
+         ,NULL
+         ,'ComponentAssociationSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** Benefit and Pension Calculation Card
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_bp_stg'
+         ,'XXMX_PAY_CALC_CARDS_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_BP_XFM'
+         ,NULL
+         ,'CalculationCardBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'CARD_COMP_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_card_comp_bp_stg'
+         ,'XXMX_PAY_CARD_COMP_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_CARD_COMP_BP_XFM'
+         ,NULL
+         ,'CardComponentBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'ASOC_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_bp_stg'
+         ,'XXMX_PAY_ASOC_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_BP_XFM'
+         ,NULL
+         ,'CardAssociationBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'ASOC_DTL_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_dtl_bp_stg'
+         ,'XXMX_PAY_ASOC_DTL_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_DTL_BP_XFM'
+         ,NULL
+         ,'CardAssociationDetailBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_bp_stg'
+         ,'XXMX_PAY_COMP_DTL_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_BP_XFM'
+         ,NULL
+         ,'ComponentDetailBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'ENTVAL_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_entval_bp_stg'
+         ,'XXMX_PAY_ENTVAL_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_ENTVAL_BP_XFM'
+         ,NULL
+         ,'EnterableCalculationValueBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'CALC_VALDF_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_valdf_bp_stg'
+         ,'XXMX_PAY_CALC_VALDF_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_VALDF_BP_XFM'
+         ,NULL
+         ,'CalculationValueDefinitionBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** New Starter Declaration
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_nsd_stg'
+         ,'XXMX_PAY_CALC_CARDS_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_NSD_XFM'
+         ,NULL
+         ,'CalculationCardNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'CARD_COMP_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_card_comp_nsd_stg'
+         ,'XXMX_PAY_CARD_COMP_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_CARD_COMP_NSD_XFM'
+         ,NULL
+         ,'CardComponentNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'ASOC_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_nsd_stg'
+         ,'XXMX_PAY_ASOC_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_NSD_XFM'
+         ,NULL
+         ,'CardAssociationNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'ASOC_DTL_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_dtl_nsd_stg'
+         ,'XXMX_PAY_ASOC_DTL_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_DTL_NSD_XFM'
+         ,NULL
+         ,'CardAssociationDetailNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_nsd_stg'
+         ,'XXMX_PAY_COMP_DTL_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_NSD_XFM'
+         ,NULL
+         ,'ComponentDetailNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'ENTVAL_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_entval_nsd_stg'
+         ,'XXMX_PAY_ENTVAL_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_ENTVAL_NSD_XFM'
+         ,NULL
+         ,'EnterableCalculationValueNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'CALC_VALDF_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_valdf_nsd_stg'
+         ,'XXMX_PAY_CALC_VALDF_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_VALDF_NSD_XFM'
+         ,NULL
+         ,'CalculationValueDefinitionNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** Post Graduate Loan Calculation Card
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_pgl_stg'
+         ,'XXMX_PAY_CALC_CARDS_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_PGL_XFM'
+         ,NULL
+         ,'CalculationCardPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'CARD_COMP_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_card_comp_pgl_stg'
+         ,'XXMX_PAY_CARD_COMP_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_CARD_COMP_PGL_XFM'
+         ,NULL
+         ,'CardComponentPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'ASOC_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_pgl_stg'
+         ,'XXMX_PAY_ASOC_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_PGL_XFM'
+         ,NULL
+         ,'CardAssociationPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'ASOC_DTL_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_dtl_pgl_stg'
+         ,'XXMX_PAY_ASOC_DTL_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_DTL_PGL_XFM'
+         ,NULL
+         ,'CardAssociationDetailPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_pgl_stg'
+         ,'XXMX_PAY_COMP_DTL_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_PGL_XFM'
+         ,NULL
+         ,'ComponentDetailPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'ENTVAL_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_entval_pgl_stg'
+         ,'XXMX_PAY_ENTVAL_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_ENTVAL_PGL_XFM'
+         ,NULL
+         ,'EnterableCalculationValuePgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'CALC_VALDF_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_valdf_pgl_stg'
+         ,'XXMX_PAY_CALC_VALDF_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_VALDF_PGL_XFM'
+         ,NULL
+         ,'CalculationValueDefinitionPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** PAY Balances
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'PAY_BALANCES'
+         ,:vn_SubEntitySeq
+         ,'BALANCE_HEADERS'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_balance_headers_stg'
+         ,'XXMX_PAY_BALANCE_HEADERS_STG'
+         ,NULL
+         ,'XXMX_PAY_BALANCE_HEADERS_XFM'
+         ,NULL
+         ,'InitializeBalanceBatchHeader'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'PAY_BALANCES'
+         ,:vn_SubEntitySeq
+         ,'BALANCE_LINES'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_balance_lines_stg'
+         ,'XXMX_PAY_BALANCE_LINES_STG'
+         ,NULL
+         ,'XXMX_PAY_BALANCE_LINES_XFM'
+         ,NULL
+         ,'InitializeBalanceBatchLine'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** Element Entry
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'ELEMENTS'
+         ,:vn_SubEntitySeq
+         ,'ELEMENTS'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_elements_stg'
+         ,'XXMX_PAY_ELEMENTS_STG'
+         ,NULL
+         ,'XXMX_PAY_ELEMENTS_XFM'
+         ,NULL
+         ,'ElementEntry'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'ELEMENTS'
+         ,:vn_SubEntitySeq
+         ,'ELEM_ENTRIES'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_elem_entries_stg'
+         ,'XXMX_PAY_ELEM_ENTRIES_STG'
+         ,NULL
+         ,'XXMX_PAY_ELEM_ENTRIES_XFM'
+         ,NULL
+         ,'ElementEntry'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+--
+/*
+** HCM Worker   -- Added Recently for HCM EXTRACT
+*/
+--
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 1;
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON'                              
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_persons'                      
+         ,'XXMX_PER_PERSONS_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_PERSONS_XFM'                                    
+         ,''                                    
+         ,'gen_worker_hire_file'                              
+         ,'WorkerHire'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'     
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );
+----
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_NID'                          
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_national_identifiers'         
+         ,'XXMX_PER_NID_F_STG'                  
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_NID_F_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_CONTACTS'                     
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_contacts'                     
+         ,'XXMX_PER_CONTACTS_STG'               
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_CONTACTS_XFM'                                    
+         ,''                                    
+         ,'gen_contacts_file'                              
+         ,'Contacts'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                  
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );          
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_ADDRESS'                      
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_per_addr_f_us'                
+         ,'XXMX_PER_ADDRESS_F_STG'              
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ADDRESS_F_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                    
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_ADDRESS_USAGE'                
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_per_addr_usages_f'            
+         ,'XXMX_PER_ADDR_USG_F_STG'             
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ADDR_USG_F_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                              
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_NAMES'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_per_names_global_us'          
+         ,'XXMX_PER_NAMES_F_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_NAMES_F_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                    
+----
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_RELIGION'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_religion'                      
+         ,'XXMX_PER_RELIGION_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_RELIGION_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );  
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_DISABILITY'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_disability'                 
+         ,'XXMX_PER_DISABILITY_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_DISABILITY_XFM'                                    
+         ,''                                    
+         ,'gen_disability_file'                              
+         ,'PersonDisability'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'             
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );  
+--
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_IMAGES'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_images'                 
+         ,'XXMX_PER_IMAGES_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_IMAGES_XFM'                                    
+         ,''                                    
+         ,'gen_images_file'                              
+         ,'PersonImages'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'  
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         ); 
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_VISA'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_visa'                        
+         ,'XXMX_PER_VISA_F_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_VISA_F_XFM'                                    
+         ,''                                    
+         ,'export'                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );
+--   
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_SENIORITYDT'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_senioritydt'                   
+         ,'XXMX_PER_SENIORITYDT_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_SENIORITYDT_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );
+--   
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_ABSENCE'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_Absence_entry'                   
+         ,'XXMX_PER_ABSENCE_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ABSENCE_XFM'                                    
+         ,''                                    
+         ,'gen_abs_maternity_file'                              
+         ,'PersonAbsenceEntry'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'  
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );
+--   
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_MAT_ABSENCE'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_mat_absence'                   
+         ,'XXMX_PER_MAT_ABSENCE_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_MAT_ABSENCE_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );
+--   
+--
+--             
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_LEGISLATIVE'                  
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_per_people_legis_f_us'        
+         ,'XXMX_PER_LEG_F_STG'                  
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_LEG_F_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );    
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_ETHNICITIES'                  
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_per_ethnicities_us'           
+         ,'XXMX_PER_ETHNICITIES_STG'            
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ETHNICITIES_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                    
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_PHONE'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_phones'                       
+         ,'XXMX_PER_PHONES_STG'                 
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_PHONES_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                              
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PER_CITIZENSHIPS'                    
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_per_citizenships'             
+         ,'XXMX_CITIZENSHIPS_STG'               
+         ,''                                    
+         ,''                                    
+         ,'XXMX_CITIZENSHIPS_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );               
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_EMAIL'                        
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_email_addresses'              
+         ,'XXMX_PER_EMAIL_F_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_EMAIL_F_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                         
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_PEOPLE_F'                     
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_per_all_people_f'             
+         ,'XXMX_PER_PEOPLE_F_STG'               
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_PEOPLE_F_XFM'                                    
+         ,''                                    
+         ,''                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         ); 
+
+--
+
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+-----
+/*-----------------------------------------------------------
+-----------HCM Extract Passport/Assignment Details ----------
+-----------------------------------------------------------*/
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_PASSPORT'                     
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_per_Passport'                 
+         ,'XXMX_PER_PASSPORT_STG'               
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_PASSPORT_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );           
+----
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq+1;
+----
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'CONTACT_RELATIONSHIP'                
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_Cont_rel'                     
+         ,'XXMX_PER_CONTACT_REL_STG'            
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_CONTACT_REL_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                             
+-----
+-----
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq+1;
+----
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'CONTACT_ADDRESS'                     
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_Cont_Addr'                    
+         ,'XXMX_PER_CONTACT_ADDR_STG'           
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_CONTACT_ADDR_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                   
+-----
+-----
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq+1;
+----
+----
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'CONTACT_PHONE'                       
+         ,'xxmx_kit_person_stg'                 
+         ,NULL                                  
+         ,'export_Cont_phone'                   
+         ,'XXMX_PER_CONTACT_PHONE_STG'          
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_CONTACT_PHONE_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         ); 
+
+-----
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq+1;
+----
+----
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'CONTACT_NAME'                       
+         ,''                 
+         ,NULL                                  
+         ,''                   
+         ,'XXMX_PER_CONTACT_NAME_STG'          
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_CONTACT_NAME_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );     
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq+1;
+----
+----
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'ABSENCE_ACCRUAL'                       
+         ,''                 
+         ,NULL                                  
+         ,''                   
+         ,'XXMX_PER_ABSENCE_ACCRUAL_STG'          
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ABSENCE_ACCRUAL_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );     
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq+1;
+----
+----
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'PERSON'                              
+         ,:vn_SubEntitySeq                      
+         ,'WORK_SCHEDULE'                       
+         ,''                 
+         ,NULL                                  
+         ,''                   
+         ,'XXMX_PER_ASG_WORK_SCH_STG'          
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ASG_WORK_SCH_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,'ScheduleAssignment'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );     
+--
+
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_POS'                          
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_period_of_service_1'          
+         ,'XXMX_PER_POS_WR_STG'                 
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_POS_WR_XFM'                                    
+         ,''                                    
+         ,'export'                              
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );
+----
+--
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_ASSIGNMENTS'                  
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_assignments'          
+         ,'XXMX_PER_ASSIGNMENTS_M_STG'          
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ASSIGNMENTS_M_XFM'                                    
+         ,''                                    
+         ,'gen_worker_current_file'                              
+         ,'WorkerCurrent'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y' 
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );               
+           
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,FILE_GEN_PACKAGE
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'ADD_ASSIGN'                  
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_all_assignments_m_5'          
+         ,''          
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'gen_assignment_add_file'                              
+         ,'WorkerAddAsg'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'  
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'TERM_ASSIGN'                  
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_all_assignments_m_3'          
+         ,''          
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'gen_worker_termination_file'                              
+         ,'WorkerTermination'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y' 
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );    
+----
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_ASG_SUPERVISOR'               
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_assign_supervisors_f'         
+         ,'XXMX_PER_ASG_SUP_F_STG'              
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ASG_SUP_F_XFM'                                    
+         ,''                                    
+         ,'gen_work_assign_superv_file'                              
+         ,'AssignmentSupervisor'
+         ,'dat'                                 
+         ,1                                     
+         ,'Y' 
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );                    
+----
+--                           
+----
+----
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+----
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'ASSGINMENT_PAYROLL'                  
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_asg_payroll'                  
+         ,'XXMX_ASG_PAYROLL_STG'                
+         ,''                                    
+         ,''                                    
+         ,'XXMX_ASG_PAYROLL_XFM'                                    
+         ,''                                    
+         ,'gen_assigned_payroll_file'                                    
+         ,'AssignedPayroll'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'  
+         ,'xxmx_hcm_hdl_file_gen_pkg'         
+         );                             
+----
+----
+----
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+----
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_PAYMENT_METHOD'               
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_asg_pay_method'               
+         ,'XXMX_PER_PAY_METHOD_STG'             
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_PAY_METHOD_XFM'                                    
+         ,''                                    
+         ,'gen_per_pay_method_file'                                    
+         ,'PersonalPaymentMethod'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y' 
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );                             
+---
+---
+---
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+----
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'ASG_SALARY'                          
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_asg_salary'                   
+         ,'XXMX_PER_ASG_SALARY_STG'             
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_ASG_SALARY_XFM'                                    
+         ,''                                    
+         ,'gen_salary_file'                                    
+         ,'Salary'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'  
+         ,'xxmx_hcm_hdl_file_gen_pkg'
+         );                             
+----
+----
+----
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+----
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'ASSIGNMENT_WRKMSURE'                 
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_asg_wrkmsr'                   
+         ,'XXMX_ASG_WORKMSURE_STG'              
+         ,''                                    
+         ,''                                    
+         ,'XXMX_ASG_WORKMSURE_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                             
+----
+----
+----
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+----
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'ASSIGNMENT_GRADESTEP'                
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_asg_gradestep'                
+         ,'XXMX_ASG_GRADESTEP_STG'              
+         ,''                                    
+         ,''                                    
+         ,'XXMX_ASG_GRADESTEP_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                             
+
+-----
+-----
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq+1;
+-----
+-----
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,FILE_GEN_PACKAGE
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'EXTERNAL_BANK_ACCOUNTS'              
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_ext_Bank_Account'             
+         ,'XXMX_EXT_BANK_ACC_STG'               
+         ,''                                    
+         ,''                                    
+         ,'XXMX_EXT_BANK_ACC_XFM'                                    
+         ,''                                    
+         ,'gen_extern_bank_acct_file'                                    
+         ,'ExternalBankAccount'                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y' 
+         ,'xxmx_hcm_hdl_file_gen_pkg'         
+         );                             
+----
+----
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq+1;
+-----
+-----
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         ,FILE_GEN_PACKAGE
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'WORKER'                              
+         ,:vn_SubEntitySeq                      
+         ,'PERSON_WORKRELATIONSHIP'              
+         ,'xxmx_kit_worker_stg'                 
+         ,NULL                                  
+         ,'export_per_workrel'             
+         ,'XXMX_PER_WORKREL_STG'               
+         ,''                                    
+         ,''                                    
+         ,'XXMX_PER_WORKREL_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y' 
+         ,''         
+         );           
+-----
+-----
+/*----------------------------------------------
+---------Third Party Org -----------------------
+-----------------------------------------------*/
+-----
+-----
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'ORGANIZATION'                        
+         ,:vn_SubEntitySeq                      
+         ,'THIRD_PARTY_ORG'                     
+         ,'xxmx_kit_org_stg'                    
+         ,NULL                                  
+         ,'export_third_party_org'              
+         ,'XXMX_THIRD_ORG_STG'                  
+         ,''                                    
+         ,''                                    
+         ,'XXMX_THIRD_ORG_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                             
+----
+----
+----
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'ORGANIZATION'                        
+         ,:vn_SubEntitySeq                      
+         ,'THIRD_PARTY_ADDR'                    
+         ,'xxmx_kit_org_stg'                    
+         ,NULL                                  
+         ,'export_third_party_Add'              
+         ,'XXMX_THIRD_ADDR_STG'                 
+         ,''                                    
+         ,''                                    
+         ,'XXMX_THIRD_ADDR_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );                             
+-------
+----
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+----
+----
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'HR'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'ORGANIZATION'                        
+         ,:vn_SubEntitySeq                      
+         ,'THIRD_PARTY_PYMTHD'                  
+         ,'xxmx_kit_org_stg'                    
+         ,NULL                                  
+         ,'export_third_party_pym'              
+         ,'XXMX_THIRD_PAYMTHD_STG'              
+         ,''                                    
+         ,''                                    
+         ,'XXMX_THIRD_PAYMTHD_XFM'                                    
+         ,''                                    
+         ,''                                    
+         ,''                                    
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+         );    
+-------
+
+--
+COMMIT;              
+
+/* BENEFITS*/
+--
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    	
+         ,'BENEFITS'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'PARTICIPANT_ENROLLMENT'                 	
+         ,'XXMX_HCM_BEN_EXT_PKG'                			
+         , NULL                                  	
+         ,'par_enrollment_proc'             		
+         ,'XXMX_BEN_PE_STG'             			
+         , NULL                                  	
+         ,'XXMX_BEN_PE_XFM'                      	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    	
+         ,'BENEFITS'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'PAR_ENRL_COMPENSATION_OBJECT'           	
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'compensation_object_proc'     			   
+         ,'XXMX_BEN_PE_CO_STG'                     
+         ,NULL                                  	
+         ,'XXMX_BEN_PE_CO_XFM'                     
+         ,NULL        		              	     	   
+         ,NULL          				               
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    
+         ,'BENEFITS'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'DEPENDENT_ENROLLMENT'                  	
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'dependent_enrollment_proc'              
+         ,'XXMX_BEN_DE_STG'                      	
+         ,NULL                                  	
+         ,'XXMX_BEN_DE_XFM'                      	
+         ,NULL                 			          	
+         ,NULL				                      	   
+         ,'dat' 		                              
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    
+         ,'BENEFITS'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'DESIGNATE_DEPENDENT'                  	
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'designate_dependent_proc'               
+         ,'XXMX_BEN_DE_DD_STG'                     
+         ,NULL                                  	
+         ,'XXMX_BEN_DE_DD_XFM'                     
+         ,NULL			                           	
+         ,NULL				                      	   
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    
+         ,'BENEFITS'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'BENEFICIARY_ENROLLMENT'                 
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'beneficiary_enrollment_proc'            
+         ,'XXMX_BEN_BE_STG'                      	
+         ,NULL                                  	
+         ,'XXMX_BEN_BE_XFM'                      	
+         ,NULL                 			          	
+         ,NULL				                      	   
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    
+         ,'BENEFITS'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'DESIGNATE_BENEFICIARY'                  
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'designate_beneficiary_proc'             
+         ,'XXMX_BEN_BE_DB_STG'                     
+         ,NULL                                  	
+         ,'XXMX_BEN_BE_DB_XFM'                     
+         ,NULL                           			   
+         ,NULL                      				   
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    
+         ,'BENEFITS'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'PER_BEN_GROUP'                  			
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'per_ben_group_proc'               		
+         ,'XXMX_BEN_PBG_STG'                      	
+         ,NULL                                  	
+         ,'XXMX_BEN_PBG_XFM'                      	
+         ,NULL                           			   
+         ,NULL                      				   
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    
+         ,'BENEFITS'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'PER_BEN_BALANCE'                  		
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'per_ben_balance_proc'           		  	
+         ,'XXMX_BEN_PBB_STG'                      	
+         ,NULL                                  	
+         ,'XXMX_BEN_PBB_XFM'                      	
+         ,NULL                         			  	
+         ,NULL                      				   
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    
+         ,'BENEFITS'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'PERSON_HABITS'                  			
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'person_habits_proc'                     
+         ,'XXMX_BEN_PH_STG'                      	
+         ,NULL                                  	
+         ,'XXMX_BEN_PH_XFM'                      	
+         ,NULL                           			   
+         ,NULL                      				   
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'BEN'                                  	
+         ,:vn_BusinessEntitySeq                    
+         ,'BENEFITS'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'PER_BEN_ORGANIZATION'                  	
+         ,'XXMX_HCM_BEN_EXT_PKG'                	
+         ,NULL                                  	
+         ,'per_ben_organization_proc'        		
+         ,'XXMX_BEN_PBO_STG'                      	
+         ,NULL                                  	
+         ,'XXMX_BEN_PBO_XFM'                      	
+         ,NULL                       		    	   
+         ,NULL                     					   
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+--
+Commit;
+--
+--
+
+/*----------------------
+--Populate HCM Learning
+-----------------------*/
+
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'LEGACY_LEARNING_ITEM'                  	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'leg_learning_item_proc'             		
+         ,'XXMX_OLC_LEG_LEARN_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_LEG_LEARN_XFM'                 
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+		 
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'LEGACY_LEARNING_ITEM_TRANSLATION'       
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'leg_learning_item_transln_proc'   		
+         ,'XXMX_OLC_LEG_LEARN_TL_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_LEG_LEARN_TL_XFM'              
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'NON_CATALOG_LEARNING_ITEM'              
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'non_catalog_lrng_item_proc'          	
+         ,'XXMX_OLC_NONCAT_LEARN_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_NONCAT_LEARN_XFM'              
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'NON_CATALOG_LEARNING_ITEM_TRASNLATION'  
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'non_cat_lrng_item_transln_proc'      	
+         ,'XXMX_OLC_NONCAT_LEARN_TL_STG'           
+         ,NULL                                  	
+         ,'XXMX_OLC_NONCAT_LEARN_TL_XFM'           
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                          
+         ,'CLASSROOM_RESOURCE'                  	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'classroom_resource_proc'             	
+         ,'XXMX_OLC_CLASS_RES_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_CLASS_RES_XFM'                 
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                                                       	
+         ,'CLASSROOM_RESOURCE_TRANSLATION'         
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'classroom_res_transln_proc'         		
+         ,'XXMX_OLC_CLASS_RES_TL_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_CLASS_RES_TL_XFM'              
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                           
+         ,'INSTRUCTOR_RESOURCE'                  	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'instructor_resource_proc'             	
+         ,'XXMX_OLC_INSTR_RES_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_RES_XFM'                 
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                          
+         ,'COURSE'                  				   
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'course_proc'             				   
+         ,'XXMX_OLC_COURSE_STG'             		   
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_XFM'                    
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                          
+         ,'OFFERING'                  				   
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'offering_proc'             				   
+         ,'XXMX_OLC_OFFER_STG'             			
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_XFM'                 		
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'INSTRUCTOR_LED_ACTIVITY'                
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'instructor_led_activity_proc'           
+         ,'XXMX_OLC_INSTR_LED_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_LED_XFM'                 
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'ADHOC_RESOURCE'                  		   
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'adhoc_resource_proc'             		   
+         ,'XXMX_OLC_ADHOC_STG'             			
+         ,NULL                                  	
+         ,'XXMX_OLC_ADHOC_XFM'                   	
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'CLASSROOM_RESERVATION'                  
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'classroom_reservation_proc'             
+         ,'XXMX_OLC_CLASS_RESV_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_CLASS_RESV_XFM'                
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES      
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'INSTRUCTOR_RESERVATION'                 
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'instructor_reservation_proc'            
+         ,'XXMX_OLC_INSTR_RESV_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_RESV_XFM'                
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SELFPACED_ACTIVITY'                  	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'selfpaced_activity_proc'             	
+         ,'XXMX_OLC_SELFPACE_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SELFPACE_XFM'                  
+         ,NULL                           			   		
+         ,NULL                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'OFFERING_DEFAULT_ACCESS'                	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'offering_default_access_proc'           	
+         ,'XXMX_OLC_OFFER_ACC_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_ACC_XFM'                 	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'COURSE_DEFAULT_ACCESS'                  	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'course_default_access_proc'             	
+         ,'XXMX_OLC_COURSE_ACC_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_ACC_XFM'                	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'COURSE_TRANSLATION'                  	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'course_translation_proc'             	
+         ,'XXMX_OLC_COURSE_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_TL_XFM'                 	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'OFFERING_TRANSLATION'                  	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'offering_translation_proc'             	
+         ,'XXMX_OLC_OFFER_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_TL_XFM'                  	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );		 
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'INSTRUCTOR_LED_ACTIVITY_TRNSLN'         	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'instr_led_act_transln_proc'    			
+         ,'XXMX_OLC_INSTR_ACT_TL_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_ACT_TL_XFM'              	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'SELFPACED_ACTIVITY_TRNSLN'              	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'selfpaced_act_transln_proc'         		
+         ,'XXMX_OLC_SELFPACE_TL_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_SELFPACE_TL_XFM'               	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'COURSE_OFFG_PRICING_DEFAULTS'           	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'course_offg_pricing_def_proc'       		
+         ,'XXMX_OLC_COURSE_PRICE_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_PRICE_XFM'              	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'COURSE_OFFG_PRICING_COMPONENT'          	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'course_offg_pricing_comp_proc'      		
+         ,'XXMX_OLC_COURSE_PRICE_COMP_STG'         	
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_PRICE_COMP_XFM'         	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'OFFERING_CUSTOM_PRICING'                	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'offering_custom_pricing_proc'           	
+         ,'XXMX_OLC_OFFER_CUST_PRICE_STG'          	
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_CUST_PRICE_XFM'          	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'OFFERING_CUSTOM_PRICING_COMPONENT'      	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'offg_custom_pricing_comp_proc'  			
+         ,'XXMX_OLC_OFFER_CUST_PRICE_COMP_STG'     	
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_CUST_PRICE_COMP_XFM'     	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                 	
+         ,:vn_BusinessEntitySeq                 	
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                      	
+         ,'SPECIALIZATION'                  		
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'Specialization_proc'             		
+         ,'XXMX_OLC_SPEC_STG'             			
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_XFM'                   	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+		 
+		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'SPECIALIZATION_DEFAULT_ACCESS'          	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'spec_default_access_proc'      			
+         ,'XXMX_OLC_SPEC_DEF_ACC_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_DEF_ACC_XFM'              	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );		 
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'SPECIALIZATION_SECTION'                 	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'specialization_section_proc'            	
+         ,'XXMX_OLC_SPEC_SXN_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_XFM'               	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'SPECIALIZATION_SECTION_ACTIVITY'        	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'spec_sec_act_proc'    					
+         ,'XXMX_OLC_SPEC_SXN_ACT_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_ACT_XFM'              	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+		 
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'SPECIALIZATION_TRANSLATION'             	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'specialization_transln_proc'         	
+         ,'XXMX_OLC_SPEC_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_TL_XFM'                   	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );		 
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'SPECIALIZATION_SECTION_TRNSLN'          	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'spec_sec_transln_proc'     				
+         ,'XXMX_OLC_SPEC_SXN_TL_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_TL_XFM'               	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'GLOBAL_ACCESS_GROUP_RELATION'           	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'global_acc_group_relation_proc'       	
+         ,'XXMX_OLC_GLOB_ACC_GRP_STG'             	
+         ,NULL                                  	
+         ,'XXMX_OLC_GLOB_ACC_GRP_XFM'              	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'COMMUNITY_RELATION'                  	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'community_relation_proc'             	
+         ,'XXMX_OLC_COMM_RS_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_COMM_RS_XFM'                   	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+
+-- 
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                         	
+         ,'LEARNING_RECORD'                  		
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'learning_record_proc'             		
+         ,'XXMX_OLC_LEARN_RCD_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_LEARN_RCD_XFM'                 	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );		 
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                  	
+         ,'LEARNING'                        		
+         ,:vn_SubEntitySeq                      	
+         ,'LEARNING_RECORD_ACTIVITY_ATTEMPT'       	
+         ,'XXMX_OLC_LRN_EXT_PKG'                			
+         ,NULL                                  	
+         ,'lrng_record_act_attempt_proc'   			
+         ,'XXMX_OLC_LEARN_RCD_ACT_ATT_STG'        	
+         ,NULL                                  	
+         ,'XXMX_OLC_LEARN_RCD_ACT_ATT_XFM'        	
+         ,NULL                           					
+         ,NULL                      							
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         );
+--
+/*********************************************************************************/
+--
+/*********************
+** HCM Metadata (IREC)
+**********************/
+--
+/*
+** Geography Hierarchy
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'GEOGRAPHY_HIERARCHY'                     
+         ,:vn_SubEntitySeq                          
+         ,'GEOGRAPHY_HIERARCHY'                  	
+         ,'xxmx_irec_geo_hier_stg'               			
+         ,NULL                                  	
+         ,'export_irec_geo_hier'             		
+         ,'XXMX_HCM_IREC_GEO_HIER_STG'              
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_GEO_HIER_XFM'              
+         ,NULL                           					
+         ,'GeographyHierarchy'                     			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Geography Hierarchy Node
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+        (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'GEOGRAPHY_HIERARCHY'                     
+         ,:vn_SubEntitySeq                          
+         ,'GEOGRAPHY_HIERARCHY_NODE'                
+         ,'xxmx_irec_geo_hier_stg'               			
+         ,NULL                                  	
+         ,'export_irec_geo_hier_node'             	
+         ,'XXMX_HCM_IREC_GEO_HIER_NODE_STG'         
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_GEO_HIER_NODE_XFM'         
+         ,NULL                           				
+         ,'GeographyHierarchy'                						
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Job Requisition
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'JOB_REQUISITION'                        	
+         ,:vn_SubEntitySeq                          
+         ,'JOB_REQUISITION'                  		
+         ,'xxmx_irec_job_requisition_stg'           		
+         ,NULL                                  	
+         ,'export_irec_job_requisition'             
+         ,'XXMX_HCM_IREC_JOB_REQ_STG'               
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_JOB_REQ_XFM'               
+         ,NULL                           					
+         ,'JobRequisition'                      				
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** JR-Hiring Team
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+         VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'JOB_REQUISITION'                        	
+         ,:vn_SubEntitySeq                          
+         ,'JR_HIRING_TEAM'                  		
+         ,'xxmx_irec_job_requisition_stg'           		
+         ,NULL                                  	
+         ,'export_irec_jR_hiring_team'              
+         ,'XXMX_HCM_IREC_JR_HIRE_TEAM_STG'          
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_JR_HIRE_TEAM_XFM'          
+         ,NULL                           				
+         ,'JobRequisition'                      				
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** JR-Posting Details
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'JOB_REQUISITION'                        	
+         ,:vn_SubEntitySeq                          
+         ,'JR_POSTING_DETAIL'                  		
+         ,'xxmx_irec_job_requisition_stg'           		
+         ,NULL                                  	
+         ,'export_irec_jR_posting_detail'           
+         ,'XXMX_HCM_IREC_JR_POST_DET_STG'           
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_JR_POST_DET_XFM'           
+         ,NULL                           					
+         ,'JobRequisition'                      				
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Candidate
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'HCM'                                 
+         ,'IREC'                                
+         ,:vn_BusinessEntitySeq                 
+         ,'CANDIDATE'                           
+         ,:vn_SubEntitySeq                      
+         ,'CANDIDATE'                  		    
+         ,'xxmx_irecruit_cand_stg'             		
+         ,NULL                                  
+         ,'export_irecruit_cand'                
+         ,'XXMX_HCM_IREC_CAN_STG'               
+         ,NULL                                  
+         ,'XXMX_HCM_IREC_CAN_XFM'            
+         ,NULL                           	    	
+         ,'Candidate'                      					
+         ,'dat'                                 
+         ,1                                     
+         ,'Y'                                   
+		 ,'PLSQL'                               
+		 ,NULL                                  
+		 ,NULL                                  
+         );
+--
+/*
+** Candidate Address
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL		
+         ,'HCM'                                		
+         ,'IREC'                               		  
+         ,:vn_BusinessEntitySeq                     
+         ,'CANDIDATE'                          		
+         ,:vn_SubEntitySeq                          
+         ,'CANDIDATE_ADDRESS'                  		
+         ,'xxmx_irecruit_cand_stg'             				 
+         ,NULL                                 		
+         ,'export_irecruit_cand_address'       		   
+         ,'XXMX_HCM_IREC_CAN_ADDRESS_STG'      		   
+         ,NULL                                 		
+         ,'XXMX_HCM_IREC_CAN_ADDRESS_XFM'      		   
+         ,NULL                           	   			
+         ,'Candidate'                  					   	
+         ,'dat'                                		
+         ,1                                    		
+         ,'Y'                                  		
+		 ,'PLSQL'                              		   
+		 ,NULL                                 		
+		 ,NULL                                 		 
+         );
+--
+/*
+** Candidate Email
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                	
+         ,:vn_BusinessEntitySeq                     
+         ,'CANDIDATE'                        		 
+         ,:vn_SubEntitySeq                          
+         ,'CANDIDATE_EMAIL'                  		
+         ,'xxmx_irecruit_cand_stg'               			
+         ,NULL                                  	
+         ,'export_irecruit_cand_email'          	 
+         ,'XXMX_HCM_IREC_CAN_EMAIL_STG'				
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_CAN_EMAIL_XFM'         	 
+         ,NULL                           				
+         ,'Candidate'                     					
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                               	 
+		 ,NULL                                  	
+		 ,NULL                                  	
+         );
+--
+/*
+** Candidate Name
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL   
+         ,'HCM'                                   
+         ,'IREC'                                  
+         ,:vn_BusinessEntitySeq                   
+         ,'CANDIDATE'                        	   
+         ,:vn_SubEntitySeq                        
+         ,'CANDIDATE_NAME'                  	  
+         ,'xxmx_irecruit_cand_stg'                		
+         ,NULL                                    
+         ,'export_irecruit_cand_name'             
+         ,'XXMX_HCM_IREC_CAN_NAME_STG'             
+         ,NULL                                    
+         ,'XXMX_HCM_IREC_CAN_NAME_XFM'             
+         ,NULL                           		  	
+         ,'Candidate'                        			
+         ,'dat'                                   
+         , 1                                      
+         ,'Y'                                     
+		 ,'PLSQL'                                  
+		 ,NULL                                    
+		 ,NULL                                    
+         );
+--
+/*
+** Candidate Phone
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL    
+         ,'HCM'                                    
+         ,'IREC'                                   
+         ,:vn_BusinessEntitySeq                    
+         ,'CANDIDATE'                              
+         ,:vn_SubEntitySeq                         
+         ,'CANDIDATE_PHONE'                        
+         ,'xxmx_irecruit_cand_stg'                 		
+         ,NULL                                     
+         ,'export_irecruit_cand_phone'             
+         ,'XXMX_HCM_IREC_CAN_PHONE_STG'            
+         ,NULL                                     
+         ,'XXMX_HCM_IREC_CAN_PHONE_XFM'            
+         ,NULL                           	       	
+         ,'Candidate'                     				
+         ,'dat'                                    
+         ,1                                        
+         ,'Y'                                      
+		 ,'PLSQL'                                  
+		 ,NULL                                     
+		 ,NULL                                     
+         );
+--
+/*
+** CAN-Attachment
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (                                       
+          xxmx_migration_metadata_ids_s.NEXTVAL    
+         ,'HCM'                                    
+         ,'IREC'                                   
+         ,:vn_BusinessEntitySeq                    
+         ,'CANDIDATE'                        	   
+         ,:vn_SubEntitySeq                         
+         ,'ATTACHMENT'                  		   
+         ,'xxmx_irecruit_cand_stg'                 		
+         ,NULL                                     
+         ,'export_irecruit_cand_attmt'             
+         ,'XXMX_HCM_IREC_CAN_ATTMT_STG'            
+         ,NULL                                     
+         ,'XXMX_HCM_IREC_CAN_ATTMT_XFM'            
+         ,NULL                           		   	
+         ,'Candidate'                      	   			
+         ,'dat'                                    
+         ,1                                        
+         ,'Y'                                      
+		 ,'PLSQL'                                  
+		 ,NULL                                     
+		 ,NULL                                     
+         );
+--
+/*
+** Candidate Pool
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL   
+         ,'HCM'                                   
+         ,'IREC'                                    
+         ,:vn_BusinessEntitySeq                   
+         ,'CANDIDATE_POOL'                          
+         ,:vn_SubEntitySeq                        
+         ,'CANDIDATE_POOL'                  	  
+         ,'xxmx_irecruit_cand_pool_stg'           		   	
+         ,NULL                                    
+         ,'export_irec_cand_pool'             	  
+         ,'XXMX_HCM_IREC_CAN_POOL_STG'               
+         ,NULL                                    
+         ,'XXMX_HCM_IREC_CAN_POOL_XFM'               
+         ,NULL                           		  	
+         ,'CandidatePool'                        				
+         ,'dat'                                   
+         ,1                                       
+         ,'Y'                                     
+		 ,'PLSQL'                                    
+		 ,NULL                                    
+		 ,NULL                                     
+         );
+--
+/*
+** CP-Talent Community Detail
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CANDIDATE_POOL'                        	
+         ,:vn_SubEntitySeq                          
+         ,'TALENT_COMMUNITY_DETAILS'                
+         ,'xxmx_irecruit_cand_pool_stg'             		
+         ,NULL                                  	
+         ,'export_irec_talent_comm_det'             
+         ,'XXMX_HCM_IREC_CP_TAL_COMM_DET_STG'       
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_CP_TAL_COMM_DET_XFM'       
+         ,NULL                           				
+         ,'CandidatePool'                						
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Candidate Pool Member
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CANDIDATE_POOL'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CANDIDATE_POOL_MEMBER'                  	
+         ,'xxmx_irecruit_cand_pool_stg'             		
+         ,NULL                                  	
+         ,'export_irec_cand_pool_member'            
+         ,'XXMX_HCM_IREC_CAN_POOL_MEMBR_STG'        
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_CAN_POOL_MEMBR_XFM'        
+         ,NULL                           				
+         ,'CandidatePool'                   					
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** CP-Interaction
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'HCM'                                 	
+         ,'IREC'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CANDIDATE_POOL'                        	
+         ,:vn_SubEntitySeq                          
+         ,'POOL_INTERACTION'                  		
+         ,'xxmx_irecruit_cand_pool_stg'             			
+         ,NULL                                  	
+         ,'export_irec_pool_interaction'            
+         ,'XXMX_HCM_IREC_CAN_POOL_INTERACT_STG'     
+         ,NULL                                  	
+         ,'XXMX_HCM_IREC_CAN_POOL_INTERACT_XFM'     
+         ,NULL                           				
+         ,'CandidatePool'                      						
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,'PLSQL'                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Candidate Pool Owner
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL    
+         ,'HCM'                                    
+         ,'IREC'                                   
+         ,:vn_BusinessEntitySeq                    
+         ,'CANDIDATE_POOL'                         
+         ,:vn_SubEntitySeq                         
+         ,'CANDIDATE_POOL_OWNER'                   
+         ,'xxmx_irecruit_cand_pool_stg'            		
+         ,NULL                                     
+         ,'export_irec_cand_pool_owner'            
+         ,'XXMX_HCM_IREC_CAN_POOL_OWNER_STG'       
+         ,NULL                                     
+         ,'XXMX_HCM_IREC_CAN_POOL_OWNER_XFM'       
+         ,NULL                           	       	
+         ,'CandidatePool'                   						
+         ,'dat'                                    
+         ,1                                        
+         ,'Y'                                      
+		 ,'PLSQL'                                  
+		 ,NULL                                     
+		 ,NULL                                     
+         );
+--
+/*
+** Referral
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL    
+         ,'HCM'                                    
+         ,'IREC'                                   
+         ,:vn_BusinessEntitySeq                    
+         ,'JOB_REFERRAL'                           
+         ,:vn_SubEntitySeq                         
+         ,'JOB_REFERRAL'                  		    
+         ,'xxmx_irec_job_referral_stg'             		 
+         ,NULL                                     
+         ,'export_irec_job_referral'               
+         ,'XXMX_HCM_IREC_REFERRAL_STG'              
+         ,NULL                                     
+         ,'XXMX_HCM_IREC_REFERRAL_XFM'              
+         ,NULL                           		   	
+         ,'Referral'                      	   			
+         ,'dat'                                    
+         ,1                                        
+         ,'Y'                                      
+		 ,'PLSQL'                                   
+		 ,NULL                                     
+		 ,NULL                                     
+         );
+--
+/*
+** Prospect
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (                                        
+          xxmx_migration_metadata_ids_s.NEXTVAL      	
+         ,'HCM'                                 	 
+         ,'IREC'                                     
+         ,:vn_BusinessEntitySeq                      
+         ,'PROSPECT'                        	     
+         ,:vn_SubEntitySeq                           
+         ,'PROSPECT'                  		         
+         ,'xxmx_irecruit_prospect_stg'               		
+         ,NULL                                  	 
+         ,'export_irecruit_prospect'                 
+         ,'XXMX_HCM_IREC_PROSPECT_STG'               
+         ,NULL                                  	 
+         ,'XXMX_HCM_IREC_PROSPECT_XFM'      		 
+         ,NULL                           			 	
+         ,'Prospect'                      			 			
+         ,'dat'                                 	 
+         ,1                                     	 
+         ,'Y'                                   	 
+		 ,'PLSQL'                                    
+		 ,NULL                                  	 
+		 ,NULL                                       
+         );
+
+--
+
+--
+/*
+** HR_LOCATION
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'HR'
+         ,:vn_BusinessEntitySeq
+         ,'LOCATION'
+         ,:vn_SubEntitySeq
+         ,'LOCATION'
+         ,'xxmx_hr_location_pkg'
+         , NULL
+         ,'hcm_hr_location_stg'          
+         ,'XXMX_HCM_HR_LOCATION_STG'
+         , NULL
+         ,'XXMX_HCM_HR_LOCATION_XFM'          
+         , NULL
+         ,'Location'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+		 
+		 
+--
+/*******************************
+** FIN Metadata (AP) - SUPPLIERS
+*******************************/
+--
+/*
+** Suppliers
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIERS'                  		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_suppliers_stg'             		
+         ,'XXMX_AP_SUPPLIERS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPPLIERS_XFM'             
+         ,NULL                           					
+         ,'PozSuppliersInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Supplier Addresses
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIER_ADDRESSES'                  	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_ADDRESSES'                  		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_supplier_addresses_stg'             		
+         ,'XXMX_AP_SUPP_ADDRS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPP_ADDRS_XFM'             
+         ,NULL                           					
+         ,'PozSupplierAddressesInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                               	
+         );
+--
+/*
+** Supplier Sites
+*/
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIER_SITES'                  	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_SITES'                  		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_supplier_sites_stg'             		
+         ,'XXMX_AP_SUPPLIER_SITES_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPPLIER_SITES_XFM'             
+         ,NULL                           					
+         ,'PozSupplierSitesInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                	
+         );
+--
+/*
+** Supplier Third Party Relationships
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIER_SITES'                        	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_THIRD_PARTY_RELS'                  		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_supp_3rd_party_rels_stg'             		
+         ,'XXMX_AP_SUPP_3RD_PTY_RELS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPP_3RD_PTY_RELS_XFM'             
+         ,NULL                           					
+         ,'PozSupThirdPartyInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                             	
+         );
+--
+/*
+** Supplier Contacts
+*/
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIER_CONTACT'                        	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_CONTACTS'                  		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_supplier_contacts_stg'             		
+         ,'XXMX_AP_SUPP_CONTACTS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPP_CONTACTS_XFM'             
+         ,NULL                           					
+         ,'PozSupContactsInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+--
+/*
+** Supplier Contact Addresses
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+	 ,'SUPPLIER_CONTACT'                                                	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_CONT_ADDRS'                  		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_supplier_contact_addrs_stg'             		
+         ,'XXMX_AP_SUPP_CONT_ADDRS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPP_CONT_ADDRS_XFM'             
+         ,NULL                           					
+         ,'PozSupContactAddressesInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                  	
+         );
+--
+/*
+** Supplier Site Assignments
+*/
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIER_SITE_ASSIGNS'                  	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_SITE_ASSIGNS'                  		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_supp_site_assigns_stg'             		
+         ,'XXMX_AP_SUPP_SITE_ASSIGNS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPP_SITE_ASSIGNS_XFM'             
+         ,NULL                           					
+         ,'PozSiteAssignmentsInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                  	
+         );
+		 --
+/*
+** Supplier Payees
+*/
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIER_BANK_ACCOUNTS'                  		              	
+         ,:vn_SubEntitySeq     
+         ,'SUPPLIER_PAYEES'                      
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	                     							
+         ,'ap_supplier_payees_stg'             		
+         ,'XXMX_AP_SUPP_PAYEES_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPP_PAYEES_XFM'             
+         ,NULL                           					
+         ,'IbyTempExtPayees'                      						                               	
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+	 ,NULL                                   	
+	 ,NULL                                  	
+	 ,NULL                                   	
+         );
+--
+/*
+** Supplier Bank Accounts
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIER_BANK_ACCOUNTS'                  		                     	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_BANK_ACCOUNTS'                                   		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_supplier_bank_accts_stg'             		
+         ,'XXMX_AP_SUPP_BANK_ACCTS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPP_BANK_ACCTS_XFM'             
+         ,NULL                           					
+         ,'IbyTempExtBankAccts' 
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+	 ,NULL                                   	
+	 ,NULL                                  	
+	 ,NULL                                  	
+         );
+--
+/*
+** Supplier Payment Instrument Uses
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'SUPPLIER_BANK_ACCOUNTS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_PMT_INSTRS'                  		
+         ,'xxmx_supplier_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_supplier_pmt_instrs_stg'             		
+         ,'XXMX_AP_SUPP_PMT_INSTRS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_SUPP_PMT_INSTRS_XFM'             
+         ,NULL                           					
+         ,'IbyTempPmtInstrUses'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+	 ,NULL                                   	
+	 ,NULL                                  	
+	 ,NULL                                    	
+         );
+
+
+--
+/**************************************
+** FIN Metadata (AP) - SUPPLIER_TAX
+**************************************/
+--
+/*
+** SUPPLIER TAX
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'FIN'
+         ,'AP'
+         ,:vn_BusinessEntitySeq
+         ,'SUPPLIER_TAX'
+         ,:vn_SubEntitySeq
+         ,'PARTY_TAX_PROFILE_CTL'
+         ,'xxmx_ap_supp_tax_pkg'
+         , NULL
+         ,'ap_supp_tax_stg'          
+         ,'XXMX_AP_SUPP_TAX_STG'
+         , NULL
+         ,'XXMX_AP_SUPP_TAX_XFM'          
+         , NULL
+         ,'TaxImplementationData.csv'
+         ,'csv'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+		 
+		 
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+        (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'FIN'
+         ,'AP'
+         ,:vn_BusinessEntitySeq
+         ,'SUPPLIER_TAX'
+         ,:vn_SubEntitySeq
+         ,'TAX_REGISTRATIONS'
+	     ,'xxmx_ap_supp_reg_pkg'
+         , NULL
+         ,'ap_supp_reg_stg'          
+         ,'XXMX_AP_SUPP_REG_STG'
+         ,NULL
+         ,'XXMX_AP_SUPP_REG_XFM'          
+         ,NULL
+         ,'TaxImplementationData.csv'
+         ,'csv'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+	);	  
+--			 
+/******************************
+** FIN Metadata (AP) - INVOICES
+******************************/
+--
+/*
+** Invoice Headers
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'INVOICES'                        	
+         ,:vn_SubEntitySeq                          
+         ,'INVOICE_HEADERS'                  		
+         ,'xxmx_ap_inv_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_invoice_hdr_stg'             		
+         ,'XXMX_AP_INVOICES_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_INVOICES_XFM'             
+         ,NULL                           					
+         ,'ApInvoicesInterface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Invoice Lines
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AP'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'INVOICES'                        	
+         ,:vn_SubEntitySeq                          
+         ,'INVOICE_LINES'                  		
+         ,'xxmx_ap_inv_pkg'               	 			
+         ,NULL                                  	
+         ,'ap_invoice_lines_stg'             		
+         ,'XXMX_AP_INVOICE_LINES_STG'             
+         ,NULL                                  	
+         ,'XXMX_AP_INVOICE_LINES_XFM'             
+         ,NULL                           					
+         ,'ApInvoiceLinesInterface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+--
+/*******************************
+** FIN Metadata (AR) - CUSTOMERS
+*******************************/
+--
+/*
+** Parties
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PARTIES'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_parties_stg'             		
+         ,'XXMX_HZ_PARTIES_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_PARTIES_XFM'             
+         ,NULL                           					
+         ,'HzImpPartiesT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Party Sites
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PARTY_SITES'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_party_sites_stg'             		
+         ,'XXMX_HZ_PARTY_SITES_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_PARTY_SITES_XFM'             
+         ,NULL                           					
+         ,'HzImpPartySitesT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                            	
+         );
+--
+/*
+** Party Site Uses
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PARTY_SITES_USES'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_party_site_uses_stg'             		
+         ,'XXMX_HZ_PARTY_SITE_USES_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_PARTY_SITE_USES_XFM'             
+         ,NULL                           					
+         ,'HzImpPartySiteUsesT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+--
+/*
+** Customer Accounts
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CUSTOMER_ACCOUNTS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_cust_accounts_stg'             		
+         ,'XXMX_HZ_CUST_ACCOUNTS_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_CUST_ACCOUNTS_XFM'             
+         ,NULL                           					
+         ,'HzImpAccountsT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                          	
+         );
+--
+/*
+** Customer Account Sites
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CUSTOMER_ACCOUNTS_SITES'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_cust_acct_sites_stg'             		
+         ,'XXMX_HZ_CUST_ACCT_SITES_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_CUST_ACCT_SITES_XFM'             
+         ,NULL                           					
+         ,'HzImpAcctSitesT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+--
+/*
+** Customer Account Site Uses
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'ACCOUNT_SITES_USES'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_account_site_uses_stg'             		
+         ,'XXMX_HZ_CUST_SITE_USES_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_CUST_SITE_USES_XFM'             
+         ,NULL                           					
+         ,'HzImpAcctSiteUsesT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+--
+/*
+** Customer Account Relationships
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CUST_ACCT_RELATIONSHIPS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_cust_acct_relate_stg'             		
+         ,'XXMX_HZ_CUST_ACCT_RELATE_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_CUST_ACCT_RELATE_XFM'             
+         ,NULL                           					
+         ,'HzImpAccountRels'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+--
+/*
+** Customer Account Contacts
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CUST_ACCT_CONTACT'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_cust_acct_contact_stg'             		
+         ,'XXMX_HZ_CUST_ACCT_CONTACTS_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_CUST_ACCT_CONTACTS_XFM'             
+         ,NULL                           					
+         ,'HzImpAcctContactsT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+		 --
+/*
+** Contact Points
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CONTACT_POINTS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_contact_points_stg'             		
+         ,'XXMX_HZ_CONTACT_POINTS_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_CONTACT_POINTS_XFM'             
+         ,NULL                           					
+         ,'HzImpContactPtsT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+		 --
+/*
+** Contact Roles
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CONTACT_ROLES'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_contact_roles_stg'             		
+         ,'XXMX_HZ_ORG_CONTACT_ROLES_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_ORG_CONTACT_ROLES_XFM'             
+         ,NULL                           					
+         ,'HzImpContactRoles'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+		 --
+/*
+** Contacts
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'ORG_CONTACTS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_org_contacts_stg'             		
+         ,'XXMX_HZ_ORG_CONTACTS_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_ORG_CONTACTS_XFM'             
+         ,NULL                           					
+         ,'HzImpContactsT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--		 
+/*
+** Locations
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'LOCATIONS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_locations_stg'             		
+         ,'XXMX_HZ_LOCATIONS_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_LOCATIONS_XFM'             
+         ,NULL                           					
+         ,'HzImpLocationsT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--	
+/*
+** Party Relationships
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'RELATIONSHIPS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_relationships_stg'             		
+         ,'XXMX_HZ_RELATIONSHIPS_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_RELATIONSHIPS_XFM'             
+         ,NULL                           					
+         ,'HzImpRelshipsT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--	
+/*
+** Customer Account Contact Responsibilities
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'ROLES_AND_RESPONSIBILITIES'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_role_resps_stg'             		
+         ,'XXMX_HZ_ROLE_RESPS_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_ROLE_RESPS_XFM'             
+         ,NULL                           					
+         ,'HzImpRoleResp'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--	
+/*
+** Classifications
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PARTY_CLASSIFICATIONS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_party_classifs_stg'             		
+         ,'XXMX_HZ_PARTY_CLASSIFS_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_PARTY_CLASSIFS_XFM'             
+         ,NULL                           					
+         ,'HzImpClassificsT'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--	
+/*
+** Person Language
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PERSON_LANGUAGE'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_person_language_stg'             		
+         ,'XXMX_HZ_PERSON_LANGUAGE_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_PERSON_LANGUAGE_XFM'             
+         ,NULL                           					
+         ,'HzImpPersonLang'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--	
+/*
+** Customer Account Site Profiles
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CUSTOMER_PROFILES'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'hz_customer_profiles_stg'             		
+         ,'XXMX_HZ_CUST_PROFILES_STG'             
+         ,NULL                                  	
+         ,'XXMX_HZ_CUST_PROFILES_XFM'             
+         ,NULL                           					
+         ,'RaCustomerProfilesIntAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--	
+/*
+** Customer Account Site Receipt Methods
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CUST_RECEIPT_METHODS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'ra_cust_rcpt_methods_stg'             		
+         ,'XXMX_RA_CUST_RCPT_METHODS_STG'             
+         ,NULL                                  	
+         ,'XXMX_RA_CUST_RCPT_METHODS_XFM'             
+         ,NULL                           					
+         ,'RaCustPayMethodIntAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--	
+/*
+** Customer Account Site Bank Accounts
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CUSTOMERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CUST_BANKS'                  		
+         ,'xxmx_ar_customers_pkg'               	 			
+         ,NULL                                  	
+         ,'ar_cust_banks_stg'             		
+         ,'XXMX_AR_CUST_BANKS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AR_CUST_BANKS_XFM'             
+         ,NULL                           					
+         ,'RaCustomerBanksIntAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--		
+--
+/**********************************
+** FIN Metadata (AR) - TRANSACTIONS
+**********************************/
+--
+/*
+** Transaction Lines
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'TRANSACTIONS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'LINES'                  		
+         ,'xxmx_ar_trx_pkg'               	 			
+         ,NULL                                  	
+         ,'ar_trx_lines_stg'             		
+         ,'XXMX_AR_TRX_LINES_STG'             
+         ,NULL                                  	
+         ,'XXMX_AR_TRX_LINES_XFM'             
+         ,NULL                           					
+         ,'RaInterfaceLinesAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Transaction Distributions
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'TRANSACTIONS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'DISTRIBUTIONS'                  		
+         ,'xxmx_ar_trx_pkg'               	 			
+         ,NULL                                  	
+         ,'ar_trx_dists_stg'             		
+         ,'XXMX_AR_TRX_DISTS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AR_TRX_DISTS_XFM'             
+         ,NULL                           					
+         ,'RaInterfaceDistributionsAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+--
+/*
+** Transaction Salescredits
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'TRANSACTIONS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'SALESCREDITS'                  		
+         ,'xxmx_ar_trx_pkg'               	 			
+         ,NULL                                  	
+         ,'ar_trx_salescredits_stg'             		
+         ,'XXMX_AR_TRX_SALESCREDITS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AR_TRX_SALESCREDITS_XFM'             
+         ,NULL                           					
+         ,'RaInterfaceSalesCreditsAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/***********************************
+** FIN Metadata (AR) - CASH RECEIPTS
+***********************************/
+--
+/*
+** Cash Receipts
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'AR'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'CASH_RECEIPTS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'CASH_RECEIPTS'                  		
+         ,'xxmx_ar_cash_receipts_pkg'               	 			
+         ,NULL                                  	
+         ,'ar_cash_receipts_stg'             		
+         ,'XXMX_AR_CASH_RECEIPTS_STG'             
+         ,NULL                                  	
+         ,'XXMX_AR_CASH_RCPTS_RT6_XFM'             
+         ,NULL                           					
+         ,'arlockboximportc'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*********************************
+** FIN Metadata (GL) - DAILY RATES
+*********************************/
+--
+/*
+** Daily Rates
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'GL'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'DAILY_RATES'                        	
+         ,:vn_SubEntitySeq                          
+         ,'DAILY_RATES'                  		
+         ,'xxmx_gl_daily_rates_pkg'               	 			
+         ,NULL                                  	
+         ,'export_gl_daily_rates'             		
+         ,'XXMX_GL_DAILY_RATES_STG'             
+         ,NULL                                  	
+         ,'XXMX_GL_DAILY_RATES_XFM'             
+         ,NULL                           					
+         ,'GlDailyRatesInterface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+
+/*********************************
+** FIN Metadata (GL) - HISTORICAL RATES
+*********************************/
+--
+/*
+** Historical Rates
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'FIN'
+         ,'GL'
+         ,:vn_BusinessEntitySeq
+         ,'HISTORICAL_RATES'
+         ,:vn_SubEntitySeq
+         ,'HISTORICAL_RATES'
+         ,'xxmx_gl_historical_rates_pkg'
+         ,NULL
+         ,'gl_historical_rates_stg'
+         ,'XXMX_GL_HISTORICAL_RATES_STG'
+         ,NULL
+         ,'XXMX_GL_HISTORICAL_RATES_XFM'
+         ,NULL
+         ,'GlHistoricalRatesInterface'
+         ,'csv'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL                             	
+         );
+--
+/******************************
+** FIN Metadata (GL) - BALANCES
+******************************/
+--
+/*
+** Balances 
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+--
+/*
+** Opening Balances 
+*/
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'GL'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'BALANCES'                        	
+         ,:vn_SubEntitySeq                          
+         ,'OPEN_BAL'                  		
+         ,'XXMX_GL_BALANCES_PKG'               	 			
+         ,NULL                                  	
+         ,'gl_opening_balances_stg'             		
+         ,'XXMX_GL_OPENING_BALANCES_STG'             
+         ,NULL                                  	
+         ,'XXMX_GL_OPENING_BALANCES_XFM'             
+         ,NULL                           					
+         ,'GlInterface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Summary Balances
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'GL'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'BALANCES'                        	
+         ,:vn_SubEntitySeq                          
+         ,'SUMM_BAL'                  		
+         ,'XXMX_GL_BALANCES_PKG'               	 			
+         ,NULL                                  	
+         ,'gl_summary_balances_stg'             		
+         ,'XXMX_GL_SUMMARY_BALANCES_STG'             
+         ,NULL                                  	
+         ,'XXMX_GL_SUMMARY_BALANCES_XFM'             
+         ,NULL                           					
+         ,'GlInterface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                 	
+         );
+--
+/*
+** Detail Balances
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'GL'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'BALANCES'                        	
+         ,:vn_SubEntitySeq                          
+         ,'DETAIL_BAL'                  		
+         ,'XXMX_GL_BALANCES_PKG'               	 			
+         ,NULL                                  	
+         ,'gl_detail_balances_stg'             		
+         ,'XXMX_GL_DETAIL_BALANCES_STG'             
+         ,NULL                                  	
+         ,'XXMX_GL_DETAIL_BALANCES_XFM'             
+         ,NULL                           					
+         ,'GlInterface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                  	
+         );
+--
+/*****************************
+** FIN Metadata (GL) - JOURNAL
+*****************************/
+--
+/*
+** Journal
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'GL'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'JOURNAL'                        	
+         ,:vn_SubEntitySeq                          
+         ,'JOURNAL'                  		
+         ,'xxmx_gl_journal_pkg'               	 			
+         ,NULL                                  	
+         ,'export_gl_journal'             		
+         ,'XXMX_GL_JOURNAL_STG'             
+         ,NULL                                  	
+         ,'XXMX_GL_JOURNAL_XFM'             
+         ,NULL                           					
+         ,'GlInterface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/************************************
+** FIN Metadata (FA) - MASS ADDITIONS
+************************************/
+--
+/*
+** Mass Additions 
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'FA'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'FIXED_ASSETS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'MASS_ADDITIONS'                  		
+         ,'xxmx_fa_mass_additions_pkg'               	 			
+         ,NULL                                  	
+         ,'src_mass_addition'             		
+         ,'XXMX_FA_MASS_ADDITIONS_STG'             
+         ,NULL                                  	
+         ,'XXMX_FA_MASS_ADDITIONS_XFM'             
+         ,NULL                           					
+         ,'FaMassAdditions'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Mass Addition Distributions
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'FA'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'FIXED_ASSETS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'MASS_DISTRIBUTION'                  		
+         ,'xxmx_fa_mass_additions_pkg'               	 			
+         ,NULL                                  	
+         ,'src_mass_addition_dist'             		
+         ,'XXMX_FA_MASS_ADDITION_DIST_STG'             
+         ,NULL                                  	
+         ,'XXMX_FA_MASS_ADDITION_DIST_XFM'             
+         ,NULL                           					
+         ,'FaMassaddDistributions'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                  	
+         );
+--
+/*
+** Mass Rates
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'FIN'                                 	
+         ,'FA'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'FIXED_ASSETS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'MASS_RATES'                  		
+         ,'xxmx_fa_mass_additions_pkg'               	 			
+         ,NULL                                  	
+         ,'src_massrates'             		
+         ,'XXMX_FA_MASS_RATES_STG'             
+         ,NULL                                  	
+         ,'XXMX_FA_MASS_RATES_XFM'             
+         ,NULL                           					
+         ,'FaMcMassRates'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                  	
+         );
+--
+/*******************************
+** FIN Metadata (PPM) - PROJECTS
+*******************************/
+--
+/*
+** Projects
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_FOUNDATION'                        		
+         ,:vn_SubEntitySeq                          
+         ,'PROJECTS'                  				
+         ,'XXMX_PPM_PROJECTS_PKG'               			
+         ,NULL                                  	
+         ,'src_pa_projects'             			
+         ,'XXMX_PPM_PROJECTS_STG'             		
+         ,NULL                                  	
+         ,'XXMX_PPM_PROJECTS_XFM'            		
+         ,NULL                           					
+         ,'PjfProjectsAllXface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Tasks
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_FOUNDATION'                        		
+         ,:vn_SubEntitySeq                          
+         ,'TASKS'                  					
+         ,'XXMX_PPM_PROJECTS_PKG'               			
+         ,NULL                                  	
+         ,'src_pa_tasks'             				
+         ,'XXMX_PPM_PRJ_TASKS_STG'             		
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_TASKS_XFM'               	
+         ,NULL                           					
+         ,'PjfProjElementsXface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                  	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Transaction Controls
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_FOUNDATION'                        		
+         ,:vn_SubEntitySeq                          
+         ,'TRX_CONTROL'                  			
+         ,'XXMX_PPM_PROJECTS_PKG'               			
+         ,NULL                                  	
+         ,'src_pa_trx_control'             			
+         ,'XXMX_PPM_PRJ_TRX_CONTROL_STG'       		
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_TRX_CONTROL_XFM'       		
+         ,NULL                           					
+         ,'PjfTxnControlsStage'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Project Team Members
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_FOUNDATION'                        		
+         ,:vn_SubEntitySeq                          
+         ,'TEAM_MEMBERS'                  			
+         ,'XXMX_PPM_PROJECTS_PKG'               			
+         ,NULL                                  	
+         ,'src_pa_team_members'             		
+         ,'XXMX_PPM_PRJ_TEAM_MEM_STG'             	
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_TEAM_MEM_XFM'             	
+         ,NULL                           					
+         ,'PjfProjectPartiesInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Project Classifications
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_FOUNDATION'                        		
+         ,:vn_SubEntitySeq                          
+         ,'CLASSIFICATIONS'                  		
+         ,'XXMX_PPM_PROJECTS_PKG'               			
+         ,NULL                                  	
+         ,'src_pa_classifications'            		
+         ,'XXMX_PPM_PRJ_CLASS_STG'      	
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_CLASS_XFM'      	
+         ,NULL                           					
+         ,'PjfProjectClassesInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** RBS Headers
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_RBS'                        			
+         ,:vn_SubEntitySeq                          
+         ,'RBS_HEADERS'                  			
+         ,'XXMX_PPM_PRJ_RBS_PKG'              				
+         ,NULL                                  	
+         ,'src_rbs_header'             	    		
+         ,'XXMX_PPM_PLANRBS_HEADER_STG'             
+         ,NULL                                  	
+         ,'XXMX_PPM_PLANRBS_HEADER_XFM'             
+         ,NULL                           					
+         ,'PjfRbsHeaderInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Resources
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+        (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_RBS'                        			
+         ,:vn_SubEntitySeq                          
+         ,'RESOURCES'                  				
+         ,'XXMX_PPM_PRJ_RBS_PKG'              				
+         ,NULL                                  	
+         ,'src_resources'             	    		
+         ,'XXMX_PPM_RESOURCES_STG'          		
+         ,NULL                                  	
+         ,'XXMX_PPM_RESOURCES_XFM'          		
+         ,NULL                           					
+         ,'PjfRbsElementInt'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Project Billing Events
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_EVENTS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'BILLING_EVENTS'                  		
+         ,'XXMX_PPM_PRJ_BILLEVENT_PKG'              		
+         ,NULL                                  	
+         ,'src_pa_billing_events'             	    
+         ,'XXMX_PPM_PRJ_BILLEVENT_STG'             	
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_BILLEVENT_XFM'             	
+         ,NULL                           					
+         ,'PjbBillingEventsXface'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Misc Costs
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_COST'                        		
+         ,:vn_SubEntitySeq                          
+         ,'MISC_COSTS'                  			
+         ,'XXMX_PPM_PRJ_BILLEVENT_PKG'              		
+         ,NULL                                  	
+         ,'src_pa_misc_costs'             	    	
+         ,'XXMX_PPM_PRJ_MISCCOST_STG'             	
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_MISCCOST_XFM'             	
+         ,NULL                           					
+         ,'PjcTxnXfaceStageAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Labour Cost
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+        (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_COST'                        		
+         ,:vn_SubEntitySeq                          
+         ,'LABOUR_COST'                  			
+         ,'XXMX_PPM_PRJ_BILLEVENT_PKG'              		
+         ,NULL                                  	
+         ,'src_pa_lbr_costs'             	    	
+         ,'XXMX_PPM_PRJ_LBRCOST_STG'          		
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_LBRCOST_XFM'          		
+         ,NULL                           					
+         ,'PjcTxnXfaceStageAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Supplier Cost
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+        (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_COST'                        		
+         ,:vn_SubEntitySeq                          
+         ,'SUPPLIER_COST'                  			
+         ,'XXMX_PPM_PRJ_BILLEVENT_PKG'              		
+         ,NULL                                  	
+         ,'src_pa_sup_costs'             	    	
+         ,'XXMX_PPM_PRJ_SUPCOST_STG'          		
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_SUPCOST_XFM'          		
+         ,NULL                           					
+         ,'PjcTxnXfaceStageAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Non-Labour Cost
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+        (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'PPM'                                 	
+         ,'PRJ'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PRJ_COST'                        		
+         ,:vn_SubEntitySeq                          
+         ,'NON_LBR_COST'                  			
+         ,'XXMX_PPM_PRJ_BILLEVENT_PKG'              		
+         ,NULL                                  	
+         ,'src_pa_nonlbr_costs'             	    
+         ,'XXMX_PPM_PRJ_NONLABCOST_STG'          	
+         ,NULL                                  	
+         ,'XXMX_PPM_PRJ_NONLABCOST_XFM'          	
+         ,NULL                           					
+         ,'PjcTxnXfaceStageAll'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );		 		 
+--
+/*************************************
+** SCM Metadata (PO) - PURCHASE ORDERS
+*************************************/
+--
+/*
+** PO Headers STD
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PURCHASE_ORDERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_HEADERS_STD'                  		
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_headers_std'             		
+         ,'XXMX_SCM_PO_HEADERS_STD_STG'             
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_HEADERS_STD_XFM'             
+         ,NULL                           					
+         ,'PoHeadersInterfaceOrder'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** PO Lines STD
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PURCHASE_ORDERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_LINES_STD'                  			
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_lines_std'             		
+         ,'XXMX_SCM_PO_LINES_STD_STG'             	
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_LINES_STD_XFM'               
+         ,NULL                           					
+         ,'PoLinesInterfaceOrder'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** PO Line Locations STD
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PURCHASE_ORDERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_LINE_LOCATIONS_STD'                  	
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_line_locations_std'            
+         ,'XXMX_SCM_PO_LINE_LOCATIONS_STD_STG'      
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_LINE_LOCATIONS_STD_XFM'      
+         ,NULL                           					
+         ,'PoLineLocationsInterfaceOrder'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** PO Distributions STD
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PURCHASE_ORDERS'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_DISTRIBUTIONS_STD'                  	
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_distributions_std'             
+         ,'XXMX_SCM_PO_DISTRIBUTIONS_STD_STG'       
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_DISTRIBUTIONS_STD_XFM'       
+         ,NULL                           					
+         ,'PoDistributionsInterfaceOrder'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+         ,NULL                                   	
+         ,NULL                                  	
+         ,NULL                                   	
+         );
+--
+/*
+** PO Headers BPA
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PURCHASE_ORDERS_BPA'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_HEADERS_BPA'                  		
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_headers_bpa'             		
+         ,'XXMX_SCM_PO_HEADERS_BPA_STG'             
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_HEADERS_BPA_XFM'             
+         ,NULL                           					
+         ,'PoHeadersInterfaceBlanket'                      							
+         ,'csv'                                 	
+         ,2                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** PO Lines BPA
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PURCHASE_ORDERS_BPA'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_LINES_BPA'                  			
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_lines_bpa'             		
+         ,'XXMX_SCM_PO_LINES_BPA_STG'             	
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_LINES_BPA_XFM'               
+         ,NULL                           					
+         ,'PoLinesInterfaceBlanket'                      							
+         ,'csv'                                 	
+         ,2                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** PO Line Locations BPA
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PURCHASE_ORDERS_BPA'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_LINE_LOCATIONS_BPA'                  	
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_line_locations_bpa'            
+         ,'XXMX_SCM_PO_LINE_LOCATIONS_BPA_STG'      
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_LINE_LOCATIONS_BPA_XFM'      
+         ,NULL                           					
+         ,'PoLineLocationsInterfaceBlanket'                      							
+         ,'csv'                                 	
+         ,2                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+--
+/*
+** PO Org Assign BPA
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                   
+         ,'PURCHASE_ORDERS_BPA'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_ORG_ASSIGN_BPA'                  	
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_org_assign_bpa'            
+         ,'XXMX_SCM_PO_GA_ORG_ASSIGN_BPA_STG'      
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_GA_ORG_ASSIGN_BPA_XFM'      
+         ,NULL                           					
+         ,'PoGAOrgAssignInterfaceBlanket'                      							
+         ,'csv'                                 	
+         ,2                                    	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+--
+/*
+** PO Attribute Values BPA
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                   
+         ,'PURCHASE_ORDERS_BPA'                        	
+         ,:vn_SubEntitySeq                         
+         ,'PO_ATTR_VALUES_BPA'                  	
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_attr_values_assign_bpa'            
+         ,'XXMX_SCM_PO_ATTR_VALUES_BPA_STG'      
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_ATTR_VALUES_BPA_XFM'      
+         ,NULL                           					
+         ,'PoAttrValuesInterfaceBlanket'                      							
+         ,'csv'                                 	
+         ,2                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+--
+/*
+** PO Translated Values BPA
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                   
+         ,'PURCHASE_ORDERS_BPA'                        	
+         ,:vn_SubEntitySeq                       
+         ,'PO_ATTR_TLP_BPA'                  	
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_attr_tlp_bpa'            
+         ,'XXMX_SCM_PO_ATTR_VALUES_TLP_BPA_STG'      
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_ATTR_VALUES_TLP_BPA_XFM'      
+         ,NULL                           					
+         ,'PoAttrValuesTlpInterfaceBlanket'                      							
+         ,'csv'                                 	
+         ,2                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--		 
+--
+/*
+** PO Headers CPA
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'PURCHASE_ORDERS_CPA'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_HEADERS_CPA'                  		
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_headers_cpa'             		
+         ,'XXMX_SCM_PO_HEADERS_CPA_STG'             
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_HEADERS_CPA_XFM'             
+         ,NULL                           					
+         ,'PoHeadersInterfaceContract'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--		 
+/*
+** PO Org Assign CPA
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package   
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'SCM'                                 	
+         ,'PO'                                  	
+         ,:vn_BusinessEntitySeq                  
+         ,'PURCHASE_ORDERS_CPA'                        	
+         ,:vn_SubEntitySeq                          
+         ,'PO_ORG_ASSIGN_CPA'                  		
+         ,'XXMX_PO_HEADERS_PKG'               	 			
+         ,NULL                                  	
+         ,'export_po_org_assign_cpa'             		
+         ,'XXMX_SCM_PO_GA_ORG_ASSIGN_CPA_STG'             
+         ,NULL                                  	
+         ,'XXMX_SCM_PO_GA_ORG_ASSIGN_CPA_XFM'             
+         ,NULL                           					
+         ,'PoGAOrgAssignInterfaceContract'                      							
+         ,'csv'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );      
+--
+--
+COMMIT;         
+--
+/******************
+** ZX CUSTOMERS TAX
+******************/
+--
+/*
+** ZX Customer Party Tax Profile
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'FIN'                                 
+         ,'ZX'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'CUSTOMERS_TAX'                           
+         ,:vn_SubEntitySeq                      
+         ,'TAX_PROFILE'                             
+         ,'xxmx_customer_tax_profile_pkg'               
+         ,NULL                                  
+         ,'party_tax_profile_stg'                      
+         ,'XXMX_ZX_TAX_PROFILE_STG'                 
+         ,'OIC'                                 
+         ,NULL                      
+         ,'XXMX_ZX_TAX_PROFILE_XFM'                 
+         ,NULL                                 
+         ,NULL                      
+         ,'PartyTaxProfileControls'                     
+         ,'csv'                                 
+         ,1                                    
+         ,'Y'                                   
+         );
+--
+--** ZX Customer Tax Registrations
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'FIN'                                 
+         ,'ZX'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'CUSTOMERS_TAX'                           
+         ,:vn_SubEntitySeq                      
+         ,'TAX_REGISTRATION'                             
+         ,'xxmx_customer_tax_profile_pkg'               
+         ,NULL                                  
+         ,'party_tax_profile_stg'                      
+         ,'XXMX_ZX_TAX_REGISTRATION_STG'                 
+         ,'OIC'                                 
+         ,NULL                      
+         ,'XXMX_ZX_TAX_REGISTRATION_XFM'                 
+         ,NULL                                 
+         ,NULL                      
+         ,'TaxRegistrations'                     
+         ,'csv'                                 
+         ,1                                    
+         ,'Y'                                   
+         );
+--
+--** ZX Customer Party Classifications
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,simple_xfm_performed_by
+         ,xfm_procedure_name
+         ,xfm_table
+         ,file_gen_performed_by
+         ,file_gen_procedure_name
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 
+         ,'FIN'                                 
+         ,'ZX'                                  
+         ,:vn_BusinessEntitySeq                 
+         ,'CUSTOMERS_TAX'                           
+         ,:vn_SubEntitySeq                      
+         ,'PARTY_CLASSIFIC'                             
+         ,'xxmx_customer_tax_profile_pkg'               
+         ,NULL                                  
+         ,'party_tax_profile_stg'                      
+         ,'XXMX_ZX_PARTY_CLASSIFIC_STG'                 
+         ,'OIC'                                 
+         ,NULL                      
+         ,'XXMX_ZX_PARTY_CLASSIFIC_XFM'                 
+         ,NULL                                 
+         ,NULL                      
+         ,'PartyClassifications'                     
+         ,'csv'                                 
+         ,1                                    
+         ,'Y'                                   
+         );
+
+/*******************************
+** OLC Metadata (LRN) - LEARNING
+*******************************/
+--
+/*
+** Course V3
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'COURSE_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_COURSE_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Course Default Access V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'COURSE_DEFAULT_ACCESS_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_COURSE_ACC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_ACC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFERING_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Evaluation Activity V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'EVALUATION_ACTIVITY_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_EVAL_ACT_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_EVAL_ACT_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering Activity Section V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFERING_ACTIVITY_SECTION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_ACT_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_ACT_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Instructor Led Activity V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'INSTRUCTOR_LED_ACTIVITY_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_INSTR_LED_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_LED_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Adhoc Resource V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'ADHOC_RESOURCE_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_ADHOC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_ADHOC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Classroom Reservation V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'CLASSROOM_RESERVATION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_CLASS_RESV_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_CLASS_RESV_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Instructor Reservation V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'INSTRUCTOR_RESERVATION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_INSTR_RESV_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_RESV_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Self Paced Activity V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SELFPACED_ACTIVITY_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SELFPACE_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SELFPACE_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering Default Access V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFERING_DEFAULT_ACCESS_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_ACC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_ACC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Course V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'COURSE_V3_TRANSLATION'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_COURSE_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFERING_V3_TRANSLATION'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'OfferingV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering Activity Section V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFER_ACT_SEC_V3_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_ACT_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_ACT_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'OfferingActivitySectionV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Instructor Led Activity V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'INSTR_LED_ACTIVITY_V3_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_INSTR_ACT_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_ACT_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'InstructorLedActivityV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Self Paced Activity V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SELFPACED_ACTIVITY_V3_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SELFPACE_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SELFPACE_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'SelfPacedActivityV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Evaluation Activity V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'EVALUATION_ACTIVITY_V3_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_EVAL_ACT_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_EVAL_ACT_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'EvaluationActivityV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPECIALIZATION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization Default Access V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPEC_DEFAULT_ACCESS_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_DEF_ACC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_DEF_ACC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization Section V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPECIALIZATION_SECTION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_SXN_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_V3_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationSectionV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization Section Activity V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPEC_SECTION_ACTIVITY_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_SXN_ACT_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_ACT_V3_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationSectionActivityV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPECIALIZATION_V3_TRANSLATION'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization Section V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPECIALIZATION_V3_SXN_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_SXN_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationSectionV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Learning Record Activity Attempt V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING_V3'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'LEARNING_RECORD_ACT_ATTEMPT_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_LEARN_RCD_ACT_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_LEARN_RCD_ACT_V3_XFM'                 
+         ,NULL                           			   		
+         ,'LearningRecordActivityAttemptV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+		 
+		 
+		 
+		 
+		 
+		 
+--
+/**************************************
+** SCM Metadata (PO) - PURCHASE ORDER RECEIPT
+**************************************/
+--
+/*
+** PURCHASE ORDER RECEIPT
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'SCM'
+         ,'PO'
+         ,:vn_BusinessEntitySeq
+         ,'PURCHASE_ORDER_RECEIPT'
+         ,:vn_SubEntitySeq
+         ,'PO_RECEIPT_HEADERS'
+         ,'xxmx_po_receipt_pkg'
+         , NULL
+         ,'po_rcpt_hdr_stg'          
+         ,'XXMX_SCM_PO_RCPT_HDR_STG'
+         , NULL
+         ,'XXMX_SCM_PO_RCPT_HDR_XFM'          
+         , NULL
+         ,'RcvHeadersInterface.csv'
+         ,'csv'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+		 
+		 
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+        (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'SCM'
+         ,'PO'
+         ,:vn_BusinessEntitySeq
+         ,'PURCHASE_ORDER_RECEIPT'
+         ,:vn_SubEntitySeq
+         ,'PO_RECEIPT_TRANSACTIONS'
+		 ,'xxmx_po_receipt_pkg'
+         , NULL
+         ,'po_rcpt_txn_stg'          
+         ,'XXMX_SCM_PO_RCPT_TXN_STG'
+         ,NULL
+         ,'XXMX_SCM_PO_RCPT_TXN_XFM'          
+         ,NULL
+         ,'RcvTransactionsInterface.csv'
+         ,'csv'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+	);
+--
+--
+/************************************
+** HCM Metadata (TM) - GOAL PLAN
+************************************/
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'GOAL_PLAN'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_goal_plan_stg'          
+         ,'XXMX_HCM_GPLAN_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+---
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'GOAL_PLAN_GOAL'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_goal_plan_goal_stg'          
+         ,'XXMX_HCM_GPLAN_GP_GOALS_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_GP_GOALS_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'MASS_REQUEST'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_gplan_mass_req_stg'          
+         ,'XXMX_HCM_GPLAN_MASS_REQ_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_MASS_REQ_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'ELIGIBILITY_PROFILE_OBJECT'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_gplan_eo_prof_stg'          
+         ,'XXMX_HCM_GPLAN_EO_PROF_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_EO_PROF_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'MASS_REQUEST_ASSIGNMENT'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_gplan_mr_asgn_stg'          
+         ,'XXMX_HCM_GPLAN_MR_ASGN_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_MR_ASGN_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'MASS_REQUEST_HIERARCHY'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_gplan_mr_hier_stg'          
+         ,'XXMX_HCM_GPLAN_MR_HIER_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_MR_HIER_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'MASS_REQUEST_EXEMPTION'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_gplan_mr_exem_stg'          
+         ,'XXMX_HCM_GPLAN_MR_EXEM_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_MR_EXEM_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'GOAL_PLAN_DOC_TYPES'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_gplan_dtype_stg'          
+         ,'XXMX_HCM_GPLAN_DTYPE_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_DTYPE_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+		
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN'
+         ,:vn_SubEntitySeq
+         ,'GOAL_PLAN_ASSIGNMENT'
+         ,'xxmx_hcm_goal_plan_pkg'
+         , NULL
+         ,'hcm_gplan_asgn_stg'          
+         ,'XXMX_HCM_GPLAN_ASGN_STG'
+         , NULL
+         ,'XXMX_HCM_GPLAN_ASGN_XFM'          
+         , NULL
+         ,'GoalPlan'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+/************************************
+** HCM Metadata (TM) - GOAL PLAN SET
+************************************/
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN_SET'
+         ,:vn_SubEntitySeq
+         ,'GOAL_PLAN_SET'
+         ,'xxmx_hcm_goal_plan_set_pkg'
+         , NULL
+         ,'hcm_gplan_set_stg'          
+         ,'XXMX_HCM_GPSET_STG'
+         , NULL
+         ,'XXMX_HCM_GPSET_XFM'          
+         , NULL
+         ,'GoalPlanSet'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+---
+---
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN_SET'
+         ,:vn_SubEntitySeq
+         ,'GOAL_PLAN_SET_PLAN '
+         ,'xxmx_hcm_goal_plan_set_pkg'
+         , NULL
+         ,'hcm_gplan_set_plan_stg'          
+         ,'XXMX_HCM_GPSET_PLAN_STG'
+         , NULL
+         ,'XXMX_HCM_GPSET_PLAN_XFM'          
+         , NULL
+         ,'GoalPlanSet'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN_SET'
+         ,:vn_SubEntitySeq
+         ,'MASS_REQUEST'
+         ,'xxmx_hcm_goal_plan_set_pkg'
+         , NULL
+         ,'hcm_gpset_mass_request_stg'          
+         ,'XXMX_HCM_GPSET_MASS_REQ_STG'
+         , NULL
+         ,'XXMX_HCM_GPSET_MASS_REQ_XFM'          
+         , NULL
+         ,'GoalPlanSet'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN_SET'
+         ,:vn_SubEntitySeq
+         ,'ELIGIBILITY_PROFILE_OBJECT'
+         ,'xxmx_hcm_goal_plan_set_pkg'
+         , NULL
+         ,'hcm_gpset_epo_stg'          
+         ,'XXMX_HCM_GPSET_EO_PROF_STG'
+         , NULL
+         ,'XXMX_HCM_GPSET_EO_PROF_XFM'          
+         , NULL
+         ,'GoalPlanSet'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN_SET'
+         ,:vn_SubEntitySeq
+         ,'MASS_REQUEST_HIERARCHY'
+         ,'xxmx_hcm_goal_plan_set_pkg'
+         , NULL
+         ,'hcm_gpset_mrh_stg'          
+         ,'XXMX_HCM_GPSET_MR_HIER_STG'
+         , NULL
+         ,'XXMX_HCM_GPSET_MR_HIER_XFM'          
+         , NULL
+         ,'GoalPlanSet'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL_PLAN_SET'
+         ,:vn_SubEntitySeq
+         ,'MASS_REQUEST_EXEMPTION'
+         ,'xxmx_hcm_goal_plan_set_pkg'
+         , NULL
+         ,'hcm_gpset_mre_stg'          
+         ,'XXMX_HCM_GPSET_MR_EXEM_STG'
+         , NULL
+         ,'XXMX_HCM_GPSET_MR_EXEM_XFM'          
+         , NULL
+         ,'GoalPlanSet'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+--
+/************************************
+** HCM Metadata (TM) - GOAL 
+************************************/
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL'
+         ,:vn_SubEntitySeq
+         ,'GOAL'
+         ,'xxmx_hcm_goal_pkg'
+         , NULL
+         ,'hcm_goal_stg'          
+         ,'XXMX_HCM_GOAL_STG'
+         , NULL
+         ,'XXMX_HCM_GOAL_XFM'          
+         , NULL
+         ,'Goal'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+---
+---
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL'
+         ,:vn_SubEntitySeq
+         ,'GOAL_ACCESS'
+         ,'xxmx_hcm_goal_pkg'
+         , NULL
+         ,'hcm_goal_access_stg'          
+         ,'XXMX_HCM_GOAL_ACCESS_STG'
+         , NULL
+         ,'XXMX_HCM_GOAL_ACCESS_XFM'          
+         , NULL
+         ,'Goal'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL'
+         ,:vn_SubEntitySeq
+         ,'GOAL_ACTION'
+         ,'xxmx_hcm_goal_pkg'
+         , NULL
+         ,'hcm_goal_action_stg'          
+         ,'XXMX_HCM_GOAL_ACTION_STG'
+         , NULL
+         ,'XXMX_HCM_GOAL_ACTION_XFM'          
+         , NULL
+         ,'Goal'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL'
+         ,:vn_SubEntitySeq
+         ,'GOAL_ALIGNMENT'
+         ,'xxmx_hcm_goal_pkg'
+         , NULL
+         ,'hcm_goal_alignment_stg'          
+         ,'XXMX_HCM_GOAL_ALIGNMENT_STG'
+         , NULL
+         ,'XXMX_HCM_GOAL_ALIGNMENT_XFM'          
+         , NULL
+         ,'Goal'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL'
+         ,:vn_SubEntitySeq
+         ,'GOAL_MEASUREMENT'
+         ,'xxmx_hcm_goal_pkg'
+         , NULL
+         ,'hcm_goal_measurement_stg'          
+         ,'XXMX_HCM_GOAL_MEASUREMENT_STG'
+         , NULL
+         ,'XXMX_HCM_GOAL_MEASUREMENT_XFM'          
+         , NULL
+         ,'Goal'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL'
+         ,:vn_SubEntitySeq
+         ,'GOAL_PLAN_GOAL'
+         ,'xxmx_hcm_goal_pkg'
+         , NULL
+         ,'hcm_goal_plan_goal_stg'          
+         ,'XXMX_HCM_GOAL_PLAN_GOAL_STG'
+         , NULL
+         ,'XXMX_HCM_GOAL_PLAN_GOAL_XFM'          
+         , NULL
+         ,'Goal'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL'
+         ,:vn_SubEntitySeq
+         ,'GOAL_TARGET_OUTCOME'
+         ,'xxmx_hcm_goal_pkg'
+         , NULL
+         ,'hcm_gtarget_outcme_stg'          
+         ,'XXMX_HCM_GTARGET_OUTCOME_STG'
+         , NULL
+         ,'XXMX_HCM_GTARGET_OUTCOME_XFM'          
+         , NULL
+         ,'Goal'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'TM'
+         ,:vn_BusinessEntitySeq
+         ,'GOAL'
+         ,:vn_SubEntitySeq
+         ,'GOAL_TARGET_OUTCOME_PROFILE_ITEM'
+         ,'xxmx_hcm_goal_pkg'
+         , NULL
+         ,'hcm_gtargt_outcme_profile_stg'          
+         ,'XXMX_HCM_GTARGT_OUTCME_PROFILE_ITM_STG'
+         , NULL
+         ,'XXMX_HCM_GTARGT_OUTCME_PROFILE_ITM_XFM'          
+         , NULL
+         ,'Goal'
+         ,'dat'
+         ,1
+         ,'Y'
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+         ,NULL
+		);
+--		 
+COMMIT;    
+--		 	 
+/

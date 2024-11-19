@@ -1,0 +1,75 @@
+Built, reviewed and tested transformation and load routines of all FIN and SCM modules.
+Developed and reviewed configuration files for all FIN and SCM modules.
+Developed and configured Inventory Transaction installation scripts and configuration files.
+Assisted Venkatesh in the development and reviewed Items installation scripts and configuration files.
+Assisted in the development and reviewed Nikhil's and Venkatesh's work.
+Mentored and Supervised Shireesha in understanding and performing the VBCS process.
+Mentored and Supervised Shireesha, Venkatesh and Nikhil in understanding and performing the Bitbucket setup and operations.
+Mentored and Supervised Venkatesh and Nikhil in understanding Maximise.
+Reviewed CV040s of Recruiting, PPM and INV Management.
+Done an entire review of the Business Entity Code and Core Code of Maximise and extensive testing of Maximise.
+Helped Praveen and Nikhil in fixing the bitbucket issue and associated with these mates and Tara for OIC & Fusion Pod access.
+Provided backed up BIP reports to Praveen.
+Reviewed GL Journal package with Michal.
+Helped Dhanu, Janani, Milind, and Prasad by providing feedback and addressing issues that occurred through testing the maximise using packages.
+Collaborated with Dhanu and his team in understanding VBCS and provided suggestions on the development.
+Made enhancements in Visual Builder to achieve desired data and functionalities on the VBCS page.
+Done numerous rounds of VBCS testing extensively to perform ETL operations of Maximise.
+Addressed issues of VBCS at every phase with all the teams and higher management and made sure in fixing the things to achieve a reliable output.
+Associated with Rafik in fixing OIC issues.
+Associated with Praveen and Bridget in bringing the resource when needed and proactively collaborated with Pallavi at every phase of the quarter in addressing the issues and fixes.
+Associated and addressed the TNS issue with Zoheb.
+Pushed all the wok code to bitbucket.
+Assisted Vamsi in understanding Maximise and helped in performing ETL operations.
+Started mentoring the Citco team in understanding Maximise.
+Reached out L&D team alongside Mary and Orlaith for the OIC certification voucher and addressed the issue with the vouchers.
+
+Delivered more sessions on Data Migration and the ETL processes involved in it from End-to-End alongside the Fusion and VBCS to the whole Citco team.
+Conducted and delivered more KTs to the Citco teams both on HCM and FIN.
+Helped the Citco teams to understand Maximise thoroughly and supported at every stage of the Data Migration by addressing the issues.
+Developed and configured a lot of Maximise Data dictionaries and configurations in the client environment.
+Closely worked with the teams in gathering Mappings and made sure they get deployed to the client environment.
+Developed Maximise Mapping Master files for all the modules and closely worked with Dhanu and Janani in getting OIC flows done for the Mapping process.
+Created folder structures for the archive files and modified OIC flows for the files to get stored in the respective folders.
+Created central location and files in it for the teams to update the files with the respective configuration data and setups and made sure teams do them at all costs.
+Took the responsibility of deploying and setting up OIC and VBCS in all the environments and made sure they run efficiently by testing them rigorously.
+Worked on new objects like Customer Tax, GL Balances, and GL Daily Rates in setting up in all environments end-to-end and reworked all the other objects for missing columns.
+Made sure the teams work smoothly in performing the ETL through Maximise by working closely with Janani in developing and modifying Import and Load flows in OIC and VBCS.
+A lot of Knowledge Transfers, Developments, Modifications, Folder & File Management, support, Issue fixes and Resolution Provisions have been carried out thorough the Project by working around the clock in making sure I meet the timelines and deliverables and the Client performs Data Migration in an efficient and smooth manner.
+Collaborated, Mentored and Monitored all the project members irrespective of modules in achieving the desired results successfully.
+Collaborated with Pallavi and Janani in fixing the raised issues.
+Worked on the configuration changes done in Citco and implemented them in the Maximise and made sure to push the changes to Bitbucket.
+Working on the missing and new objects in Maximise like GL Daily rates by creating the table architecture, and Extract Package creation.
+Developed OIC flows and started testing the Transformation and Load process of GL Daily Rates.
+Monitoring and reviewing Shireesha's work on GL Balances and working on the Import flows for Balances.
+Imported and configured Maximise OIC and VBCS with the latest changes from Citco and made enhancements in Visual Builder to achieve desired data and functionalities on the VBCS
+
+
+Worked on configuration changes in Maximise.
+Performed GL Daily Rates Transformation by developing required files in Maximise after modifying the extract package code from citco to Maximise.
+Tested GL Daily Rates and Balances on VBCS after addition to Maximise.
+Developed Current Assignment Scope View and other materialized views.
+Developed XFM data dictionary files for all the objects of HR, Learning, Learning V3, and Benefits according to the new outbound files of Fusion.
+Developed and installed Table scripts, Metadata scripts and Xfm & Stg population scripts of Learning V3.
+Developed new table scripts and modified the existing ones according to the new outbound files of Fusion for HR, Benefits and Learning objects.
+Reviewed the assigned tasks.
+Working on the Load demo video.
+
+Developed and tested the automation of the XFM data dictionary population by creating a master file to hold the values and OIC flow to automate the process.
+Supported GSTT/RBH by developing a table creation script after comparing and amending the changes across tables in the environment.
+Supported GSTT/RBH in AP Invoices & AR Invoices Load and Reconciliation.
+Welcomed and guided Ayush by taking him through the whole ETL and DM process and provided abundant knowledge transfer regarding the Maximise, Version 1, and other tools like GIT, DevOps, etc thoroughly.
+Mentored and monitored Ayush closely and reviewed his work on the Simple HCM data migration.
+Developed, tested, and deployed a complete brand new business entity called GL Historical Rates into the CITCO environment by creating tables, populating the entire data dictionary, automating the load, and importing through OIC flows and VBCS.
+Set up and tested the complete ETL process of GL Historical Rates and delivered it to CITCO within the stipulated time.
+Tested the entire Installation process of Maximise and updated the main installation document alongside creating a new pre-requisite document for installation purposes.
+Developed and deployed new Import flows of Suppliers for NCP and supported the client in the ETL process.
+Integrated newly developed Supplier Imports into Maximise from NCP.
+Integrated newly developed business entity called GL Historical Rates wholely into Maximise from CITCO.
+Welcomed and delivered the Knowledge Transfer of the DevOps board to Sinchana and Soundarya and mentoring and monitoring their progress alongside Shireesha.
+Reviewed and guided Soundarya's work on Simple HCM table scripts.
+Provided inputs on the Dashboard design and guided Shireesha in its creation.
+Tested the POC of new VBCS design to enable disable dropdown components for HDL improvement logic.
+Tested the batching process in the Maximise.
+Done and dusted the OIC certification.
+

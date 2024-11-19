@@ -1,0 +1,1351 @@
+/*******************************
+** OLC Metadata (LRN) - LEARNING
+*******************************/
+--
+/*
+** Course V3
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'COURSE_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_COURSE_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Course Default Access V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'COURSE_DEFAULT_ACCESS_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_COURSE_ACC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_ACC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFERING_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Evaluation Activity V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'EVALUATION_ACTIVITY_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_EVAL_ACT_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_EVAL_ACT_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering Activity Section V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFERING_ACTIVITY_SECTION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_ACT_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_ACT_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Instructor Led Activity V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'INSTRUCTOR_LED_ACTIVITY_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_INSTR_LED_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_LED_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Adhoc Resource V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'ADHOC_RESOURCE_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_ADHOC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_ADHOC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Classroom Reservation V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'CLASSROOM_RESERVATION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_CLASS_RESV_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_CLASS_RESV_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Instructor Reservation V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'INSTRUCTOR_RESERVATION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_INSTR_RESV_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_RESV_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Self Paced Activity V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SELFPACED_ACTIVITY_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SELFPACE_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SELFPACE_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering Default Access V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFERING_DEFAULT_ACCESS_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_ACC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_ACC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Course V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'COURSE_V3_TRANSLATION'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_COURSE_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_COURSE_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'CourseV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFERING_V3_TRANSLATION'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'OfferingV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Offering Activity Section V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'OFFER_ACT_SEC_V3_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_OFFER_ACT_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_OFFER_ACT_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'OfferingActivitySectionV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Instructor Led Activity V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'INSTR_LED_ACTIVITY_V3_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_INSTR_ACT_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_INSTR_ACT_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'InstructorLedActivityV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Self Paced Activity V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SELFPACED_ACTIVITY_V3_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SELFPACE_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SELFPACE_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'SelfPacedActivityV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Evaluation Activity V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'EVALUATION_ACTIVITY_V3_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_EVAL_ACT_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_EVAL_ACT_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'EvaluationActivityV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPECIALIZATION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization Default Access V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPEC_DEFAULT_ACCESS_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_DEF_ACC_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_DEF_ACC_V3_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization Section V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPECIALIZATION_SECTION_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_SXN_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_V3_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationSectionV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization Section Activity V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPEC_SECTION_ACTIVITY_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_SXN_ACT_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_ACT_V3_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationSectionActivityV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPECIALIZATION_V3_TRANSLATION'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Specialization Section V3 Translation
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'SPECIALIZATION_V3_SXN_TRNSLN'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_SPEC_SXN_V3_TL_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_SPEC_SXN_V3_TL_XFM'                 
+         ,NULL                           			   		
+         ,'SpecializationSectionV3Translation'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--
+/*
+** Learning Record Activity Attempt V3
+*/
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--		 
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id         
+		,application_suite   
+		,application   
+		,business_entity_seq     
+		,business_entity
+		,sub_entity_seq     
+		,sub_entity 
+		,entity_package_name 
+		,sql_load_name 
+		,stg_procedure_name  
+		,stg_table
+		,xfm_procedure_name 
+		,xfm_table
+		,file_gen_procedure_name 
+		,data_file_name
+		,data_file_extension   
+		,file_group_number     
+		,enabled_flag  
+		,simple_xfm_performed_by   
+		,file_gen_performed_by 
+		,file_gen_package
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	
+         ,'OLC'                                 	
+         ,'LRN'                                  	
+         ,:vn_BusinessEntitySeq                     
+         ,'LEARNING'                        		   
+         ,:vn_SubEntitySeq                         
+         ,'LEARNING_RECORD_ACT_ATTEMPT_V3'                  	
+         ,NULL
+         ,NULL                                  	
+         ,NULL
+         ,'XXMX_OLC_LEARN_RCD_ACT_V3_STG'             		
+         ,NULL                                  	
+         ,'XXMX_OLC_LEARN_RCD_ACT_V3_XFM'                 
+         ,NULL                           			   		
+         ,'LearningRecordActivityAttemptV3'                      				   			
+         ,'dat'                                 	
+         ,1                                     	
+         ,'Y'                                   	
+		 ,NULL                                   	
+		 ,NULL                                  	
+		 ,NULL                                   	
+         );
+--

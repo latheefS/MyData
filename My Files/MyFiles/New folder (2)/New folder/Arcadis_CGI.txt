@@ -1,0 +1,30 @@
+Arcadis:
+-------
+
+Role accountabilities:
+
+Proactively engages with Key Business Users to receive feedback, gauge satisfaction with system integrations, and address issues or concerns.
+Collaborates with DII Application & Extension Manager to gather requirements and prioritize data transformation projects.
+Collaborates with DII Team to deliver efficient and well-run processes
+Support Oracle Application & Extension development including API Management, Apex, VBCS, Kubernetes, Containers, WebLogic, Application Extensions, Database Schema Design, Java Development and building Regional Interfaces.
+Ensures Oracle Applications & Extensions conform to industry best practices and Oracle guidelines with focus on enterprise security and data privacy.
+Manages capacity planning, technical documentation, design review, refactoring and consolidation, upgrades and lifecycle for Oracle based applications and extensions.
+Establishes proactive application monitoring, alerting and adheres to industry best practices to ensure availability and performance meets business demands.
+Coordinate with release manager the schedule of release activities across environments, teams, and vendors, identifying and resolving conflicts to minimize risk of business disruption.
+Manages incident and problem response and resolution, as well as service request queues to deliver high end-user satisfaction.
+
+:
+:
+CGI:
+ Prior experience in Data conversion and integration projects
+ Prior knowledge in mapping data entities in Legacy applications to Oracle
+ Extensive experience in designing and developing complex and rapid RICEW solutions
+ functional expertise in Oracle E-Business suite of products (Oracle Order Mgmnt,Inventory,Purchasing,Pricing)
+ Ability to validate converted data entities at Oracle
+ Experience in various troubleshooting techniques
+ Ability to multi-task, assess priority of requests and work in a fast paced, dynamic- Agile environment work environment
+ Ability to understand business problems and develop solutions and functional flows
+ Should be able to prepare Test plan, test case and test results documents
+ Good documentation and presentation skills
+ Work directly with EBS business users to thoroughly understand functional requirements to produce highly effective functional design documents
+ Basic sql writing knowledge and comfortable with base tables

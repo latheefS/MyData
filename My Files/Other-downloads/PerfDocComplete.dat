@@ -1,0 +1,6 @@
+METADATA|PerfDocComplete|AssignmentNumber|CustomaryName|StartDate|EndDate|Operation|ManagerAssignmentNumber|ShortName|SourceSystemId|SourceSystemOwner
+MERGE|PerfDocComplete|E2011990|Annual Performance 2024|2024/01/01|2024/12/31|ORA_RATING_PD|E2011970|Review Period|PerfDocComplete_E2011990|CYBORG
+
+METADATA|RatingsAndComments|CustomaryName|AssignmentNumber|Comments|SectionName|SectionTypeCode|ParticipantPersonNumber|ParticipantRoleTypeCode|ShortName|RatingName|SourceSystemId|SourceSystemOwner|EvaluationId(SourceSystemId)
+MERGE|RatingsAndComments|Annual Performance 2024|E2011990||Job Performance|REG|2011970|Line Manager|Review Period|Exceeds Expectations|RatingsAndComments_2011990_Job Performance|CYBORG|PerfDocComplete_E2011990
+MERGE|RatingsAndComments|Annual Performance 2024|E2011990||Annual Goal Plan|GOAL|2011970|Line Manager|Review Period|Exceeds Expectations|RatingsAndComments_2011990_Annual Goal Plan|CYBORG|PerfDocComplete_E2011990

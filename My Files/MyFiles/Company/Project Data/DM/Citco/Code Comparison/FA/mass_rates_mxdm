@@ -1,0 +1,633 @@
+    PROCEDURE src_massrates
+                     (pt_i_MigrationSetID              IN      xxmx_migration_headers.migration_set_id%TYPE
+                     ,pt_i_SubEntity                  IN      xxmx_migration_metadata.sub_entity%TYPE)
+    AS
+
+
+
+
+      --
+      --**********************
+      --** Cursor Declarations
+      --**********************
+      --
+
+        CURSOR imp_massadd_rates_cur
+        IS
+            --
+   
+            SELECT   fmav.mass_addition_id
+                    ,gsob.currency_code
+                    ,fmr.fixed_assets_cost
+                    ,exchange_rate
+                    ,g_batch_name
+                    ,SYSDATE                                        AS creation_date
+                    ,xxmx_utilities_pkg.gvv_UserName                AS created_by
+                    ,SYSDATE                                        AS last_update_date
+                    ,xxmx_utilities_pkg.gvv_UserName                AS last_updated_by
+                    ,to_char(TO_DATE(SYSDATE, 'DD-MON-RRRR'),'DDMMRRRRHHMISS')         
+            FROM     apps.fa_mc_mass_rates@MXDM_NVIS_EXTRACT           fmr
+                    ,apps.fa_mass_additions_v@MXDM_NVIS_EXTRACT        fmav
+                    ,apps.gl_sets_of_books@MXDM_NVIS_EXTRACT           gsob
+                    ,(select distinct mass_addition_id 
+                      from xxmx_fa_mass_additions_stg )    xfas
+           WHERE    fmr.mass_addition_id              = fmav.mass_addition_id
+           AND      gsob.set_of_books_id              = fmr.set_of_books_id
+           AND      xfas.mass_addition_id = fmav.asset_id
+           ;
+
+       --
+       --**********************
+       --** Record Declarations
+       --**********************
+       --
+
+      TYPE imp_massadd_rates_tb1 IS TABLE OF imp_massadd_rates_cur%ROWTYPE INDEX BY BINARY_INTEGER;
+      imp_massadd_rates_tb  imp_massadd_rates_tb1;
+       --
+       --************************
+       --** Constant Declarations
+       --************************
+       --
+        cv_ProcOrFuncName                   CONSTANT    VARCHAR2(30) := 'src_massrates';
+        ct_Phase                            CONSTANT    xxmx_module_messages.phase%TYPE  := 'EXTRACT';
+        cv_StagingTable                     CONSTANT    VARCHAR2(100) DEFAULT 'XXMX_FA_MASS_RATES_STG';
+        cv_i_BusinessEntityLevel            CONSTANT    VARCHAR2(100) DEFAULT 'MASS_RATES';
+
+        --
+       --************************
+       --** Variable Declarations
+       --************************
+       --
+        l_error_count                        NUMBER;
+       --
+       --*************************
+       --** Exception Declarations
+       --*************************
+       --
+       e_ModuleError                         EXCEPTION;
+       e_DateError                           EXCEPTION;
+       ex_dml_errors                         EXCEPTION;
+       PRAGMA EXCEPTION_INIT(ex_dml_errors, -24381);
+
+       --
+       --** END Declarations **
+       --
+    BEGIN
+        gvv_ReturnStatus  := '';
+        gvt_ReturnMessage := '';
+        gvv_ProgressIndicator := '0000';
+        xxmx_utilities_pkg.clear_messages
+            (
+            pt_i_ApplicationSuite     => gct_ApplicationSuite
+            ,pt_i_Application         => gct_Application
+            ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+            ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+            ,pt_i_Phase               => ct_Phase
+            ,pt_i_MessageType         => 'MODULE'
+            ,pv_o_ReturnStatus        => gvv_ReturnStatus
+            );
+        --
+        IF   gvv_ReturnStatus = 'F'
+        THEN
+            xxmx_utilities_pkg.log_module_message(
+                 pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'ERROR'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                ,pt_i_OracleError         => gvt_ReturnMessage    );
+            --
+            RAISE e_ModuleError;
+        END IF;
+        --
+        gvv_ReturnStatus  := '';
+        gvt_ReturnMessage := '';
+        gvv_ProgressIndicator := '0005';
+        xxmx_utilities_pkg.clear_messages
+            (pt_i_ApplicationSuite     => gct_ApplicationSuite
+            ,pt_i_Application         => gct_Application
+            ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+            ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+            ,pt_i_Phase               => ct_Phase
+            ,pt_i_MessageType         => 'DATA'
+            ,pv_o_ReturnStatus        => gvv_ReturnStatus
+            );
+        IF   gvv_ReturnStatus = 'F'
+        THEN
+            xxmx_utilities_pkg.log_module_message
+                (pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'ERROR'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                ,pt_i_OracleError         => gvt_ReturnMessage
+                );
+            --
+            RAISE e_ModuleError;
+        END IF;
+        --
+        --
+
+        gvv_ProgressIndicator := '0010';
+        xxmx_utilities_pkg.log_module_message(
+                 pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'NOTIFICATION'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Deleting from "' || cv_StagingTable   || '".'
+                ,pt_i_OracleError         => gvt_ReturnMessage  );
+        --
+        DELETE
+        FROM    XXMX_STG.XXMX_FA_MASS_RATES_STG ;
+
+        COMMIT;
+        --
+        --
+
+        gvv_ProgressIndicator := '0020';
+        --
+        gvt_MigrationSetName := xxmx_utilities_pkg.get_migration_set_name(pt_i_MigrationSetID);
+        --
+        /*
+        ** If the Migration Set Name is NULL then the Migration has not been initialized.
+        */
+        --
+        IF   gvt_MigrationSetName IS NOT NULL
+        THEN
+            --
+            gvv_ProgressIndicator := '0030';
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '- Extracting "'
+                                          ||pt_i_SubEntity
+                                          ||'":'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            /*
+            ** The Migration Set has been initialised, so now initialize the detail record
+            ** for the current entity.
+            */
+            --
+            --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+            --**                  table based on the Application Suite, Application and Business Entity parameters.
+            --**
+            --**                  Removed "entity" from procedure_name.
+            --
+            xxmx_utilities_pkg.init_migration_details
+                 (
+                  pt_i_ApplicationSuite => gct_ApplicationSuite
+                 ,pt_i_Application      => gct_Application
+                 ,pt_i_BusinessEntity   => gv_i_BusinessEntity
+                 ,pt_i_SubEntity        => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID   => pt_i_MigrationSetID
+                 ,pt_i_StagingTable     => cv_StagingTable
+                 ,pt_i_ExtractStartDate => SYSDATE
+                 );
+            --
+            --** ISV 21/10/2020 - "pt_i_StagingTable" no longer needs to be passed as a parameter from the STG_MAIN procedure
+            --**                  as the table name will never change so replace with new constant "ct_StgTable".
+            --
+            --**                  We will still keep the table name in the Metadata table as that can be used for reporting
+            --**                  purposes.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Staging Table "'
+                                          ||cv_StagingTable
+                                          ||'" reporting details initialised.'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            gvv_ProgressIndicator := '0040';
+            --
+            --** Extract the Projects and insert into the staging table.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Extracting data into "'
+                                          ||cv_StagingTable
+                                          ||'".'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            --** ISV 21/10/2020 - The staging table is in the xxmx_stg schema but should not need to be prefixed as there should
+            --**                  by a Synonym in the xxmx_core schema to that table.
+            --
+
+
+           OPEN imp_massadd_rates_cur;
+           --
+           LOOP
+           --
+
+           gvv_ProgressIndicator := '0020';
+           xxmx_utilities_pkg.log_module_message(
+                    pt_i_ApplicationSuite    => gct_ApplicationSuite
+                   ,pt_i_Application         => gct_Application
+                   ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                   ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                   ,pt_i_Phase               => ct_Phase
+                   ,pt_i_Severity            => 'NOTIFICATION'
+                   ,pt_i_PackageName         => gcv_PackageName
+                   ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                   ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                   ,pt_i_ModuleMessage       => 'Inside the CURSOR loop imp_massadd_rates_cur'
+                   ,pt_i_OracleError         => gvt_ReturnMessage  );
+           --
+           FETCH imp_massadd_rates_cur  BULK COLLECT INTO imp_massadd_rates_tb LIMIT 1000;
+           --
+
+            gvv_ProgressIndicator := '0020';
+            xxmx_utilities_pkg.log_module_message(
+                    pt_i_ApplicationSuite    => gct_ApplicationSuite
+                   ,pt_i_Application         => gct_Application
+                   ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                   ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                   ,pt_i_Phase               => ct_Phase
+                   ,pt_i_Severity            => 'NOTIFICATION'
+                   ,pt_i_PackageName         => gcv_PackageName
+                   ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                   ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                   ,pt_i_ModuleMessage       => 'CURSOR imp_massadd_rates_cur Fetch into imp_massadd_rates_tb'
+                   ,pt_i_OracleError         => gvt_ReturnMessage  );
+           --
+           EXIT WHEN imp_massadd_rates_tb.COUNT=0;
+           --
+           FORALL i IN 1..imp_massadd_rates_tb.COUNT SAVE EXCEPTIONS
+           --
+             INSERT
+             INTO XXMX_STG.XXMX_FA_MASS_RATES_STG
+               (
+                mass_addition_id
+               ,migration_status
+               ,migration_set_name
+               ,currency_code
+               ,fixed_assets_cost
+               ,exchange_rate
+             --  ,batch_name
+               ,creation_date
+               ,created_by
+               ,last_update_date
+               ,last_updated_by
+               ,migration_set_id
+              )
+          VALUES (
+
+                imp_massadd_rates_tb(i).mass_addition_id
+               ,'EXTRACTED'
+               ,gvt_MigrationSetName
+               ,imp_massadd_rates_tb(i).currency_code
+               ,imp_massadd_rates_tb(i).fixed_assets_cost
+               ,imp_massadd_rates_tb(i).exchange_rate
+               --,imp_massadd_rates_tb(i).g_batch_name
+               ,imp_massadd_rates_tb(i).creation_date
+               ,imp_massadd_rates_tb(i).created_by
+               ,imp_massadd_rates_tb(i).last_update_date
+               ,imp_massadd_rates_tb(i).last_updated_by
+               ,pt_i_MigrationSetID
+              );
+         --
+         END LOOP;
+
+         --
+           gvv_ProgressIndicator := '0030';
+           xxmx_utilities_pkg.log_module_message(
+                           pt_i_ApplicationSuite    => gct_ApplicationSuite
+                           ,pt_i_Application         => gct_Application
+                           ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                           ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                           ,pt_i_Phase               => ct_Phase
+                           ,pt_i_Severity            => 'NOTIFICATION'
+                           ,pt_i_PackageName         => gcv_PackageName
+                           ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                           ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                           ,pt_i_ModuleMessage       => 'End of extraction at ' || to_char(systimestamp,'YYYY-MM-DD HH24:MI:SS.FF2') || '. Procedure completed'
+                           ,pt_i_OracleError         => gvt_ReturnMessage       );
+
+
+           gvv_ProgressIndicator := '0031';
+           xxmx_utilities_pkg.log_module_message(
+                           pt_i_ApplicationSuite    => gct_ApplicationSuite
+                           ,pt_i_Application         => gct_Application
+                           ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                           ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                           ,pt_i_Phase               => ct_Phase
+                           ,pt_i_Severity            => 'NOTIFICATION'
+                           ,pt_i_PackageName         => gcv_PackageName
+                           ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                           ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                           ,pt_i_ModuleMessage       => 'Update Table into xxmx_fa_mass_rates_stg'
+                           ,pt_i_OracleError         => gvt_ReturnMessage       );
+
+
+         COMMIT;
+         --
+         gvv_ProgressIndicator := '0032';
+           xxmx_utilities_pkg.log_module_message(
+                           pt_i_ApplicationSuite    => gct_ApplicationSuite
+                           ,pt_i_Application         => gct_Application
+                           ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                           ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                           ,pt_i_Phase               => ct_Phase
+                           ,pt_i_Severity            => 'NOTIFICATION'
+                           ,pt_i_PackageName         => gcv_PackageName
+                           ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                           ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                           ,pt_i_ModuleMessage       => 'Close the Cursor imp_massadd_rates_cur'
+                           ,pt_i_OracleError         => gvt_ReturnMessage       );
+          --
+
+
+          IF imp_massadd_rates_cur%ISOPEN
+          THEN
+                  --
+                  CLOSE imp_massadd_rates_cur;
+                  --
+          END IF;
+
+
+
+                   --
+            /*
+            ** Obtain the count of rows inserted.  We cannot use SQL$ROWCOUNT here because of the LIMIT
+            ** clause on the BULK COLLECT statement.  The rowcount will be reset each time the limit
+            ** is reached.
+            */
+            --
+            --** ISV 21/10/2020 - Replace "pt_i_ClientSchemaName" (no longer passed into the extract procedures) with new constant "gct_StgSchema".
+            --**                  Replace "pt_i_StagingTable" (no longer passed into the extract procedures) with new constant "ct_StgTable"
+            --
+            gvn_RowCount := xxmx_utilities_pkg.get_row_count
+                                 (
+                                  gct_StgSchema
+                                 ,cv_StagingTable
+                                 ,pt_i_MigrationSetID
+                                 );
+            --
+            COMMIT;
+
+
+            xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Extraction complete.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+               --** Update the migration details (Migration status will be automatically determined
+               --** in the called procedure dependant on the Phase and if an Error Message has been
+               --** passed).
+               --
+               gvv_ProgressIndicator := '0110';
+               --
+               --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+               --**                  table based on the Application Suite, Application, Business Entity and Sub-Entity parameters.
+               --**
+               --**                  Removed "entity" from procedure_name.
+               --
+               xxmx_utilities_pkg.upd_migration_details
+                    (
+                     pt_i_MigrationSetID          => pt_i_MigrationSetID
+                    ,pt_i_BusinessEntity          => gv_i_BusinessEntity
+                    ,pt_i_SubEntity               => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase                   => ct_Phase
+                    ,pt_i_ExtractCompletionDate   => SYSDATE
+                    ,pt_i_ExtractRowCount         => gvn_RowCount
+                    ,pt_i_TransformTable          => NULL
+                    ,pt_i_TransformStartDate      => NULL
+                    ,pt_i_TransformCompletionDate => NULL
+                    ,pt_i_ExportFileName          => NULL
+                    ,pt_i_ExportStartDate         => NULL
+                    ,pt_i_ExportCompletionDate    => NULL
+                    ,pt_i_ExportRowCount          => NULL
+                    ,pt_i_ErrorFlag               => NULL
+                    );
+               --
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Migration Table "'
+                                             ||cv_StagingTable
+                                             ||'" reporting details updated.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+          ELSE
+               --
+               --
+               gvt_Severity      := 'ERROR';
+               gvt_ModuleMessage := '- Migration Set not initialized.';
+               --
+               --
+               RAISE e_ModuleError;
+               --
+               --
+          END IF;
+          --
+          --
+          xxmx_utilities_pkg.log_module_message
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+               ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+               ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+               ,pt_i_Phase             => ct_Phase
+               ,pt_i_Severity          => 'NOTIFICATION'
+               ,pt_i_PackageName       => gcv_PackageName
+               ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               ,pt_i_ModuleMessage     => 'Procedure "'
+                                        ||gcv_PackageName
+                                        ||'.'
+                                        ||cv_ProcOrFuncName
+                                        ||'" completed.'
+               ,pt_i_OracleError       => NULL
+               );
+          --
+          --
+
+
+
+    EXCEPTION
+      WHEN ex_dml_errors THEN
+         l_error_count := SQL%BULK_EXCEPTIONS.count;
+         DBMS_OUTPUT.put_line('Number of failures: ' || l_error_count);
+         FOR i IN 1 .. l_error_count LOOP
+
+           gvt_ModuleMessage := 'Error: ' || i ||
+                                ' Array Index: ' || SQL%BULK_EXCEPTIONS(i).error_index ||
+                                ' Message: ' || SQLERRM(-SQL%BULK_EXCEPTIONS(i).ERROR_CODE);
+
+           xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => gvt_ModuleMessage
+                    ,pt_i_OracleError         => gvt_ReturnMessage   );
+
+           DBMS_OUTPUT.put_line('Error: ' || i ||
+             ' Array Index: ' || SQL%BULK_EXCEPTIONS(i).error_index ||
+             ' Message: ' || SQLERRM(-SQL%BULK_EXCEPTIONS(i).ERROR_CODE));
+         END LOOP;
+
+      WHEN e_ModuleError THEN
+                --
+        IF imp_massadd_rates_cur%ISOPEN
+        THEN
+            --
+            CLOSE imp_massadd_rates_cur;
+            --
+        END IF;
+
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => gvt_ModuleMessage
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+         --
+         RAISE;
+         --** END e_ModuleError Exception
+         --
+      WHEN e_DateError THEN
+                --
+        IF imp_massadd_rates_cur%ISOPEN
+        THEN
+            --
+            CLOSE imp_massadd_rates_cur;
+            --
+        END IF;
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'From, to or Prev Tax Year variable not populated'
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+
+      WHEN OTHERS THEN
+
+         IF imp_massadd_rates_cur%ISOPEN
+         THEN
+             --
+             CLOSE imp_massadd_rates_cur;
+             --
+         END IF;
+         --
+         ROLLBACK;
+         --
+         gvt_OracleError := SUBSTR(
+                                        SQLERRM
+                                    ||'** ERROR_BACKTRACE: '
+                                    ||dbms_utility.format_error_backtrace
+                                    ,1
+                                    ,4000
+                                    );
+         --
+         xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'Oracle error encounted at after Progress Indicator.'
+                    ,pt_i_OracleError         => gvt_OracleError       );
+         --
+         RAISE;
+         -- Hr_Utility.raise_error@MXDM_NVIS_EXTRACT;
+
+
+      END src_massrates;

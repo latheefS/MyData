@@ -1,0 +1,19 @@
+LOAD DATA
+INFILE XXMX_HCM_PER_NID.dat
+REPLACE 
+INTO  TABLE XXMX_PER_NID_F_STG
+FIELDS TERMINATED BY "|" OPTIONALLY ENCLOSED BY '"'  TRAILING NULLCOLS 
+(PLACE_OF_ISSUE                 ,
+FILE_SET_ID                    ,
+MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               ,
+BG_NAME                        ,
+LEGISLATION_CODE               ,
+NATIONAL_IDENTIFIER_TYPE       ,
+NATIONAL_IDENTIFIER_NUMBER     ,
+ISSUE_DATE                     ,
+EXPIRATION_DATE                ,
+PRIMARY_FLAG                   ,
+PERSONNUMBER                   
+)
+

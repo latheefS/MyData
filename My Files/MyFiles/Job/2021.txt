@@ -1,0 +1,32 @@
+Developed and deployed scripts for the ETL process of assigned modules.
+Collaborated and developed CV040s for the assigned modules.
+Provided estimates for the development of BIP reports for the Finance module.
+Participated and undertook the Reconciliation report development.
+Tried and tested the implementation of functional work through learning.
+Implemented the knowledge acquired through the KT sessions provided by the team.
+Achieved the above work through continuous meetings, learnings, and collaboration with the team.
+
+
+Performed Transformation and Load process of  Learning module for Irish Rail.
+Configure setups required for the load process of the Learning module by going through Knowledge guides.
+Collaborated with Maitrayee & Pallavi in achieving an understanding and resolution on the issue with the Specialization data file of the Learning module through multiple discussions.
+Collaborated with Lokesh and Kiran to get an understanding of the reconciliation process.
+Developed Templates and performed reconciliation on Benefits and Learning modules.
+Had set up Git and pushed all the codes to the central repository.
+Worked with Ankit in raising an SR regarding the pod outage and brought it to the notice of the Management team with the help of Steve and Lokesh.
+Alerted respective team members to back up their work with pod's short time availability and took a backup of myself of the whole catalog for better reasons.
+Tested the Demo Database setup.
+Collaborated and Supervised Shireesha with the BIP reports auditing, load process of the Learning module, and review of reconciliation reports by explaining the concepts, setups and helped in the brief understanding of maximise.
+Started working on Recruiting module for Citco by gathering the table information and developed installation scripts.
+
+Developed installation scripts for the Recruitment module and handed over them to Shireesha for the further ETL process.
+Developed installation scripts for the Purchase Orders, AP Invoices and GL Journal. And installed them.
+Developed installation scripts for the Inventory Transactions module and installed them.
+Developed PlSql packages for performing Extraction of  Purchase Orders, AP Invoices and GL Journal.
+Performed Transformation of Purchase Orders, AP Invoices and GL Journal by configuring data dictionaries and setups.
+Performing Load process of Purchase Orders, AP Invoices and GL Journal.
+Proactively collaborated with Pallavi for achieving the desired results.
+Mentored and Supervised Shireesha in performing the Transformation process.
+Pushed all the work to Bitbucket.
+Helped Praveen in understanding and setup of maximise DB and configuration.
+

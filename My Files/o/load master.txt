@@ -1,0 +1,56 @@
+RECORD_ID              NOT NULL NUMBER   
+      
+        
+MIGRATION_SET_ID                NUMBER         
+APPLICATION_SUITE               VARCHAR2(5)    
+APPLICATION                     VARCHAR2(5)    
+
+ 
+  
+BATCH_ENABLED                   VARCHAR2(5)    
+CURRENT_STATUS                  VARCHAR2(100)  
+LOAD_DATA_READY                 VARCHAR2(5)    
+LOAD_FILE_GEN_DBSERVER          VARCHAR2(5)    
+LOAD_FILE_MOVED_FTP             VARCHAR2(5)    
+ERROR_ID                        NUMBER         
+ERROR_MESSAGE                   VARCHAR2(4000)  
+CREATED_BY                      VARCHAR2(250)  
+LAST_UPDATED_BY                 VARCHAR2(250)  
+USER_NAME                       VARCHAR2(250)  
+
+
+LOAD_FILE_ID     NOT NULL NUMBER         
+ITERATION                 VARCHAR2(10)   
+FILENAME                  VARCHAR2(200)  
+CREATION_DATE             DATE           
+STATUS                    VARCHAR2(20)   
+BUSINESS_ENTITY           VARCHAR2(100)  
+SUB_ENTITY                VARCHAR2(100)  
+LAST_UPDATE_DATE          DATE
+FILE_LOCATION             VARCHAR2(4000)
+
+
+
+===========
+RECORD_ID					-	Seq generated whenever an insert happens in the table
+LOAD_FILE_ID				-	
+MIGRATION_SET_ID			-	seq of migsetid we're generating load to
+APPLICATION_SUITE			- 	app suite
+APPLICATION					-   app
+BUSINESS_ENTITY				-	be
+SUB_ENTITY					-	se
+ITERATION					-	
+BATCH_ENABLED				-	from migration meta data for the submitted BE and SE
+HCM_FILE_NAME				-	
+FILE_LOCATION				-	
+CURRENT_STATUS				-	(should be updated after every successfull operation / failure)
+LOAD_DATA_READY				-	(should be Y or E)
+LOAD_FILE_GEN_DBSERVER		-	(should be Y or E)
+LOAD_FILE_MOVED_FTP			-	(should be Y or E)
+ERROR_ID					-	module_message_id of the failed message when SEVERITY = 'ERROR'
+ERROR_MESSAGE				-	MODULE_MESSAGE when SEVERITY = 'ERROR' else ORACLE_ERROR when SEVERITY = 'ERROR' and MODULE_MESSAGE = NULL
+CREATION_DATE				-
+CREATED_BY					-
+LAST_UPDATE_DATE			-
+LAST_UPDATED_BY				-
+USER_NAME					-

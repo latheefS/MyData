@@ -1,0 +1,450 @@
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,1                                   		-- sub_entity_seq
+         ,'PARTICIPANT_ENROLLMENT'                  -- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name		
+         ,NULL                                  	-- sql_load_name
+         ,'par_enrollment_proc'             		-- stg_procedure_name
+         ,'XXMX_BEN_PE_STG'             			-- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_PE_XFM'                      	-- xfm_table
+         ,NULL                           			-- exp_procedure_name		
+         ,NULL                      				-- data_file_name			
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,2                                     	-- sub_entity_seq
+         ,'PAR_ENRL_COMPENSATION_OBJECT'            -- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'compensation_object_proc'     			-- stg_procedure_name
+         ,'XXMX_BEN_PE_CO_STG'                      -- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_PE_CO_XFM'                      -- xfm_table
+         ,NULL        		              	     	-- exp_procedure_name
+         ,NULL          				            -- data_file_name
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,3                                     	-- sub_entity_seq
+         ,'DEPENDENT_ENROLLMENT'                  	-- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'dependent_enrollment_proc'               -- stg_procedure_name
+         ,'XXMX_BEN_DE_STG'                      	-- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_DE_XFM'                      	-- xfm_table
+         ,NULL                 			          	-- exp_procedure_name
+         ,NULL				                      	-- data_file_name
+         ,'dat' 		                            -- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,4                                     	-- sub_entity_seq
+         ,'DESIGNATE_DEPENDENT'                  	-- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'designate_dependent_proc'                -- stg_procedure_name
+         ,'XXMX_BEN_DE_DD_STG'                      -- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_DE_DD_XFM'                      -- xfm_table
+         ,NULL			                           	-- exp_procedure_name
+         ,NULL				                      	-- data_file_name
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,5                                    		-- sub_entity_seq
+         ,'BENEFICIARY_ENROLLMENT'                  -- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'beneficiary_enrollment_proc'             -- stg_procedure_name
+         ,'XXMX_BEN_BE_STG'                      	-- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_BE_XFM'                      	-- xfm_table
+         ,NULL                 			          	-- exp_procedure_name
+         ,NULL				                      	-- data_file_name
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,6                                     	-- sub_entity_seq
+         ,'DESIGNATE_BENEFICIARY'                  	-- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'designate_beneficiary_proc'              -- stg_procedure_name
+         ,'XXMX_BEN_BE_DB_STG'                      -- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_BE_DB_XFM'                      -- xfm_table
+         ,NULL                           			-- exp_procedure_name
+         ,NULL                      				-- data_file_name
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,7                                     	-- sub_entity_seq
+         ,'PER_BEN_GROUP'                  			-- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'per_ben_group_proc'               		-- stg_procedure_name
+         ,'XXMX_BEN_PBG_STG'                      	-- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_PBG_XFM'                      	-- xfm_table
+         ,NULL                           			-- exp_procedure_name
+         ,NULL                      				-- data_file_name
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,8                                     	-- sub_entity_seq
+         ,'PER_BEN_BALANCE'                  		-- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'per_ben_balance_proc'           		  	-- stg_procedure_name
+         ,'XXMX_BEN_PBB_STG'                      	-- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_PBB_XFM'                      	-- xfm_table
+         ,NULL                         			  	-- exp_procedure_name
+         ,NULL                      				-- data_file_name
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,9                                     	-- sub_entity_seq
+         ,'PERSON_HABITS'                  			-- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'person_habits_proc'                     	-- stg_procedure_name
+         ,'XXMX_BEN_PH_STG'                      	-- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_PH_XFM'                      	-- xfm_table
+         ,NULL                           			-- exp_procedure_name
+         ,NULL                      				-- data_file_name
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );
+
+
+
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+          metadata_id
+         ,application_suite
+         ,application
+         ,business_entity_seq
+         ,business_entity
+         ,sub_entity_seq
+         ,sub_entity
+         ,entity_package_name
+         ,sql_load_name
+         ,stg_procedure_name
+         ,stg_table
+         ,xfm_procedure_name
+         ,xfm_table
+         ,FILE_GEN_PROCEDURE_NAME
+         ,data_file_name
+         ,data_file_extension
+         ,file_group_number
+         ,enabled_flag
+         )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL 	-- metadata_id
+         ,'HCM'                                 	-- application_suite
+         ,'BEN'                                  	-- application
+         ,17                                 		-- business_entity_seq
+         ,'BENEFITS'                        		-- business_entity
+         ,10                                     	-- sub_entity_seq
+         ,'PER_BEN_ORGANIZATION'                  	-- sub_entity
+         ,'XXMX_HCM_BEN_EXT_PKG'                	-- entity_package_name
+         ,NULL                                  	-- sql_load_name
+         ,'per_ben_organization_proc'        		-- stg_procedure_name
+         ,'XXMX_BEN_PBO_STG'                      	-- stg_table
+         ,NULL                                  	-- xfm_procedure_name
+         ,'XXMX_BEN_PBO_XFM'                      	-- xfm_table
+         ,NULL                       		    	-- exp_procedure_name
+         ,NULL                     					-- data_file_name
+         ,'dat'                                 	-- data_file_extension
+         ,1                                     	-- file_group_number
+         ,'Y'                                   	-- enabled_flag
+         );

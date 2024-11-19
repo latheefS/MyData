@@ -1,0 +1,98 @@
+﻿DVM,SMBC_AR_PAY_TERMS,
+EBS_VALUE,FUSION_VALUE
+14 DAYS,21 DAYS
+180 DAYS,21 DAYS
+21 DAYS,21 DAYS
+28 DAYS,21 DAYS
+ASC Debt,10000 Days
+DD 10 months,DD10th
+DD 11 months,DD10th
+DD 12 months,DD10th
+DD 13 months,DD10th+1
+DD 14 months,DD10th
+DD 15 months,DD10th
+DD 16 Months,DD10th
+DD 16 months,DD10th
+DD 17 months,DD10th
+DD 18 months,DD10th
+DD 2 months,DD10th
+DD 210 months,DD10th
+DD 210 Months,DD10th
+DD 22 months,DD10th
+DD 22 Months,DD10th
+DD 23 months,DD10th
+DD 25,DD10th
+DD 3 months,DD10th
+DD 30 months,DD10th
+DD 32 months,DD10th
+DD 35 months,DD10th
+DD 4 months,DD10th
+DD 43 months,DD10th
+DD 49 months,DD10th
+DD 5 months,DD10th
+DD 6 months,DD10th
+DD 62 months,DD10th
+DD 7 months,DD10th
+DD 8 months,DD10th
+DD 9 months,DD10th
+DD 97 Months,DD10th
+DD 97 months,DD10th
+Dir Deb 1(0),21 DAYS
+Dir Deb 10(0),DD10th
+Dir Deb 12(0),21 DAYS
+Dir Deb 14(0),21 DAYS
+Dir Deb 17(0),21 DAYS
+Dir Deb 18(0),21 DAYS
+Dir Deb 19(0),21 DAYS
+Dir Deb 2(0),21 DAYS
+Dir Deb 21(0),21 DAYS
+Dir Deb 22(0),21 DAYS
+Dir Deb 23(0),21 DAYS
+Dir Deb 24(0),21 DAYS
+Dir Deb 25(0),21 DAYS
+Dir Deb 26(0),21 DAYS
+Dir Deb 27(0),21 DAYS
+Dir Deb 28(0),21 DAYS
+Dir Deb 29(0),21 DAYS
+Dir Deb 3(0),21 DAYS
+Dir Deb 30(0),21 DAYS
+Dir Deb 31(0),21 DAYS
+Dir Deb 5(0),21 DAYS
+Dir Deb 6(0),21 DAYS
+Dir Deb 8(0),21 DAYS
+Dir Deb 9(0),21 DAYS
+Direct Debit,DD10th
+Direct Debit 1,21 DAYS
+Direct Debit 11,21 DAYS
+Direct Debit 12,21 DAYS
+Direct Debit 13,21 DAYS
+Direct Debit 14,21 DAYS
+Direct Debit 15,21 DAYS
+Direct Debit 16,21 DAYS
+Direct Debit 17,21 DAYS
+Direct Debit 19,21 DAYS
+Direct Debit 2,21 DAYS
+Direct Debit 20,21 DAYS
+Direct Debit 21,21 DAYS
+Direct Debit 23,21 DAYS
+Direct Debit 24,21 DAYS
+Direct Debit 29,21 DAYS
+Direct Debit 3,21 DAYS
+Direct Debit 31,21 DAYS
+Direct Debit 4,21 DAYS
+Direct Debit 5,21 DAYS
+Direct Debit 6,21 DAYS
+Direct Debit 7,21 DAYS
+Direct Debit 8,21 DAYS
+Direct Debit 9,21 DAYS
+DirectDebit PIA,DD10th
+IMMEDIATE,21 DAYS
+INV28SCH,INV28
+M3(10TH),21 DAYS
+M3+1(24TH),21 DAYS
+M4(10TH)+1,21 DAYS
+M5(1ST),21 DAYS
+M9(1ST),21 DAYS
+Q4(24TH),21 DAYS
+W4,21 DAYS
+Direct Debit 18,21 DAYS

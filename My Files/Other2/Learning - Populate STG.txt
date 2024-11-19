@@ -1,0 +1,406 @@
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_LEG_LEARN_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_LEG_LEARN_XFM'
+                                ,p_dat_name => 'XXMX_OLC_LEG_LRNG_ITEM.dat'
+                                ,p_ctl_name => 'XXMX_OLC_LEG_LRNG_ITEM.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_LEG_LEARN_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_LEG_LEARN_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_LEG_LRNG_ITEM_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_LEG_LRNG_ITEM_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_NONCAT_LEARN_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_NONCAT_LEARN_XFM'
+                                ,p_dat_name => 'XXMX_OLC_NON_CATALOG_LRNG_ITEM.dat'
+                                ,p_ctl_name => 'XXMX_OLC_NON_CATALOG_LRNG_ITEM.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_NONCAT_LEARN_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_NONCAT_LEARN_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_NON_CATALOG_LRNG_ITEM_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_NON_CATALOG_LRNG_ITEM_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_CLASS_RES_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_CLASS_RES_XFM'
+                                ,p_dat_name => 'XXMX_OLC_CLASSROOM_RESOURCE.dat'
+                                ,p_ctl_name => 'XXMX_OLC_CLASSROOM_RESOURCE.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_CLASS_RES_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_CLASS_RES_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_CLASSROOM_RESOURCE_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_CLASSROOM_RESOURCE_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_INSTR_RES_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_INSTR_RES_XFM'
+                                ,p_dat_name => 'XXMX_OLC_INSTRUCTOR_RESOURCE.dat'
+                                ,p_ctl_name => 'XXMX_OLC_INSTRUCTOR_RESOURCE.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_COURSE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_COURSE_XFM'
+                                ,p_dat_name => 'XXMX_OLC_COURSE.dat'
+                                ,p_ctl_name => 'XXMX_OLC_COURSE.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_OFFER_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_OFFER_XFM'
+                                ,p_dat_name => 'XXMX_OLC_COURSE_OFFERING.dat'
+                                ,p_ctl_name => 'XXMX_OLC_COURSE_OFFERING.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_INSTR_LED_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_INSTR_LED_XFM'
+                                ,p_dat_name => 'XXMX_OLC_INSTRUCTOR_LED_ACTIVITY.dat'
+                                ,p_ctl_name => 'XXMX_OLC_INSTRUCTOR_LED_ACTIVITY.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_ADHOC_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_ADHOC_XFM'
+                                ,p_dat_name => 'XXMX_OLC_ADHOC_RESOURCE.dat'
+                                ,p_ctl_name => 'XXMX_OLC_ADHOC_RESOURCE.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_CLASS_RESV_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_CLASS_RESV_XFM'
+                                ,p_dat_name => 'XXMX_OLC_CLASSROOM_RESERVATION.dat'
+                                ,p_ctl_name => 'XXMX_OLC_CLASSROOM_RESERVATION.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_INSTR_RESV_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_INSTR_RESV_XFM'
+                                ,p_dat_name => 'XXMX_OLC_INSTRUCTOR_RESERVATION.dat'
+                                ,p_ctl_name => 'XXMX_OLC_INSTRUCTOR_RESERVATION.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_SELFPACE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_SELFPACE_XFM'
+                                ,p_dat_name => 'XXMX_OLC_COURSE_SELFPACED_ACTIVITY.dat'
+                                ,p_ctl_name => 'XXMX_OLC_COURSE_SELFPACED_ACTIVITY.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_OFFER_ACC_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_OFFER_ACC_XFM'
+                                ,p_dat_name => 'XXMX_OLC_OFFERING_DEFAULT_ACCESS.dat'
+                                ,p_ctl_name => 'XXMX_OLC_OFFERING_DEFAULT_ACCESS.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_COURSE_ACC_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_COURSE_ACC_XFM'
+                                ,p_dat_name => 'XXMX_OLC_COURSE_DEFAULT_ACCESS.dat'
+                                ,p_ctl_name => 'XXMX_OLC_COURSE_DEFAULT_ACCESS.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_COURSE_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_COURSE_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_COURSE_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_COURSE_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_OFFER_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_OFFER_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_OFFERING_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_OFFERING_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_INSTR_ACT_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_INSTR_ACT_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_INSTRUCTOR_LED_ACTIVITY_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_INSTRUCTOR_LED_ACTIVITY_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_SELFPACE_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_SELFPACE_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_SELFPACED_ACTIVITY_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_SELFPACED_ACTIVITY_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_COURSE_PRICE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_COURSE_PRICE_XFM'
+                                ,p_dat_name => 'XXMX_OLC_COURSE_OFFG_PRICING_DEFAULTS.dat'
+                                ,p_ctl_name => 'XXMX_OLC_COURSE_OFFG_PRICING_DEFAULTS.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_COURSE_PRICE_COMP_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_COURSE_PRICE_COMP_XFM'
+                                ,p_dat_name => 'XXMX_OLC_COURSE_OFFG_PRICING_COMPONENT.dat'
+                                ,p_ctl_name => 'XXMX_OLC_COURSE_OFFG_PRICING_COMPONENT.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_OFFER_CUST_PRICE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_OFFER_CUST_PRICE_XFM'
+                                ,p_dat_name => 'XXMX_OLC_OFFERING_CUSTOM_PRICING.dat'
+                                ,p_ctl_name => 'XXMX_OLC_OFFERING_CUSTOM_PRICING.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_OFFER_CUST_PRICE_COMP_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_OFFER_CUST_PRICE_COMP_XFM'
+                                ,p_dat_name => 'XXMX_OLC_OFFERING_CUSTOM_PRICING_COMPONENT.dat'
+                                ,p_ctl_name => 'XXMX_OLC_OFFERING_CUSTOM_PRICING_COMPONENT.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_SPEC_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_SPEC_XFM'
+                                ,p_dat_name => 'XXMX_OLC_SPECIALIZATION.dat'
+                                ,p_ctl_name => 'XXMX_OLC_SPECIALIZATION.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_SPEC_DEF_ACC_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_SPEC_DEF_ACC_XFM'
+                                ,p_dat_name => 'XXMX_OLC_SPECIALIZATION_DEFAULT_ACCESS.dat'
+                                ,p_ctl_name => 'XXMX_OLC_SPECIALIZATION_DEFAULT_ACCESS.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_SPEC_SXN_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_SPEC_SXN_XFM'
+                                ,p_dat_name => 'XXMX_OLC_SPECIALIZATION_SECTION.dat'
+                                ,p_ctl_name => 'XXMX_OLC_SPECIALIZATION_SECTION.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_SPEC_SXN_ACT_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_SPEC_SXN_ACT_XFM'
+                                ,p_dat_name => 'XXMX_OLC_SPECIALIZATION_SECTION_ACTIVITY.dat'
+                                ,p_ctl_name => 'XXMX_OLC_SPECIALIZATION_SECTION_ACTIVITY.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_SPEC_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_SPEC_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_SPECIALIZATION_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_SPECIALIZATION_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_SPEC_SXN_TL_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_SPEC_SXN_TL_XFM'
+                                ,p_dat_name => 'XXMX_OLC_SPECIALIZATION_SECTION_TRNSLN.dat'
+                                ,p_ctl_name => 'XXMX_OLC_SPECIALIZATION_SECTION_TRNSLN.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_GLOB_ACC_GRP_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_GLOB_ACC_GRP_XFM'
+                                ,p_dat_name => 'XXMX_OLC_GLOBAL_ACCESS_GROUP_RELATION.dat'
+                                ,p_ctl_name => 'XXMX_OLC_GLOBAL_ACCESS_GROUP_RELATION.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_COMM_RS_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_COMM_RS_XFM'
+                                ,p_dat_name => 'XXMX_OLC_COMMUNITY_RELATION.dat'
+                                ,p_ctl_name => 'XXMX_OLC_COMMUNITY_RELATION.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_LEARN_RCD_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_LEARN_RCD_XFM'
+                                ,p_dat_name => 'XXMX_OLC_LEARNING_RECORD.dat'
+                                ,p_ctl_name => 'XXMX_OLC_LEARNING_RECORD.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'OLC'
+                                ,p_application => 'LRN'
+                                ,p_stg_tbl_name =>'XXMX_OLC_LEARN_RCD_ACT_ATT_STG'
+                                ,p_xfm_tbl_name =>'XXMX_OLC_LEARN_RCD_ACT_ATT_XFM'
+                                ,p_dat_name => 'XXMX_OLC_LRNG_RECORD_ACTIVITY_ATTEMPT.dat'
+                                ,p_ctl_name => 'XXMX_OLC_LRNG_RECORD_ACTIVITY_ATTEMPT.ctl'
+                                );
+End;

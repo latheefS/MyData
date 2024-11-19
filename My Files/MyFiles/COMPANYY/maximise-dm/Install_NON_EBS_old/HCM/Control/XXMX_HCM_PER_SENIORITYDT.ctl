@@ -1,0 +1,27 @@
+LOAD DATA
+INFILE XXMX_HCM_PER_SENIORITYDT.dat
+REPLACE 
+INTO  TABLE XXMX_PER_SENIORITYDT_STG
+FIELDS TERMINATED BY "|" OPTIONALLY ENCLOSED BY '"'  TRAILING NULLCOLS 
+(COLLECTIVEAGREEMENTCODE        ,
+FILE_SET_ID                    ,
+MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               ,
+BG_NAME                        ,
+PERSONNUMBER                   ,
+LEGISLATIONCODE                ,
+SENIORITYDATECODE              ,
+ENTRYDATE                      ,
+EFFECTIVESTARTDATE             ,
+EFFECTIVEENDDATE               ,
+BUSINESSUNITSHORTCODE          ,
+MANUALADJUSTMENTDAYS           ,
+MANUALADJUSTMENTCOMMENTS       ,
+LEGALEMPLOYERNAME              ,
+DATESTART                      ,
+WORKERTYPE                     ,
+JOBCODE                        ,
+GRADECODE                      ,
+BARGAININGUNITCODE             
+)
+

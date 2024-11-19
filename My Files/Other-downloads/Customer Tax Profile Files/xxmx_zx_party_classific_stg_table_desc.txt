@@ -1,0 +1,18 @@
+Name                       Null? Type          
+-------------------------- ----- ------------- 
+FILE_SET_ID                      VARCHAR2(30)  
+MIGRATION_SET_ID                 NUMBER        
+MIGRATION_SET_NAME               VARCHAR2(100) 
+MIGRATION_STATUS                 VARCHAR2(50)  
+PARTY_TYPE_CODE                  VARCHAR2(80)  
+PARTY_NUMBER                     VARCHAR2(30)  
+PARTY_NAME                       VARCHAR2(150) 
+CLASS_CATEGORY                   VARCHAR2(30)  
+CLASSIFICATION_TYPE_CODE         VARCHAR2(30)  
+CLASSIFICATION_TYPE_NAME         VARCHAR2(150) 
+TAX_REGIME_CODE                  VARCHAR2(30)  
+FISCAL_CLASSIFICATION_CODE       VARCHAR2(30)  
+CLASS_CODE                       VARCHAR2(80)  
+CLASS_NAME                       VARCHAR2(80)  
+EFFECTIVE_FROM                   DATE          
+EFFECTIVE_TO                     DATE          

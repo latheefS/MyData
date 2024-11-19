@@ -1,0 +1,13 @@
+1) Drop STG and XFm tables of application 'ZX'
+2) Delete entries from metadata
+3) Recreate STG and XFm tables
+4) Populate metadata
+5) Populate XFM tables (Mandatory before STG population)
+6) Populate STG tables
+7) Check all the entries are present resp tables for ex. xxmx_xfm_tables, xxmx_xfm_table_columns
+8) Import the sheets from the Excel file into XXMX_XFM_UPDATE_COLUMNS to update the column values of xfm_table_columns.
+9) Once the import is done, we need to execute this command
+		
+			exec xxmx_dynamic_sql_pkg.xfm_update_columns(p_table_name => 'XXMX_XFM_UPDATE_COLUMNS'); 
+			
+** Do not forget to change the Extract Package!! (Only the update columns or the order)	

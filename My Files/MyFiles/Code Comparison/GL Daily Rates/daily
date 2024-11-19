@@ -1,0 +1,74 @@
+create or replace PACKAGE BODY xxmx_gl_daily_rates_pkg
+AS
+     --**********************
+     --** Global Declarations
+     --**********************
+     --
+     /* Maximise Integration Globals */
+     --
+     /* Global Constants for use in all xxmx_gl_dailyrates_pkg Procedure/Function Calls within this package */
+     --
+     gcv_PackageName                 CONSTANT  VARCHAR2(30)                                 := 'xxmx_gl_dailyrates_pkg';
+     gct_ApplicationSuite            CONSTANT  xxmx_module_messages.application_suite%TYPE  := 'FIN';
+     gct_Application                 CONSTANT  xxmx_module_messages.application%TYPE        := 'GL';
+     gct_StgSchema                   CONSTANT  VARCHAR2(10)                                 := 'xxmx_stg';
+     gct_XfmSchema                   CONSTANT  VARCHAR2(10)                                 := 'xxmx_xfm';
+     gct_CoreSchema                  CONSTANT  VARCHAR2(10)                                 := 'xxmx_core';
+     gct_BusinessEntity              CONSTANT  xxmx_migration_metadata.business_entity%TYPE := 'DAILY_RATES';
+     gct_SubEntity                   CONSTANT  xxmx_module_messages.sub_entity%TYPE         := 'DAILY_RATES';
+     --
+     /* Global Progress Indicator Variable for use in all Procedures/Functions within this package */
+     --
+     gvv_ProgressIndicator                     VARCHAR2(100);
+     --
+     /* Global Variables for receiving Status/Messages from certain Procedure/Function Calls (e.g. xxmx_utilities_pkg.clear_messages */
+     --
+     gvv_ReturnStatus                          VARCHAR2(1);
+     gvt_ReturnMessage                         xxmx_module_messages.module_message%TYPE;
+     --
+     /* Global Variables for data existence checking */
+     --
+     gvn_ExistenceCount                        NUMBER;
+     --
+     /* Global Variables for Exception Handlers */
+     --
+     gvt_Severity                              xxmx_module_messages.severity%TYPE;
+     gvt_ModuleMessage                         xxmx_module_messages.module_message%TYPE;
+     gvt_OracleError                           xxmx_module_messages.oracle_error%TYPE;
+     e_moduleerror                             EXCEPTION;
+     e_dateerror                               EXCEPTION;
+     --
+     /* Global Variables for Exception Handlers */
+     --
+     gvt_MigrationSetName                      xxmx_migration_headers.migration_set_name%TYPE;
+     --
+     /* Global constants and variables for dynamic SQL usage */
+     --
+     gcv_SQLSpace                    CONSTANT  VARCHAR2(1) := ' ';
+     gvv_SQLAction                             VARCHAR2(20);
+     gvv_SQLTableClause                        VARCHAR2(100);
+     gvv_SQLColumnList                         VARCHAR2(4000);
+     gvv_SQLValuesList                         VARCHAR2(4000);
+     gvv_SQLWhereClause                        VARCHAR2(4000);
+     gvv_SQLStatement                          VARCHAR2(32000);
+     gvv_SQLResult                             VARCHAR2(4000);
+     --
+     /* Global variables for holding table row counts */
+     --
+     gvn_RowCount                              NUMBER;
+     --
+     /* Global variables for transform procedures */
+     --
+     gvb_SimpleTransformsRequired              BOOLEAN;
+     gvt_TransformCategoryCode                 xxmx_simple_transforms.category_code%TYPE;
+     gvb_MissingSimpleTransforms               BOOLEAN;
+     gvb_DataEnrichmentRequired                BOOLEAN;
+     gvt_ParameterCode                         xxmx_migration_parameters.parameter_code%TYPE;
+     gvv_ParameterCheckResult                  VARCHAR2(10);
+     gvb_MissingDataEnrichment                 BOOLEAN;
+     gvb_ComplexTransformsRequired             BOOLEAN;
+     gvb_PerformComplexTransforms              BOOLEAN;
+
+END xxmx_gl_daily_rates_pkg;
+
+/

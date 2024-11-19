@@ -1,0 +1,99 @@
+Benefits:
+---------
+
+Beneficiary Enrollments
+-----------------------
+
+->	This object is used to designate/add beneficiaries(Parents/Spouse/Child as Nominees) of multiple employees into a benefit offering(Insurance). 
+->	We typically designate/add beneficiaries for benefit plans that have payouts in the event of a death or an accident. 
+->	Similar to participant enrollment(to enroll participants into a benefit offering in bulk), you can load beneficiary data in bulk when you are migrating from a legacy system during a merger or acquisition.
+
+
+
+Points to be considered before we load this object:
+---------------------------------------------------
+
+->	Benefits Relationship:	
+
+		You can load the Beneficiary Enrollment object using either the default benefits relationship or the unrestricted benefits relationship. 
+		However, you cannot use both relationships simultaneously.
+
+->	You can create and update records using Beneficiary Enrollment HCM Data Loader. You can't delete records.
+
+
+Preparing to Load:	Before you can load beneficiary enrollment, you must:
+-------------------------------------------------------------------------
+
+->	Data Verification:
+
+		Verify that the data required for enrollment such as employee name, address, salary, and contact details are available in the HR application. 
+		It might be difficult to verify errors in HR data after the upload.
+		
+->	No certifications:
+			
+		Ensure that you do not include certifications when you are migrating data from a legacy system. 
+		This might cause completed enrollments to be suspended again. 
+		Avoiding certifications also improves performance and reduces pending action items.
+
+->	Emps and enrollments:
+		
+		Determine the number of unique employees and the total number of enrollments that you plan to load into the application. 
+		You can obtain this information from the extracted source data.	
+
+->	Payout %:
+
+		Ensure that the total payout percentage assigned to the beneficiaries add up to 100%. 
+		Both primary and contingent beneficiaries must have 100% assigned to them.
+
+->	Electable Choices:
+		
+		Create electable choices on the basis of eligibility rules. 
+		To verify whether your electable choices follow eligibility rules, use random checks based on eligibility criteria.
+
+->	Benefits Relationship:
+
+		Create benefits relationships for all the employees whose data you want to load.
+		Ensure that the benefit relationships are properly aligned with the hire and assignment dates. 
+		For instance, the date on which the life event is processed must follow benefit relationship date, and the benefit relationship date must be the same as or follow the hire date.
+
+->	Potential Life Events vs Emps:
+
+		Verify that the total number of potential life events is equal to the total number of employees whose data you want to upload. 
+		In the Evaluation and Reporting work area, Processes tab, use the Assign Corrective Life Event process to create the data related to potential life events.	
+		
+->	Participation Evaluation:
+
+		Run the participation evaluation process without applying the defaults and ensure that the number of started events match with the number of employees you determined in the previous task. 
+		You must fix any errors you encounter at this stage.	
+		
+->	CloseLifeEvent attributes:
+
+		Ensure that values are not added to the CloseLifeEvent attributes in the .dat file. 
+		You must first verify the enrollment data and then use the Close Life Event process to close a life event.	
+		
+
+Generating BeneficiaryEnrollment.dat file:
+------------------------------------------
+
+->	This dat file designates/adds a beneficiary into a benefits program.
+
+
+METADATA|BeneficiaryEnrollment|PersonNumber|BenefitRelationship|EffectiveDate|LifeEvent|LifeEventOccuredDate
+
+MERGE|BeneficiaryEnrollment|300100010469441|Default|2015/01/01|PAN_DESG_LE|2015/01/01
+
+
+
+METADATA|DesignateBeneficiary|Plan|Program|Option|BeneficiaryPercentage|BeneficiaryPersonNumber|BeneficiaryType|LineNumber|PersonNumber
+
+MERGE|DesignateBeneficiary|BASIC_LIFE_PLAN|VISION_BENEFITS_PROGRAM|1xSALARY|100|300100010472847|Primary|1|300100010469441
+
+
+		
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+COMMENT Data for Business Object: BeneficiaryEnrollment Version: V2 Created on: 06-02-2021 
+METADATA|BeneficiaryEnrollment|PersonNumber|ParticipantLastName|ParticipantFirstName|BenefitRelationship|EffectiveDate|CloseLifeEvent|CloseLifeEventDate|LifeEvent|LifeEventOccuredDate|PersonId|LegalEmployer
+METADATA|DesignateBeneficiary|PersonId|Plan|Program|Option|BeneficiaryPercentage|OriginalEnrollmentDate|BeneficiaryPersonNumber|BeneficiaryPersonId|BeneficiaryType|LineNumber|BeneficiaryLineId|PersonNumber|BeneficiaryLastName|BeneficiaryFirstName|BeneficiaryDateOfBirth
+		

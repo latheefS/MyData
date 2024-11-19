@@ -1,0 +1,13 @@
+BIP/OTBI:
+----------
+PWC:
+
+Develop and maintain Oracle Fusion reports, interfaces, conversions, and extensions (RICEW).
+Experience with Oracle BI Publisher and OTBI.
+Extensively worked on BI Publisher reports, FBDI/OTBI Cloud and Oracle Integration (OIC)
+Should have working knowledge on Reports development in Oracle Cloud ERP using OTBI and BIP.
+Must have experience in functional specifications, OTBI reports and analytics, configuration of Oracle templates in BI Publisher
+Knowledge on additional reporting Tools i.e. Analysis Dashboard / ESS Base Financial reporting studio (FRS) and SmartView reports would be a plus
+Expected to have very good technical experience/knowledge in Oracle SaaS Cloud (Finance and or SCM core modules). Should be familiar with Oracle SaaS Technical skills - Security, BI & OTBI Reports, customizations, VBS
+Should have hands exp. in BI & OTBI Reports, Value Set, and Personalization. Should have exp. in workflow configuration using BPM. Should have Experience/Knowledge in Reporting, Data Migration and Interface/Integration development using HBIP, Web Service etc.
+Should have thorough experience in developing BIP Reports, creating custom ESS Jobs.

@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxifierProfile version="101" platform="Windows" product_id="0" product_minver="310">
+  <Options>
+    <Resolve>
+      <AutoModeDetection enabled="false" />
+      <ViaProxy enabled="true">
+        <TryLocalDnsFirst enabled="true" />
+      </ViaProxy>
+      <ExclusionList>%ComputerName%; localhost; *.local</ExclusionList>
+    </Resolve>
+    <Encryption mode="disabled" />
+    <HttpProxiesSupport enabled="false" />
+    <HandleDirectConnections enabled="false" />
+    <ConnectionLoopDetection enabled="true" />
+    <ProcessServices enabled="false" />
+    <ProcessOtherUsers enabled="false" />
+  </Options>
+  <ProxyList>
+    <Proxy id="100" type="SOCKS5">
+      <Label>N3 Proxy</Label>
+      <Address>localhost</Address>
+      <Port>21080</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="101" type="SOCKS5">
+      <Label>WFSC</Label>
+      <Address>localhost</Address>
+      <Port>21010</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="102" type="SOCKS5">
+      <Label>BSUH</Label>
+      <Address>localhost</Address>
+      <Port>21080</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="103" type="SOCKS5">
+      <Label>HEFT</Label>
+      <Address>localhost</Address>
+      <Port>21012</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="104" type="SOCKS5">
+      <Label>LPT</Label>
+      <Address>localhost</Address>
+      <Port>21013</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="105" type="SOCKS5">
+      <Label>NBS</Label>
+      <Address>localhost</Address>
+      <Port>21014</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="106" type="SOCKS5">
+      <Label>OUH</Label>
+      <Address>localhost</Address>
+      <Port>21015</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="107" type="SOCKS5">
+      <Label>RBH</Label>
+      <Address>localhost</Address>
+      <Port>21016</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="108" type="SOCKS5">
+      <Label>SALS</Label>
+      <Address>localhost</Address>
+      <Port>21017</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="109" type="SOCKS5">
+      <Label>SHFC</Label>
+      <Address>localhost</Address>
+      <Port>21018</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="110" type="SOCKS5">
+      <Label>SWBH</Label>
+      <Address>localhost</Address>
+      <Port>21019</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="111" type="SOCKS5">
+      <Label>PSLCLOUD</Label>
+      <Address>localhost</Address>
+      <Port>21082</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="112" type="SOCKS5">
+      <Label>ALDERMORE</Label>
+      <Address>localhost</Address>
+      <Port>21081</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="113" type="SOCKS5">
+      <Label>COV BS</Label>
+      <Address>localhost</Address>
+      <Port>21083</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="114" type="SOCKS5">
+      <Label>SLC PROXY</Label>
+      <Address>localhost</Address>
+      <Port>21084</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="115" type="SOCKS5">
+      <Label>SCOT POWER</Label>
+      <Address>localhost</Address>
+      <Port>21085</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="116" type="SOCKS5">
+      <Label>CA-NIX</Label>
+      <Address>localhost</Address>
+      <Port>21086</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="117" type="SOCKS5">
+      <Label>HEFT2</Label>
+      <Address>localhost</Address>
+      <Port>21003</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="120" type="SOCKS5">
+      <Label>BIF</Label>
+      <Address>localhost</Address>
+      <Port>21020</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="123" type="SOCKS5">
+      <Label>VNC STAFFS</Label>
+      <Address>localhost</Address>
+      <Port>5901</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="124" type="SOCKS5">
+      <Label>Claires</Label>
+      <Address>localhost</Address>
+      <Port>21020</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="125" type="SOCKS5">
+      <Label>CRHProxy</Label>
+      <Address>localhost</Address>
+      <Port>21080</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="126" type="SOCKS5">
+      <Label>Velindre Proxy</Label>
+      <Address>localhost</Address>
+      <Port>21080</Port>
+      <Options>0</Options>
+    </Proxy>
+    <Proxy id="127" type="SOCKS5">
+      <Label>WMBC</Label>
+      <Address>localhost</Address>
+      <Port>10548</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="128" type="SOCKS5">
+      <Address>localhost</Address>
+      <Port>21086</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="129" type="SOCKS5">
+      <Label>N3CU</Label>
+      <Address>localhost</Address>
+      <Port>21086</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="130" type="SOCKS5">
+      <Label>V1_Cloud</Label>
+      <Address>V1_Cloud</Address>
+      <Port>21085</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="131" type="SOCKS5">
+      <Label>IMERJA</Label>
+      <Address>localhost</Address>
+      <Port>21085</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="132" type="SOCKS5">
+      <Address>localhost</Address>
+      <Port>20176</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="133" type="SOCKS5">
+      <Label>UOB PAAS</Label>
+      <Address>localhost</Address>
+      <Port>21080</Port>
+      <Options>48</Options>
+    </Proxy>
+    <Proxy id="134" type="SOCKS5">
+      <Label>OCI DMINT PROXY</Label>
+      <Address>localhost</Address>
+      <Port>21080</Port>
+      <Options>48</Options>
+    </Proxy>
+  </ProxyList>
+  <ChainList>
+    <Chain id="118" type="simple">
+      <Name>HEFT_CHAIN</Name>
+      <Proxy enabled="true">103</Proxy>
+      <Proxy enabled="true">117</Proxy>
+    </Chain>
+  </ChainList>
+  <RuleList>
+    <Rule enabled="true">
+      <Name>DMINT</Name>
+      <Targets>10.0.0.0-10.0.6.255</Targets>
+      <Action type="Proxy">134</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>V1_Cloud</Name>
+      <Targets>192.168.101.2; 192.168.7.*; 192.168.103.*; 192.168.99.*; 192.168.101.*; 192.168.107.*; 192.168.102.*</Targets>
+      <Action type="Proxy">131</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>Barts</Name>
+      <Targets>192.168.103.*</Targets>
+      <Action type="Proxy">131</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>CU</Name>
+      <Targets>10.255.242.66-10.255.242.69;10.255.242.36-10.255.242.37;</Targets>
+      <Action type="Proxy">129</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>BSUH</Name>
+      <Targets>10.216.10.*;10.216.0.* ; 10.179.104.*</Targets>
+      <Action type="Proxy">102</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>SHFC</Name>
+      <Targets>10.131.90.*;10.131.91.*;10.216.0.132</Targets>
+      <Action type="Proxy">109</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>WMBC</Name>
+      <Targets>10.206.106.*</Targets>
+      <Action type="Proxy">127</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>NBS</Name>
+      <Targets>194.227.100.*;194.227.100.167;194.227.100.21;194.227.100.20;194.227.100.166;194.227.100.167;</Targets>
+      <Action type="Proxy">105</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>BIF</Name>
+      <Targets>10.150.0.32;10.150.0.31;10.150.0.*;</Targets>
+      <Action type="Proxy">120</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>Localhost</Name>
+      <Targets>localhost; 127.0.0.1; %ComputerName%</Targets>
+      <Action type="Direct" />
+    </Rule>
+    <Rule enabled="true">
+      <Name>WFSC</Name>
+      <Targets>10.69.0.0-10.69.2.255; 10.169.2.52; </Targets>
+      <Action type="Proxy">101</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>HEFT finance7</Name>
+      <Targets>10.150.98.122</Targets>
+      <Action type="Proxy">103</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>HEFT</Name>
+      <Targets>192.168.1.95; 10.128.16.*;10.222.88.*;10.150.98.*;192.168.1.93;192.168.1.27;192.168.1.95;finance10;finovmprod;
+192.168.1.233</Targets>
+      <Action type="Proxy">117</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>LPT</Name>
+      <Targets>10.205.248.*;10.198.20.*</Targets>
+      <Action type="Proxy">104</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>OUH</Name>
+      <Targets>10.134.129.*;10.134.190.*;10.134.138.*</Targets>
+      <Action type="Proxy">106</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>RBH</Name>
+      <Targets>195.104.159.*</Targets>
+      <Action type="Proxy">107</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>SALS</Name>
+      <Targets>10.165.65.*;10.165.66.*</Targets>
+      <Action type="Proxy">108</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>COV BS</Name>
+      <Targets>10.22.60.163;10.22.60.160;10.10.65.110;10.10.65.113;10.22.60.20;10.22.60.140;10.22.60.2</Targets>
+      <Action type="Proxy">113</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>SWBH</Name>
+      <Targets>10.165.65.*;10.165.66.*</Targets>
+      <Action type="Proxy">110</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>PSLCLOUD</Name>
+      <Targets>192.168.103.*;192.168.99.*;192.168.101.*;192.168.107.*;192.168.102.23;192.168.102.16;test-gmp.patech-cloud.com;psl-els-ovm01;psl-els-ovm02;psl-els-ovm03;192.168.7.14;192.168.7.12;192.168.7.16;psl-vels-ovmmgr;psl-vbol-ovmmgr;cuhappsf;cuhtest;cuhfail;94.199.233.69;psl-vbol-mail01;psl-vels-mail01;psl-vbol-clsvc01;psl-vels-clsvc01;elfc-vbol-ocr01;</Targets>
+      <Action type="Proxy">111</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>ALDERMORE</Name>
+      <Targets>172.19.1.2;172.19.1.3;172.19.1.4</Targets>
+      <Action type="Proxy">112</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>SLC</Name>
+      <Targets>172.17.151.1</Targets>
+      <Action type="Proxy">114</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>SCOT POWER</Name>
+      <Targets>10.9.118.18; 10.10.184.1; 10.10.184.2; 10.10.184.3; 10.10.184.4; 10.10.184.5; 10.10.184.6; 10.10.184.9; 10.10.184.11; 10.10.184.12; 10.9.118.19; 10.9.118.20; 10.10.184.9; 10.10.184.2; 10.10.184.34</Targets>
+      <Action type="Proxy">115</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>BIF</Name>
+      <Targets>217.158.158.122; 217.158.158.123; 10.150.0.*;*.barrowbc.gov.uk; 10.99.14.18
+</Targets>
+      <Action type="Proxy">120</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>New</Name>
+      <Applications>vncviewer.exe</Applications>
+      <Action type="Proxy">123</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>CA-NIX</Name>
+      <Targets>217.158.158.123;217.158.158.122; 10.255.242.66;10.206.106.*;10.255.242.34;dariapp01;pariapp01;pariodb01;dariodb01</Targets>
+      <Action type="Proxy">116</Action>
+    </Rule>
+    <Rule enabled="false">
+      <Name>Any</Name>
+      <Targets>10.*</Targets>
+      <Action type="Proxy">100</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>Claires</Name>
+      <Targets>172.24.24.31</Targets>
+      <Action type="Proxy">124</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>RDP</Name>
+      <Applications>mstsc.exe</Applications>
+      <Targets>145.227.47.4</Targets>
+      <Action type="Proxy">125</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>BNM</Name>
+      <Targets>172.16.11.*;172.16.12.*;172.16.53.*;172.16.60.*;172.16.53.148</Targets>
+      <Action type="Proxy">132</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>UOB PAAS</Name>
+      <Targets>172.16.1.*</Targets>
+      <Action type="Proxy">133</Action>
+    </Rule>
+    <Rule enabled="true">
+      <Name>Default</Name>
+      <Action type="Direct" />
+    </Rule>
+  </RuleList>
+</ProxifierProfile>

@@ -1,0 +1,60 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+strategy:
+  matrix:
+    Python312:
+      python.version: '3.12'
+
+steps:
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'env | sort'
+  - script: |
+      echo "$PWD"
+      ls
+      cd input
+      echo "$PWD"
+      ls
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(python.version)'
+    displayName: 'Use Python $(python.version)'
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    displayName: 'Install dependencies'
+    
+  - script: |
+      echo "$PWD"
+      ls
+      python ReportGenerator.py
+    displayName: 'Run Report Generator file'
+    env:
+      requirements: requirement.txt
+      inputFile: "$(System.DefaultWorkingDirectory)/input/x_ve1_maximise_test_results.csv"
+      inputTemplate: $(System.DefaultWorkingDirectory)/input/AT_Report_Template.docx
+      outputPieChart: $(System.DefaultWorkingDirectory)/output/pie_chart.png
+      outputBarChart: $(System.DefaultWorkingDirectory)/output/bar_chart.png
+      outputFile: $(System.DefaultWorkingDirectory)/output/AT_Audit_Report.docx
+
+    
+  - task: ArchiveFiles@2
+    displayName: 'Archive files'
+    inputs:
+      rootFolderOrFile: $(System.DefaultWorkingDirectory)/output/AT_Audit_Report.docx
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(python.version).zip
+      replaceExistingArchive: true
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'

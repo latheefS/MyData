@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_PER_CONTACTS_XFM
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_XFM"."XXMX_PER_CONTACTS_XFM" MODIFY ("START_DATE" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_XFM"."XXMX_PER_CONTACTS_XFM" MODIFY ("PERSONNUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_XFM"."XXMX_PER_CONTACTS_XFM" MODIFY ("CNTPERSONNUMBER" NOT NULL ENABLE);

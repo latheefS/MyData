@@ -1,0 +1,53 @@
+EXEC DropTable ('XXMX_HDL_FILE_TEMP')
+--
+  CREATE TABLE  xxmx_hdl_file_temp
+   (	ID NUMBER(10,0), 
+	FILE_NAME VARCHAR2(40 BYTE), 
+	LINE_TYPE VARCHAR2(40 BYTE), 
+--	LINE_CONTENT LONG,
+	LINE_CONTENT VARCHAR2(4000),
+	STATUS                VARCHAR2(10), 
+	BATCH_NAME            VARCHAR2(40) ,  
+	BATCH_VALUE           VARCHAR2(200) , 
+	BUSINESS_ENTITY       VARCHAR2(200)  
+   )  ;
+--  
+  
+EXEC DropTable ('XXMX_CSV_FILE_TEMP')
+ --
+  CREATE TABLE  xxmx_csv_file_temp
+   (ID                NUMBER(10),
+   FILE_NAME           VARCHAR2(40),
+   LINE_TYPE          VARCHAR2(40),
+   LINE_CONTENT       LONG        ,
+   STATUS             VARCHAR2(10),
+   BATCH_NAME         VARCHAR2(40),
+   BATCH_VALUE        VARCHAR2(200), 
+   BUSINESS_ENTITY    VARCHAR2(200) 
+  );
+ --
+
+Create index XXMX_CSV_FILE_TEMP_idx1 on XXMX_CSV_FILE_TEMP (File_name,line_type);
+
+Create index xxmx_hdl_file_temp_idx1 on xxmx_hdl_file_temp (File_name,line_type);
+
+CREATE OR REPLACE  TRIGGER "TRG_HDL_FILE_TEMP_ID" 
+BEFORE INSERT ON xxmx_hdl_file_temp  FOR EACH ROW
+BEGIN
+SELECT xxmx_person_migr_temp_s.NEXTVAL INTO :NEW.ID FROM dual;
+EXCEPTION WHEN OTHERS THEN RAISE;
+END;
+/
+--
+
+CREATE OR REPLACE  TRIGGER "TRG_CSV_FILE_TEMP_ID" 
+BEFORE INSERT ON xxmx_csv_file_temp  FOR EACH ROW
+BEGIN
+SELECT xxmx_person_migr_temp_s.NEXTVAL INTO :NEW.ID FROM dual;
+EXCEPTION WHEN OTHERS THEN RAISE;
+END; 
+/
+--
+ALTER TRIGGER "TRG_HDL_FILE_TEMP_ID" ENABLE;
+--
+ALTER TRIGGER "TRG_CSV_FILE_TEMP_ID" ENABLE;

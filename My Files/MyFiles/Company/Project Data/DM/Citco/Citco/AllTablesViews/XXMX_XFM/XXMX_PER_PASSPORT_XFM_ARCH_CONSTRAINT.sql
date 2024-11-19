@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_PER_PASSPORT_XFM_ARCH
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_XFM"."XXMX_PER_PASSPORT_XFM_ARCH" MODIFY ("PERSONNUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_XFM"."XXMX_PER_PASSPORT_XFM_ARCH" MODIFY ("PASSPORTNUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_XFM"."XXMX_PER_PASSPORT_XFM_ARCH" MODIFY ("NAME" NOT NULL ENABLE);

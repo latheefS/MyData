@@ -1,0 +1,9 @@
+VBCS:
+-----
+
+Awareness of VBCS would be a plus
+Fusion Applications using Visual Builder Studio or VBCS.
+ Should have a good knowledge of cloud configurations and setup, Application composer, Page composer and customizations through visual builder studio.
+  Customization using PaaS (VBCS, APEX, DBCS/ATP)
+  Design and develop customizations using Visual Builder or APEX with Oracle ERP Cloud.
+ Provide hands-on technical and development support for implemented customizations using Visual Builder / APEX and in OIC with Oracle ERP Cloud.

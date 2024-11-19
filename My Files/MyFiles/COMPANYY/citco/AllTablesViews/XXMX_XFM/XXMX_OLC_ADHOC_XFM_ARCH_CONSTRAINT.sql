@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_OLC_ADHOC_XFM_ARCH
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_XFM"."XXMX_OLC_ADHOC_XFM_ARCH" MODIFY ("ADHOC_RESOURCE_NUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_XFM"."XXMX_OLC_ADHOC_XFM_ARCH" MODIFY ("NAME" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_XFM"."XXMX_OLC_ADHOC_XFM_ARCH" MODIFY ("ACTIVITY_NUMBER" NOT NULL ENABLE);

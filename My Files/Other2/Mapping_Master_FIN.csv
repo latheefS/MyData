@@ -1,0 +1,47 @@
+SIMPLE_OR_COMPLEX|APPLICATION_SUITE|APPLICATION|SOURCE_VALUE|Input Value 2|Input Value 3|Input Value 4|INPUT_CODE_5      |INPUT_CODE_6      |CATEGORY_CODE|TARGET_VALUE|OUTPUT_CODE_1_DESC|OUTPUT_CODE_2     |OUTPUT_CODE_2_DESC|OUTPUT_CODE_3     |OUTPUT_CODE_3_DESC|OUTPUT_CODE_4     |OUTPUT_CODE_4_DESC|OUTPUT_CODE_5     |OUTPUT_CODE_5_DESC|OUTPUT_CODE_6     |OUTPUT_CODE_6_DESC
+S|FIN|ALL|Barrel||||||UNIT_OF_MEASURE|Barrel|||||||||||
+S|FIN|ALL|Bottle||||||UNIT_OF_MEASURE|Bottle|||||||||||
+S|FIN|ALL|Box||||||UNIT_OF_MEASURE|Box|||||||||||
+S|FIN|ALL|Can||||||UNIT_OF_MEASURE|Can|||||||||||
+S|FIN|ALL|Carton||||||UNIT_OF_MEASURE|Carton|||||||||||
+S|FIN|ALL|Cubic Meter||||||UNIT_OF_MEASURE|Meter|||||||||||
+S|FIN|ALL|Daily||||||UNIT_OF_MEASURE|Day|||||||||||
+S|FIN|ALL|Day||||||UNIT_OF_MEASURE|Day|||||||||||
+S|FIN|ALL|Dozen||||||UNIT_OF_MEASURE|Each|||||||||||
+S|FIN|ALL|Drum||||||UNIT_OF_MEASURE|Drum|||||||||||
+S|FIN|ALL|Feet||||||UNIT_OF_MEASURE|Feet|||||||||||
+S|FIN|ALL|Gallon||||||UNIT_OF_MEASURE|Gallon|||||||||||
+S|FIN|ALL|Hour||||||UNIT_OF_MEASURE|Hour|||||||||||
+S|FIN|ALL|Hourly||||||UNIT_OF_MEASURE|Hour|||||||||||
+S|FIN|ALL|Kilogram||||||UNIT_OF_MEASURE|Kilogram|||||||||||
+S|FIN|ALL|Kit||||||UNIT_OF_MEASURE|Kit|||||||||||
+S|FIN|ALL|Litre||||||UNIT_OF_MEASURE|Litre|||||||||||
+S|FIN|ALL|Man Day||||||UNIT_OF_MEASURE|Day|||||||||||
+S|FIN|ALL|Man Month||||||UNIT_OF_MEASURE|Month|||||||||||
+S|FIN|ALL|Meter||||||UNIT_OF_MEASURE|Meter|||||||||||
+S|FIN|ALL|Metric Ton||||||UNIT_OF_MEASURE|Metric Ton|||||||||||
+S|FIN|ALL|Month||||||UNIT_OF_MEASURE|Month|||||||||||
+S|FIN|ALL|Monthly||||||UNIT_OF_MEASURE|Month|||||||||||
+S|FIN|ALL|Number||||||UNIT_OF_MEASURE|Each|||||||||||
+S|FIN|ALL|Pack||||||UNIT_OF_MEASURE|Pack|||||||||||
+S|FIN|ALL|Packet||||||UNIT_OF_MEASURE|Pack|||||||||||
+S|FIN|ALL|Pad||||||UNIT_OF_MEASURE|Each|||||||||||
+S|FIN|ALL|Pail||||||UNIT_OF_MEASURE|Each|||||||||||
+S|FIN|ALL|Pair||||||UNIT_OF_MEASURE|Pair|||||||||||
+S|FIN|ALL|Piece||||||UNIT_OF_MEASURE|Piece|||||||||||
+S|FIN|ALL|Pound||||||UNIT_OF_MEASURE|Pound|||||||||||
+S|FIN|ALL|R3 Joints||||||UNIT_OF_MEASURE|Joint|||||||||||
+S|FIN|ALL|Ream||||||UNIT_OF_MEASURE|Ream|||||||||||
+S|FIN|ALL|Roll||||||UNIT_OF_MEASURE|Roll|||||||||||
+S|FIN|ALL|Run||||||UNIT_OF_MEASURE|Each|||||||||||
+S|FIN|ALL|Sack||||||UNIT_OF_MEASURE|Each|||||||||||
+S|FIN|ALL|Set||||||UNIT_OF_MEASURE|Set|||||||||||
+S|FIN|ALL|Sheet||||||UNIT_OF_MEASURE|Sheet|||||||||||
+S|FIN|ALL|Square Feet||||||UNIT_OF_MEASURE|Feet|||||||||||
+S|FIN|ALL|Square meter||||||UNIT_OF_MEASURE|Meter|||||||||||
+S|FIN|ALL|Tin||||||UNIT_OF_MEASURE|Each|||||||||||
+S|FIN|ALL|Ton||||||UNIT_OF_MEASURE|Ton|||||||||||
+S|FIN|ALL|Trip||||||UNIT_OF_MEASURE|Trip|||||||||||
+S|FIN|ALL|US Gallon||||||UNIT_OF_MEASURE|US Gallon|||||||||||
+S|FIN|ALL|Unit||||||UNIT_OF_MEASURE|Unit|||||||||||
+S|FIN|ALL|Year||||||UNIT_OF_MEASURE|Year|||||||||||

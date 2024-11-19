@@ -1,0 +1,1093 @@
+     PROCEDURE gl_historical_rates_stg
+                    (
+                       pt_i_MigrationSetID             IN      xxmx_migration_headers.migration_set_id%TYPE,
+                       pt_i_SubEntity                  IN      xxmx_migration_metadata.sub_entity%TYPE
+                    )
+     IS
+          --
+          --
+          --**********************
+          --** CURSOR Declarations
+          --**********************
+          --
+          -- Cursor to get the historical rates
+          --
+          CURSOR GLHistoricalrates_cur 
+		              (
+						pv_LedgerName VARCHAR2
+                       ,pv_PeriodName VARCHAR2						
+					  )
+          IS
+             --
+             --
+			        SELECT *
+					FROM 
+						(SELECT
+								gl.name       ledger_name,
+								'INSERT'      import_action,
+								gcc.segment1  segment1,
+								gcc.segment2  segment2,
+								gcc.segment3  segment3,
+								gcc.segment4  segment4,
+								gcc.segment5  segment5,
+								gcc.segment6  segment6,
+                                gcc.segment7  segment7,
+                                gcc.segment8  segment8,
+                                gcc.segment9  segment9,
+                                gcc.segment10  segment10,
+                                gcc.segment11  segment11,
+                                gcc.segment12  segment12,
+                                gcc.segment13  segment13,
+                                gcc.segment14  segment14,
+                                gcc.segment15  segment15,
+                                gcc.segment16  segment16,
+                                gcc.segment17  segment17,
+                                gcc.segment18  segment18,
+                                gcc.segment19  segment19,
+                                gcc.segment20  segment20,
+                                gcc.segment21  segment21,
+                                gcc.segment22  segment22,
+                                gcc.segment23  segment23,
+                                gcc.segment24  segment24,
+                                gcc.segment25  segment25,
+                                gcc.segment26  segment26,
+                                gcc.segment27  segment27,
+                                gcc.segment28  segment28,
+                                gcc.segment29  segment29,
+                                gcc.segment30  segment30,
+								INITCAP(gp.period_name) period_name,
+								glb.currency_code target_currency_code,
+								'AMOUNT' value_type_code,
+								 SUM(CASE WHEN glb.currency_code = gl.currency_code THEN
+										(nvl(glb.begin_balance_dr_beq, 0) - nvl(glb.begin_balance_cr_beq, 0))
+									   +(nvl(glb.period_net_dr_beq, 0) - nvl(glb.period_net_cr_beq, 0))
+									 ELSE
+										(nvl(glb.begin_balance_dr, 0) - nvl(glb.begin_balance_cr, 0)) 
+									   +(nvl(glb.period_net_dr, 0) - nvl(glb.period_net_cr, 0))
+									 END       
+								)credit_amount_rate,
+								(
+								CASE /*WHEN gl.ret_earn_code_combination_id=gcc.code_combination_id THEN 
+									  'YES'*/
+									  WHEN (select gcc1.segment2 from apps.gl_code_combinations@MXDM_NVIS_EXTRACT gcc1 where gcc1.CODE_COMBINATION_ID= gl.ret_earn_code_combination_id)=gcc.segment2 THEN --added by Laxmikanth 
+									  'YES'
+									  ELSE 
+									  'NO'
+									  END
+								)auto_roll_forward_flag       
+							FROM
+								apps.gl_ledgers@MXDM_NVIS_EXTRACT           gl,
+								apps.gl_balances@MXDM_NVIS_EXTRACT          glb,
+								apps.gl_code_combinations@MXDM_NVIS_EXTRACT gcc,
+								apps.gl_periods@MXDM_NVIS_EXTRACT           gp
+							WHERE
+								1 = 1
+								AND gl.name = pv_LedgerName
+								AND gl.ledger_id = glb.ledger_id
+								AND gcc.code_combination_id = glb.code_combination_id
+								AND glb.period_name = gp.period_name
+								AND gl.period_set_name=gp.period_set_name --added by Laxmikanth for duplicate fix
+								AND gp.period_name = pv_PeriodName
+								AND glb.actual_flag = 'A'
+								AND nvl(glb.translated_flag, 'X') IN ( 'Y')
+								AND glb.template_id IS NULL
+								AND glb.currency_code != 'STAT'
+							GROUP BY     
+								gl.name,gcc.segment1,gcc.segment2,gcc.segment3,gcc.segment4,gcc.segment5,
+								gcc.segment6,gcc.segment7,gcc.segment8,gcc.segment9,gcc.segment10,
+                                gcc.segment11,gcc.segment12,gcc.segment13,gcc.segment14,gcc.segment15,
+                                gcc.segment16,gcc.segment17,gcc.segment18,gcc.segment19,gcc.segment20,
+                                gcc.segment21,gcc.segment22,gcc.segment23,gcc.segment24,gcc.segment25,
+                                gcc.segment26,gcc.segment27,gcc.segment28,gcc.segment29,gcc.segment30,
+								gp.period_name,glb.currency_code,gl.ret_earn_code_combination_id,
+								gcc.code_combination_id
+							)ghr
+					WHERE 1=1
+					AND credit_amount_rate != 0
+					ORDER BY
+						1,10,3,4,5,6,7,8;
+
+
+          --
+
+          --********************
+          --** Type Declarations
+          --********************
+          --
+          TYPE gl_historicalrates_tt IS TABLE OF GLHistoricalrates_cur%ROWTYPE INDEX BY BINARY_INTEGER;
+          --
+          --
+          --************************
+          --** Constant Declarations
+          --************************
+          --
+          /*
+          ** This is declared in each Procedure within the package to allow for
+          ** a different value to be assigned in the Staging/Transform/Export
+          ** procedures.
+          */
+          --
+          cv_ProcOrFuncName               CONSTANT  VARCHAR2(30)                           := 'gl_historical_rates_stg';
+          ct_StgTable                     CONSTANT  xxmx_migration_metadata.stg_table%TYPE := 'xxmx_gl_historical_rates_stg';
+          ct_Phase                        CONSTANT  xxmx_module_messages.phase%TYPE        := 'EXTRACT';
+          --
+          --
+          --************************
+          --** Variable Declarations
+          --************************
+          --
+          vt_ListParameterCode            xxmx_migration_parameters.parameter_code%TYPE;
+          vn_ListValueCount               NUMBER;
+          vb_OkayToExtract                BOOLEAN;
+          vb_PeriodAndYearMatch           BOOLEAN;
+          vt_MigrationSetID               xxmx_migration_headers.migration_set_id%TYPE;
+          --
+          --
+          --****************************
+          --** Record Table Declarations
+          --****************************
+          --
+          --
+          --
+          --****************************
+          --** PL/SQL Table Declarations
+          --****************************
+          --
+          EmptyLedgerName_tbl             xxmx_utilities_pkg.g_ParamValueList_tt;
+		  LedgerName_tbl                  xxmx_utilities_pkg.g_ParamValueList_tt;
+          EmptyPeriodName_tbl             xxmx_utilities_pkg.g_ParamValueList_tt;
+          PeriodName_tbl                  xxmx_utilities_pkg.g_ParamValueList_tt;
+          gl_historicalrates_tbl          gl_historicalrates_tt;
+          --
+          --
+          --*************************
+          --** Exception Declarations
+          --*************************
+          --
+          e_ModuleError                   EXCEPTION;
+          --
+          --
+     --** END Declarations
+     --
+     --
+BEGIN
+    --
+    gvv_ProgressIndicator := '0010';
+    --
+    vb_OkayToExtract  := TRUE;
+    gvv_ReturnStatus  := '';
+    gvt_ReturnMessage := '';
+	vt_MigrationSetID := pt_i_MigrationSetID;
+    --
+    xxmx_utilities_pkg.clear_messages
+               (
+                pt_i_ApplicationSuite => gct_ApplicationSuite
+               ,pt_i_Application      => gct_Application
+               ,pt_i_BusinessEntity   => gct_BusinessEntity
+               ,pt_i_SubEntity        => gct_SubEntity
+               ,pt_i_Phase            => ct_Phase
+               ,pt_i_MessageType      => 'MODULE'
+               ,pv_o_ReturnStatus     => gvv_ReturnStatus
+               );
+    --
+    IF   gvv_ReturnStatus = 'F'
+    THEN
+        --
+        xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gct_BusinessEntity
+                    ,pt_i_SubEntity         => gct_SubEntity
+                    ,pt_i_MigrationSetID    => vt_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'ERROR'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                    ,pt_i_OracleError       => gvt_ReturnMessage
+                    );
+               --
+        RAISE e_ModuleError;
+               --
+    END IF;
+    --
+    gvv_ProgressIndicator := '0020';
+    --
+    gvv_ReturnStatus  := '';
+    gvt_ReturnMessage := '';
+    --
+    xxmx_utilities_pkg.clear_messages
+               (
+                pt_i_ApplicationSuite => gct_ApplicationSuite
+               ,pt_i_Application      => gct_Application
+               ,pt_i_BusinessEntity   => gct_BusinessEntity
+               ,pt_i_SubEntity        => gct_SubEntity
+               ,pt_i_Phase            => ct_Phase
+               ,pt_i_MessageType      => 'DATA'
+               ,pv_o_ReturnStatus     => gvv_ReturnStatus
+               );
+          --
+    IF   gvv_ReturnStatus = 'F'
+    THEN
+        --
+        xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gct_BusinessEntity
+                    ,pt_i_SubEntity         => gct_SubEntity
+                    ,pt_i_MigrationSetID    => vt_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'ERROR'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                    ,pt_i_OracleError       => gvt_ReturnMessage
+                    );
+               --
+               RAISE e_ModuleError;
+               --
+    END IF;
+    --
+    gvv_ProgressIndicator := '0030';
+    --
+    xxmx_utilities_pkg.log_module_message
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gct_BusinessEntity
+               ,pt_i_SubEntity         => gct_SubEntity
+               ,pt_i_MigrationSetID    => vt_MigrationSetID
+               ,pt_i_Phase             => ct_Phase
+               ,pt_i_Severity          => 'NOTIFICATION'
+               ,pt_i_PackageName       => gcv_PackageName
+               ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               ,pt_i_ModuleMessage     => '  - Procedure "'||gcv_PackageName||'.'||cv_ProcOrFuncName||'" initiated.'
+               ,pt_i_OracleError       => NULL
+               );
+          --
+    gvv_ProgressIndicator := '0040';
+    --
+    --** If the Migration Set ID is NULL then the Migration has not been initialized.
+    --
+    IF   vt_MigrationSetID IS NOT NULL THEN
+        --
+        xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gct_BusinessEntity
+                    ,pt_i_SubEntity         => gct_SubEntity
+                    ,pt_i_MigrationSetID    => vt_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '    - Retrieving ledger details from migration parameters table.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+        gvv_ProgressIndicator := '0045';
+        --
+        gvt_MigrationSetName := xxmx_utilities_pkg.get_migration_set_name(pt_i_MigrationSetID);
+        --
+       /*
+               ** The Migration Set has been initialized so not retrieve the
+               ** Parameters for extracting GL Historical Rates:
+               **
+               ** 1) GL Ledger Name List
+               ** 2) GL Period Name List
+               */
+               --
+               /*
+               ** Retrieve GL Ledger Names List
+               */
+               gvv_ProgressIndicator := '0046';
+               --
+               vt_ListParameterCode := 'LEDGER_NAME';
+               vn_ListValueCount    := 0;
+               gvv_ReturnStatus     := '';
+               gvt_ReturnMessage    := '';
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gct_BusinessEntity
+                    ,pt_i_SubEntity         => gct_SubEntity
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '    - Retrieving "'
+                                             ||vt_ListParameterCode
+                                             ||'" List from Migration Parameters table:'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               LedgerName_tbl := xxmx_utilities_pkg.get_parameter_value_list
+                                      (
+                                       pt_i_ApplicationSuite => gct_ApplicationSuite
+                                      ,pt_i_Application      => gct_Application
+                                      ,pt_i_BusinessEntity   => gct_BusinessEntity
+                                      ,pt_i_SubEntity        => gct_SubEntity
+                                      ,pt_i_ParameterCode    => vt_ListParameterCode
+                                      ,pn_o_ReturnCount      => vn_ListValueCount
+                                      ,pv_o_ReturnStatus     => gvv_ReturnStatus
+                                      ,pv_o_ReturnMessage    => gvt_ReturnMessage
+                                      );
+									  dbms_output.put_line(gct_ApplicationSuite||gct_Application||gct_BusinessEntity||gct_SubEntity||vt_ListParameterCode||vn_ListValueCount||gvv_ReturnStatus||gvt_ReturnMessage);
+               --
+               IF   gvv_ReturnStatus = 'F'
+               THEN
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'ERROR'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => '      - Oracle error in called procedure "xxmx_utilities_pkg.get_parameter_value_list".  "'
+                                                  ||vt_ListParameterCode
+                                                  ||'" List could not be retrieved.'
+                         ,pt_i_OracleError       => gvt_ReturnMessage
+                         );
+                    --
+                    RAISE e_ModuleError;
+                    --
+               ELSE
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'NOTIFICATION'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => '      - '
+                                                  ||vn_ListValueCount
+                                                  ||' values for "'
+                                                  ||vt_ListParameterCode
+                                                  ||'" List retrieved.'
+                         ,pt_i_OracleError       => NULL
+                         );
+                    --
+               END IF;
+               --
+               IF   vn_ListValueCount = 0
+               THEN
+                    --
+                    vb_OkayToExtract := FALSE;
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'WARNING'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => '    - No "'
+                                                  ||vt_ListParameterCode
+                                                  ||'" parameters defined in "xxmx_migration_parameters" table.  GL Historical Rates can not be extracted at this time.'
+                         ,pt_i_OracleError       => gvt_ReturnMessage
+                         );
+                    --
+               END IF;
+
+
+        --
+        --
+        -- Retrieve GL Period Name List
+        --
+        --
+        gvv_ProgressIndicator := '0060';
+        --
+        vt_ListParameterCode := 'PERIOD_NAME';
+        vn_ListValueCount    := 0;
+        gvv_ReturnStatus     := '';
+        gvt_ReturnMessage    := '';
+        --
+        xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gct_BusinessEntity
+                    ,pt_i_SubEntity         => gct_SubEntity
+                    ,pt_i_MigrationSetID    => vt_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '    - Retrieving "'
+                                             ||vt_ListParameterCode
+                                             ||'" List from Migration Parameters table:'
+                    ,pt_i_OracleError       => NULL
+                    );
+        --
+        PeriodName_tbl := xxmx_utilities_pkg.get_parameter_value_list
+                                      (
+                                       pt_i_ApplicationSuite => gct_ApplicationSuite
+                                      ,pt_i_Application      => gct_Application
+                                      ,pt_i_BusinessEntity   => gct_BusinessEntity
+                                      ,pt_i_SubEntity        => 'HISTORICAL_RATES'
+                                      ,pt_i_ParameterCode    => vt_ListParameterCode
+                                      ,pn_o_ReturnCount      => vn_ListValueCount
+                                      ,pv_o_ReturnStatus     => gvv_ReturnStatus
+                                      ,pv_o_ReturnMessage    => gvt_ReturnMessage
+                                      );
+        --
+        IF   gvv_ReturnStatus = 'F' THEN
+            --
+            xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_MigrationSetID    => vt_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'ERROR'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => '      - Oracle error in called procedure "xxmx_utilities_pkg.get_parameter_value_list".  "'
+                                                  ||vt_ListParameterCode
+                                                  ||'" List could not be retrieved.'
+                         ,pt_i_OracleError       => gvt_ReturnMessage
+                         );
+                    --
+            RAISE e_ModuleError;
+            --
+        ELSE
+            --
+            xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_MigrationSetID    => vt_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'NOTIFICATION'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => '      - '
+                                                  ||vn_ListValueCount
+                                                  ||' values for "'
+                                                  ||vt_ListParameterCode
+                                                  ||'" List retrieved.'
+                         ,pt_i_OracleError         => NULL
+                         );
+                    --
+        END IF;
+        --
+        IF   vn_ListValueCount = 0 THEN
+            --
+            vb_OkayToExtract := FALSE;
+            xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite    => gct_ApplicationSuite
+                         ,pt_i_Application         => gct_Application
+                         ,pt_i_BusinessEntity      => gct_BusinessEntity
+                         ,pt_i_SubEntity           => gct_SubEntity
+                         ,pt_i_MigrationSetID      => vt_MigrationSetID
+                         ,pt_i_Phase               => ct_Phase
+                         ,pt_i_Severity            => 'WARNING'
+                         ,pt_i_PackageName         => gcv_PackageName
+                         ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage       => '    - No "'
+                                                    ||vt_ListParameterCode
+                                                    ||'" parameters defined in "xxmx_migration_parameters" table.  GL Historical Rates can not be extracted at this time.'
+                         ,pt_i_OracleError         => gvt_ReturnMessage
+                         );
+                    --
+        END IF;
+        --
+        --
+        -- If there are no Extract Parameters in the "xxmx_migration_parameters" table
+        -- (those which are there have to be enabled), no historical rates can be extracted.
+        --
+        --
+        gvv_ProgressIndicator := '0070';
+        --
+        IF   vb_OkayToExtract THEN
+            --
+            --
+            -- The Extract Parameters were successfully retrieved so now
+            -- initialize the detail record for the GL historical rates.
+            --
+            xxmx_utilities_pkg.init_migration_details
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_MigrationSetID    => vt_MigrationSetID
+                         ,pt_i_StagingTable      => ct_StgTable
+                         ,pt_i_ExtractStartDate  => SYSDATE
+                         );
+                    --
+            xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_MigrationSetID    => vt_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'NOTIFICATION'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => '    - Staging Table "'||ct_StgTable||'" reporting details initialised.'
+                         ,pt_i_OracleError       => NULL
+                         );
+            --
+            --  loop through the Ledger Name list and for each one:
+            --
+            -- a) Retrieve COA Structure Details pertaining to the Ledger.
+            -- b) Extract the historical rates for the Ledger.
+            --
+            gvv_ProgressIndicator := '0090';
+            --
+            FOR LedgerName_idx
+            IN LedgerName_tbl.FIRST..LedgerName_tbl.LAST
+            LOOP
+                xxmx_utilities_pkg.log_module_message
+                                 (
+                                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                                 ,pt_i_Application       => gct_Application
+                                 ,pt_i_BusinessEntity    => gct_BusinessEntity
+                                 ,pt_i_SubEntity         => gct_SubEntity
+                                 ,pt_i_MigrationSetID    => vt_MigrationSetID
+                                 ,pt_i_Phase             => ct_Phase
+                                 ,pt_i_Severity          => 'NOTIFICATION'
+                                 ,pt_i_PackageName       => gcv_PackageName
+                                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                                 ,pt_i_ModuleMessage     => '    - Loop: Ledger name.'||LedgerName_tbl(LedgerName_idx)
+                                 ,pt_i_OracleError       => NULL
+                                 );
+				/*--
+                -- Loop through Extract Years List
+                --
+                FOR ExtractYear_idx
+                IN ExtractYear_tbl.FIRST..ExtractYear_tbl.LAST
+                LOOP
+                    xxmx_utilities_pkg.log_module_message
+                                 (
+                                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                                 ,pt_i_Application       => gct_Application
+                                 ,pt_i_BusinessEntity    => gct_BusinessEntity
+                                 ,pt_i_SubEntity         => vt_SubEntity
+                                 ,pt_i_MigrationSetID    => vt_MigrationSetID
+                                 ,pt_i_Phase             => ct_Phase
+                                 ,pt_i_Severity          => 'NOTIFICATION'
+                                 ,pt_i_PackageName       => gcv_PackageName
+                                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                                 ,pt_i_ModuleMessage     => '    - Loop: Year.'
+                                 ,pt_i_OracleError       => NULL
+                                 );			 
+                    --
+                    --
+                    -- The following variable will be set to TRUE if any of the Period Names
+                    -- in the Period Name Parameters list exist for the current Extract Year
+                    -- Parameter.  If no Period Name Parameters match to the current Extract
+                    -- Year Parameter this variable will remain FALSE.
+                    --
+                    -- This is so an INFORMATION log message can be issued if there are no
+                    -- Period Name Parameters which match to the current Extract Year Parameter.
+                    --
+                    vb_PeriodAndYearMatch := FALSE;*/
+					
+                    --
+                    --
+                    -- Loop through GL Period Names List
+                    --
+                    --
+                    FOR PeriodName_idx
+                    IN PeriodName_tbl.FIRST..PeriodName_tbl.LAST
+                    LOOP
+                        xxmx_utilities_pkg.log_module_message
+                                     (
+                                      pt_i_ApplicationSuite  => gct_ApplicationSuite
+                                     ,pt_i_Application       => gct_Application
+                                     ,pt_i_BusinessEntity    => gct_BusinessEntity
+                                     ,pt_i_SubEntity         => gct_SubEntity
+                                     ,pt_i_MigrationSetID    => vt_MigrationSetID
+                                     ,pt_i_Phase             => ct_Phase
+                                     ,pt_i_Severity          => 'NOTIFICATION'
+                                     ,pt_i_PackageName       => gcv_PackageName
+                                     ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                                     ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                                     ,pt_i_ModuleMessage     => '    - Loop: Period Name '||PeriodName_tbl(PeriodName_idx)
+                                     ,pt_i_OracleError       => NULL
+                                     );
+                        /*--
+                        gvn_ExistenceCount := 0;
+                        --
+                        /*
+                        ** Verify if the current Period Name Parameter exists
+                        ** as a GL Period in the GL_PERIODS table for the current
+                        ** Source Ledger Name and Extract Year Parameters.
+                        */
+                        --
+                        /*gvv_ProgressIndicator := '0130';
+                        --
+                        --
+                        -- Verify if the current Period Name Parameter exists in gl_ledgers and gl_periods tables
+                        --
+                        SELECT  COUNT(*)
+                        INTO    gvn_ExistenceCount
+                        FROM    apps.gl_ledgers@MXDM_NVIS_EXTRACT  gl2
+                                ,apps.gl_periods@MXDM_NVIS_EXTRACT  gp
+                        WHERE   1 = 1
+                        AND     gl2.name           = LedgerName_tbl(LedgerName_idx)
+                        AND     gp.period_set_name = gl2.period_set_name
+                        AND     gp.period_year     = ExtractYear_tbl(ExtractYear_idx)
+                        AND     gp.period_name     = PeriodName_tbl(PeriodName_idx);
+                        --
+                        IF   gvn_ExistenceCount = 0 THEN
+                            xxmx_utilities_pkg.log_module_message
+                                            (
+                                             pt_i_ApplicationSuite  => gct_ApplicationSuite
+                                            ,pt_i_Application       => gct_Application
+                                            ,pt_i_BusinessEntity    => gct_BusinessEntity
+                                            ,pt_i_SubEntity         => vt_SubEntity
+                                            ,pt_i_MigrationSetID    => vt_MigrationSetID
+                                            ,pt_i_Phase             => ct_Phase
+                                            ,pt_i_Severity          => 'NOTIFICATION'
+                                            ,pt_i_PackageName       => gcv_PackageName
+                                            ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                                            ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                                            ,pt_i_ModuleMessage     => '      - No data found in EBS (source system) for Year/Period '
+                                                                     ||ExtractYear_tbl(ExtractYear_idx)
+                                                                     ||PeriodName_tbl(PeriodName_idx)||' Foe ledger '
+                                                                     ||LedgerName_tbl(LedgerName_idx)
+                                            ,pt_i_OracleError       => NULL
+                                            );
+                        ELSE
+                            --
+                            --
+                            -- Current Period Name Parameter exists in the GL_PERIODS table
+                            -- for the current Source Ledger Name and Extract Year so the
+                            -- historical rates extract can proceed.
+                            --
+                            --
+                            vb_PeriodAndYearMatch := TRUE;
+                            --
+                            xxmx_utilities_pkg.log_module_message
+                                             (
+                                              pt_i_ApplicationSuite  => gct_ApplicationSuite
+                                             ,pt_i_Application       => gct_Application
+                                             ,pt_i_BusinessEntity    => gct_BusinessEntity
+                                             ,pt_i_SubEntity         => vt_SubEntity
+                                             ,pt_i_MigrationSetID    => vt_MigrationSetID
+                                             ,pt_i_Phase             => ct_Phase
+                                             ,pt_i_Severity          => 'NOTIFICATION'
+                                             ,pt_i_PackageName       => gcv_PackageName
+                                             ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                                             ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                                             ,pt_i_ModuleMessage     => '      - Extracting "'
+                                                                      ||gct_Application
+                                                                      ||' '
+                                                                      ||vt_SubEntity
+                                                                      ||'" for GL Ledger Name "'
+                                                                      ||LedgerName_tbl(LedgerName_idx)
+                                                                      ||'" and Year "'
+                                                                      ||ExtractYear_tbl(ExtractYear_idx)
+                                                                      ||'", Period Name "'
+                                                                      ||PeriodName_tbl(PeriodName_idx)
+                                                                      ||'".'
+                                             ,pt_i_OracleError       => NULL
+                                             );			
+							*/
+							
+							xxmx_utilities_pkg.log_module_message
+                                             (
+                                              pt_i_ApplicationSuite  => gct_ApplicationSuite
+                                             ,pt_i_Application       => gct_Application
+                                             ,pt_i_BusinessEntity    => gct_BusinessEntity
+                                             ,pt_i_SubEntity         => gct_SubEntity
+                                             ,pt_i_MigrationSetID    => vt_MigrationSetID
+                                             ,pt_i_Phase             => ct_Phase
+                                             ,pt_i_Severity          => 'NOTIFICATION'
+                                             ,pt_i_PackageName       => gcv_PackageName
+                                             ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                                             ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                                             ,pt_i_ModuleMessage     => '      - Extracting "'
+                                                                      ||gct_Application
+                                                                      ||' '
+                                                                      ||gct_SubEntity
+                                                                      ||'" for GL Ledger Name "'
+                                                                      ||LedgerName_tbl(LedgerName_idx)
+                                                                      ||'" and Period Name "'
+                                                                      ||PeriodName_tbl(PeriodName_idx)
+                                                                      ||'".'
+                                             ,pt_i_OracleError       => NULL
+                                             );		
+		--
+        gvv_ProgressIndicator := '0140';
+        --
+        OPEN GLHistoricalrates_cur(LedgerName_tbl(LedgerName_idx),PeriodName_tbl(PeriodName_idx));
+        --
+        gvv_ProgressIndicator := '0150';
+        --
+            LOOP
+            --
+            FETCH        GLHistoricalrates_cur
+                BULK COLLECT
+                INTO         gl_historicalrates_tbl
+                LIMIT        xxmx_utilities_pkg.gcn_BulkCollectLimit;
+            --
+                EXIT WHEN    gl_historicalrates_tbl.COUNT = 0;
+            --
+                xxmx_utilities_pkg.log_module_message
+                        (
+                        pt_i_ApplicationSuite  => gct_ApplicationSuite
+                       ,pt_i_Application       => gct_Application
+                       ,pt_i_BusinessEntity    => gct_BusinessEntity
+                       ,pt_i_SubEntity         => gct_SubEntity
+                       ,pt_i_MigrationSetID    => vt_MigrationSetID
+                       ,pt_i_Phase             => ct_Phase
+                       ,pt_i_Severity          => 'NOTIFICATION'
+                       ,pt_i_PackageName       => gcv_PackageName
+                       ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                       ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                       ,pt_i_ModuleMessage     => '    - Record Count '||gl_historicalrates_tbl.COUNT
+                       ,pt_i_OracleError       => NULL
+                        );
+                                --			
+            gvv_ProgressIndicator := '0160';
+            --
+            FORALL GLHistoricalrates_idx 
+                IN 1..gl_historicalrates_tbl.COUNT
+            --
+                INSERT
+                INTO   xxmx_stg.xxmx_gl_historical_rates_stg
+                (
+                                                               migration_set_id
+                                                              ,migration_set_name
+                                                              ,migration_status
+                                                              ,ledger_name
+                                                              ,import_action_code
+															  ,segment1
+															  ,segment2
+															  ,segment3
+															  ,segment4
+															  ,segment5
+															  ,segment6
+															  ,segment7
+															  ,segment8
+															  ,segment9
+															  ,segment10
+															  ,segment11
+															  ,segment12
+															  ,segment13
+															  ,segment14
+															  ,segment15
+															  ,segment16
+															  ,segment17
+															  ,segment18
+															  ,segment19
+															  ,segment20
+															  ,segment21
+															  ,segment22
+															  ,segment23
+															  ,segment24
+															  ,segment25
+															  ,segment26
+															  ,segment27
+															  ,segment28
+															  ,segment29
+															  ,segment30
+															  ,period_name
+															  ,target_currency_code
+															  ,value_type_code
+															  ,credit_amount_rate
+															  ,auto_roll_forward_flag
+															  ,attribute_category
+															  ,attribute1
+															  ,attribute2
+															  ,attribute3
+															  ,attribute4
+															  ,attribute5
+
+                )
+                VALUES
+                (
+                                                               vt_MigrationSetID                                             -- migration_set_id
+                                                              ,gvt_MigrationSetName                                          -- migration_set_name
+                                                              ,'EXTRACTED'                                                   -- migration_status
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).ledger_name     -- ledger_name
+															  ,gl_historicalrates_tbl(GLHistoricalrates_idx).import_action   --import_action
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment1        -- segment1
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment2        -- segment2
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment3        -- segment3
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment4        -- segment4
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment5        -- segment5
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment6        -- segment6
+															  ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment7        -- segment7
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment8        -- segment8
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment9        -- segment9
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment10       -- segment10
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment11       -- segment11
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment12       -- segment12
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment13       -- segment13
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment14       -- segment14
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment15       -- segment15
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment16       -- segment16
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment17       -- segment17
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment18       -- segment18
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment19       -- segment19
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment20       -- segment20
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment21       -- segment21
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment22       -- segment22
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment23       -- segment23
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment24       -- segment24
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment25       -- segment25
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment26       -- segment26
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment27       -- segment27
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment28       -- segment28
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment29       -- segment29
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).segment30       -- segment30
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).period_name     --period_name
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).target_currency_code --target_currency_code                                                          -- attribute_date4
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).value_type_code    --value_type_code                                                          -- attribute_date5
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).credit_amount_rate --credit_amount_rate                                                          -- attribute_number1
+                                                              ,gl_historicalrates_tbl(GLHistoricalrates_idx).auto_roll_forward_flag --auto_roll_forward_flag                                                          -- attribute_number2
+                                                              ,NULL                                                          -- attribute_category
+                                                              ,NULL                                                          -- attribute1
+                                                              ,NULL                                                          -- attribute2
+															  ,NULL                                                          -- attribute3
+															  ,NULL                                                          -- attribute4
+															  ,NULL                                                          -- attribute5
+                );
+                --
+                --** END FORALL 
+                --
+            END LOOP; --** GLHistoricalrates_cur BULK COLLECT LOOP
+            --
+            gvv_ProgressIndicator := '0170';
+            --
+        CLOSE GLHistoricalrates_cur;
+
+		 END LOOP; --** Period Name tbl LOOP
+            --
+            gvv_ProgressIndicator := '0180';
+            --		 
+		 END LOOP; --** Ledger scope tbl LOOP
+        --
+        gvv_ProgressIndicator := '0190';
+        --
+                    /*
+                    ** Obtain the count of rows inserted.  We cannot use SQL$ROWCOUNT here because of the LIMIT
+                    ** clause on the BULK COLLECT statement.  The rowcount will be reset each time the limit
+                    ** is reached.  Also the rowcount for this extract will report TOTAL rows extracted across
+                    ** all GL Ledgers in the Migration Set.
+                    */
+                    --
+                    gvn_RowCount := xxmx_utilities_pkg.get_row_count
+                                         (
+                                          gct_StgSchema
+                                         ,ct_StgTable
+                                         ,vt_MigrationSetID
+                                         );
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_MigrationSetID    => vt_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'NOTIFICATION'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => '  - Extraction complete.'
+                         ,pt_i_OracleError       => NULL
+                         );
+                    --
+                    --
+                    COMMIT;
+                    --
+                    --** Update the migration details (Migration status will be automatically determined
+                    --** in the called procedure dependant on the Phase and if an Error Message has been
+                    --** passed).
+                    --
+                    gvv_ProgressIndicator := '0200';
+                    --
+                    --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+                    --**                  table based on the Application Suite, Application, Business Entity and Sub-Entity parameters.
+                    --**
+                    --**                  Removed "entity" from procedure_name.
+                    --
+                    xxmx_utilities_pkg.upd_migration_details
+                         (
+                          pt_i_MigrationSetID          => vt_MigrationSetID
+                         ,pt_i_BusinessEntity          => gct_BusinessEntity
+                         ,pt_i_SubEntity               => gct_SubEntity
+                         ,pt_i_Phase                   => ct_Phase
+                         ,pt_i_ExtractCompletionDate   => SYSDATE
+                         ,pt_i_ExtractRowCount         => gvn_RowCount
+                         ,pt_i_TransformTable          => NULL
+                         ,pt_i_TransformStartDate      => NULL
+                         ,pt_i_TransformCompletionDate => NULL
+                         ,pt_i_ExportFileName          => NULL
+                         ,pt_i_ExportStartDate         => NULL
+                         ,pt_i_ExportCompletionDate    => NULL
+                         ,pt_i_ExportRowCount          => NULL
+                         ,pt_i_ErrorFlag               => NULL
+                         );
+                    --
+                xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_MigrationSetID    => vt_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'NOTIFICATION'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => '  - Migration Table "'
+                                                  ||ct_StgTable
+                                                  ||'" reporting details updated.'
+                         ,pt_i_OracleError       => NULL
+                         );
+                    --
+                    END IF;
+               --
+			ELSE
+            --
+            gvt_Severity      := 'ERROR';
+            gvt_ModuleMessage := '- Migration Set not initialized.';
+            --
+            RAISE e_ModuleError;
+               --
+          END IF;
+          --
+          xxmx_utilities_pkg.log_module_message
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gct_BusinessEntity
+               ,pt_i_SubEntity         => gct_SubEntity
+               ,pt_i_MigrationSetID    => vt_MigrationSetID
+               ,pt_i_Phase             => ct_Phase
+               ,pt_i_Severity          => 'NOTIFICATION'
+               ,pt_i_PackageName       => gcv_PackageName
+               ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               ,pt_i_ModuleMessage     => 'Procedure "'
+                                        ||gcv_PackageName
+                                        ||'.'
+                                        ||cv_ProcOrFuncName
+                                        ||'" completed.'
+               ,pt_i_OracleError       => NULL
+               );
+          --
+          EXCEPTION
+               --
+               WHEN e_ModuleError
+               THEN
+                    --
+                    IF   GLHistoricalrates_cur%ISOPEN
+                    THEN
+                         --
+                         CLOSE GLHistoricalrates_cur;
+                         --
+                    END IF;
+                    --
+                    ROLLBACK;
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_MigrationSetID    => vt_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => gvt_Severity
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => gvt_ModuleMessage
+                         ,pt_i_OracleError       => NULL
+                         );
+                    --
+                    RAISE;
+                    --
+               --** END e_ModuleError Exception
+               --
+               WHEN OTHERS
+               THEN
+                    --
+                    IF   GLHistoricalrates_cur%ISOPEN
+                    THEN
+                         --
+                         CLOSE GLHistoricalrates_cur;
+                         --
+                    END IF;
+                    --
+                    ROLLBACK;
+                    --
+                    gvt_OracleError := SUBSTR(
+                                             SQLERRM
+                                           ||'** ERROR_BACKTRACE: '
+                                           ||dbms_utility.format_error_backtrace
+                                            ,1
+                                            ,4000
+                                            );
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => gct_SubEntity
+                         ,pt_i_MigrationSetID    => vt_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'ERROR'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => 'Oracle error encounted at after Progress Indicator.'
+                         ,pt_i_OracleError       => gvt_OracleError
+                         );
+                    --
+                    RAISE;
+                    --
+               --** END OTHERS Exception
+               --
+          --** END Exception Handler
+          --
+     END gl_historical_rates_stg;

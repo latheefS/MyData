@@ -1,0 +1,200 @@
+PWC-MAnager:
+------------
+A career within PwC's Oracle Services Practice, will provide you with the opportunity to help organizations use enterprise technology to achieve their digital technology goals and capitalize on business opportunities. We help our clients implement and effectively use Oracle offerings to solve their business problems and fuel success in the areas of finance operations, human capital management, supply chain management, reporting and analytics, and governance, risk and compliance.
+
+---
+
+
+Design and develop technical solutions for Oracle Fusion applications, including customizations,extensions, and integrations.
+Collaborate with business analysts, functional consultants, and other stakeholders to understand business requirements and translate them into technical specifications.
+Develop and maintain Oracle Fusion reports, interfaces, conversions, and extensions (RICEW).
+Ensure the performance, scalability, and reliability of Oracle Fusion applications.
+Troubleshoot and resolve technical issues related to Oracle Fusion applications.
+Participate in code reviews, testing, and quality assurance processes to ensure high-quality deliverables.
+Provide technical support and guidance to end-users and other team members.
+Stay updated with the latest Oracle Fusion updates, patches, and best practices.
+Document technical designs, configurations, and procedures
+
+Experience with Oracle BI Publisher and OTBI.
+Strong knowledge of Oracle Fusion architecture, data models, and development tools.
+Proficiency in Oracle Fusion middleware technologies such as Oracle SOA, Oracle ADF, and Oracle BPEL.
+Experience with SQL, PL/SQL, Java, and XML.
+Familiarity with Oracle Fusion applications modules (e.g., Financials, HCM, SCM).
+Understanding of integration technologies and methodologies (e.g., REST/SOAP web services, APIs).
+Strong problem-solving skills and attention to detail.
+Excellent communication and interpersonal skills.
+Ability to work independently and as part of a team.
+
+
+Extensive experience in Oracle ERP/Fusion SaaS/PaaS project implementations as a technical developer
+Completed at least 2 full Oracle Cloud (Fusion) Implementation
+Extensive Knowledge on database structure for ERP/Oracle Cloud (Fusion)
+Extensively worked on BI Publisher reports, FBDI/OTBI Cloud and Oracle Integration (OIC)
+BI Publisher reports, FBDI/OTBI Cloud and Oracle Integration (OIC)
+database structure for ERP/Oracle Cloud (Fusion)
+
+Strong technical knowledge on Oracle Database SQL and PLSQL
+Providing technical support and troubleshooting for Oracle Fusion applications.
+Collaborating with functional consultants to ensure that technical solutions meet businessrequirements.
+Developing and executing test plans to ensure the quality of technical solutions.
+Providing technical leadership and mentoring to junior team members.
+Participating in the full software development life cycle (SDLC), including requirements gathering, design, development, testing, and deployment.
+Staying up-to-date with emerging Oracle technologies and best practices, and providing recommendations to clients for new technology solutions.
+Providing input into project plans, timelines, and budgets.
+Communicating effectively with clients, project managers, and other team members to ensure that technical solutions are delivered on-time and within budget.
+
+
+Experienced Oracle Fusion Finance Consultant to join our finance team.
+Oracle Fusion Finance Functional : Minimum 2 implementation in Oracle Fusion ERP package - Finance modules as listed. Implementation, configuration, and maintenance of Oracle Fusion Financials modules, such as General Ledger, Accounts Payable, Accounts Receivable, Fixed Assets, lease Accounting, Tax and Cash Management.
+Ensure that financial systems and processes are designed and maintained in accordance with industry best practices and company policies.
+Coordinate with cross-functional teams to ensure that financial systems are integrated with other enterprise systems.
+Coordinate with other functional tracks on the accounting/ financial impact of transactions, SLA rules, etc.
+Modules: AP, AR, GL, FA & Lease accounting, CM, Tax modules of Fusion
+Provide hypercare/ AMS support post Go Live.
+Has go the ability to work independently with minimal oversight
+Carries a can-do attitude and a mindset of diversity and equality
+
+================
+
+Role & responsibilities
+
+1. Extensive experience in Oracle ERP/Fusion SaaS/PaaS project implementations as a technical developer
+2. Completed full Oracle Cloud (Fusion) Implementation
+3. Extensive Knowledge on database structure for ERP/Oracle Cloud (Fusion)
+   Extensively worked on BI Publisher reports, FBDI/OTBI Cloud and Oracle Integration(OIC)
+   Strong technical knowledge on Oracle Database SQL and PLSQL
+4. Providing technical support and troubleshooting for Oracle Fusion applications.
+5. Collaborating with functional consultants to ensure that technical solutions meet business requirements.
+6. Developing and executing test plans to ensure the quality of technical solutions.
+7. Providing technical leadership and mentoring to junior team members.
+8. Participating in the full software development life cycle (SDLC), including requirements gathering, design, development, testing, and deployment.
+9. Staying up-to-date with emerging Oracle technologies and best practices, and providing recommendations to clients for new technology solutions.
+10. Providing input into project plans, timelines, and budgets.
+11. Communicating effectively with clients, project managers, and other team members to ensure that technical solutions are delivered on-time and within budget.
+
+
+Senior2-PWC:
+------------
+
+We are looking for Oracle Cloud Technical Consultant experienced in the full-cycle of Oracle Cloud implementation with a very strong technical skill set in creating Integrations and extensions as per client requirements Role will require experience and capability in design, development, configuration, test script execution, performing proof of concept, building user training materials and supporting testing milestones
+
+The candidate is expected to work with the Offshore / US project team / client on engagements focussed on Oracle EBS / Cloud application.
+Understand customer business processes / functional Specification and be able to prepare technical design.
+Provide Technical support for Oracle Cloud integration, data conversion and reports. 
+Develop and unit test technical components as per PwC standards.
+Participate in automation and digital transformation activities within or outside the client projects.
+Good knowledge of modules and processes around Oracle Finance/SCM application.
+End to end implementation experience in oracle cloud / ERP applications.
+Excellent communication skills and ability to interact with external teams or clients.
+Experience in working with client / USA counterparts in understanding their business requirements and providing the right solutions.
+Knowledge on emerging technologies like ( RPA, IoT, Blockchain)
+
+Candidate should possess strong knowledge in below 3 or more areas:
+SQL and Pl/SQL
+Data migration using FBDI
+Oracle SaaS BI / OTBI / FR reports
+Cloud Integration ( ICS / OIC)
+Oracle VBCS / APEX
+
+-------
+=========
+Management Level
+
+Manager
+
+Job Description & Summary
+
+A career within PwC's Oracle Services Practice, will provide you with the opportunity to help organizations use enterprise technology to achieve their digital technology goals and capitalize on business opportunities. We help our clients implement and effectively use Oracle offerings to solve their business problems and fuel success in the areas of finance operations, human capital management, supply chain management, reporting and analytics, and governance, risk and compliance.
+
+Why PWC
+
+
+At PwC, you will be part of a vibrant community of solvers that leads with trust and creates distinctive outcomes for our clients and communities. This purpose-led and values-driven work, powered by technology in an environment that drives innovation, will enable you to make a tangible impact in the real world. We reward your contributions, support your wellbeing, and offer inclusive benefits, flexibility programmes and mentorship that will help you thrive in work and life. Together, we grow, learn, care, collaborate, and create a future of infinite experiences for each other. Learn more about us.
+
+At PwC, we believe in providing equal employment opportunities, without any discrimination on the grounds of gender, ethnic background, age, disability, marital status, sexual orientation, pregnancy, gender identity or expression, religion or other beliefs, perceived differences and status protected by law. We strive to create an environment where each one of our people can bring their true selves and contribute to their personal growth and the firm’s growth. To enable this, we have zero tolerance for any discrimination and harassment based on the above considerations. "
+
+Responsibilities:
+
+
+Extensive experience in Oracle ERP/Fusion SaaS/PaaS project implementations as a technical developer
+
+Completed at least 2 full Oracle Cloud (Fusion) Implementation
+
+Extensive Knowledge on database structure for ERP/Oracle Cloud (Fusion)
+
+Extensively worked on BI Publisher reports, FBDI/OTBI Cloud and Oracle Integration (OIC)
+
+Mandatory skill sets
+
+
+BI Publisher reports, FBDI/OTBI Cloud and Oracle Integration (OIC)
+
+Preferred skill sets
+
+
+database structure for ERP/Oracle Cloud (Fusion)
+
+Year of experience required
+ Minimum 8 Years of Oracle fusion experience
+Educational Qualification
+ BE/BTech
+ MBA
+
+
+======
+
+Management Level
+
+Manager
+
+Job Description & Summary
+
+A career within PwC's Oracle Services Practice, will provide you with the opportunity to help organizations use enterprise technology to achieve their digital technology goals and capitalize on business opportunities. We help our clients implement and effectively use Oracle offerings to solve their business problems and fuel success in the areas of finance operations, human capital management, supply chain management, reporting and analytics, and governance, risk and compliance.
+
+Why PWC
+
+
+At PwC, you will be part of a vibrant community of solvers that leads with trust and creates distinctive outcomes for our clients and communities. This purpose-led and values-driven work, powered by technology in an environment that drives innovation, will enable you to make a tangible impact in the real world. We reward your contributions, support your wellbeing, and offer inclusive benefits, flexibility programmes and mentorship that will help you thrive in work and life. Together, we grow, learn, care, collaborate, and create a future of infinite experiences for each other. Learn more about us.
+
+Responsibilities:
+ Design and develop technical solutions for Oracle Fusion applications, including customizations,
+
+
+extensions, and integrations.
+
+ Collaborate with business analysts, functional consultants, and other stakeholders to understand
+
+
+business requirements and translate them into technical specifications.
+
+ Develop and maintain Oracle Fusion reports, interfaces, conversions, and extensions (RICEW).
+ Ensure the performance, scalability, and reliability of Oracle Fusion applications.
+ Troubleshoot and resolve technical issues related to Oracle Fusion applications.
+ Participate in code reviews, testing, and quality assurance processes to ensure high-quality
+
+
+deliverables.
+
+ Provide technical support and guidance to end-users and other team members.
+ Stay updated with the latest Oracle Fusion updates, patches, and best practices.
+ Document technical designs, configurations, and procedures
+Mandatory skill sets
+ Experience with Oracle BI Publisher and OTBI.
+ Strong knowledge of Oracle Fusion architecture, data models, and development tools.
+ Proficiency in Oracle Fusion middleware technologies such as Oracle SOA, Oracle ADF, and Oracle
+
+
+BPEL.
+
+ Experience with SQL, PL/SQL, Java, and XML.
+ Familiarity with Oracle Fusion applications modules (e.g., Financials, HCM, SCM).
+ Understanding of integration technologies and methodologies (e.g., REST/SOAP web services, APIs).
+ Strong problem-solving skills and attention to detail.
+ Excellent communication and interpersonal skills.
+ Ability to work independently and as part of a team.
+Preferred skill sets
+ Understanding of integration technologies and methodologies (e.g., REST/SOAP web services, APIs).
+Year of experience required
+ 7-10 Yrs experience
+Educational Qualification
+ BE/BTech/MBA/MCA/CAs

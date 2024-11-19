@@ -1,0 +1,33 @@
+Name                           Null? Type          
+------------------------------ ----- ------------- 
+FILE_SET_ID                          VARCHAR2(30)  
+MIGRATION_SET_ID                     NUMBER        
+MIGRATION_SET_NAME                   VARCHAR2(100) 
+MIGRATION_STATUS                     VARCHAR2(50)  
+PARTY_TYPE_CODE                      VARCHAR2(80)  
+PARTY_NUMBER                         VARCHAR2(30)  
+PARTY_NAME                           VARCHAR2(150) 
+TAX_REGIME_CODE                      VARCHAR2(30)  
+TAX                                  VARCHAR2(30)  
+TAX_JURISDICTION_CODE                VARCHAR2(30)  
+REGISTRATION_TYPE_CODE               VARCHAR2(80)  
+REGISTRATION_NUMBER                  VARCHAR2(50)  
+EFFECTIVE_FROM                       DATE          
+EFFECTIVE_TO                         DATE          
+DEFAULT_REGISTRATION_FLAG            VARCHAR2(3)   
+REGISTRATION_REASON_CODE             VARCHAR2(30)  
+REGISTRATION_STATUS_CODE             VARCHAR2(30)  
+REGISTRATION_SOURCE_CODE             VARCHAR2(30)  
+REP_PARTY_TAX_NAME                   VARCHAR2(80)  
+ROUNDING_RULE_CODE                   VARCHAR2(80)  
+ROUNDING_LEVEL_CODE                  VARCHAR2(80)  
+SELF_ASSESS_FLAG                     VARCHAR2(3)   
+INCLUSIVE_TAX_FLAG                   VARCHAR2(3)   
+TAX_POINT_BASIS                      VARCHAR2(80)  
+ISSUING_TAX_AUTHORITY                VARCHAR2(30)  
+COLLECTING_TAX_AUTHORITY             VARCHAR2(30)  
+REPORTING_TAX_AUTHORITY              VARCHAR2(30)  
+VALIDATION_TYPE                      VARCHAR2(30)  
+SELF_ASSESS_DIFF_TOL_LMT_FLAG        VARCHAR2(30)  
+MIN_SELF_ASSESS_DIFF_TOL_LIMIT       NUMBER        
+MAX_SELF_ASSESS_DIFF_TOL_LIMIT       NUMBER        

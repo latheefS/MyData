@@ -1,0 +1,102 @@
+https://fa-eqkm-dev3-saasfademo1.ds-fa.oraclepdemos.com/
+
+curtis.feitty
+k3Nu*X#7
+
+novel.test
+Welcome123*
+
+test.curtis
+Version123
+
+
+ranju.gawande@version1.com
+HappyLearning#123
+
+
+taufique.rangrej@version1.com
+MErcy@@20201990
+
+
+Dhanunjaya.Gundala@version1.com
+Version1$
+
+
+https://mylearn.oracle.com/ou/course/oracle-fusion-cloud-hcm-journeys/121386
+
+
+
+
+Create a directory Linux with 777 permissions  -  /home/oracle/hcm/tm/performance_document1/output
+Create a directory in DB					   -  
+xxmx_hcm_datafile_xfm_map
+
+
+
+
+
+
+
+
+
+
+
+===
+
+
+
+select * from xxmx_migration_parameters where application_suite like 'FIN' and application like 'FA';
+				 
+select * from xxmx_module_messages order by 1 desc;
+
+select * from xxmx_gl_daily_rates_stg;
+
+delete from xxmx_migration_parameters where parameter_id = 12401;
+
+
+select PERIOD_COUNTER 
+  
+from apps.fa_deprn_periods@MXDM_NVIS_EXTRACT  
+where PERIOD_NAME=to_char(TO_DATE('18-DEC-1995', 'DD-MON-YYYY'),'MON-YY'); and rownum=1;
+
+select distinct PERIOD_NAME from fa_deprn_periods@MXDM_NVIS_EXTRACT where BOOK_TYPE_CODE = 'OPS CORP';
+
+
+INSERT
+INTO   XXMX_CORE.xxmx_migration_parameters
+         (
+          parameter_id
+         ,application_suite
+         ,application
+         ,business_entity
+         ,sub_entity
+         ,parameter_code
+         ,parameter_value
+         ,enabled_flag
+         ,data_source
+         )
+SELECT    xxmx_migration_parameter_ids_s.NEXTVAL
+         ,'FIN'
+         ,'FA'
+         ,'ALL'
+         ,'ALL'
+         ,'CUT_OFF_DATE'
+         ,'18-DEC-1995'
+         ,'Y'
+         ,'XXMX'
+FROM      dual
+WHERE     1 = 1
+AND       NOT EXISTS (
+                      SELECT 'X'
+                      FROM   XXMX_CORE.xxmx_migration_parameters
+                      WHERE  1 = 1
+                      AND    application_suite = 'FIN'
+                      AND    application       = 'FA'
+                      AND    business_entity   = 'ALL'
+                      AND    sub_entity        = 'ALL'
+                      AND    parameter_code    = 'CUT_OFF_DATE'
+                      AND    parameter_value   = '18-DEC-1995'
+                     );
+					 
+					 
+					 exec xxmx_fa_mass_additions_pkg.src_mass_addition ('1234','MASS_ADDITIONS');

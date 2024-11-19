@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_OLC_CLASS_RES_TL_STG_ARCH
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_STG"."XXMX_OLC_CLASS_RES_TL_STG_ARCH" MODIFY ("LANGUAGE" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_OLC_CLASS_RES_TL_STG_ARCH" MODIFY ("CLASSROOM_RESOURCE_NUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_OLC_CLASS_RES_TL_STG_ARCH" MODIFY ("TITLE" NOT NULL ENABLE);

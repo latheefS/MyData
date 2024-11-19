@@ -1,0 +1,19 @@
+LOAD DATA
+INFILE XXMX_HCM_ASG_SUPERVISOR.dat
+REPLACE 
+INTO  TABLE XXMX_PER_ASG_SUP_F_STG
+FIELDS TERMINATED BY "|" OPTIONALLY ENCLOSED BY '"'  TRAILING NULLCOLS 
+(FILE_SET_ID                    ,
+MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               ,
+BG_NAME                        ,
+EFFECTIVE_START_DATE           ,
+EFFECTIVE_END_DATE             ,
+PRIMARY_FLAG                   ,
+MANAGER_PERSON_NUMBER          ,
+MANAGER_ASSIGNMENT_NUMBER      ,
+ASSIGNMENT_NUMBER              ,
+MANAGER_TYPE                   ,
+PERSONNUMBER                   
+)
+

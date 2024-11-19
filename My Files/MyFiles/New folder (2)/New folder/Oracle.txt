@@ -1,0 +1,272 @@
+Oracle:
+-------
+
+We are looking for a strong Oracle ERP Cloud technical consultant who thrives on solving complex business problems by designing and building integrations and extensions. The ideal candidate should:
+
+ Be able to operate independently to provide quality work products; perform varied and complex duties and tasks that need independent judgment
+ Have excellent communication skills – both written & verbal
+ Have good interpersonal skills with ability to build rapport with all stakeholders
+ Have ability to present ideas and solutions in a clear & concise manner
+ Be self-motivated with a lot of energy and drive
+ Have the ability and willingness to learn
+
+
+The ideal candidate should be Bachelor of Engineering/Bachelor of Technology or Master of ComputerApplications with experience ranging from 4 to 10 years and should:
+
+ Have hands-on experience in integrating and extending Oracle ERP Cloud applications (Financials, Distribution, Manufacturing)
+ Have experience (In-Depth Understanding of Data Model and Business process functionality and related data flow) in Oracle ERP Cloud applications (Finance or Supply chain)
+ Have experience in one of the PaaS components, namely, OIC, VBCS, DBCS/ATP, Storage Cloud Service
+ Have experience in Interfaces in and out of ERP cloud: FBDI, HDL, ADFDI, BIP, OTBI, as well as Web Services (SOAP & REST)
+ Have development experience in Integration and extensions using Java/Java Script/VBCS
+ Have experience in writing efficient and optimized code and understanding of performance tuning techniques
+ Have understanding of Cloud Integration strategies (Cloud to Cloud, Cloud to Ground) and Extensibility strategies as a plus
+
+
+Career Level - IC3
+
+Responsibilities
+
+Your Responsibilities
+
+As an integral part of the Oracle ERP Cloud Development Team, you will be responsible for the following:
+
+ Working with remote and geographically distributed teams to enable building the right products, using the right building blocks and making them consumable by other products easily
+ Be very technically hands-on and own/drive key end to end product/services
+ Ensure customer success including delivering fixes/patches as needed
+ Help build high performance organization including referring, interviewing top talent to Oracle
+ Design & Development of administration of integrations and extensions using Oracle Integration Cloud (OIC)
+ Ability to design and implement integration components between enterprise systems
+ Design and provide hands-on development of cloud-based enterprise integrations, leveraging API frameworks
+ Work closely with internal and external partners to gather requirements and design complex business application extensions and data integration solutions
+ Translate business processes and requirements into technical integration / extension requirements and designs
+ Participate proactively in Organization initiatives
+ 
+ -----
+ 
+ Job Description
+
+An experienced consulting professional who has an understanding of solutions, industry best practices, multiple business processes or technology designs within a product/technology family. Operates independently to provide quality work products to an engagement. Performs varied and complex duties and tasks that need independent judgment, in order to implement Oracle products and technology to meet customer needs. Applies Oracle methodology, company procedures, and leading practices.
+
+Career Level - IC3
+
+Responsibilities
+
+Operates independently to provide quality work products to an engagement. Performs varied and complex duties and tasks that need independent judgment, in order to implement Oracle products and technology to meet customer needs. Applies Oracle methodology, company procedures, and leading practices. Demonstrates expertise to deliver functional and technical solutions on moderately complex customer engagements. May act as the team lead on projects. Effectively consults with management of customer organizations. Participates in business development activities. Develops and configures detailed solutions for moderately complex projects.
+
+About Us
+
+As a world leader in cloud solutions, Oracle uses tomorrow’s technology to tackle today’s problems. True innovation starts with diverse perspectives and various abilities and backgrounds.
+
+When everyone’s voice is heard, we’re inspired to go beyond what’s been done before. It’s why we’re committed to expanding our inclusive workforce that promotes diverse insights and perspectives.
+
+We’ve partnered with industry-leaders in almost every sector—and continue to thrive after 40+ years of change by operating with integrity.
+
+Oracle careers open the door to global opportunities where work-life balance flourishes. We offer a highly competitive suite of employee benefits designed on the principles of parity and consistency. We put our people first with flexible medical, life insurance and retirement options. We also encourage employees to give back to their communities through our volunteer programs.
+
+We’re committed to including people with disabilities at all stages of the employment process. If you require accessibility assistance or accommodation for a disability at any point, let us know by calling +1 888 404 2494, option one.
+
+Disclaimer:
+
+Oracle is an Equal Employment Opportunity Employer*. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, sexual orientation, gender identity, disability and protected veterans’ status, or any other characteristic protected by law. Oracle will consider for employment qualified applicants with arrest and conviction records pursuant to applicable law.
+
+ Which includes being a United States Affirmative Action Employer
+ 
+ -------------
+ 
+ JOB DESCRIPTION 
+
+Do you want to be at the forefront of cutting-edge Oracle technologies and help partners build innovative solutions on Oracle Cloud? Then we want you!
+
+Oracle is developing the Redwood platform – a modern, cloud-native platform for extending and customizing Oracle Fusion Applications. We are looking for a highly motivated and expert Oracle Fusion Applications Technical Consultant to join our Product Development organization. In this role, you will help drive our Global Partner Enablement Strategy by developing and delivering live, hands-on training on the Redwood Platform/VB Studio to our implementation partners. You will also get the opportunity to work on new and innovative projects and stay up to date on the latest Oracle technologies and trends.
+
+Qualifications & Skills
+
+At least 10 years of Oracle EBS/Cloud technical implementation experience with at least 3 years of experience in extending and customizing Oracle Fusion Applications using Visual Builder Studio or VBCS.
+Hands-on experience with Java, ADF, APEX and OCI will be preferred.
+Excellent communication skills and experience in delivering enablement training, either in-person or virtually.
+Deep understanding of implementation priorities and challenges.
+Strong interpersonal and stakeholder management skills.
+Consulting experience is helpful.
+Candidate should be a qualified Engineer.
+
+
+Career Level - IC4
+
+Responsibilities
+
+Your Key Duties & Accountabilities
+
+Engage with partners to build Oracle Fusion technical expertise within their practice and develop enablement plans to drive successful project implementations.
+Develop innovative and engaging technical learning content covering practical use cases and implementation standard methodologies.
+Deliver live in-person/virtual implementation training to our top-tier Consulting partners across the globe, support hands-on lab sessions and address their implementation queries.
+Collaborate with Product Management, Partner Success, Global Support and other teams to ensure that the training aligns with our strategic focus areas and addresses ongoing implementation challenges.
+Analyze metrics to measure the impact of the initiative and identify new focus areas to enable and grow the partner ecosystem.
+
+-----
+Job Description
+
+As a member of the Support organization, your focus is to deliver post-sales support and solutions to the Oracle customer base while serving as an advocate for customer needs. This involves resolving post-sales non-technical customer inquiries via phone and electronic means, as well as, technical questions regarding the use of and troubleshooting for our Electronic Support Services. A primary point of contact for customers, you are responsible for facilitating customer relationships with Support and providing advice and assistance to internal Oracle employees on diverse customer situations and escalated issues.
+
+Expected to have very good technical experience/knowledge in Oracle SaaS Cloud (Finance and or SCM core modules). Should be familiar with Oracle SaaS Technical skills - Security, BI & OTBI Reports, customizations, VBS
+
+Education & Experience:BE, BTech, MCA or equivalent preferred. Other qualifications with adequate experience may be considered.
+
+Job Description:
+
+ Should have 5+ years of experience in Oracle Cloud implementation & support.
+ Should have worked in 3+ or more Oracle Cloud implementation or support projects as a Techno Functional consultant.
+ As a Techno Functional consultant should have experience in implementing & Supporting Oracle Cloud modules - SCM and Finance . Should have hands exp. in BI & OTBI Reports, Value Set, and Personalization. Should have exp. in workflow configuration using BPM. Should have Experience/Knowledge in Reporting, Data Migration and Interface/Integration development using HBIP, Web Service etc.
+ Should have exp. in client facing role and must have worked on Req. Gathering, Product Workshop & Demo, CRP, UAT etc. Should have superb communication, Project/collaborator/team management skills and experience. Should have excellent documentation, presentation, customer handling, problem solving, solution design skills and experience.
+
+
+Career Level - IC3
+
+Responsibilities
+
+Job Responsibilities:The main role of a Support engineer is to implement modules / solution and resolve highly complex techno-functional requirements. The key skills put to use daily are - high level of techno-functional skills, Oracle products knowledge, problem solving skills, and customer interaction/service expertise
+
+-------
+Job Description
+
+As a Senior Software Developer on this team, you will work closely with Oracle's Integration Cloud products, focusing on the development and enhancement of OIC solutions. You will participate in the design and implementation of integration solutions, requiring strong technical expertise and effective communication skills. You will collaborate with team members to deliver projects on time and ensure the quality of deliverables. Additionally, you will contribute to improving existing practices and processes within the software engineering division, leveraging your technical skills to support the team and contribute to project success
+
+Career Level : IC3
+
+Career Level - IC3
+
+Responsibilities
+
+About You:
+
+You have substantial experience in designing and implementing integration solutions utilizing Oracle Integration Cloud (OIC).
+You possess strong skills as a software architect, consistently delivering impactful solutions at scale.
+Customer satisfaction is a top priority for you, consistently striving to exceed expectations.
+You excel in communication, adept at conveying complex technical concepts clearly.
+You are a detail-oriented engineer with a commitment to high standards, continuously pursuing excellence.
+You thrive in dynamic environments and are comfortable navigating ambiguity.
+You have a passion for technology and confidently advocate your viewpoints with colleagues and supervisors.
+
+
+Minimum Qualifications:
+
+5+ years of experience in software development or related fields.
+7+ years of experience delivering integration, SOA, or API-based solutions.
+Hands-on experience in at least one full lifecycle project using OIC, SOA, and API technologies.
+Expertise in integrating SaaS applications and on-premises software.
+Proficiency in web services and XML technologies.
+Solid understanding and practical experience with SOA and RESTful services.
+Proficiency in at least two of Oracle’s major areas: infrastructure, database, middleware, and analytics.
+BS or MS degree or equivalent practical experience relevant to the functional area.
+
+---
+Job Description
+
+Oracle Global Service Center (GSC) is a unit within oracle that establishes long-term relationships with many of Oracle's customers through annuity-based service contracts and project-based one-time services. It is an offshore Hub that will cater to the needs of all Service entities across Oracle globally. GSC team sells from a broad IT-services portfolio in both the fixed price and T&M basis. GSC services are typically requested by large Oracle customers that require the utmost attention to real mission-critical applications and processes. GSC covers the majority of large-scale Oracle customers.
+
+Oracle Global Service Center provides unmatched, tailored support that ensures organization’s Oracle technology investments deliver the ground breaking innovation and performance your business requires to compete, all while coexisting within your IT environment.
+
+What You’ll Do
+
+Intermediate consulting position operating independently with some assistance and guidance to provide quality work products to a project team or customer that comply with Oracle methodologies and practices.
+
+Performs standard duties and tasks with some variation to implement Oracle products and technology to meet customer specifications.
+
+Standard assignments are accomplished without assistance by exercising independent judgment, within defined policies and processes, to deliver functional and technical solutions on moderately complex customer engagements.
+
+Career Level - IC3
+
+Responsibilities
+
+What You’ll Bring
+
+You have that rare combination—a sharp technical brain and a head for business. You’ll use this to help customers achieve Experience in designing, developing, documenting, and testing of BI reports, Data Migration, Personalization, extensions, and OIC/SOA/SOACS/ components
+
+SQL, PL/SQL, And Java Skills Are Required.
+
+Product expertise in at least 3 of Data Migration, BI reports, Personalization, Security, extensions, and OIC/SOA/SOACS/ components within depth technical development skills.
+
+Knowledge on Oracle Cloud offerings (SaaS and PaaS), Web Services.
+
+The candidate should have exposure to developing integrations/extensions in OIC/VBCS/JET. BPM/PCS will be added advantages
+
+6 years + of experience as developer in BIP/OTBI, Fusion Data Migration using various techniques, Personalization, Groovy and ICS/OIC.
+
+Python and AIML skills will be added advantage.
+
+Capacity to work as an Individual Contributor. Hands-On experience is a critical requirement.
+
+Good interpersonal skills with ability to build rapport with all collaborators.
+
+---
+
+Oracle GSC is hiring for Fusion SCM Technical Consultant (Fusion and OIC) 
+
+
+
+
+
+Minimum experience - 5 years + 
+
+
+
+
+
+Work Locations - Bangalore, Gurgaon, Noida, Chennai, Hyderabad, Pune, Mumbai, Kolkata, Gandhinagar, Trivandrum
+
+
+
+
+
+Oracle Global Service Center (GSC) is a unit within oracle that establishes long-term relationships with many of Oracle's customers through annuity-based service contracts and project-based one-time services. It is an offshore Hub that will cater to the needs of all Service entities across Oracle globally. GSC team sells from a broad IT-services portfolio in both the fixed price and T&M basis. GSC services are typically requested by large Oracle customers that require the utmost attention to real mission-critical applications and processes. GSC covers the majority of large-scale Oracle customers.
+
+Oracle Global Service Center provides unmatched, tailored support that ensures organization’s Oracle technology investments deliver the ground breaking innovation and performance your business requires to compete, all while coexisting within your IT environment.
+
+
+
+
+
+What You’ll Do  
+
+Intermediate consulting position operating independently with some assistance and guidance to provide quality work products to a project team or customer that comply with Oracle methodologies and practices. 
+
+Performs standard duties and tasks with some variation to implement Oracle products and technology to meet customer specifications.
+
+Standard assignments are accomplished without assistance by exercising independent judgment, within defined policies and processes, to deliver functional and technical solutions on moderately complex customer engagements.
+
+
+
+
+
+What you'll bring
+
+You bring a unique blend of technical expertise and business acumen. This allows you to effectively design, develop, document and test technical solutions for customers within Oracle Fusion.
+
+
+
+
+
+Key Responsibilities:
+
+Lead and independently contribute to development activities that include Integrations, Extensions, Customizations and Data Migrations.
+Provide technical guidance and mentorship to junior team members.
+Conduct code reviews to ensure adherence to coding standards and best practices.
+
+
+Required Skills:
+
+Minimum 5 years of hands-on experience and expertise in at least three of the following areas: BI Publisher/OTBI, Oracle Integration Cloud (OIC), Personalization, Extensions, Data Migration Tools.
+Proficiency in SQL and PL/SQL.
+Extensive knowledge in Oracle Fusion SCM modules (Procurement, Order Management, Inventory, etc.).
+Strong understanding of Oracle Fusion SCM data model and architecture.
+Familiarity with Oracle Cloud offerings (SaaS and PaaS) and web services.
+Ability to work independently as a contributor with hands-on experience is essential.
+Strong analytical and problem-solving skills.
+Excellent communication and interpersonal skills with the ability to collaborate effectively with stakeholders.
+
+
+Good To Have:
+
+Experience in BPM/PCS.
+Exposure to VBS/VBCS/Apex.
+Familiarity with Oracle Cloud Infrastructure (OCI).
+Knowledge in Python and AI/ML skills.

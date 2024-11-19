@@ -1,0 +1,1016 @@
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'CALC_CARDS_PAE'
+         ,'PAE Calculation Card'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_CARDS_PAE'
+         ,'calc cards pae'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_DTL_PAE'
+         ,'comp dtl pae'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_ASOC_PAE'
+         ,'comp asoc pae'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_ASOC_DTL_PAE'
+         ,'comp asoc dtl pae'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'CALC_CARDS_SD'
+         ,'Statutory Deductions'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_CARDS_SD'
+         ,'calc cards sd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_DTL_SD'
+         ,'comp dtl sd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'CALC_CARDS_SL'
+         ,'Student Loan'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_CARDS_SL'
+         ,'calc cards sl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_SL'
+         ,'comp sl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CARD_ASOC_SL'
+         ,'card asoc sl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_DTL_SL'
+         ,'comp dtl sl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_ASOC_SL'
+         ,'comp asoc sl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'CALC_CARDS_BP'
+         ,'Benefit and Pension'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_CARDS_BP'
+         ,'calc cards bp'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CARD_COMP_BP'
+         ,'card comp bp'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ASOC_BP'
+         ,'asoc bp'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ASOC_DTL_BP'
+         ,'asoc dtl bp'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_DTL_BP'
+         ,'comp dtl bp'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ENTVAL_BP'
+         ,'entval bp'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_VALDF_BP'
+         ,'calc valdf bp'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'CALC_CARDS_NSD'
+         ,'New Starter Declaration'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_CARDS_NSD'
+         ,'calc cards nsd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CARD_COMP_NSD'
+         ,'card comp nsd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ASOC_NSD'
+         ,'asoc nsd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ASOC_DTL_NSD'
+         ,'asoc dtl nsd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_DTL_NSD'
+         ,'comp dtl nsd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ENTVAL_NSD'
+         ,'entval nsd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_VALDF_NSD'
+         ,'calc valdf nsd'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'CALC_CARDS_PGL'
+         ,'Post Graduate Loan'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_CARDS_PGL'
+         ,'calc cards pgl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CARD_COMP_PGL'
+         ,'card comp pgl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ASOC_PGL'
+         ,'asoc pgl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ASOC_DTL_PGL'
+         ,'asoc dtl pgl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'COMP_DTL_PGL'
+         ,'comp dtl pgl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ENTVAL_PGL'
+         ,'entval pgl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'CALC_VALDF_PGL'
+         ,'calc valdf pgl'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'PAY_BALANCES'
+         ,'Balances'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'BALANCE_HEADERS'
+         ,'Pay balance headers'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'BALANCE_LINES'
+         ,'Pay balance lines'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'ELEMENTS'
+         ,'Elements'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ELEMENTS'
+         ,'Pay elements'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ELEM_ENTRIES'
+         ,'Element entries'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );

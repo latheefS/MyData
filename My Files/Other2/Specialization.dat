@@ -1,0 +1,23 @@
+COMMENT Data for Business Object: Specialization Version: V2 Created on: 07-08-2021 
+COMMENT The Specialization object hierarchy includes the following attributes that are being withdrawn and will be removed in a future release. Review these attributes in the View Business Objects task for more information: 
+COMMENT From Specialization: TrailerLiId, TrailerLiNumber
+METADATA|Specialization|EffectiveStartDate|SpecializationNumber|Title|ShortDescription|Description|PublishStartDate|OwnedByPersonNumber|MinimumExpectedEffort|MaximumExpectedEffort|SourceSystemOwner|SourceSystemId
+MERGE|Specialization|2021/08/15|SPL111222|Next Simple Specialization|Next Simple Specialization Short Description||2021/08/15|1000005|1|9|DATAMIGRATION|SPLN1112221
+MERGE|Specialization|2021/08/15|SPL111223|Next Typical Specialization|Next Typical Specialization Short Description||2021/08/15|1000005|1|9|DATAMIGRATION|SPLN1112231
+
+METADATA|SpecializationSection|EffectiveStartDate|SpecializationSectionNumber|Title|Description|SectionPosition|NumberOfActivitiesToComplete|InitialAssignmentStatusOfActivities|SpecializationNumber|SourceSystemOwner|SourceSystemId
+MERGE|SpecializationSection|2021/08/15|SSN111111|Next Simple Specialization Section||1|0|Active|SPL111222|DATAMIGRATION|SSNO1111111
+MERGE|SpecializationSection|2021/08/15|SSN111112|Next Typical Specialization Section One||1|0|Active|SPL111223|DATAMIGRATION|SSNO1111121
+MERGE|SpecializationSection|2021/08/15|SSN111113|Next Typical Specialization Section Two||2|0|Active|SPL111223|DATAMIGRATION|SSNO1111131
+
+METADATA|SpecializationSectionActivity|EffectiveStartDate|ActivityNumber|ActivityPosition|SpecializationSectionNumber|LearningItemNumber|SourceSystemOwner|SourceSystemId
+MERGE|SpecializationSectionActivity|2021/08/15|AN234567|1|SSN111111|OLC121015|DATAMIGRATION|SSAN2345671
+MERGE|SpecializationSectionActivity|2021/08/15|AN234568|2|SSN111111|CTEST123_PK|DATAMIGRATION|SSAN2345681
+MERGE|SpecializationSectionActivity|2021/08/15|AN234569|1|SSN111112|OLC120005|DATAMIGRATION|SSAN2345691
+MERGE|SpecializationSectionActivity|2021/08/15|AN234570|2|SSN111112|OLC135001|DATAMIGRATION|SSAN2345701
+MERGE|SpecializationSectionActivity|2021/08/15|AN234571|1|SSN111113|CRS107890|DATAMIGRATION|SSAN2345711
+MERGE|SpecializationSectionActivity|2021/08/15|AN234572|2|SSN111113|OLC134091|DATAMIGRATION|SSAN2345721
+
+METADATA|SpecializationDefaultAccess|DefaultAccessNumber|EffectiveStartDate|FollowCommunity|SelfViewMode|SelfInitialStatus|SelfEnrollForm|SelfActivateApprove|SelfEnrollQuestionnaire|SelfQuestionnaireCode|SelfPrereqType|SelfWithdrawPrereqDays|MgrInitialStatus|MgrActivateApprove|MgrWithdrawPrereqDays|MgrMarkComplete|SourceSystemId|SourceSystemOwner|SpecializationNumber
+MERGE|SpecializationDefaultAccess|DAN107885|2021/08/15|Y|Summary View|Active|N|ORA_MANUAL|N||NOT_DEFERRED||Active|ORA_MANUAL|9|Y|SPLDAN1078851|DATAMIGRATION|SPL111222
+MERGE|SpecializationDefaultAccess|DAN107886|2021/08/15|Y|Details View|Active|Y|ORA_AUTOMATIC|N||DEFERRED|9|Active|ORA_AUTOMATIC|9|Y|SPLDAN1078861|DATAMIGRATION|SPL111223

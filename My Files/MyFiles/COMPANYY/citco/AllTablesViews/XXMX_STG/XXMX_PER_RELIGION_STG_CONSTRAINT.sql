@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_PER_RELIGION_STG
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_STG"."XXMX_PER_RELIGION_STG" MODIFY ("PERSONNUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_PER_RELIGION_STG" MODIFY ("EFFECTIVESTARTDATE" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_PER_RELIGION_STG" MODIFY ("RELIGION" NOT NULL ENABLE);

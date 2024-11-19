@@ -1,0 +1,172 @@
+-- +=========================================================================+
+-- | $Header: fusionapps/scm/rcv/bin/RcvLotsInterface.ctl /st_fusionapps_pt-v2mib/6 2021/07/07 09:23:47 nveluthe Exp $ |
+-- +=========================================================================+
+-- | Copyright (c) 2012 Oracle Corporation Redwood City, California, USA |
+-- | All rights reserved. |
+-- |=========================================================================+
+-- | |
+-- | |
+-- | FILENAME |
+-- | |
+-- | RcvLotsInterface.ctl
+-- | |
+-- | DESCRIPTION
+-- | Uploads CSV file data into INV_TRANSACTION_LOTS_INTERFACE
+-- |
+-- | Created by Anshuman 05/14/2012
+-- |
+-- | History
+-- | Initial version source controled via bug 14019436
+
+--OPTIONS (ROWS=1)
+LOAD DATA                                                                                                                            
+--INFILE 'rcvreceiptprocessor.csv'
+--BADFILE 'rcvreceiptprocessor.bad'
+--DISCARDFILE 'rcvreceiptprocessor.dsc' 
+
+APPEND
+INTO TABLE INV_TRANSACTION_LOTS_INTERFACE
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' 
+TRAILING NULLCOLS
+(TRANSACTION_INTERFACE_ID EXPRESSION "INV_MATERIAL_TXNS_S.NEXTVAL",
+LAST_UPDATE_DATE                expression            "systimestamp",
+LAST_UPDATED_BY                 CONSTANT              '#LASTUPDATEDBY#',
+CREATION_DATE                   expression            "systimestamp",
+CREATED_BY                      CONSTANT              '#CREATEDBY#',
+LAST_UPDATE_LOGIN               CONSTANT              '#LASTUPDATELOGIN#',
+RCV_INTERFACE_LINE_NUM ,
+LOT_NUMBER ,
+LOT_EXPIRATION_DATE           "to_date(:LOT_EXPIRATION_DATE,'YYYY/MM/DD')",
+TRANSACTION_QUANTITY "fun_load_interface_utils_pkg.replace_decimal_char(:TRANSACTION_QUANTITY)",
+PRIMARY_QUANTITY     "fun_load_interface_utils_pkg.replace_decimal_char(:PRIMARY_QUANTITY)",
+SECONDARY_TRANSACTION_QUANTITY "fun_load_interface_utils_pkg.replace_decimal_char(:SECONDARY_TRANSACTION_QUANTITY)",
+RCV_LOTSERIAL_INTERFACE_NUM ,
+--SERIAL_TRANSACTION_TEMP_ID   EXPRESSION "INV_MATERIAL_TXNS_S.NEXTVAL",
+ORIGINATION_DATE               "to_date(:ORIGINATION_DATE, 'YYYY/MM/DD')",
+PLACE_OF_ORIGIN                ,
+ORIGINATION_TYPE               ,
+DATE_CODE                      ,
+GRADE_CODE                     ,
+AGE                            ,
+CHANGE_DATE                    "to_date(:CHANGE_DATE, 'YYYY/MM/DD')",
+MATURITY_DATE                  "to_date(:MATURITY_DATE, 'YYYY/MM/DD')",
+HOLD_DATE                      "to_date(:HOLD_DATE, 'YYYY/MM/DD')",
+RETEST_DATE                    "to_date(:RETEST_DATE, 'YYYY/MM/DD')",
+EXPIRATION_ACTION_DATE         "to_date(:EXPIRATION_ACTION_DATE, 'YYYY/MM/DD')",
+EXPIRATION_ACTION_NAME         ,
+REASON_NAME                    ,
+ITEM_SIZE                      ,
+COLOR                          ,
+LOT_VOLUME                     "fun_load_interface_utils_pkg.replace_decimal_char(:LOT_VOLUME)",
+VOLUME_UOM                     ,
+BEST_BY_DATE                   "to_date(:BEST_BY_DATE, 'YYYY/MM/DD')",
+LOT_LENGTH                     "fun_load_interface_utils_pkg.replace_decimal_char(:LOT_LENGTH)",
+LENGTH_UOM                     ,
+RECYCLED_CONTENT               ,
+LOT_THICKNESS                  "fun_load_interface_utils_pkg.replace_decimal_char(:LOT_THICKNESS)",
+THICKNESS_UOM                  ,
+LOT_WIDTH                      "fun_load_interface_utils_pkg.replace_decimal_char(:LOT_WIDTH)",
+WIDTH_UOM                      ,
+CURL_WRINKLE_FOLD              ,
+SUBLOT_NUM                     ,
+PARENT_LOT_NUMBER              ,
+STATUS_CODE                    ,
+VOLUME_UOM_NAME                ,
+LENGTH_UOM_NAME                ,
+WIDTH_UOM_NAME                 ,
+VENDOR_NAME                    ,
+SUPPLIER_LOT_NUMBER            ,
+TERRITORY_SHORT_NAME           ,
+LOT_ATTRIBUTE_CATEGORY         ,
+C_ATTRIBUTE1                   "REPLACE(:C_ATTRIBUTE1,'\\n','\n')",
+C_ATTRIBUTE2                   "REPLACE(:C_ATTRIBUTE2,'\\n','\n')",
+C_ATTRIBUTE3                   "REPLACE(:C_ATTRIBUTE3,'\\n','\n')",
+C_ATTRIBUTE4                   "REPLACE(:C_ATTRIBUTE4,'\\n','\n')",
+C_ATTRIBUTE5                   "REPLACE(:C_ATTRIBUTE5,'\\n','\n')",
+C_ATTRIBUTE6                   "REPLACE(:C_ATTRIBUTE6,'\\n','\n')",
+C_ATTRIBUTE7                   "REPLACE(:C_ATTRIBUTE7,'\\n','\n')",
+C_ATTRIBUTE8                   "REPLACE(:C_ATTRIBUTE8,'\\n','\n')",
+C_ATTRIBUTE9                   "REPLACE(:C_ATTRIBUTE9,'\\n','\n')",
+C_ATTRIBUTE10                  "REPLACE(:C_ATTRIBUTE10,'\\n','\n')",
+C_ATTRIBUTE11                  "REPLACE(:C_ATTRIBUTE11,'\\n','\n')",
+C_ATTRIBUTE12                  "REPLACE(:C_ATTRIBUTE12,'\\n','\n')",
+C_ATTRIBUTE13                  "REPLACE(:C_ATTRIBUTE13,'\\n','\n')",
+C_ATTRIBUTE14                  "REPLACE(:C_ATTRIBUTE14,'\\n','\n')",
+C_ATTRIBUTE15                  "REPLACE(:C_ATTRIBUTE15,'\\n','\n')",
+C_ATTRIBUTE16                  "REPLACE(:C_ATTRIBUTE16,'\\n','\n')",
+C_ATTRIBUTE17                  "REPLACE(:C_ATTRIBUTE17,'\\n','\n')",
+C_ATTRIBUTE18                  "REPLACE(:C_ATTRIBUTE18,'\\n','\n')",
+C_ATTRIBUTE19                  "REPLACE(:C_ATTRIBUTE19,'\\n','\n')",
+C_ATTRIBUTE20                  "REPLACE(:C_ATTRIBUTE20,'\\n','\n')",
+D_ATTRIBUTE1                   "to_date(:D_ATTRIBUTE1, 'YYYY/MM/DD')",
+D_ATTRIBUTE2                   "to_date(:D_ATTRIBUTE2, 'YYYY/MM/DD')",
+D_ATTRIBUTE3                   "to_date(:D_ATTRIBUTE3, 'YYYY/MM/DD')",
+D_ATTRIBUTE4                   "to_date(:D_ATTRIBUTE4, 'YYYY/MM/DD')",
+D_ATTRIBUTE5                   "to_date(:D_ATTRIBUTE5, 'YYYY/MM/DD')",
+D_ATTRIBUTE6                   "to_date(:D_ATTRIBUTE6, 'YYYY/MM/DD')",
+D_ATTRIBUTE7                   "to_date(:D_ATTRIBUTE7, 'YYYY/MM/DD')",
+D_ATTRIBUTE8                   "to_date(:D_ATTRIBUTE8, 'YYYY/MM/DD')",
+D_ATTRIBUTE9                   "to_date(:D_ATTRIBUTE9, 'YYYY/MM/DD')",
+D_ATTRIBUTE10                  "to_date(:D_ATTRIBUTE10,'YYYY/MM/DD')",
+N_ATTRIBUTE1                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE1)",
+N_ATTRIBUTE2                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE2)",
+N_ATTRIBUTE3                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE3)",
+N_ATTRIBUTE4                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE4)",
+N_ATTRIBUTE5                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE5)",
+N_ATTRIBUTE6                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE6)",
+N_ATTRIBUTE7                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE7)",
+N_ATTRIBUTE8                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE8)",
+N_ATTRIBUTE9                   "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE9)",
+N_ATTRIBUTE10                  "fun_load_interface_utils_pkg.replace_decimal_char(:N_ATTRIBUTE10)",
+T_ATTRIBUTE1  "to_timestamp(:T_ATTRIBUTE1, 'YYYY/MM/DD HH24:MI:SS:FF')",
+T_ATTRIBUTE2  "to_timestamp(:T_ATTRIBUTE2, 'YYYY/MM/DD HH24:MI:SS:FF')",
+T_ATTRIBUTE3  "to_timestamp(:T_ATTRIBUTE3, 'YYYY/MM/DD HH24:MI:SS:FF')",
+T_ATTRIBUTE4  "to_timestamp(:T_ATTRIBUTE4, 'YYYY/MM/DD HH24:MI:SS:FF')",
+T_ATTRIBUTE5  "to_timestamp(:T_ATTRIBUTE5, 'YYYY/MM/DD HH24:MI:SS:FF')",
+ATTRIBUTE_CATEGORY             ,
+ATTRIBUTE1                     "REPLACE(:ATTRIBUTE1,'\\n','\n')",
+ATTRIBUTE2                     "REPLACE(:ATTRIBUTE2,'\\n','\n')",
+ATTRIBUTE3                     "REPLACE(:ATTRIBUTE3,'\\n','\n')",
+ATTRIBUTE4                     "REPLACE(:ATTRIBUTE4,'\\n','\n')",
+ATTRIBUTE5                     "REPLACE(:ATTRIBUTE5,'\\n','\n')",
+ATTRIBUTE6                     "REPLACE(:ATTRIBUTE6,'\\n','\n')",
+ATTRIBUTE7                     "REPLACE(:ATTRIBUTE7,'\\n','\n')",
+ATTRIBUTE8                     "REPLACE(:ATTRIBUTE8,'\\n','\n')",
+ATTRIBUTE9                     "REPLACE(:ATTRIBUTE9,'\\n','\n')",
+ATTRIBUTE10                    "REPLACE(:ATTRIBUTE10,'\\n','\n')",
+ATTRIBUTE11                    "REPLACE(:ATTRIBUTE11,'\\n','\n')",
+ATTRIBUTE12                    "REPLACE(:ATTRIBUTE12,'\\n','\n')",
+ATTRIBUTE13                    "REPLACE(:ATTRIBUTE13,'\\n','\n')",
+ATTRIBUTE14                    "REPLACE(:ATTRIBUTE14,'\\n','\n')",
+ATTRIBUTE15                    "REPLACE(:ATTRIBUTE15,'\\n','\n')",
+ATTRIBUTE16                    "REPLACE(:ATTRIBUTE16,'\\n','\n')",
+ATTRIBUTE17                    "REPLACE(:ATTRIBUTE17,'\\n','\n')",
+ATTRIBUTE18                    "REPLACE(:ATTRIBUTE18,'\\n','\n')",
+ATTRIBUTE19                    "REPLACE(:ATTRIBUTE19,'\\n','\n')",
+ATTRIBUTE20                    "REPLACE(:ATTRIBUTE20,'\\n','\n')",
+ATTRIBUTE_NUMBER1 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER1)",
+ATTRIBUTE_NUMBER2 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER2)",
+ATTRIBUTE_NUMBER3 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER3)",
+ATTRIBUTE_NUMBER4 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER4)",
+ATTRIBUTE_NUMBER5 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER5)",
+ATTRIBUTE_NUMBER6 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER6)",
+ATTRIBUTE_NUMBER7 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER7)",
+ATTRIBUTE_NUMBER8 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER8)",
+ATTRIBUTE_NUMBER9 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER9)",
+ATTRIBUTE_NUMBER10 "fun_load_interface_utils_pkg.replace_decimal_char(:ATTRIBUTE_NUMBER10)",
+ATTRIBUTE_DATE1                "to_date(:ATTRIBUTE_DATE1, 'YYYY/MM/DD')",
+ATTRIBUTE_DATE2                "to_date(:ATTRIBUTE_DATE2, 'YYYY/MM/DD')",
+ATTRIBUTE_DATE3                "to_date(:ATTRIBUTE_DATE3, 'YYYY/MM/DD')",
+ATTRIBUTE_DATE4                "to_date(:ATTRIBUTE_DATE4, 'YYYY/MM/DD')",
+ATTRIBUTE_DATE5                "to_date(:ATTRIBUTE_DATE5, 'YYYY/MM/DD')",
+ATTRIBUTE_TIMESTAMP1  "to_timestamp(:ATTRIBUTE_TIMESTAMP1, 'YYYY/MM/DD HH24:MI:SS:FF')",
+ATTRIBUTE_TIMESTAMP2  "to_timestamp(:ATTRIBUTE_TIMESTAMP2, 'YYYY/MM/DD HH24:MI:SS:FF')",
+ATTRIBUTE_TIMESTAMP3  "to_timestamp(:ATTRIBUTE_TIMESTAMP3, 'YYYY/MM/DD HH24:MI:SS:FF')",
+ATTRIBUTE_TIMESTAMP4  "to_timestamp(:ATTRIBUTE_TIMESTAMP4, 'YYYY/MM/DD HH24:MI:SS:FF')",
+ATTRIBUTE_TIMESTAMP5  "to_timestamp(:ATTRIBUTE_TIMESTAMP5, 'YYYY/MM/DD HH24:MI:SS:FF')",
+PRODUCT_CODE                   CONSTANT 'RCV',
+--PRODUCT_TRANSACTION_ID         EXPRESSION "RCV_TRANSACTIONS_INTERFACE_S.NEXTVAL",
+OBJECT_VERSION_NUMBER CONSTANT 1,
+--LOAD_REQUEST_ID constant '1'
+LOAD_REQUEST_ID constant '#LOADREQUESTID#'
+)

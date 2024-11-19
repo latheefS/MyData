@@ -1,0 +1,3 @@
+COMMENT Data for Business Object: InstructorResource Version: V2 Created on: 08-05-2021 
+METADATA|InstructorResource|InstructorResourceNumber|PersonNumber|OwnedByPersonNumber|SourceType|SourceSystemId|SourceSystemOwner
+MERGE|InstructorResource|IR330033|1000281|1000005|Instructor|IRSC3300331|DATAMIGRATION

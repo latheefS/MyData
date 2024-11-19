@@ -1,0 +1,17 @@
+LOAD DATA
+INFILE XXMX_OLC_COMMUNITY_RELATION.dat
+REPLACE 
+INTO  TABLE XXMX_OLC_COMM_RS_STG
+FIELDS TERMINATED BY "|" TRAILING NULLCOLS 
+(BG_NAME                        ,
+BG_ID                          ,
+RELATION_NUMBER                ,
+EFFECTIVE_START_DATE           ,
+EFFECTIVE_END_DATE             ,
+COMMUNITY_NUMBER               ,
+LEARNING_ITEM_NUMBER           ,
+MIGRATION_SET_ID               ,
+MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               
+)
+

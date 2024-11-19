@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_CITIZENSHIPS_STG
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_STG"."XXMX_CITIZENSHIPS_STG" MODIFY ("DATE_FROM" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_CITIZENSHIPS_STG" MODIFY ("CITIZENSHIP_STATUS" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_CITIZENSHIPS_STG" MODIFY ("PERSONNUMBER" NOT NULL ENABLE);

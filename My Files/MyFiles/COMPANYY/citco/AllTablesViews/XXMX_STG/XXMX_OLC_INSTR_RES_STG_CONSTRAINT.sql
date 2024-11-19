@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_OLC_INSTR_RES_STG
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_STG"."XXMX_OLC_INSTR_RES_STG" MODIFY ("INSTRUCTOR_RESOURCE_NUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_OLC_INSTR_RES_STG" MODIFY ("PERSON_NUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_OLC_INSTR_RES_STG" MODIFY ("OWNED_BY_PERSON_NUMBER" NOT NULL ENABLE);

@@ -1,0 +1,33 @@
+Prepare:
+--------
+
+1. from exactly it should be downloaded
+2. 
+
+4. Where should we extract the folder? in our system? if so why don't we send the file and extract direclt in the server?
+
+
+
+
+Install: what happen if I stop the execution of install script in mid?
+--------
+1) $HOME --> did you specify your path here? but it is not mentioned in the document how and what to specify in $HOME as it could also be a path to Java
+
+4) It is asking for Container name what do you specify? and why it didn't mentioned in the doc
+
+
+
+
+
+
+
+https://oic-dev-ax6zfh2qy4cx-am.integration.eu-amsterdam-1.ocp.oraclecloud.com/
+
+pallavi.kanajar@version1.com
+
+Tata309414....
+
+
+
+test.test
+Welcome123

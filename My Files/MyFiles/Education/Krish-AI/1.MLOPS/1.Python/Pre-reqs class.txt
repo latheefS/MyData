@@ -1,0 +1,55 @@
+- Creating an environment with VSCode is very important for any datascience project because whatever packages compatile to that environment be installed. It is to segregate the packages, libraries for the coming updates.
+
+- To access any project in VSCode, go to the folder where code files are present and shift+right click -> Open in VSCode
+- Else CMD -> give drive(E:) -> cd code(create a folder named as code in E drive) -> code .
+- Else create afolder and open it in VSCode directly
+
+- Setting environment in VSCode after a project/folder is created:
+	- ... in menu -> Terminal -> New -> + -> Command Propmt(for windows)
+	- in cmd propmt of VSCode -> to create environment:
+		-> conda create -p venv python==3.12 (make sure anaconda is installed..here venv is the environment name) -> y (conda gets created with basic deafult )packages
+		-> conda activate venv/ (after this environment activates and all packages get installed here when they're runt for installation)
+
+- creating requirements.txt under code (this is to hold the list of packages,libraries,dependencies so that our code can be runt in any machine as these becomes prerquisites)
+
+	-> pip install -r requirements.txt
+	
+- Creating .py files
+	-> these are python files and can be runt through cmd propmt as: python test.py
+	
+- Creating .pynb files
+	-> these are jupiter notebook files and to run in VSCode we need to install 2 packages in cmd:
+		->	pip install ipykernel -> then click on Detecting Kernel on top right -> select python environment created locally
+		- ipykernel package is a pkg that provides kernel to jupyter notebook to execute code(in anaconda it is already integrated)
+		
+	!!you can also download packages directly in .ipynb files but not recommended way
+	
+	In pynb:
+	- Code: this cell is to write code (shift+enter)
+	- Markdown: this is to write comments
+
+
+Different ways of creating environment:
+---------------------------------------
+VSCode... -> New Terminal -> Command Prompt
+
+1) Using Python
+
+	-#	python -m venv myfolder (myfolder is the name with which environment should be created)
+	-#	myenv\Scripts\activate	(to activate env)
+	
+	-# deactivate (to deactivate environment)
+	
+	! whenever we create an envronment python 3.8.5 is created by default, to create with another version you need to upgrade
+
+2)	Using virtualenv
+
+	-#	pip install virtualenv
+	-#	virtualenv -p python3 virtual_env
+	-#	virtual_env\Scripts\activate
+
+	-# deactivate (to deactivate environment)
+
+3)	Using Conda create
+
+	-#	conda create -p venv_new python==3.12 -y (this will helps to create env even with different base python version)

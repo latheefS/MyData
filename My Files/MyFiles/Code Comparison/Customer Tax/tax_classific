@@ -1,0 +1,539 @@
+     PROCEDURE party_tax_classific_stg
+                    (
+                     pt_i_MigrationSetID             IN      xxmx_migration_headers.migration_set_id%TYPE
+                    ,pt_i_SubEntity                  IN      xxmx_migration_metadata.sub_entity%TYPE
+                    )
+     IS
+          --
+          -- CURSOR Declarations
+          --
+          CURSOR party_classification_cur is
+                SELECT  DISTINCT --Added hint MR
+                     scope.party_site_number              as PARTY_NUMBER
+                    ,scope.party_name                     as PARTY_NAME
+                    ,'Customer site'                      as PARTY_TYPE_CODE
+                    -- MA 06-12-2022 will be set in Gate2 by citco
+                    --,'REGISTERED'                       as CLASS_CATEGORY
+                    ,''                                   as CLASS_CATEGORY
+                    ,zxft.CLASSIFICATION_TYPE_CODE        as CLASSIFICATION_TYPE_CODE
+                    ,zxft.CLASSIFICATION_TYPE_CODE        as CLASSIFICATION_TYPE_NAME
+                    ,null                                 as TAX_REGIME_CODE
+                    ,hzca.CLASS_CODE                      as CLASS_CODE
+                    -- MA 26/05/2022 column removed by Latheef from table
+                    --,hzca.CLASS_CODE                    as CLASS_NAME
+                    -- MA 31/05/2023 reinstate the column and set to null. the clumn is no longer in use but still is mandatory in the FBDI
+                    ,null                                 as CLASS_NAME
+                    ,hzca.START_DATE_ACTIVE               as EFFECTIVE_FROM
+                    ,hzca.END_DATE_ACTIVE                 as EFFECTIVE_TO
+                FROM 
+                     HZ_CODE_ASSIGNMENTS@xxmx_extract    hzca,
+                     ZX_FC_TYPES_B@xxmx_extract          zxft,
+                     zx_party_tax_profile@xxmx_extract   zxptp,
+                     hz_party_sites@xxmx_extract         hzps,
+                     XXMX_CUSTOMER_SCOPE_T               scope
+                WHERE   hzca.CLASS_CATEGORY                      = 'Fiscal Classification'
+                -- MA 24/04/2023 add the condition below to restrict the active tax classification
+                AND     nvl(hzca.END_DATE_ACTIVE,sysdate+10)     > sysdate
+                AND     zxft.classification_type_code            = 'FISCAL CLASSFICATION'
+                AND     hzca.owner_table_id                      = zxptp.party_tax_profile_id
+                and     hzps.party_site_id                       = scope.party_site_id
+                and     zxptp.party_type_code                    = 'THIRD_PARTY_SITE'
+                and     zxptp.party_id                           = hzps.party_site_id
+                and     zxft.OWNER_ID_CHAR                       = hzca.CLASS_CATEGORY  
+                ;
+          --
+          -- Type Declarations
+          --
+          TYPE party_classification_tt IS TABLE OF party_classification_cur%ROWTYPE INDEX BY BINARY_INTEGER;
+          --
+          -- Constant Declarations
+          --
+          -- This is declared in each Procedure within the package to allow for
+          -- a different value to be assigned in the Staging/Transform/Export
+          -- procedures.
+          --
+          cv_ProcOrFuncName               CONSTANT  VARCHAR2(30)                          := 'party_tax_profile_stg';
+          ct_Phase                        CONSTANT  xxmx_module_messages.phase%TYPE       := 'EXTRACT';
+          ct_StgTable                     CONSTANT xxmx_migration_metadata.stg_table%TYPE := 'xxmx_zx_tax_profile_stg';
+          --
+          /*
+          ************************
+          ** Variable Declarations
+          ************************
+          */
+          --
+          --
+          /*
+          ****************************
+          ** Record Table Declarations
+          ****************************
+          */
+          --
+          --
+          /*
+          ****************************
+          ** PL/SQL Table Declarations
+          ****************************
+          */
+          --
+          party_classification_tbl                    party_classification_tt;
+          --
+          /*
+          *************************
+          ** Exception Declarations
+          *************************
+          */
+          --
+          --** Set gvt_Severity, gvv_ProgressIndicator and gvt_ModuleMessage
+          --** before raising this exception.
+          --
+          e_ModuleError                   EXCEPTION;
+          --
+     --** END Declarations
+     --
+     --
+     BEGIN
+          --
+          -- Delete any MODULE messages from previous executions
+          -- for the Business Entity and Business Entity Level
+          --
+          gvv_ProgressIndicator := '0010';
+          gvv_ReturnStatus  := '';
+          xxmx_utilities_pkg.clear_messages
+               (
+                pt_i_ApplicationSuite => gct_ApplicationSuite
+               ,pt_i_Application      => gct_Application
+               ,pt_i_BusinessEntity   => gcv_BusinessEntity
+               ,pt_i_SubEntity        => pt_i_SubEntity
+               ,pt_i_MigrationSetID   => NULL                 -- This is NULL so messages for all previous runs are deleted.
+               ,pt_i_Phase            => ct_Phase
+               ,pt_i_MessageType      => 'MODULE'
+               ,pv_o_ReturnStatus     => gvv_ReturnStatus
+               );
+          IF   gvv_ReturnStatus = 'F'
+          THEN
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                    ,pt_i_SubEntity         => pt_i_SubEntity
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'ERROR'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '- Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               RAISE e_ModuleError;
+               --
+          END IF;
+          --
+          --
+          -- Delete any DATA messages from previous executions
+          -- for the Business Entity and Business Entity Level.
+          gvv_ProgressIndicator := '0020';
+          gvv_ReturnStatus  := '';
+          xxmx_utilities_pkg.clear_messages
+               (
+                pt_i_ApplicationSuite => gct_ApplicationSuite
+               ,pt_i_Application      => gct_Application
+               ,pt_i_BusinessEntity   => gcv_BusinessEntity
+               ,pt_i_SubEntity        => pt_i_SubEntity
+               ,pt_i_MigrationSetID   => NULL                 -- This is NULL so messages for all previous runs are deleted.
+               ,pt_i_Phase            => ct_Phase
+               ,pt_i_MessageType      => 'DATA'
+               ,pv_o_ReturnStatus     => gvv_ReturnStatus
+               );
+          --
+          IF   gvv_ReturnStatus = 'F'
+          THEN
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                    ,pt_i_SubEntity         => pt_i_SubEntity
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'ERROR'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '- Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               RAISE e_ModuleError;
+               --
+          END IF;
+          --
+          gvv_ProgressIndicator := '0030';
+          xxmx_utilities_pkg.log_module_message
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gcv_BusinessEntity
+               ,pt_i_SubEntity         => pt_i_SubEntity
+               ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+               ,pt_i_Phase             => ct_Phase
+               ,pt_i_Severity          => 'NOTIFICATION'
+               ,pt_i_PackageName       => gcv_PackageName
+               ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               ,pt_i_ModuleMessage     => 'Procedure "'||gcv_PackageName||'.'||cv_ProcOrFuncName||'" initiated.'
+               ,pt_i_OracleError       => NULL
+               );
+          --
+          -- Retrieve the Migration Set Name
+          --
+          gvv_ProgressIndicator := '0040';
+          gvt_MigrationSetName := xxmx_utilities_pkg.get_migration_set_name(pt_i_MigrationSetID);
+          -- If the Migration Set Name is NULL then the Migration has not been initialized.
+          IF   gvt_MigrationSetName IS NOT NULL
+          THEN
+               --
+               gvv_ProgressIndicator := '0050';
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                    ,pt_i_SubEntity         => pt_i_SubEntity
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '- Extracting "'
+                                             ||pt_i_SubEntity
+                                             ||'":'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               /*
+               ** The Migration Set has been initialised, so now initialize the detail record
+               ** for the current entity.
+               */
+               xxmx_utilities_pkg.init_migration_details
+                    (
+                     pt_i_ApplicationSuite => gct_ApplicationSuite
+                    ,pt_i_Application      => gct_Application
+                    ,pt_i_BusinessEntity   => gcv_BusinessEntity
+                    ,pt_i_SubEntity        => pt_i_SubEntity
+                    ,pt_i_MigrationSetID   => pt_i_MigrationSetID
+                    ,pt_i_StagingTable     => ct_StgTable
+                    ,pt_i_ExtractStartDate => SYSDATE
+                    );
+               --
+               --
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                    ,pt_i_SubEntity         => pt_i_SubEntity
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Staging Table "'||ct_StgTable||'" reporting details initialised.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               gvv_ProgressIndicator := '0060';
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                    ,pt_i_SubEntity         => pt_i_SubEntity
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Extracting data into "'||ct_StgTable||'".'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+               gvv_ProgressIndicator := '0100';
+               --
+               OPEN party_classification_cur;
+               --
+               LOOP
+                    --
+                    gvv_ProgressIndicator := '0070';
+                    --
+                    FETCH        party_classification_cur
+                       BULK COLLECT
+                       INTO         party_classification_tbl
+                       LIMIT        xxmx_utilities_pkg.gcn_BulkCollectLimit;
+                    --
+                    EXIT WHEN party_classification_tbl.COUNT = 0;
+                    --
+                    gvv_ProgressIndicator := '0080';
+                    --
+                    FOR i IN 1..party_classification_tbl.COUNT
+                    LOOP
+                         --
+                         INSERT INTO xxmx_stg.xxmx_zx_party_classific_stg
+                                     (
+                                         migration_set_id
+                                        ,file_set_id
+                                        ,migration_set_name
+                                        ,migration_status
+                                        ,PARTY_NUMBER
+                                        ,PARTY_NAME
+                                        ,PARTY_TYPE_CODE
+                                        ,CLASS_CATEGORY
+                                        ,CLASSIFICATION_TYPE_CODE
+                                        ,CLASSIFICATION_TYPE_NAME
+                                        ,TAX_REGIME_CODE
+                                        ,CLASS_CODE
+                                        -- MA 26/05/2022 column removed by Latheef from table
+                                        --,CLASS_NAME
+                                        ,EFFECTIVE_FROM
+                                        ,EFFECTIVE_TO
+                                     )
+                         VALUES
+                                    (
+                                        pt_i_MigrationSetID
+                                       ,64
+                                       ,gvt_MigrationSetName
+                                       ,'EXTRACTED'
+                                       ,party_classification_tbl(i).party_number
+                                       ,party_classification_tbl(i).party_name
+                                       ,party_classification_tbl(i).party_type_code
+                                       ,party_classification_tbl(i).CLASS_CATEGORY
+                                       ,party_classification_tbl(i).CLASSIFICATION_TYPE_CODE
+                                       ,party_classification_tbl(i).CLASSIFICATION_TYPE_NAME
+                                       ,party_classification_tbl(i).TAX_REGIME_CODE
+                                       ,party_classification_tbl(i).CLASS_CODE
+                                        -- MA 26/05/2022 column removed by Latheef from table
+                                       --,party_classification_tbl(i).CLASS_NAME
+                                       ,party_classification_tbl(i).EFFECTIVE_FROM
+                                       ,party_classification_tbl(i).EFFECTIVE_TO
+                                    );
+
+                   END LOOP;
+               END LOOP;
+               --
+               gvv_ProgressIndicator := '0090';
+               --
+               CLOSE party_classification_cur;
+            --
+               /*
+               ** Obtain the count of rows inserted.  We cannot use SQL$ROWCOUNT here because of the LIMIT
+               ** clause on the BULK COLLECT statement.  The rowcount will be reset each time the limit
+               ** is reached.
+               */
+               gvn_RowCount := xxmx_utilities_pkg.get_row_count
+                                    (
+                                     gct_StgSchema
+                                    ,ct_StgTable
+                                    ,pt_i_MigrationSetID
+                                    );
+               --
+               COMMIT;
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                    ,pt_i_SubEntity         => pt_i_SubEntity
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Extraction complete.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+               --** Update the migration details (Migration status will be automatically determined
+               --** in the called procedure dependant on the Phase and if an Error Message has been
+               --** passed).
+               --
+               gvv_ProgressIndicator := '0110';
+               --
+               xxmx_utilities_pkg.upd_migration_details
+                    (
+                     pt_i_MigrationSetID          => pt_i_MigrationSetID
+                    ,pt_i_BusinessEntity          => gcv_BusinessEntity
+                    ,pt_i_SubEntity               => pt_i_SubEntity
+                    ,pt_i_Phase                   => ct_Phase
+                    ,pt_i_ExtractCompletionDate   => SYSDATE
+                    ,pt_i_ExtractRowCount         => gvn_RowCount
+                    ,pt_i_TransformTable          => NULL
+                    ,pt_i_TransformStartDate      => NULL
+                    ,pt_i_TransformCompletionDate => NULL
+                    ,pt_i_ExportFileName          => NULL
+                    ,pt_i_ExportStartDate         => NULL
+                    ,pt_i_ExportCompletionDate    => NULL
+                    ,pt_i_ExportRowCount          => NULL
+                    ,pt_i_ErrorFlag               => NULL
+                    );
+               --
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                    ,pt_i_SubEntity         => pt_i_SubEntity
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Migration Table "'
+                                             ||ct_StgTable
+                                             ||'" reporting details updated.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+          ELSE
+               --
+               --
+               gvt_Severity      := 'ERROR';
+               gvt_ModuleMessage := '- Migration Set not initialized.';
+               --
+               --
+               RAISE e_ModuleError;
+               --
+               --
+          END IF;
+          --
+          --
+          xxmx_utilities_pkg.log_module_message
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gcv_BusinessEntity
+               ,pt_i_SubEntity         => pt_i_SubEntity
+               ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+               ,pt_i_Phase             => ct_Phase
+               ,pt_i_Severity          => 'NOTIFICATION'
+               ,pt_i_PackageName       => gcv_PackageName
+               ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               ,pt_i_ModuleMessage     => 'Procedure "'||gcv_PackageName||'.'||cv_ProcOrFuncName||'" completed.'
+               ,pt_i_OracleError       => NULL
+               );
+          --
+          --
+          EXCEPTION
+               --
+               --
+               WHEN e_ModuleError
+               THEN
+                    --
+                    --
+                    IF   party_classification_cur%ISOPEN
+                    THEN
+                         --
+                         --
+                         CLOSE party_classification_cur;
+                         --
+                         --
+                    END IF;
+                    --
+                    --
+                    ROLLBACK;
+                    --
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                         ,pt_i_SubEntity         => pt_i_SubEntity
+                         ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => gvt_Severity
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => gvt_ModuleMessage
+                         ,pt_i_OracleError       => NULL
+                         );
+                    --
+                    --
+                    RAISE;
+                    --
+                    --
+               --** END e_ModuleError Exception
+               --
+               --
+               WHEN OTHERS
+               THEN
+                    --
+                    --
+                    IF   party_classification_cur%ISOPEN
+                    THEN
+                         --
+                         --
+                         CLOSE party_classification_cur;
+                         --
+                         --
+                    END IF;
+                    --
+                    --
+                    ROLLBACK;
+                    --
+                    --
+                    gvt_OracleError := SUBSTR(
+                                             SQLERRM
+                                           ||'** ERROR_BACKTRACE: '
+                                           ||dbms_utility.format_error_backtrace
+                                            ,1
+                                            ,4000
+                                            );
+                    --
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gcv_BusinessEntity
+                         ,pt_i_SubEntity         => pt_i_SubEntity
+                         ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'ERROR'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => 'Oracle error encounted after Progress Indicator.'
+                         ,pt_i_OracleError       => gvt_OracleError
+                         );
+                    --
+                    --
+                    RAISE;
+                    --
+                    --
+               --** END OTHERS Exception
+               --
+               --
+          --** END Exception Handler
+          --
+          --
+     END party_tax_classific_stg;

@@ -1,0 +1,3 @@
+COMMENT Data for Business Object: LearningRecordActivityAttempt Version: V2 Created on: 07-08-2021 
+METADATA|LearningRecordActivityAttempt|ActivityAttemptId|LearningRecordNumber|ActivityNumber|ActivityAttemptStatus|ActivityAttemptDate|ActivityAttemptReasonCode|ActivityAttemptActualScore|ActivityAttemptActualEffort|ActivityAttemptNote
+MERGE|LearningRecordActivityAttempt||LR989862|AN111222|ORA_ASSN_TASK_NOT_COMPLETED|||||Activity is done yet

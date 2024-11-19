@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_PER_ADDRESS_F_STG_ARCH
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_STG"."XXMX_PER_ADDRESS_F_STG_ARCH" MODIFY ("EFFECTIVE_START_DATE" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_PER_ADDRESS_F_STG_ARCH" MODIFY ("POSTAL_CODE" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_PER_ADDRESS_F_STG_ARCH" MODIFY ("ADDRESS_TYPE" NOT NULL ENABLE);

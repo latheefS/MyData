@@ -1,0 +1,178 @@
+OIC:
+----
+Jade:
+-----
+Job Description
+
+We are seeking a skilled Oracle Integration Cloud (OIC) Developer to join our team. The ideal candidate will have hands-on experience with Oracle Integration Cloud (OIC) platform, including design, development, and implementation of integrations between various applications and systems.
+
+Responsibilities
+
+Design, develop, and implement integrations between various applications and systems using Oracle Integration Cloud (OIC).
+Work closely with stakeholders to gather requirements and design integration solutions that meet business needs.
+Develop and maintain documentation for integration processes, configurations, and customizations.
+Troubleshoot and resolve issues related to integrations in a timely manner.
+Collaborate with cross-functional teams to ensure successful delivery of integration projects.
+Stay current with Oracle Integration Cloud (OIC) updates and new features to continuously improve integration solutions.
+Provide technical guidance and support to junior developers as needed.
+
+Requirements
+
+Bachelor's degree in computer science, Information Technology, or related field.
+3+ years of experience working with Oracle Integration Cloud (OIC) platform.
+Hands-on experience with Oracle Integration Cloud (OIC) adapters, connections, and integrations.
+Strong understanding of integration design patterns and best practices.
+Excellent communication and collaboration skills.
+Ability to work independently and as part of a team in a fast-paced environment.
+Oracle Integration Cloud (OIC) certification is a plus.
+
+--
+
+Centroid:
+---------
+Centroid is seeking an experienced Oracle Integration Cloud (OIC) Developer to join our consulting client service team. The ideal candidate will have a strong background in developing and managing integrations using Oracle Integration Cloud (OIC). You will be responsible for designing, developing, and supporting integrations that connect various Oracle and third-party applications, ensuring seamless data flow and process automation across our client’s applications.
+
+Roles and Responsibilities:
+
+Minimum of 10 years of experience in integration development, with at least 3 years focused on developing integrations using Oracle Integration Cloud (OIC). 
+Strong knowledge of Oracle Integration Cloud (OIC), Oracle Cloud Adapters, REST/SOAP APIs, and web services. 
+Proficiency in PL/SQL, XML, JSON, and other related technologies. 
+Familiarity with Oracle Cloud ERP, HCM, SCM, or other Oracle Cloud applications. 
+Design and Development:
+Develop, test, and deploy integrations using Oracle Integration Cloud (OIC) to connect various Oracle and third-party applications including Oracle Fusion. 
+Utilize Oracle Cloud Adapters, REST/SOAP services, and other integration tools to create scalable and efficient integrations. 
+Testing and Support:
+Monitor and troubleshoot developed integrations, ensuring high availability and performance. 
+Provide technical support and resolve issues related to OIC integrations in a timely manner. 
+Collaboration and Documentation:
+Collaborate with cross-functional teams including business analysts, project managers, and other developers to gather integration requirements and design effective solutions. 
+Document integration processes and technical designs
+
+Preferred Skills
+
+Oracle Integration Cloud Service certification. 
+Experience with B2B for Oracle Integration Cloud
+-----
+
+Seirra:
+------
+Responsibilities:
+
+The ERP Cloud Technical Specialist oversees development and delivery activities within Cloud implementation and support projects.
+
+
+
+Required Experience: 
+
+4+ years of relevant experience working in Financials with a minimum of 3 years of experience in Oracle ERP Cloud Technical
+Prior experience in Oracle Apps (EBS), PeopleSoft, or Other ERP FIN implementations
+Should have worked on at least 2 full life cycle EBS/PeopleSoft/Other ERP FIN implementations, and 2 Oracle ERP Cloud implementations
+Experience working with FBDI/ADFDI and other data loads
+Must have one year experience in OIC
+Experience working on Integrations using webservices/REST Services
+Experience in implementing multi-currency and multi-org/country solutions
+Experience in setup and building Oracle BI Report, OTBI reports, FRS.
+Expertise in supporting Testing, Defects Analysis, and Defect Fixes
+Experience in JCS and JCS-SX, and PaaS solution will be a value add
+
+
+Additional Skills:
+
+ 
+
+Hands-on experience in Oracle Financials (ERP) Cloud Technical along with understanding of modules like GL, AP, AR, CM, FA, Expenses, PPM etc.
+In depth knowledge of the overall architecture of Oracle ERP Cloud
+Expertise in application of Oracle OUM methodology
+Good understanding of process flow, setup, and security.
+Excellent verbal and written communication, and interpersonal skills
+
+----
+
+NTT:
+----
+We are currently seeking a Oracle SaaS Technical & OIC Consultant to join our team in BENGALURU, Karnātaka (IN-KA), India (IN).
+
+JD Oracle SaaS Technical & OIC Consultant
+
+ 12+ experience as Strong SaaS Technical & Cloud Integration Developer (OIC), should have worked on at least 2-3 implementation projects. 
+ Should have extensive experience in Cloud Integration via OIC 
+ Experience in Fusion Cloud (SAAS), Oracle PAAS Development (OICS, DBCS/ATP, ORDS, VBCS, PCS) and ADF, Oracle EBS, WMS. 
+ Experience with Integration frameworks offered by OIC to integrate with Oracle Cloud SaaS (ERP) applications and complex orchestration Flows. 
+ Should be able to assess the integration systems and their capability and devise the integration strategy based on the capabilities of the integrating systems 
+ Should be capable of performing integrations between Cloud and 3 party applications both inbound and outbound – File based, webservice and XML based 
+ Conversant in Cloud technical tools – FBL, HDL, HCM extracts, Fast formulas, BI Publisher, BICC extracts, OTBI, Smart Views, Page Composer and Application composer 
+ Should be conversant in documentation – Technical Design, Unit Test Scripts, Code migration document, Integration test scripts etc., 
+ Work with client/functional team to gather and analyze business requirements and prepare technical design documents. 
+ Investigate and resolve complex problems through research and technical analysis. 
+ Provide continual assessment and review of unit testing and integration plans to ensure the solutions meet the business need and are working as designed. 
+ Work with functional resources in reviewing functional specifications and translating technical issues/requests in a manner that can be understood by the business users, and vice versa. 
+ Review change management procedures and follow methodology for moving technical conversion and interface activities into production. 
+ Recommends alternate choices, trade-offs, and impact analysis. 
+ Participate in testing efforts to identify and resolve conversion and/or interface issues. 
+ Understands business requirements and works with process analysts to ensure that conversion/integration activities enhance business processes or to minimize any negative impact. 
+ Oracle Cloud Certification with Oracle university in Oracle Integration Cloud is a MUST 
+ Flexible to operate in shifts – 1pm to 11pm IST 
+
+----
+DocuSign:
+---------
+
+What You'll Do
+
+Docusign consolidated all the Financial systems to the Oracle Cloud ERP. Procurement and Subscription Management suite of applications. We are in the process of scaling our finance applications further and rolling out ERP globally to support Docusign’s growth
+
+As part of the Oracle Cloud ERP Operations, you will be responsible for developing and supporting Integrations between Oracle, SFDC, Apttus, and other boundary systems using OIC (Oracle Integration - Cloud). In addition to the OIC, you will also be responsible to develop and support integrations using Mulesoft. In this role you will be partnering with the Business and IT counterparts to understand the issues and enhancements to the integrations.
+
+This position is an individual contributor reporting to the Director, Enterprise Applications.
+
+Responsibilities
+
+Partner with Business process owners, Oracle Functional team, multi-functional teams from Salesforce and other Boundary applications, and develop and support Integrations using OIC and Mulesoft
+Work with Oracle Support on Product related issues
+Advise standard process, provide long term solution for major and recurring issues
+Provide technical leadership to the support team, manage key risks and issues, and provide timely updates and root cause analysis to the stakeholders
+
+Job Designation
+
+Hybrid: Employee divides their time between in-office and remote work. Access to an office location is required. (Frequency: Minimum 2 days per week; may vary by team but will be weekly in-office expectation)
+
+Positions at Docusign are assigned a job designation of either In Office, Hybrid or Remote and are specific to the role/job. Preferred job designations are not guaranteed when changing positions within Docusign. Docusign reserves the right to change a position's job designation depending on business needs and as permitted by local law.
+
+What You Bring
+
+Basic 
+
+Bachelor’s or Master’s degree in Computer Science or related field
+8 years of experience as Technical analyst in Oracle ERP
+3+ years of experience in developing OIC Integrations
+3+ years of experience in developing Mulesoft Integrations
+3+ years of experience in Oracle SaaS and PaaS environments, customizing and extending cloud ERP
+2+ years of experience in integrating SaaS application with 3rd parties such as Banks, Vendors and enable B2B Solutions within SaaS framework
+Experience with OTBI, FBDI, BI Publisher
+Experience with API’s, REST/SOAP based web services available in Oracle cloud ERP, Groovy Scripting and must have strong SQL skills
+Experience with test plans, test cases, test scripts and QA process and automation of data extracts and data loads
+
+Preferred
+
+Certification in Oracle ERP Cloud - OIC
+Strong problem solving, analytical and critical thinking skills needed
+Excellent teammate able to work with virtual and global multi-functional teams
+Excellent spoken and written communication as well as receptive listening skills, with ability to convey complex ideas in a clear, concise fashion to technical and non-technical audiences
+Excellent organizational and multitasking skills with a can-do mentality
+----
+OSI:
+----
+OSI Digital is looking for Sr. OIC Developers who has technically strong background experience in Oracle Integration Cloud Services.
+
+Required Skills
+
+ Minimum 6 years of experience in OIC.
+ Experience with developing BIP reports.
+ Good knowledge in SQL, PL/SQL is required.
+ Experience in developing efficient solutions to diverse and complex business integrations using Oracle OIC.
+ Experience extending any SaaS applications like Oracle Fusion HCM/ ERP/ Financials.
+ Strong writing and verbal communication skills.
+ Strong analytical skills.
+ Excellent team player and mentor.
+ Experience and understanding of web services, JSON and XML technologies (WSDL, SOAP, API, REST, XML, XSD, XSLT, OAuth, JWT).
+ Experience working in an Agile methodology will be added advantage.

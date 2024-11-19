@@ -1,0 +1,119 @@
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PE_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_PAR_ENROLL.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PAR_ENROLL.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PE_CO_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PE_CO_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_PE_COMP_OBJ.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PE_COMP_OBJ.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_DE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_DE_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_DPNT_ENORLL.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_DPNT_ENORLL.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_DE_DD_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_DE_DD_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_DE_DESG_DPNT.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_DE_DESG_DPNT.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_BE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_BE_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_BENF_ENROLL.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_BENF_ENROLL.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_BE_DB_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_BE_DB_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_BE_DESG_BENF.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_BE_DESG_BENF.ctl'
+                                );
+End;
+
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PBG_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PBG_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_PER_BEN_GROUP.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PER_BEN_GROUP.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PBB_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PBB_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_PER_BEN_BAL.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PER_BEN_BAL.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PH_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PH_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_PER_HABITS.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PER_HABITS.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_STG_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PBO_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PBO_XFM'
+                                ,p_dat_name => 'XXMX_HCM_BEN_PER_BENF_ORG.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PER_BENF_ORG.ctl'
+                                );
+End;

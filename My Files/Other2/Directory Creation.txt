@@ -1,0 +1,27 @@
+MXDM_2			->	sudo su - oracle
+cd HCMBenefits	->	pwd	->	/home/oracle/HCMBenefits *copy this path* *if the dir isn't there create it to store your dat files and give permissions "chmod 777 directory_name"*
+SQL Developer	->	select * from XXMX_FILE_LOCATIONS; 
+				->	CREATE or REPLACE DIRECTORY directory_name AS 'path_name'  *for every module we create a directory in database table and link it with the location of directory we create in Linux from where we get the files*
+					CREATE or REPLACE DIRECTORY HCM_BENEFITS AS '/home/oracle/HCMBenefits';
+				->	select * from dba_directories;	*check we have the created directory*
+				->	INSERT INTO xxmx_file_locations VALUES ('HCM','BEN','BENEFITS',1,'PLSQL','DATA','HCM INTERNAL','HCM_BENEFITS')
+					*Now the dat file goes to two locations: Linux directory and from table: "select * from xxmx_hdl_file_temp where file_name like 'dat file name' order by 1;"and copy the Line content* *Every time we transform and run plsql for loading a new data files created and old should get deleted*
+					
+					
+					
+select * from XXMX_FILE_LOCATIONS;
+
+select * from XXMX_FILE_GROUP_PROPERTIES;
+
+select * from XXMX_FUSION_JOB_DEFINITIONS;
+
+select * from XXMX_FUSION_JOB_PARAMETERS;					
+
+
+/fin/po/purchase_orders1/output/
+
+/fin/po/purchase_orders2/data/
+
+/fin/po/purchase_orders2/process/
+
+/fin/po/purchase_orders2/

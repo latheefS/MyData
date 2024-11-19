@@ -1,0 +1,410 @@
+    PROCEDURE purge (
+        pt_i_clientcode     IN xxmx_client_config_parameters.client_code%TYPE,
+        pt_i_migrationsetid IN xxmx_migration_headers.migration_set_id%TYPE
+    ) IS
+          --
+          --
+          --**********************
+          --** Cursor Declarations
+          --**********************
+          --
+        CURSOR purgingmetadata_cur (
+            pt_applicationsuite xxmx_migration_metadata.application_suite%TYPE,
+            pt_application      xxmx_migration_metadata.application%TYPE,
+            pt_businessentity   xxmx_migration_metadata.business_entity%TYPE
+        ) IS
+               --
+               --
+        SELECT
+            xmm.stg_table,
+            xmm.xfm_table
+        FROM
+            xxmx_migration_metadata xmm
+        WHERE
+            1 = 1
+            AND xmm.application_suite = pt_applicationsuite
+            AND xmm.application = pt_application
+            AND xmm.business_entity = pt_businessentity
+        ORDER BY
+            xmm.sub_entity_seq;
+               --
+               --
+          --** END CURSOR PurgingMetadata_cur
+           --
+          --**********************
+          --** Record Declarations
+          --**********************
+          --
+          --
+          --************************
+          --** Constant Declarations
+          --************************
+          --
+          --** ISV 21/10/2020 - Add new constant for Staging Schema andf Table Name as will no longer be passed as parameters.
+          --
+        cv_procorfuncname   CONSTANT VARCHAR2(30) := 'purge';
+        ct_subentity        CONSTANT xxmx_module_messages.sub_entity%TYPE := 'ALL';
+        ct_phase            CONSTANT xxmx_module_messages.phase%TYPE := 'CORE';
+          --
+          --************************
+          --** Variable Declarations
+          --************************
+          --
+        vt_configparameter  xxmx_client_config_parameters.config_parameter%TYPE;
+        vt_clientschemaname xxmx_client_config_parameters.config_value%TYPE;
+        vv_purgetablename   VARCHAR2(30);
+          --
+          --*************************
+          --** Exception Declarations
+          --*************************
+          --
+          --** Set gvt_Severity, gvv_ProgressIndicator and gvt_ModuleMessage
+          --** before raising this exception.
+          --
+        e_moduleerror EXCEPTION;
+          --
+          --
+     --** END Declarations **
+     --
+     --
+    BEGIN
+          --
+        gvv_progressindicator := '0010';
+          --
+        IF
+            pt_i_clientcode IS NULL
+            AND pt_i_migrationsetid IS NULL
+        THEN
+               --
+            gvt_severity := 'ERROR';
+            gvt_modulemessage := '- "pt_i_ClientCode" and "pt_i_MigrationSetID" parameters are mandatory.';
+               --
+            RAISE e_moduleerror;
+               --
+        END IF;
+          --
+        gvv_returnstatus := '';
+        gvt_returnmessage := '';
+          --
+        xxmx_utilities_pkg.clear_messages(
+                                         pt_i_applicationsuite => gct_applicationsuite,
+                                         pt_i_application      => gct_application,
+                                         pt_i_businessentity   => gct_businessentity,
+                                         pt_i_subentity        => ct_subentity,
+                                         pt_i_phase            => ct_phase,
+                                         pt_i_messagetype      => 'MODULE',
+                                         pv_o_returnstatus     => gvv_returnstatus
+        );
+          --
+        IF gvv_returnstatus = 'F' THEN
+               --
+            gvt_severity := 'ERROR';
+            gvt_modulemessage := '- Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".';
+               --
+            RAISE e_moduleerror;
+               --
+        END IF;
+          --
+        gvv_progressindicator := '0020';
+          --
+        xxmx_utilities_pkg.log_module_message(
+                                             pt_i_applicationsuite  => gct_applicationsuite,
+                                             pt_i_application       => gct_application,
+                                             pt_i_businessentity    => gct_businessentity,
+                                             pt_i_subentity         => ct_subentity,
+                                             pt_i_migrationsetid    => pt_i_migrationsetid,
+                                             pt_i_phase             => ct_phase,
+                                             pt_i_severity          => 'NOTIFICATION',
+                                             pt_i_packagename       => gcv_packagename,
+                                             pt_i_procorfuncname    => cv_procorfuncname,
+                                             pt_i_progressindicator => gvv_progressindicator,
+                                             pt_i_modulemessage     => 'Procedure "'
+                                                                   || gcv_packagename
+                                                                   || '.'
+                                                                   || cv_procorfuncname
+                                                                   || '" initiated.',
+                                             pt_i_oracleerror       => NULL
+        );
+
+        xxmx_utilities_pkg.log_module_message(
+                                             pt_i_applicationsuite  => gct_applicationsuite,
+                                             pt_i_application       => gct_application,
+                                             pt_i_businessentity    => gct_businessentity,
+                                             pt_i_subentity         => ct_subentity,
+                                             pt_i_migrationsetid    => pt_i_migrationsetid,
+                                             pt_i_phase             => ct_phase,
+                                             pt_i_severity          => 'NOTIFICATION',
+                                             pt_i_packagename       => gcv_packagename,
+                                             pt_i_procorfuncname    => cv_procorfuncname,
+                                             pt_i_progressindicator => gvv_progressindicator,
+                                             pt_i_modulemessage     => '- Purging tables.',
+                                             pt_i_oracleerror       => NULL
+        );
+          --
+        gvv_progressindicator := '0040';
+          --
+          /*
+          ** Loop through the Migration Metadata table to retrieve
+          ** the staging table names to purge for the current Business
+          ** Entity.
+          */
+          --
+        gvv_sqlaction := 'DELETE';
+          --
+        gvv_sqlwhereclause := 'WHERE 1 = 1 '
+                              || 'AND   migration_set_id = '
+                              || pt_i_migrationsetid;
+          --
+        FOR purgingmetadata_rec IN purgingmetadata_cur(
+                                                      gct_applicationsuite,
+                                                      gct_application,
+                                                      gct_businessentity
+                                   ) LOOP
+               --
+               --** ISV 21/10/2020 - Replace with new constant for Staging Schema.
+               --
+            gvv_sqltableclause := 'FROM '
+                                  || gct_stgschema
+                                  || '.'
+                                  || purgingmetadata_rec.stg_table;
+               --
+            gvv_sqlstatement := gvv_sqlaction
+                                || gcv_sqlspace
+                                || gvv_sqltableclause
+                                || gcv_sqlspace
+                                || gvv_sqlwhereclause;
+               --
+            EXECUTE IMMEDIATE gvv_sqlstatement;
+               --
+            gvn_rowcount := SQL%rowcount;
+               --
+            xxmx_utilities_pkg.log_module_message(
+                                                 pt_i_applicationsuite  => gct_applicationsuite,
+                                                 pt_i_application       => gct_application,
+                                                 pt_i_businessentity    => gct_businessentity,
+                                                 pt_i_subentity         => ct_subentity,
+                                                 pt_i_migrationsetid    => pt_i_migrationsetid,
+                                                 pt_i_phase             => ct_phase,
+                                                 pt_i_severity          => 'NOTIFICATION',
+                                                 pt_i_packagename       => gcv_packagename,
+                                                 pt_i_procorfuncname    => cv_procorfuncname,
+                                                 pt_i_progressindicator => gvv_progressindicator,
+                                                 pt_i_modulemessage     => '  - Records purged from "'
+                                                                       || purgingmetadata_rec.stg_table
+                                                                       || '" table: '
+                                                                       || gvn_rowcount,
+                                                 pt_i_oracleerror       => NULL
+            );
+               --
+               --gvv_SQLTableClause := 'FROM '
+               --                    ||gct_XfmSchema
+               --                    ||'.'
+               --                    ||PurgingMetadata_rec.xfm_table;
+               ----
+               --gvv_SQLStatement := gvv_SQLAction
+               --                  ||gcv_SQLSpace
+               --                  ||gvv_SQLTableClause
+               --                  ||gcv_SQLSpace
+               --                  ||gvv_SQLWhereClause;
+               ----
+               --EXECUTE IMMEDIATE gvv_SQLStatement;
+               ----
+               --gvn_RowCount := SQL%ROWCOUNT;
+               ----
+               --xxmx_utilities_pkg.log_module_message
+               --     (
+               --      pt_i_ApplicationSuite  => gct_ApplicationSuite
+               --     ,pt_i_Application       => gct_Application
+               --     ,pt_i_BusinessEntity    => gct_BusinessEntity
+               --     ,pt_i_SubEntity         => ct_SubEntity
+               --     ,pt_i_Phase             => ct_Phase
+               --     ,pt_i_Severity          => 'NOTIFICATION'
+               --     ,pt_i_PackageName       => gcv_PackageName
+               --     ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               --     ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               --     ,pt_i_ModuleMessage     => '  - Records purged from "'
+               --                              ||PurgingMetadata_rec.xfm_table
+               --                              ||'" table: '
+               --                              ||gvn_RowCount
+               --     ,pt_i_OracleError       => NULL
+               --     );
+               --
+        END LOOP;
+          --
+          /*
+          ** Purge the records for the Business Entity Levels
+          ** Levels from the Migration Details table.
+          */
+          --
+          --** ISV 21/10/2020 - Replace with new constant for Core Schema.
+          --
+        vv_purgetablename := 'xxmx_migration_details';
+          --
+        gvv_sqltableclause := 'FROM '
+                              || gct_coreschema
+                              || '.'
+                              || vv_purgetablename;
+          --
+        gvv_sqlstatement := gvv_sqlaction
+                            || gcv_sqlspace
+                            || gvv_sqltableclause
+                            || gcv_sqlspace
+                            || gvv_sqlwhereclause;
+          --
+        EXECUTE IMMEDIATE gvv_sqlstatement;
+          --
+        gvn_rowcount := SQL%rowcount;
+          --
+        xxmx_utilities_pkg.log_module_message(
+                                             pt_i_applicationsuite  => gct_applicationsuite,
+                                             pt_i_application       => gct_application,
+                                             pt_i_businessentity    => gct_businessentity,
+                                             pt_i_subentity         => ct_subentity,
+                                             pt_i_migrationsetid    => pt_i_migrationsetid,
+                                             pt_i_phase             => ct_phase,
+                                             pt_i_severity          => 'NOTIFICATION',
+                                             pt_i_packagename       => gcv_packagename,
+                                             pt_i_procorfuncname    => cv_procorfuncname,
+                                             pt_i_progressindicator => gvv_progressindicator,
+                                             pt_i_modulemessage     => '  - Records purged from "'
+                                                                   || vv_purgetablename
+                                                                   || '" table: '
+                                                                   || gvn_rowcount,
+                                             pt_i_oracleerror       => NULL
+        );
+          --
+          /*
+          ** Purge the records for the Business Entity
+          ** from the Migration Headers table.
+          */
+          --
+          --** ISV 21/10/2020 - Replace with new constant for Core Schema.
+          --
+        vv_purgetablename := 'xxmx_migration_headers';
+          --
+        gvv_sqltableclause := 'FROM '
+                              || gct_coreschema
+                              || '.'
+                              || vv_purgetablename;
+          --
+        gvv_sqlstatement := gvv_sqlaction
+                            || gcv_sqlspace
+                            || gvv_sqltableclause
+                            || gcv_sqlspace
+                            || gvv_sqlwhereclause;
+          --
+        EXECUTE IMMEDIATE gvv_sqlstatement;
+          --
+        gvn_rowcount := SQL%rowcount;
+          --
+        xxmx_utilities_pkg.log_module_message(
+                                             pt_i_applicationsuite  => gct_applicationsuite,
+                                             pt_i_application       => gct_application,
+                                             pt_i_businessentity    => gct_businessentity,
+                                             pt_i_subentity         => ct_subentity,
+                                             pt_i_migrationsetid    => pt_i_migrationsetid,
+                                             pt_i_phase             => ct_phase,
+                                             pt_i_severity          => 'NOTIFICATION',
+                                             pt_i_packagename       => gcv_packagename,
+                                             pt_i_procorfuncname    => cv_procorfuncname,
+                                             pt_i_progressindicator => gvv_progressindicator,
+                                             pt_i_modulemessage     => '  - Records purged from "'
+                                                                   || vv_purgetablename
+                                                                   || '" table: '
+                                                                   || gvn_rowcount,
+                                             pt_i_oracleerror       => NULL
+        );
+          --
+        xxmx_utilities_pkg.log_module_message(
+                                             pt_i_applicationsuite  => gct_applicationsuite,
+                                             pt_i_application       => gct_application,
+                                             pt_i_businessentity    => gct_businessentity,
+                                             pt_i_subentity         => ct_subentity,
+                                             pt_i_migrationsetid    => pt_i_migrationsetid,
+                                             pt_i_phase             => ct_phase,
+                                             pt_i_severity          => 'NOTIFICATION',
+                                             pt_i_packagename       => gcv_packagename,
+                                             pt_i_procorfuncname    => cv_procorfuncname,
+                                             pt_i_progressindicator => gvv_progressindicator,
+                                             pt_i_modulemessage     => '- Purging complete.',
+                                             pt_i_oracleerror       => NULL
+        );
+          --
+        COMMIT;
+          --
+        xxmx_utilities_pkg.log_module_message(
+                                             pt_i_applicationsuite  => gct_applicationsuite,
+                                             pt_i_application       => gct_application,
+                                             pt_i_businessentity    => gct_businessentity,
+                                             pt_i_subentity         => ct_subentity,
+                                             pt_i_migrationsetid    => pt_i_migrationsetid,
+                                             pt_i_phase             => ct_phase,
+                                             pt_i_severity          => 'NOTIFICATION',
+                                             pt_i_packagename       => gcv_packagename,
+                                             pt_i_procorfuncname    => cv_procorfuncname,
+                                             pt_i_progressindicator => gvv_progressindicator,
+                                             pt_i_modulemessage     => 'Procedure "'
+                                                                   || gcv_packagename
+                                                                   || '.'
+                                                                   || cv_procorfuncname
+                                                                   || '" completed.',
+                                             pt_i_oracleerror       => NULL
+        );
+          --
+    EXCEPTION
+               --
+        WHEN e_moduleerror THEN
+                    --
+            xxmx_utilities_pkg.log_module_message(
+                                                 pt_i_applicationsuite  => gct_applicationsuite,
+                                                 pt_i_application       => gct_application,
+                                                 pt_i_businessentity    => gct_businessentity,
+                                                 pt_i_subentity         => ct_subentity,
+                                                 pt_i_migrationsetid    => pt_i_migrationsetid,
+                                                 pt_i_phase             => ct_phase,
+                                                 pt_i_severity          => gvt_severity,
+                                                 pt_i_packagename       => gcv_packagename,
+                                                 pt_i_procorfuncname    => cv_procorfuncname,
+                                                 pt_i_progressindicator => gvv_progressindicator,
+                                                 pt_i_modulemessage     => gvt_modulemessage,
+                                                 pt_i_oracleerror       => NULL
+            );
+                    --
+            RAISE;
+                    --
+               --** END e_ModuleError Exception
+               --
+        WHEN OTHERS THEN
+                    --
+            ROLLBACK;
+                    --
+            gvt_oracleerror := substr(
+                                     sqlerrm
+                                     || '** ERROR_BACKTRACE: '
+                                     || dbms_utility.format_error_backtrace,
+                                     1,
+                                     4000
+                               );
+                    --
+            xxmx_utilities_pkg.log_module_message(
+                                                 pt_i_applicationsuite  => gct_applicationsuite,
+                                                 pt_i_application       => gct_application,
+                                                 pt_i_businessentity    => gct_businessentity,
+                                                 pt_i_subentity         => ct_subentity,
+                                                 pt_i_migrationsetid    => pt_i_migrationsetid,
+                                                 pt_i_phase             => ct_phase,
+                                                 pt_i_severity          => 'ERROR',
+                                                 pt_i_packagename       => gcv_packagename,
+                                                 pt_i_procorfuncname    => cv_procorfuncname,
+                                                 pt_i_progressindicator => gvv_progressindicator,
+                                                 pt_i_modulemessage     => 'Oracle error encounted after Progress Indicator.',
+                                                 pt_i_oracleerror       => gvt_oracleerror
+            );
+                    --
+            RAISE;
+                    --
+               --** END OTHERS Exception
+               --
+          --** END Exception Handler
+          --
+    END purge;

@@ -1,0 +1,264 @@
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'BENEFITS'
+         ,'BENEFITS'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+/*********************************************************************************/
+--
+/*
+** Sub-Entity Types
+*/
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_types
+          (
+           application
+          ,lookup_type
+          ,customisation_level
+          )
+VALUES
+          (
+           'XXMX'
+          ,'SUB-ENTITIES'
+          ,'S'
+          );
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'PARTICIPANT_ENROLLMENT'
+         ,'PARTICIPANT ENROLLMENT'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'PAR_ENRL_COMPENSATION_OBJECT'
+         ,'PAR ENRL COMPENSATION OBJECT'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'DEPENDENT_ENROLLMENT'
+         ,'DEPENDENT ENROLLMENT'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'DESIGNATE_DEPENDENT'
+         ,'DESIGNATE DEPENDENT'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'BENEFICIARY_ENROLLMENT'
+         ,'BENEFICIARY ENROLLMENT'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'DESIGNATE_BENEFICIARY'
+         ,'DESIGNATE_BENEFICIARY'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'PER_BEN_GROUP'
+         ,'PER_BEN_GROUP'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'PER_BEN_BALANCE'
+         ,'PER_BEN_BALANCE'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'PERSON_HABITS'
+         ,'PERSON_HABITS'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+
+--                                                                                                                                                                                                                    
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'PER_BEN_ORGANIZATION'
+         ,'PER_BEN_ORGANIZATION'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );

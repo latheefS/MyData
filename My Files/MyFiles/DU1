@@ -1,0 +1,817 @@
+create or replace PROCEDURE XXMX_INSERTDOC_EXTRACT(DocumentType VARCHAR2,p_FileName varchar2) AS
+BEGIN
+    IF DocumentType = 'INVOICE' THEN
+        INSERT INTO xxmx_invoice_document_extraction (
+            document_type,
+            invoice_number,
+            invoice_date,
+            vendor_name,
+            vendor_address,
+            invoice_total,
+            FileName
+        )
+        SELECT
+            (SELECT DISTINCT document_type 
+             FROM xxmx_invoices 
+             WHERE document_type = DocumentType) AS document_type_column,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'InvoiceId' 
+               AND document_type = DocumentType) AS invoice_number_column,
+
+            TO_DATE(
+                (SELECT field_value 
+                 FROM xxmx_invoices 
+                 WHERE field_label LIKE 'InvoiceDate' 
+                   AND document_type = DocumentType),
+                'MM/DD/YYYY'
+            ) AS invoice_date_column,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'VendorName' 
+               AND document_type = DocumentType) AS vendor_name_column,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'VendorAddress' 
+               AND document_type = DocumentType) AS vendor_address_column,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'SubTotal' 
+               AND document_type = DocumentType) AS invoice_total_column
+        FROM
+            dual;
+
+   /* ELSIF DocumentType = 'PASSPORT' THEN
+        INSERT INTO xxmx_passport_document_extraction (
+            document_type,
+            first_name,
+            last_name,
+            country,
+            birth_date,
+            expiry_date,
+            gender,
+            passport_no
+        )
+        SELECT
+            (SELECT DISTINCT document_type 
+             FROM xxmx_invoices 
+             WHERE document_type = DocumentType
+             ) AS document_type_column,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'FirstName' 
+               AND document_type = DocumentType) AS first_name,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'LastName' 
+               AND document_type = DocumentType) AS last_name,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'Country' 
+               AND document_type = DocumentType) AS country,
+
+
+                TO_DATE(
+    (SELECT field_value 
+     FROM xxmx_invoices 
+     WHERE field_label LIKE 'BirthDate' 
+       AND document_type = 'PASSPORT'),
+    'YYYY/MM/DD' 
+) AS birth_date,
+
+
+               TO_DATE( (SELECT field_value 
+                 FROM xxmx_invoices 
+                 WHERE field_label LIKE 'ExpiryDate' 
+                   AND document_type = DocumentType),
+    'YYYY/MM/DD' )
+             AS expiry_date,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'Gender' 
+               AND document_type = DocumentType) AS gender,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'DocumentNumber' 
+               AND document_type = DocumentType) AS passport_no
+        FROM
+            dual;
+
+   ELSIF DocumentType = 'RECEIPT' THEN
+        INSERT INTO XXMX_RECEIPT_DOCUMENT_EXTRACTION (
+            DOCUMENT_TYPE,
+            MERCHANT_NAME,
+            MERCHANT_ADDRESS,
+            TOTAL
+        )
+        SELECT
+            (SELECT DISTINCT document_type 
+             FROM xxmx_invoices 
+             WHERE document_type = DocumentType
+             ) AS document_type_column,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'MerchantName' 
+               AND document_type = DocumentType) AS Merchant_Name,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'MerchantAddress' 
+               AND document_type = DocumentType) AS Merchant_Address,
+
+            (SELECT field_value 
+             FROM xxmx_invoices 
+             WHERE field_label LIKE 'Total' 
+               AND document_type = DocumentType) AS SubTotal
+FROM
+     dual;*/
+    END IF;
+
+    delete from xxmx_invoices;
+    commit;
+END ;
+
+
+===>>
+
+
+create or replace PROCEDURE XXMX_INSERTDOC_EXTRACT_TR (
+    documenttype VARCHAR2,
+    p_filename   VARCHAR2,
+    line_id OUT NUMBER
+) AS
+BEGIN
+    COMMIT;
+    BEGIN
+        IF documenttype = 'INVOICE' THEN
+            INSERT INTO xxmx_invoice_document_extraction (
+                document_type,
+                invoice_number,
+                invoice_date,
+                vendor_name,
+                vendor_address,
+                invoice_total,
+                sub_total,
+                filename
+            )
+                SELECT
+                    (
+                        SELECT DISTINCT
+                            document_type
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'InvoiceId'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            COALESCE(
+                                TO_DATE(field_value DEFAULT NULL ON CONVERSION ERROR, 'MM/DD/YYYY', 'NLS_DATE_LANGUAGE=AMERICAN'),
+                                TO_DATE(field_value DEFAULT NULL ON CONVERSION ERROR, 'DD/MM/YYYY', 'NLS_DATE_LANGUAGE=AMERICAN'),
+                                TO_DATE(field_value DEFAULT NULL ON CONVERSION ERROR, 'YYYY-MM-DD', 'NLS_DATE_LANGUAGE=AMERICAN')
+                            )
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'InvoiceDate'
+                            AND document_type = 'INVOICE'
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'VendorName'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'VendorAddress'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'InvoiceTotal'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'SubTotal'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    p_filename
+                FROM
+                    dual;
+
+        ELSIF documenttype = 'PASSPORT' THEN
+            INSERT INTO xxmx_passport_document_extraction (
+                document_type,
+                first_name,
+                last_name,
+                country,
+                birth_date,
+                expiry_date,
+                gender,
+                passport_no,
+                filename
+            )
+                SELECT
+                    (
+                        SELECT DISTINCT
+                            document_type
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'FirstName'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'LastName'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'Country'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    TO_DATE((
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'BirthDate'
+                            AND document_type = 'PASSPORT'
+                            AND ROWNUM = 1
+                    ), 'YYYY/MM/DD'),
+                    TO_DATE((
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'ExpiryDate'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ), 'YYYY/MM/DD'),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'Gender'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'DocumentNumber'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    p_filename
+                FROM
+                    dual;
+                ELSIF documenttype = 'RECEIPT' THEN
+                line_id := line_number_seq.NEXTVAL;
+    INSERT INTO xxmx_receipt_document_extraction (
+        line_num,
+        document_type,
+        merchant_name,
+        merchant_address,
+        total,
+        filename,
+        phone_number,
+        sub_total,
+        transaction_date,
+        transaction_time,
+        tax
+    )
+    SELECT
+         line_id,   
+        (
+            SELECT document_type
+            FROM xxmx_invoices
+            WHERE document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT field_value
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'MerchantName'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT field_value
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'MerchantAddress'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT '$' || REGEXP_REPLACE(field_value, '[$,]', '')
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'Total'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        p_filename,
+        (
+            SELECT CASE 
+                WHEN REGEXP_LIKE(field_value, '^[0-9-]+$') THEN TO_NUMBER(REGEXP_REPLACE(field_value, '[^0-9]', ''))
+                ELSE NULL 
+            END
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'MerchantPhoneNumber'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT '$' || REGEXP_REPLACE(field_value, '[$,]', '')
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'Subtotal'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT field_value
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'TransactionDate'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT field_value
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'TransactionTime'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT '$' || REGEXP_REPLACE(field_value, '[$,]', '')
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'Tax'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        )
+    FROM dual;
+
+END IF;
+
+    DELETE FROM xxmx_invoices;
+COMMIT;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DELETE FROM xxmx_invoices;
+        COMMIT;
+        RAISE;
+END;
+END;
+
+===>>
+
+
+MAIN CODE BELOW!!!!
+
+
+
+create or replace PROCEDURE xxmx_insertdoc_extract2 (
+    documenttype VARCHAR2,
+    p_filename   VARCHAR2,
+    line_id OUT NUMBER
+) AS
+BEGIN
+    COMMIT;
+    BEGIN
+        IF documenttype = 'INVOICE' THEN
+            INSERT INTO xxmx_invoice_document_extraction (
+                document_type,
+                invoice_number,
+                invoice_date,
+                vendor_name,
+                vendor_address,
+                invoice_total,
+                sub_total,
+                filename
+            )
+                SELECT
+                    (
+                        SELECT DISTINCT
+                            document_type
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'InvoiceId'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            COALESCE(
+                                TO_DATE(field_value DEFAULT NULL ON CONVERSION ERROR, 'MM/DD/YYYY', 'NLS_DATE_LANGUAGE=AMERICAN'),
+                                TO_DATE(field_value DEFAULT NULL ON CONVERSION ERROR, 'DD/MM/YYYY', 'NLS_DATE_LANGUAGE=AMERICAN'),
+                                TO_DATE(field_value DEFAULT NULL ON CONVERSION ERROR, 'YYYY-MM-DD', 'NLS_DATE_LANGUAGE=AMERICAN')
+                            )
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'InvoiceDate'
+                            AND document_type = 'INVOICE'
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'VendorName'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'VendorAddress'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'InvoiceTotal'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'SubTotal'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    p_filename
+                FROM
+                    dual;
+
+        ELSIF documenttype = 'PASSPORT' THEN
+            INSERT INTO xxmx_passport_document_extraction (
+                document_type,
+                first_name,
+                last_name,
+                country,
+                birth_date,
+                expiry_date,
+                gender,
+                passport_no,
+                filename
+            )
+                SELECT
+                    (
+                        SELECT DISTINCT
+                            document_type
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'FirstName'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'LastName'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'Country'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    TO_DATE((
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'BirthDate'
+                            AND document_type = 'PASSPORT'
+                            AND ROWNUM = 1
+                    ), 'YYYY/MM/DD'),
+                    TO_DATE((
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'ExpiryDate'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ), 'YYYY/MM/DD'),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'Gender'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    (
+                        SELECT
+                            field_value
+                        FROM
+                            xxmx_invoices
+                        WHERE
+                            field_label LIKE 'DocumentNumber'
+                            AND document_type = documenttype
+                            AND ROWNUM = 1
+                    ),
+                    p_filename
+                FROM
+                    dual;
+                ELSIF documenttype = 'RECEIPT' THEN
+                line_id := line_number_seq.NEXTVAL;
+    INSERT INTO xxmx_receipt_document_extraction (
+        line_num,    
+        document_type,
+        merchant_name,
+        merchant_address,
+        total,
+        filename,
+        phone_number,
+        sub_total,
+        transaction_date,
+        transaction_time,
+        tax
+    )
+    SELECT
+        line_id,
+        (
+            SELECT document_type
+            FROM xxmx_invoices
+            WHERE document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT field_value
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'MerchantName'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT field_value
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'MerchantAddress'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT '$' || REGEXP_REPLACE(field_value, '[$,]', '')
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'Total'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        p_filename,
+        (
+            SELECT CASE 
+                WHEN REGEXP_LIKE(field_value, '^[0-9-]+$') THEN TO_NUMBER(REGEXP_REPLACE(field_value, '[^0-9]', ''))
+                ELSE NULL 
+            END
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'MerchantPhoneNumber'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT '$' || REGEXP_REPLACE(field_value, '[$,]', '')
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'Subtotal'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT field_value
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'TransactionDate'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT field_value
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'TransactionTime'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        ),
+        (
+            SELECT '$' || REGEXP_REPLACE(field_value, '[$,]', '')
+            FROM xxmx_invoices
+            WHERE field_label LIKE 'Tax'
+            AND document_type = documenttype
+            AND ROWNUM = 1
+        )
+    FROM dual;
+END IF;
+
+    DELETE FROM xxmx_invoices;
+COMMIT;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DELETE FROM xxmx_invoices;
+        COMMIT;
+        RAISE;
+END;
+END;
+
+
+-----
+
+create or replace PROCEDURE xxmx_insertdoc_extract3 (
+    documenttype VARCHAR2,
+    Line_id number,
+    Item_number number,
+    p_filename varchar2
+    
+) AS
+    v_itemquantity   VARCHAR2(50);
+    v_itemname       VARCHAR2(255);
+    v_itemtotalprice VARCHAR2(50);
+BEGIN
+    IF documenttype = 'RECEIPT' THEN
+        DECLARE
+            CURSOR c_items IS
+                SELECT field_label, field_value
+                FROM xxmx_invoices
+                WHERE document_type = documenttype
+                  AND field_label IN ('ItemQuantity', 'ItemName', 'ItemTotalPrice')
+                ORDER BY ROWNUM;
+
+        BEGIN
+            v_itemquantity := NULL;
+            v_itemname := NULL;
+            v_itemtotalprice := NULL;
+
+            FOR rec IN c_items LOOP
+                CASE rec.field_label
+                    WHEN 'ItemQuantity' THEN
+                        v_itemquantity := rec.field_value;
+                    WHEN 'ItemName' THEN
+                        v_itemname := rec.field_value;
+                    WHEN 'ItemTotalPrice' THEN
+                        v_itemtotalprice := rec.field_value;
+                END CASE;
+
+                IF v_itemquantity IS NOT NULL 
+                   AND v_itemname IS NOT NULL 
+                   AND v_itemtotalprice IS NOT NULL THEN
+
+                    INSERT INTO xxmx_receipt_line_extraction (
+                        document_type,
+                        itemquantity,
+                        itemname,
+                        itemtotalprice,
+                        LINE_NUMBER,
+                        ITEM_LINE_NUMBER,
+                        p_filename
+                    )
+                    VALUES (
+                        documenttype,
+                        v_itemquantity,
+                        v_itemname,
+                        v_itemtotalprice,
+                        Line_id,
+                        Item_number,
+                        p_filename
+                    );
+
+                    -- Delete the processed rows from xxmx_invoices
+                    DELETE FROM xxmx_invoices
+                    WHERE document_type = documenttype
+                      AND field_label IN ('ItemQuantity', 'ItemName', 'ItemTotalPrice')
+                      AND field_value IN (v_itemquantity, v_itemname, v_itemtotalprice);
+
+                    -- Reset the variables for the next set
+                    v_itemquantity := NULL;
+                    v_itemname := NULL;
+                    v_itemtotalprice := NULL;
+                END IF;
+            END LOOP;
+        END;
+    END IF;
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+END;

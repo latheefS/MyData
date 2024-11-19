@@ -1,0 +1,26 @@
+--------------------------------------------------------
+--  DDL for View XXMX_HCM_LEARNER_RECORD_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "XXMX_CORE"."XXMX_HCM_LEARNER_RECORD_V" ("METADATA") AS 
+  SELECT 'METADATA|LearningRecord|LearningRecordEffectiveStartDate|LearningRecordEffectiveEndDate|LearningRecordNumber|AssignmentNumber|LearningItemType|LearningItemNumber|AssignmentType|AssignmentSubType|AssignedByPersonNumber|AssignmentAttributionType|AssignmentAttributionCode|AssignmentAttributionNumber|LearnerNumber|LearningRecordStatus|LearningRecordStartDate|LearningRecordDueDate'--|LearningRecordTotalActualEffort|LearningRecordTotalActualEffortUOM' 
+  METADATA FROM DUAL
+UNION ALL
+SELECT 'MERGE|LearningRecord|'||TO_CHAR(SYSDATE,'YYYY/MM/DD')||'||LR_NUM_'||ENROLLMENT_NUMBER||'|'||
+(SELECT UNIQUE ASSIGNMENT_NUMBER FROM XXMX_PER_ASSIGNMENTS_M_XFM WHERE PERSON_ID=LR.PERSON_ID)||'-'||COURSE_CODE
+||'_'||DENSE_RANK() over (partition by course_code order by ENROLLMENT_NUMBER)||'|ORA_COURSE|'||COURSE_CODE||'|ORA_REQUIRE_ASSIGNMENT|ORA_EVT_SUBT_ADMIN|50|ORA_SPECIALIST|ORA_SELF|50|'||
+PERSON_NUMBER||'|ORA_ASSN_REC_ACTIVE|'||to_char(to_date(CLASS_START_DATE,'DD-MON-RRRR HH24:MI:SS'),'YYYY/MM/DD')||'|'||to_char(to_date(CLASS_END_DATE,'DD-MON-RRRR HH24:MI:SS'),'YYYY/MM/DD')--||'|'||DURATION||'|'||DURATION_UNITS 
+METADATA 
+FROM XXMX_LEARNER_RECORDS_STG LR
+WHERE COURSE_CODE NOT IN(SELECT COURSE_NUMBER FROM XXMX_OLM_CLASS_STG)
+UNION ALL
+SELECT 'MERGE|LearningRecord|'||TO_CHAR(SYSDATE,'YYYY/MM/DD')||'||LR_NUM_'||ENROLLMENT_NUMBER||'|'||
+(SELECT UNIQUE ASSIGNMENT_NUMBER FROM XXMX_PER_ASSIGNMENTS_M_XFM WHERE PERSON_ID=LR.PERSON_ID)||'-'||COURSE_CODE
+||'_'||DENSE_RANK() over (partition by course_code order by ENROLLMENT_NUMBER)
+||'|ORA_CLASS|OFF-'||EVENT_ID||'-'||COURSE_CODE||'|ORA_REQUIRE_ASSIGNMENT|ORA_EVT_SUBT_ADMIN|50|ORA_SPECIALIST|ORA_SELF|50|'||
+PERSON_NUMBER||'|ORA_ASSN_REC_ACTIVE|'||to_char(to_date(CLASS_START_DATE,'DD-MON-RRRR HH24:MI:SS'),'YYYY/MM/DD')||'|'||to_char(to_date(CLASS_END_DATE,'DD-MON-RRRR HH24:MI:SS'),'YYYY/MM/DD')--||'|'||DURATION||'|'||DURATION_UNITS 
+METADATA 
+FROM XXMX_LEARNER_RECORDS_STG LR 
+WHERE COURSE_CODE IN(SELECT COURSE_NUMBER FROM XXMX_OLM_CLASS_STG
+ )
+;

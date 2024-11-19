@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_OLC_INSTR_RES_XFM
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_XFM"."XXMX_OLC_INSTR_RES_XFM" MODIFY ("INSTRUCTOR_RESOURCE_NUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_XFM"."XXMX_OLC_INSTR_RES_XFM" MODIFY ("PERSON_NUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_XFM"."XXMX_OLC_INSTR_RES_XFM" MODIFY ("OWNED_BY_PERSON_NUMBER" NOT NULL ENABLE);

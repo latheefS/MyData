@@ -1,0 +1,23 @@
+COMMENT Data for Business Object: SpecializationV3 Version: V3 Created on: 07-08-2021 
+COMMENT The SpecializationV3 object hierarchy includes the following attributes that are being withdrawn and will be removed in a future release. Review these attributes in the View Business Objects task for more information: 
+COMMENT From SpecializationV3: TrailerLiId, TrailerLiNumber
+METADATA|SpecializationV3|EffectiveStartDate|SpecializationNumber|Title|ShortDescription|PublishStartDate|PublishEndDate|OwnedByPersonNumber|MinimumExpectedEffort|MaximumExpectedEffort|SourceSystemOwner|SourceSystemId
+MERGE|SpecializationV3|2021/08/15|SPL111231|Next Simply Specialization|Next Simply Specialization Short Description|2021/08/15|2021/08/31|1000005|1|9|DATAMIGRATION|SPLN111231
+MERGE|SpecializationV3|2021/08/15|SPL111232|Next Typically Specialization| Next Typically Specialization Short Description|2021/08/15|2021/08/31|1000005|1|9|DATAMIGRATION|SPLN111232
+
+METADATA|SpecializationDefaultAccessV3|DefaultAccessNumber|EffectiveStartDate|FollowCommunity|SelfViewMode|SelfInitialStatus|SelfEnrollForm|SelfActivateApprove|SelfEnrollQuestionnaire|SelfQuestionnaireCode|SelfPrereqType|SelfWithdrawPrereqDays|MgrInitialStatus|MgrActivateApprove|MgrWithdrawPrereqDays|MgrMarkComplete|SourceSystemId|SourceSystemOwner|SpecializationNumber
+MERGE|SpecializationDefaultAccessV3|DAN107871|2021/08/15|Y|Summary View|Active|N|ORA_MANUAL|N||NOT_DEFERRED||Active|ORA_MANUAL|9|Y|SPLDAN107871|DATAMIGRATION|SPL111231
+MERGE|SpecializationDefaultAccessV3|DAN107872|2021/08/15|Y|Details View|Active|Y|ORA_AUTOMATIC|N||DEFERRED|9|Active|ORA_AUTOMATIC|9|Y|SPLDAN107872|DATAMIGRATION|SPL111232
+
+METADATA|SpecializationSectionV3|EffectiveStartDate|SpecializationSectionNumber|Title|CompletionRuleType|NumberOfActivitiesToComplete|SequenceRuleType|SequenceRuleSectionNumber|InitialAssignmentStatusOfActivities|SectionPosition|SpecializationNumber|SourceSystemOwner|SourceSystemId
+MERGE|SpecializationSectionV3|2021/08/15|SSN111121|Next Simply Specialization Section|ORA_COMPLETION_SECTION|0|ORA_SECTION_ANYTIME||Active|1|SPL111231|DATAMIGRATION|SSNO111121
+MERGE|SpecializationSectionV3|2021/08/15|SSN111122|Next Typically Specialization Section One|ORA_COMPLETION_SECTION|0|ORA_SECTION_ANYTIME||Active|1|SPL111232|DATAMIGRATION|SSNO111122
+MERGE|SpecializationSectionV3|2021/08/15|SSN111123|Next Typically Specialization Section Two|ORA_COMPLETION_SECTION|0|ORA_SECTION_PREVIOUS|SSN111115|Active|2|SPL111232|DATAMIGRATION|SSNO111123
+
+METADATA|SpecializationSectionActivityV3|EffectiveStartDate|ActivityNumber|SpecializationSectionNumber|CourseLearningItemNumber|SequenceRuleType|SequenceRuleActivityNumber|ActivityPosition|ActivityCompletionType|SourceSystemId|SourceSystemOwner
+MERGE|SpecializationSectionActivityV3|2021/08/15|AN234561|SSN111121|OLC121015|ORA_ACTIVITY_ANYTIME||1|ORA_REQUIRED|SSAN234561|DATAMIGRATION
+MERGE|SpecializationSectionActivityV3|2021/08/15|AN234562|SSN111121|CTEST123_PK|ORA_ACTIVITY_AFTER_COMPL|AN234561|2|ORA_OPTIONAL|SSAN234562|DATAMIGRATION
+MERGE|SpecializationSectionActivityV3|2021/08/15|AN234563|SSN111122|OLC120005|ORA_ACTIVITY_ANYTIME||1|ORA_REQUIRED|SSAN234563|DATAMIGRATION
+MERGE|SpecializationSectionActivityV3|2021/08/15|AN234564|SSN111122|OLC135001|ORA_ACTIVITY_AFTER_COMPL|AN234563|2|ORA_OPTIONAL|SSAN234564|DATAMIGRATION
+MERGE|SpecializationSectionActivityV3|2021/08/15|AN234565|SSN111123|CRS107890|ORA_ACTIVITY_ANYTIME||1|ORA_REQUIRED|SSAN234565|DATAMIGRATION
+MERGE|SpecializationSectionActivityV3|2021/08/15|AN234566|SSN111123|OLC134091|ORA_ACTIVITY_AFTER_COMPL|AN234565|2|ORA_OPTIONAL|SSAN234566|DATAMIGRATION

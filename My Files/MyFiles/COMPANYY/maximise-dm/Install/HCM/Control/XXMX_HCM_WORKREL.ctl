@@ -1,0 +1,31 @@
+LOAD DATA
+INFILE XXMX_HCM_WORKREL.dat
+REPLACE 
+INTO  TABLE XXMX_PER_POS_WR_STG
+FIELDS TERMINATED BY "|" OPTIONALLY ENCLOSED BY '"'  TRAILING NULLCOLS 
+(DATE_EMPLOYEE_DATA_VERIFIED    ,
+LEGAL_EMPLOYER_NAME            ,
+LEGISLATION_CODE               ,
+ON_MILITARY_SERVICE            ,
+ORIGINAL_DATE_OF_HIRE          ,
+PERIOD_TYPE                    ,
+PRIMARY_FLAG                   ,
+REHIRE_AUTHORIZOR              ,
+REHIRE_REASON                  ,
+REHIRE_RECOMMENDATION          ,
+COMMENTS                       ,
+REHIRE_AUTHORIZER_PERSON_ID    ,
+REVOKE_USER_ACCESS             ,
+FILE_SET_ID                    ,
+MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               ,
+BG_NAME                        ,
+DATE_START                     ,
+ACCEPTED_TERMINATION_DATE      ,
+ACTUAL_TERMINATION_DATE        ,
+NOTIFIED_TERMINATION_DATE      ,
+PROJECTED_TERMINATION_DATE     ,
+PERSONNUMBER                   ,
+PAYROLL_NAME                   
+)
+

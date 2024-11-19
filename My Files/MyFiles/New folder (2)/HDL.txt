@@ -1,0 +1,5 @@
+HDL/FBDI:+DM:
+-------------
+
+ Have experience in Interfaces in and out of ERP cloud: FBDI, HDL, ADFDI, BIP, OTBI, as well as Web Services (SOAP & REST)
+ Data conversions and Integrations using FBDI/HDL Templates and REST/SOAP Services

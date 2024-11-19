@@ -1,0 +1,21 @@
+LOAD DATA
+INFILE XXMX_HCM_BEN_PER_HABITS.dat
+REPLACE 
+INTO  TABLE XXMX_BEN_PH_STG
+FIELDS TERMINATED BY "|" OPTIONALLY ENCLOSED BY '"'  TRAILING NULLCOLS 
+(LEGAL_EMPLOYER                 ,
+COORD_MED_PL_NAME              ,
+CVRD_IN_ANTHR_PL               ,
+DISABILITY_STATUS              ,
+EFFECTIVE_END_DATE             ,
+EFFECTIVE_START_DATE           ,
+LE_HABITS_COV_ID               ,
+PERSON_NUMBER                  ,
+REGISTERED_DISABLED_FLAG       ,
+STUDENT_STATUS                 ,
+TOBACCO_TYPE_USAGE             ,
+MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               ,
+BG_NAME                        
+)
+

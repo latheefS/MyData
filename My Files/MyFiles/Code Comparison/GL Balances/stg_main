@@ -1,0 +1,27 @@
+create or replace PACKAGE BODY xxmx_gl_balances_pkg AS
+     --
+     --**********************
+     --** Global Declarations
+     --**********************
+     --
+     /* Maximise Integration Globals */
+     --
+     /* Global Constants for use in all xxmx_gl_balances_pkg Procedure/Function Calls within this package */
+     --
+    gcv_packagename               CONSTANT VARCHAR2(30) := 'xxmx_gl_balances_pkg';
+    gct_applicationsuite          CONSTANT xxmx_module_messages.application_suite%TYPE := 'FIN';
+    gct_application               CONSTANT xxmx_module_messages.application%TYPE := 'GL';
+    gct_stgschema                 CONSTANT VARCHAR2(10) := 'xxmx_stg';
+    gct_xfmschema                 CONSTANT VARCHAR2(10) := 'xxmx_xfm';
+    gct_coreschema                CONSTANT VARCHAR2(10) := 'xxmx_core';
+    gct_businessentity            CONSTANT xxmx_migration_metadata.business_entity%TYPE := 'BALANCES';
+    gct_origsystem                CONSTANT VARCHAR2(10) := 'ORACLER12';
+     --
+     --Exception Declarations
+     --
+    e_moduleerror EXCEPTION;
+    e_dateerror EXCEPTION;
+     --
+
+
+END xxmx_gl_balances_pkg;

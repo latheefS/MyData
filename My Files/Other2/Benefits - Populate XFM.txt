@@ -1,0 +1,119 @@
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PE_XFM'
+                                ,p_fusion_tmp_name => 'ParticipantEnrollment.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PE.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PE_CO_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PE_CO_XFM'
+                                ,p_fusion_tmp_name => 'ParticipantEnrollment.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PE_CO.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_DE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_DE_XFM'
+                                ,p_fusion_tmp_name => 'DependentEnrollment.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_DE.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_DE_DD_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_DE_DD_XFM'
+                                ,p_fusion_tmp_name => 'DependentEnrollment.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_DE_DD.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_BE_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_BE_XFM'
+                                ,p_fusion_tmp_name => 'BeneficiaryEnrollment.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_BE.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_BE_DB_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_BE_DB_XFM'
+                                ,p_fusion_tmp_name => 'BeneficiaryEnrollment.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_BE_DB.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PBG_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PBG_XFM'
+                                ,p_fusion_tmp_name => 'PersonBenefitGroup.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PBG.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PBB_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PBB_XFM'
+                                ,p_fusion_tmp_name => 'PersonBenefitBalance.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PBB.ctl'
+                                );
+End;
+
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PH_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PH_XFM'
+                                ,p_fusion_tmp_name => 'PersonHabits.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PH.ctl'
+                                );
+End;
+
+
+Begin 
+ XXMX_XFM_TABLE_POPULATION ( 
+                                p_application_suite => 'HCM'
+                                ,p_application => 'BEN'
+                                ,p_stg_tbl_name =>'XXMX_BEN_PBO_STG'
+                                ,p_xfm_tbl_name =>'XXMX_BEN_PBO_XFM'
+                                ,p_fusion_tmp_name => 'PersonBeneficiaryOrganization.dat'
+                                ,p_ctl_name => 'XXMX_HCM_BEN_PBO.ctl'
+                                );
+End;

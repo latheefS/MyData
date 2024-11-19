@@ -1,0 +1,2415 @@
+create or replace PACKAGE BODY XXMX_PO_HEADERS_PKG AS
+--*****************************************************************************
+--**
+--**                 Copyright (c) 2020 Version 1
+--**
+--**                           Millennium House,
+--**                           Millennium Walkway,
+--**                           Dublin 1
+--**                           D01 F5P8
+--**
+--**                           All rights reserved.
+--**
+--*****************************************************************************
+--**
+--**
+--** FILENAME  :  xxmx_po_pkg.pkb
+--**
+--** FILEPATH  :  $XXV1_TOP/install/sql
+--**
+--** VERSION   :  1.0
+--**
+--** EXECUTE
+--** IN SCHEMA :  XXMX_STG
+--**
+--** AUTHORS   :  Shaik Latheef
+--**
+--** PURPOSE   :  This package contains procedures for extracting Purchase Order into Staging tables
+--** 1.1 			Changed the amount based logic to get the amount from remaining quantity instead of actual for Lines, Locations and distribution
+--** 1.2    Meenakshi Rajendran   Performance Tuning - Added optimizer hint, Moved main query to cursor & replaced hr_locations_all table into hr_locations
+
+	/****************************************************************
+	----------------Export Purchase Orders Information---------------
+	****************************************************************/
+    gvv_ReturnStatus                          VARCHAR2(1);
+    gvt_ReturnMessage                         xxmx_module_messages.module_message%TYPE;
+    gvv_ProgressIndicator                     VARCHAR2(100);
+    gcv_PackageName                           CONSTANT  VARCHAR2(30)                                := 'XXMX_PO_HEADERS_PKG';
+    gct_ApplicationSuite                      CONSTANT  xxmx_module_messages.application_suite%TYPE := 'SCM';
+    gct_Application                           CONSTANT  xxmx_module_messages.application%TYPE       := 'PO';
+    gv_i_BusinessEntity                       CONSTANT  VARCHAR2(100)                               := 'PURCHASE_ORDERS';
+    ct_Phase                                  CONSTANT  xxmx_module_messages.phase%TYPE             := 'EXTRACT';
+    cv_i_BusinessEntityLevel                  CONSTANT  VARCHAR2(100)                               := 'ALL';
+    --gv_hr_date					              DATE                                                  := '31-DEC-4712';
+    gct_stgschema                                       VARCHAR2(10)                                := 'XXMX_STG';
+    gvt_migrationsetname                      VARCHAR2(100);
+    gvt_Severity                              xxmx_module_messages.severity%TYPE;
+    gvt_ModuleMessage                         xxmx_module_messages.module_message%TYPE;
+    gvt_OracleError                           xxmx_module_messages.oracle_error%TYPE;
+    gvn_RowCount                              NUMBER;
+     gvn_message                                        varchar2(2000);
+
+    E_MODULEERROR                             EXCEPTION;
+    e_DateError                               EXCEPTION;
+
+
+
+
+
+	/****************************************************************
+	----------------Export STD PO Headers----------------------------
+	****************************************************************/
+
+
+
+
+	/****************************************************************
+	----------------Export STD PO Lines------------------------------
+	****************************************************************/
+
+
+
+
+	/****************************************************************
+	----------------Export STD PO Line Locations---------------------
+	*****************************************************************/
+
+
+
+
+	/****************************************************************
+	----------------Export STD PO Distributions----------------------
+	*****************************************************************/
+
+
+
+
+	/****************************************************************
+	----------------Export BPA PO Headers----------------------------
+	*****************************************************************/
+
+    PROCEDURE export_po_headers_bpa
+      (pt_i_MigrationSetID              IN      xxmx_migration_headers.migration_set_id%TYPE
+        ,pt_i_SubEntity                  IN      xxmx_migration_metadata.sub_entity%TYPE)
+        IS
+
+        cv_ProcOrFuncName                   CONSTANT    VARCHAR2(30) := 'export_po_headers_bpa';
+        ct_Phase                            CONSTANT    xxmx_module_messages.phase%TYPE  := 'EXTRACT';
+        cv_StagingTable                     CONSTANT    VARCHAR2(100) DEFAULT 'XXMX_SCM_PO_HEADERS_BPA_STG';
+        cv_i_BusinessEntityLevel            CONSTANT    VARCHAR2(100) DEFAULT 'PO_HEADERS_BPA';
+
+        lvv_migration_date_to                           VARCHAR2(30);
+        lvv_migration_date_from                         VARCHAR2(30);
+        lvv_prev_tax_year_date                          VARCHAR2(30);
+        lvd_migration_date_to                           DATE;
+        lvd_migration_date_from                         DATE;
+        lvd_prev_tax_year_date                          DATE;
+
+        e_DateError                         EXCEPTION;
+    BEGIN
+        --
+        gvv_ReturnStatus  := '';
+        gvt_ReturnMessage := '';
+        gvv_ProgressIndicator := '0000';
+        xxmx_utilities_pkg.clear_messages
+            (pt_i_ApplicationSuite    => gct_ApplicationSuite
+            ,pt_i_Application         => gct_Application
+            ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+            ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+            ,pt_i_Phase               => ct_Phase
+            ,pt_i_MessageType         => 'DATA'
+            ,pv_o_ReturnStatus        => gvv_ReturnStatus
+            );
+        IF   gvv_ReturnStatus = 'F'
+        THEN
+            xxmx_utilities_pkg.log_module_message
+                (pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'ERROR'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                ,pt_i_OracleError         => gvt_ReturnMessage
+                );
+            --
+            RAISE e_ModuleError;
+        END IF;
+        --
+        --
+        gvv_ProgressIndicator := '0010';
+        xxmx_utilities_pkg.log_module_message(
+                 pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'NOTIFICATION'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Deleting from "' || cv_StagingTable   || '".'
+                ,pt_i_OracleError         => gvt_ReturnMessage  );
+        --
+        DELETE
+        FROM    XXMX_SCM_PO_HEADERS_BPA_STG
+          ;
+
+        COMMIT;
+        --
+
+                --
+
+        gvv_ProgressIndicator := '0020';
+        --
+        gvt_MigrationSetName := xxmx_utilities_pkg.get_migration_set_name(pt_i_MigrationSetID);
+        --
+        /*
+        ** If the Migration Set Name is NULL then the Migration has not been initialized.
+        */
+        --
+        IF   gvt_MigrationSetName IS NOT NULL
+        THEN
+            --
+            gvv_ProgressIndicator := '0030';
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '- Extracting "'
+                                          ||pt_i_SubEntity
+                                          ||'":'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            /*
+            ** The Migration Set has been initialised, so now initialize the detail record
+            ** for the current entity.
+            */
+            --
+            --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+            --**                  table based on the Application Suite, Application and Business Entity parameters.
+            --**
+            --**                  Removed "entity" from procedure_name.
+            --
+            xxmx_utilities_pkg.init_migration_details
+                 (
+                  pt_i_ApplicationSuite => gct_ApplicationSuite
+                 ,pt_i_Application      => gct_Application
+                 ,pt_i_BusinessEntity   => gv_i_BusinessEntity
+                 ,pt_i_SubEntity        => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID   => pt_i_MigrationSetID
+                 ,pt_i_StagingTable     => cv_StagingTable
+                 ,pt_i_ExtractStartDate => SYSDATE
+                 );
+            --
+            --** ISV 21/10/2020 - "pt_i_StagingTable" no longer needs to be passed as a parameter from the STG_MAIN procedure
+            --**                  as the table name will never change so replace with new constant "ct_StgTable".
+            --
+            --**                  We will still keep the table name in the Metadata table as that can be used for reporting
+            --**                  purposes.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Staging Table "'
+                                          ||cv_StagingTable
+                                          ||'" reporting details initialised.'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            gvv_ProgressIndicator := '0040';
+            --
+            --** Extract the Projects and insert into the staging table.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Extracting data into "'
+                                          ||cv_StagingTable
+                                          ||'".'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            --** ISV 21/10/2020 - The staging table is in the xxmx_stg schema but should not need to be prefixed as there should
+            --**                  by a Synonym in the xxmx_core schema to that table.
+            --
+
+
+            INSERT
+            INTO    XXMX_SCM_PO_HEADERS_BPA_STG
+                   (MIGRATION_SET_ID							,
+                    MIGRATION_SET_NAME							,
+                    MIGRATION_STATUS							,
+                    INTERFACE_HEADER_KEY						,
+                    ACTION										,
+                    BATCH_ID									,
+                    INTERFACE_SOURCE_CODE						,
+                    APPROVAL_ACTION								,
+                    DOCUMENT_NUM								,
+                    DOCUMENT_TYPE_CODE							,
+                    STYLE_DISPLAY_NAME							,
+                    PRC_BU_NAME									,
+                    AGENT_NAME									,
+                    CURRENCY_CODE								,
+                    COMMENTS 									,
+                    VENDOR_NAME									,
+                    VENDOR_NUM									,
+                    VENDOR_SITE_CODE							,
+                    VENDOR_CONTACT								,
+                    VENDOR_DOC_NUM								,
+                    FOB											,
+                    FREIGHT_CARRIER								,
+                    FREIGHT_TERMS								,
+                    PAY_ON_CODE									,
+                    PAYMENT_TERMS								,
+                    ORIGINATOR_ROLE								,
+                    CHANGE_ORDER_DESC							,
+                    ACCEPTANCE_REQUIRED_FLAG					,
+                    ACCEPTANCE_WITHIN_DAYS						,
+                    SUPPLIER_NOTIF_METHOD						,
+                    FAX											,
+                    EMAIL_ADDRESS								,
+                    CONFIRMING_ORDER_FLAG						,
+                    AMOUNT_AGREED 								,
+                    AMOUNT_LIMIT 								,
+                    MIN_RELEASE_AMOUNT 							,
+                    EFFECTIVE_DATE								,
+                    EXPIRATION_DATE 							,
+                    NOTE_TO_VENDOR 								,
+                    NOTE_TO_RECEIVER 							,
+                    GENERATE_ORDERS_AUTOMATIC 					,
+                    SUBMIT_APPROVAL_AUTOMATIC					,
+                    GROUP_REQUISITIONS							,
+                    GROUP_REQUISITION_LINES						,
+                    USE_SHIP_TO									,
+                    USE_NEED_BY_DATE							,
+                    CAT_ADMIN_AUTH_ENABLED_FLAG					,
+                    RETRO_PRICE_APPLY_UPDATES_FLAG				,
+                    RETRO_PRICE_COMM_UPDATES_FLAG				,
+                    ATTRIBUTE_CATEGORY							,
+                    ATTRIBUTE1									,
+                    ATTRIBUTE2									,
+                    ATTRIBUTE3									,
+                    ATTRIBUTE4									,
+                    ATTRIBUTE5									,
+                    ATTRIBUTE6									,
+                    ATTRIBUTE7									,
+                    ATTRIBUTE8									,
+                    ATTRIBUTE9									,
+                    ATTRIBUTE10									,
+                    ATTRIBUTE11									,
+                    ATTRIBUTE12									,
+                    ATTRIBUTE13									,
+                    ATTRIBUTE14									,
+                    ATTRIBUTE15									,
+                    ATTRIBUTE16									,
+                    ATTRIBUTE17									,
+                    ATTRIBUTE18									,
+                    ATTRIBUTE19									,
+                    ATTRIBUTE20									,
+                    ATTRIBUTE_DATE1								,
+                    ATTRIBUTE_DATE2								,
+                    ATTRIBUTE_DATE3								,
+                    ATTRIBUTE_DATE4								,
+                    ATTRIBUTE_DATE5								,
+                    ATTRIBUTE_DATE6								,
+                    ATTRIBUTE_DATE7								,
+                    ATTRIBUTE_DATE8								,
+                    ATTRIBUTE_DATE9								,
+                    ATTRIBUTE_DATE10							,
+                    ATTRIBUTE_NUMBER1							,
+                    ATTRIBUTE_NUMBER2							,
+                    ATTRIBUTE_NUMBER3							,
+                    ATTRIBUTE_NUMBER4							,
+                    ATTRIBUTE_NUMBER5							,
+                    ATTRIBUTE_NUMBER6							,
+                    ATTRIBUTE_NUMBER7							,
+                    ATTRIBUTE_NUMBER8							,
+                    ATTRIBUTE_NUMBER9							,
+                    ATTRIBUTE_NUMBER10							,
+                    ATTRIBUTE_TIMESTAMP1						,
+                    ATTRIBUTE_TIMESTAMP2						,
+                    ATTRIBUTE_TIMESTAMP3						,
+                    ATTRIBUTE_TIMESTAMP4						,
+                    ATTRIBUTE_TIMESTAMP5						,
+                    ATTRIBUTE_TIMESTAMP6						,
+                    ATTRIBUTE_TIMESTAMP7						,
+                    ATTRIBUTE_TIMESTAMP8						,
+                    ATTRIBUTE_TIMESTAMP9						,
+                    ATTRIBUTE_TIMESTAMP10						,
+                    AGENT_EMAIL_ADDRESS							,
+                    MODE_OF_TRANSPORT							,
+                    SERVICE_LEVEL								,
+                    AGING_PERIOD_DAYS							,
+                    AGING_ONSET_POINT							,
+                    CONSUMPTION_ADVICE_FREQUENCY				,
+                    CONSUMPTION_ADVICE_SUMMARY					,
+                    DEFAULT_CONSIGNMENT_LINE_FLAG				,
+                    PAY_ON_USE_FLAG 							,
+                    BILLING_CYCLE_CLOSING_DATE					,
+                    CONFIGURED_ITEM_FLAG						,
+                    USE_SALES_ORDER_NUMBER_FLAG					,
+                    BUYER_MANAGED_TRANSPORT_FLAG				,
+                    ALLOW_ORDER_FRM_UNASSIGND_SITES		,
+                    OUTSIDE_PROCESS_ENABLED_FLAG				,
+                    MASTER_CONTRACT_NUMBER						,
+                    MASTER_CONTRACT_TYPE						,
+                    PO_HEADER_ID
+                  )
+
+            SELECT  distinct pt_i_MigrationSetID														--migration_set_id
+                    ,gvt_migrationsetname																--migration_set_name
+                    ,'EXTRACTED'																		--migration_status
+                    ,pha.po_header_id																	--interface_header_key
+                    ,''																					--action
+                    ,''																					--batch_id
+                    ,pha.interface_source_code															--interface_source_code
+                    ,pha.authorization_status															--approval_action
+                    ,pha.segment1																		--document_num
+                    ,pha.type_lookup_code																--document_type_code
+                    ,''																					--style_display_name
+                    ,''																					--prc_bu_name
+                    ,''																					--agent_name
+                    ,pha.currency_code																	--currency_code
+                    ,pha.comments																		--comments
+                    ,pv.vendor_name																		--vendor_name
+                    ,pv.segment1																		--vendor_num
+                    ,pvsa.vendor_site_code																--vendor_site_code
+                    ,''																					--vendor_contact
+                    ,''																					--vendor_doc_num
+                    ,pha.fob_lookup_code																--fob
+                    ,''																					--freight_carrier
+                    ,pha.freight_terms_lookup_code														--freight_terms
+                    ,pha.pay_on_code																	--pay_on_code
+                    ,''																					--payment_terms
+                    ,''																					--originator_role
+                    ,pha.change_summary																	--change_order_desc
+                    ,pha.acceptance_required_flag														--acceptance_required_flag
+                    ,''																					--acceptance_within_days
+                    ,pha.supplier_notif_method															--supplier_notif_method
+                    ,pha.fax																			--fax
+                    ,pha.email_address																	--email_address
+                    ,pha.confirming_order_flag															--confirming_order_flag
+                    ,pha.blanket_total_amount															--amount_agreed
+                    ,pha.amount_limit																	--amount_limit
+                    ,pha.min_release_amount																--min_release_amount
+                    ,pha.start_date																		--effective_date
+                    ,pha.end_date																		--expiration_date
+                    ,pha.note_to_vendor																	--note_to_vendor
+                    ,pha.note_to_receiver																--note_to_receiver
+                    ,''																					--generate_orders_automatic
+                    ,''																					--submit_approval_automatic
+                    ,''																					--group_requisitions
+                    ,''																					--group_requisition_lines
+                    ,''																					--use_ship_to
+                    ,''																					--use_need_by_date
+                    ,pha.cat_admin_auth_enabled_flag													--cat_admin_auth_enabled_flag
+                    ,pha.retro_price_apply_updates_flag													--retro_price_apply_updates_flag
+                    ,pha.retro_price_comm_updates_flag													--retro_price_comm_updates_flag
+                    ,''																					--attribute_category
+                    ,''																					--attribute1
+                    ,''																					--attribute2
+                    ,''																					--attribute3
+                    ,''																					--attribute4
+                    ,''																					--attribute5
+                    ,''																					--attribute6
+                    ,''																					--attribute7
+                    ,''																					--attribute8
+                    ,''																					--attribute9
+                    ,''																					--attribute10
+                    ,''																					--attribute11
+                    ,''																					--attribute12
+                    ,''																					--attribute13
+                    ,''																					--attribute14
+                    ,''																					--attribute15
+                    ,''																					--attribute16
+                    ,''																					--attribute17
+                    ,''																					--attribute18
+                    ,''																					--attribute19
+                    ,''																					--attribute20
+                    ,''																					--attribute_date1
+                    ,''																					--attribute_date2
+                    ,''																					--attribute_date3
+                    ,''																					--attribute_date4
+                    ,''																					--attribute_date5
+                    ,''																					--attribute_date6
+                    ,''																					--attribute_date7
+                    ,''																					--attribute_date8
+                    ,''																					--attribute_date9
+                    ,''																					--attribute_date10
+                    ,''																					--attribute_number1
+                    ,''																					--attribute_number2
+                    ,''																					--attribute_number3
+                    ,''																					--attribute_number4
+                    ,''																					--attribute_number5
+                    ,''																					--attribute_number6
+                    ,''																					--attribute_number7
+                    ,''																					--attribute_number8
+                    ,''																					--attribute_number9
+                    ,''																					--attribute_number10
+                    ,''																					--attribute_timestamp1
+                    ,''																					--attribute_timestamp2
+                    ,''																					--attribute_timestamp3
+                    ,''																					--attribute_timestamp4
+                    ,''																					--attribute_timestamp5
+                    ,''																					--attribute_timestamp6
+                    ,''																					--attribute_timestamp7
+                    ,''																					--attribute_timestamp8
+                    ,''																					--attribute_timestamp9
+                    ,''																					--attribute_timestamp10
+                    ,''																					--agent_email_address
+                    ,''																					--mode_of_transport
+                    ,''																					--service_level
+                    ,''																					--aging_period_days
+                    ,''																					--aging_onset_point
+                    ,''																					--consumption_advice_frequency
+                    ,''																					--consumption_advice_summary
+                    ,''																					--default_consignment_line_flag
+                    ,''																					--pay_on_use_flag
+                    ,''																					--billing_cycle_closing_date
+                    ,''																					--configured_item_flag
+                    ,''																					--use_sales_order_number_flag
+                    ,''																					--buyer_managed_transport_flag
+                    ,''																					--allow_ordering_from_unassigned_sites
+                    ,''																					--outside_process_enabled_flag
+                    ,''																					--master_contract_number
+                    ,''																					--master_contract_type
+                    ,pha.po_header_id																	--po_header_id
+            FROM
+                     PO_HEADERS_ALL@XXMX_EXTRACT			pha
+                    ,PO_VENDORS@XXMX_EXTRACT   			pv
+                    ,PO_VENDOR_SITES_ALL@XXMX_EXTRACT		pvsa
+                    ,XXMX_PURCHASE_ORDER_SCOPE_V				xpos
+            WHERE  1                                 = 1
+            --
+            AND pha.type_lookup_code              	= 'BLANKET'
+            AND pha.org_id                    	 	= xpos.org_id
+            AND pha.po_header_id				  	= xpos.po_header_id
+            --
+            AND pha.vendor_id                   	= pv.vendor_id
+            AND pha.vendor_site_id               	= pvsa.vendor_site_id
+            ;
+
+                    /*
+            ** Obtain the count of rows inserted.  We cannot use SQL$ROWCOUNT here because of the LIMIT
+            ** clause on the BULK COLLECT statement.  The rowcount will be reset each time the limit
+            ** is reached.
+            */
+            --
+            --** ISV 21/10/2020 - Replace "pt_i_ClientSchemaName" (no longer passed into the extract procedures) with new constant "gct_StgSchema".
+            --**                  Replace "pt_i_StagingTable" (no longer passed into the extract procedures) with new constant "ct_StgTable"
+            --
+            gvn_RowCount := xxmx_utilities_pkg.get_row_count
+                                 (
+                                  gct_StgSchema
+                                 ,cv_StagingTable
+                                 ,pt_i_MigrationSetID
+                                 );
+            --
+            COMMIT;
+
+
+            xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Extraction complete.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+               --** Update the migration details (Migration status will be automatically determined
+               --** in the called procedure dependant on the Phase and if an Error Message has been
+               --** passed).
+               --
+               gvv_ProgressIndicator := '0110';
+               --
+               --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+               --**                  table based on the Application Suite, Application, Business Entity and Sub-Entity parameters.
+               --**
+               --**                  Removed "entity" from procedure_name.
+               --
+               xxmx_utilities_pkg.upd_migration_details
+                    (
+                     pt_i_MigrationSetID          => pt_i_MigrationSetID
+                    ,pt_i_BusinessEntity          => gv_i_BusinessEntity
+                    ,pt_i_SubEntity               => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase                   => ct_Phase
+                    ,pt_i_ExtractCompletionDate   => SYSDATE
+                    ,pt_i_ExtractRowCount         => gvn_RowCount
+                    ,pt_i_TransformTable          => NULL
+                    ,pt_i_TransformStartDate      => NULL
+                    ,pt_i_TransformCompletionDate => NULL
+                    ,pt_i_ExportFileName          => NULL
+                    ,pt_i_ExportStartDate         => NULL
+                    ,pt_i_ExportCompletionDate    => NULL
+                    ,pt_i_ExportRowCount          => NULL
+                    ,pt_i_ErrorFlag               => NULL
+                    );
+               --
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Migration Table "'
+                                             ||cv_StagingTable
+                                             ||'" reporting details updated.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+          ELSE
+               --
+               --
+               gvt_Severity      := 'ERROR';
+               gvt_ModuleMessage := '- Migration Set not initialized.';
+               --
+               --
+               RAISE e_ModuleError;
+               --
+               --
+          END IF;
+          --
+          --
+
+        --
+        gvv_ProgressIndicator := '0030';
+        xxmx_utilities_pkg.log_module_message(
+                         pt_i_ApplicationSuite    => gct_ApplicationSuite
+                        ,pt_i_Application         => gct_Application
+                        ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                        ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                        ,pt_i_Phase               => ct_Phase
+                        ,pt_i_Severity            => 'NOTIFICATION'
+                        ,pt_i_PackageName         => gcv_PackageName
+                        ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                        ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                        ,pt_i_ModuleMessage       => 'End of extraction at ' || to_char(systimestamp,'YYYY-MM-DD HH24:MI:SS.FF2') || '. Procedure completed'
+                        ,pt_i_OracleError         => gvt_ReturnMessage       );
+
+    EXCEPTION
+        WHEN e_ModuleError THEN
+                --
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => gvt_ModuleMessage
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+            --** END e_ModuleError Exception
+            --
+        WHEN e_DateError THEN
+                --
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'From, to or Prev Tax Year variable not populated'
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+
+        WHEN OTHERS THEN
+            --
+            ROLLBACK;
+            --
+            gvt_OracleError := SUBSTR(
+                                        SQLERRM
+                                    ||'** ERROR_BACKTRACE: '
+                                    ||dbms_utility.format_error_backtrace
+                                    ,1
+                                    ,4000
+                                    );
+            --
+            xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'Oracle error encounted at after Progress Indicator.'
+                    ,pt_i_OracleError         => gvt_OracleError       );
+            --
+            RAISE;
+            -- Hr_Utility.raise_error@XXMX_EXTRACT;
+    END export_po_headers_bpa;
+
+
+	/****************************************************************
+	----------------Export BPA PO Lines------------------------------
+	*****************************************************************/
+
+    PROCEDURE export_po_lines_bpa
+       (pt_i_MigrationSetID              IN      xxmx_migration_headers.migration_set_id%TYPE
+        ,pt_i_SubEntity                  IN      xxmx_migration_metadata.sub_entity%TYPE)
+        IS
+
+        cv_ProcOrFuncName                   CONSTANT    VARCHAR2(30) := 'export_po_lines_bpa';
+        ct_Phase                            CONSTANT    xxmx_module_messages.phase%TYPE  := 'EXTRACT';
+        cv_StagingTable                     CONSTANT    VARCHAR2(100) DEFAULT 'XXMX_SCM_PO_LINES_BPA_STG';
+        cv_i_BusinessEntityLevel            CONSTANT    VARCHAR2(100) DEFAULT 'PO_LINES_BPA';
+
+        lvv_migration_date_to                           VARCHAR2(30);
+        lvv_migration_date_from                         VARCHAR2(30);
+        lvv_prev_tax_year_date                          VARCHAR2(30);
+        lvd_migration_date_to                           DATE;
+        lvd_migration_date_from                         DATE;
+        lvd_prev_tax_year_date                          DATE;
+
+        e_DateError                         EXCEPTION;
+    BEGIN
+        --
+        gvv_ReturnStatus  := '';
+        gvt_ReturnMessage := '';
+        gvv_ProgressIndicator := '0000';
+        xxmx_utilities_pkg.clear_messages
+            (pt_i_ApplicationSuite    => gct_ApplicationSuite
+            ,pt_i_Application         => gct_Application
+            ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+            ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+            ,pt_i_Phase               => ct_Phase
+            ,pt_i_MessageType         => 'DATA'
+            ,pv_o_ReturnStatus        => gvv_ReturnStatus
+            );
+        IF   gvv_ReturnStatus = 'F'
+        THEN
+            xxmx_utilities_pkg.log_module_message
+                (pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'ERROR'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                ,pt_i_OracleError         => gvt_ReturnMessage
+                );
+            --
+            RAISE e_ModuleError;
+        END IF;
+        --
+        --
+        gvv_ProgressIndicator := '0010';
+        xxmx_utilities_pkg.log_module_message(
+                 pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'NOTIFICATION'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Deleting from "' || cv_StagingTable   || '".'
+                ,pt_i_OracleError         => gvt_ReturnMessage  );
+        --
+        DELETE
+        FROM    XXMX_SCM_PO_LINES_BPA_STG
+          ;
+
+        COMMIT;
+        --
+
+                --
+
+        gvv_ProgressIndicator := '0020';
+        --
+        gvt_MigrationSetName := xxmx_utilities_pkg.get_migration_set_name(pt_i_MigrationSetID);
+        --
+        /*
+        ** If the Migration Set Name is NULL then the Migration has not been initialized.
+        */
+        --
+        IF   gvt_MigrationSetName IS NOT NULL
+        THEN
+            --
+            gvv_ProgressIndicator := '0030';
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '- Extracting "'
+                                          ||pt_i_SubEntity
+                                          ||'":'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            /*
+            ** The Migration Set has been initialised, so now initialize the detail record
+            ** for the current entity.
+            */
+            --
+            --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+            --**                  table based on the Application Suite, Application and Business Entity parameters.
+            --**
+            --**                  Removed "entity" from procedure_name.
+            --
+            xxmx_utilities_pkg.init_migration_details
+                 (
+                  pt_i_ApplicationSuite => gct_ApplicationSuite
+                 ,pt_i_Application      => gct_Application
+                 ,pt_i_BusinessEntity   => gv_i_BusinessEntity
+                 ,pt_i_SubEntity        => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID   => pt_i_MigrationSetID
+                 ,pt_i_StagingTable     => cv_StagingTable
+                 ,pt_i_ExtractStartDate => SYSDATE
+                 );
+            --
+            --** ISV 21/10/2020 - "pt_i_StagingTable" no longer needs to be passed as a parameter from the STG_MAIN procedure
+            --**                  as the table name will never change so replace with new constant "ct_StgTable".
+            --
+            --**                  We will still keep the table name in the Metadata table as that can be used for reporting
+            --**                  purposes.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Staging Table "'
+                                          ||cv_StagingTable
+                                          ||'" reporting details initialised.'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            gvv_ProgressIndicator := '0040';
+            --
+            --** Extract the Projects and insert into the staging table.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Extracting data into "'
+                                          ||cv_StagingTable
+                                          ||'".'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            --** ISV 21/10/2020 - The staging table is in the xxmx_stg schema but should not need to be prefixed as there should
+            --**                  by a Synonym in the xxmx_core schema to that table.
+            --
+
+
+            INSERT
+            INTO    XXMX_SCM_PO_LINES_BPA_STG
+                   (MIGRATION_SET_ID						,
+                    MIGRATION_SET_NAME						,
+                    MIGRATION_STATUS						,
+                    INTERFACE_LINE_KEY						,
+                    INTERFACE_HEADER_KEY					,
+                    ACTION									,
+                    LINE_NUM								,
+                    LINE_TYPE								,
+                    ITEM									,
+                    ITEM_DESCRIPTION						,
+                    ITEM_REVISION							,
+                    CATEGORY								,
+                    COMMITTED_AMOUNT						,
+                    UNIT_OF_MEASURE							,
+                    UNIT_PRICE								,
+                    ALLOW_PRICE_OVERRIDE_FLAG				,
+                    NOT_TO_EXCEED_PRICE						,
+                    VENDOR_PRODUCT_NUM						,
+                    NEGOTIATED_BY_PREPARER_FLAG				,
+                    NOTE_TO_VENDOR							,
+                    NOTE_TO_RECEIVER						,
+                    MIN_RELEASE_AMOUNT						,
+                    EXPIRATION_DATE							,
+                    SUPPLIER_PART_AUXID 					,
+                    SUPPLIER_REF_NUMBER						,
+                    ATTRIBUTE_CATEGORY						,
+                    ATTRIBUTE1								,
+                    ATTRIBUTE2								,
+                    ATTRIBUTE3								,
+                    ATTRIBUTE4								,
+                    ATTRIBUTE5								,
+                    ATTRIBUTE6								,
+                    ATTRIBUTE7								,
+                    ATTRIBUTE8								,
+                    ATTRIBUTE9								,
+                    ATTRIBUTE10								,
+                    ATTRIBUTE11								,
+                    ATTRIBUTE12								,
+                    ATTRIBUTE13								,
+                    ATTRIBUTE14								,
+                    ATTRIBUTE15								,
+                    ATTRIBUTE16								,
+                    ATTRIBUTE17								,
+                    ATTRIBUTE18								,
+                    ATTRIBUTE19								,
+                    ATTRIBUTE20								,
+                    ATTRIBUTE_DATE1							,
+                    ATTRIBUTE_DATE2							,
+                    ATTRIBUTE_DATE3							,
+                    ATTRIBUTE_DATE4							,
+                    ATTRIBUTE_DATE5							,
+                    ATTRIBUTE_DATE6							,
+                    ATTRIBUTE_DATE7							,
+                    ATTRIBUTE_DATE8							,
+                    ATTRIBUTE_DATE9							,
+                    ATTRIBUTE_DATE10						,
+                    ATTRIBUTE_NUMBER1						,
+                    ATTRIBUTE_NUMBER2						,
+                    ATTRIBUTE_NUMBER3						,
+                    ATTRIBUTE_NUMBER4						,
+                    ATTRIBUTE_NUMBER5						,
+                    ATTRIBUTE_NUMBER6						,
+                    ATTRIBUTE_NUMBER7						,
+                    ATTRIBUTE_NUMBER8						,
+                    ATTRIBUTE_NUMBER9						,
+                    ATTRIBUTE_NUMBER10						,
+                    ATTRIBUTE_TIMESTAMP1					,
+                    ATTRIBUTE_TIMESTAMP2					,
+                    ATTRIBUTE_TIMESTAMP3					,
+                    ATTRIBUTE_TIMESTAMP4					,
+                    ATTRIBUTE_TIMESTAMP5					,
+                    ATTRIBUTE_TIMESTAMP6					,
+                    ATTRIBUTE_TIMESTAMP7					,
+                    ATTRIBUTE_TIMESTAMP8					,
+                    ATTRIBUTE_TIMESTAMP9					,
+                    ATTRIBUTE_TIMESTAMP10					,
+                    AGING_PERIOD_DAYS						,
+                    CONSIGNMENT_LINE_FLAG					,
+                    UNIT_WEIGHT								,
+                    WEIGHT_UOM_CODE							,
+                    WEIGHT_UNIT_OF_MEASURE 					,
+                    UNIT_VOLUME								,
+                    VOLUME_UOM_CODE							,
+                    VOLUME_UNIT_OF_MEASURE 					,
+                    TEMPLATE_NAME							,
+                    ITEM_ATTRIBUTE_CATEGORY					,
+                    ITEM_ATTRIBUTE1							,
+                    ITEM_ATTRIBUTE2							,
+                    ITEM_ATTRIBUTE3							,
+                    ITEM_ATTRIBUTE4							,
+                    ITEM_ATTRIBUTE5							,
+                    ITEM_ATTRIBUTE6							,
+                    ITEM_ATTRIBUTE7							,
+                    ITEM_ATTRIBUTE8							,
+                    ITEM_ATTRIBUTE9							,
+                    ITEM_ATTRIBUTE10						,
+                    ITEM_ATTRIBUTE11						,
+                    ITEM_ATTRIBUTE12						,
+                    ITEM_ATTRIBUTE13						,
+                    ITEM_ATTRIBUTE14						,
+                    ITEM_ATTRIBUTE15						,
+                    PARENT_ITEM								,
+                    TOP_MODEL								,
+                    SUPPLIER_PARENT_ITEM					,
+                    SUPPLIER_TOP_MODEL						,
+                    AMOUNT									,
+                    PRICE_BREAK_LOOKUP_CODE					,
+                    QUANTITY_COMMITTED						,
+                    ALLOW_DESCRIPTION_UPDATE_FLAG			,
+                    PO_HEADER_ID							,
+                    PO_LINE_ID
+                )
+
+            SELECT  distinct pt_i_MigrationSetID														--migration_set_id
+                    ,gvt_migrationsetname																--migration_set_name
+                    ,'EXTRACTED'																		--migration_status
+                    ,''																					--interface_line_key
+                    ,pha.po_header_id																	--interface_header_key
+                    ,''																					--action
+                    ,pla.line_num																		--line_num
+                    ,plt.line_type																		--line_type
+                    ,''																					--item
+                    ,pla.item_description																--item_description
+                    ,pla.item_revision																	--item_revision
+                    ,''																					--category
+                    ,pla.committed_amount																--committed_amount
+                    ,pla.unit_meas_lookup_code															--unit_of_measure
+                    ,pla.unit_price																		--unit_price
+                    ,pla.allow_price_override_flag														--allow_price_override_flag
+                    ,pla.not_to_exceed_price															--not_to_exceed_price
+                    ,pla.vendor_product_num																--vendor_product_num
+                    ,pla.negotiated_by_preparer_flag													--negotiated_by_preparer_flag
+                    ,pla.note_to_vendor																	--note_to_vendor
+                    ,''																					--note_to_receiver
+                    ,pla.min_release_amount																--min_release_amount
+                    ,pla.expiration_date																--expiration_date
+                    ,pla.supplier_part_auxid															--supplier_part_auxid
+                    ,pla.supplier_ref_number															--supplier_ref_number
+                    ,''																					--attribute_category
+                    ,''																					--attribute1
+                    ,''																					--attribute2
+                    ,''																					--attribute3
+                    ,''																					--attribute4
+                    ,''																					--attribute5
+                    ,''																					--attribute6
+                    ,''																					--attribute7
+                    ,''																					--attribute8
+                    ,''																					--attribute9
+                    ,''																					--attribute10
+                    ,''																					--attribute11
+                    ,''																					--attribute12
+                    ,''																					--attribute13
+                    ,''																					--attribute14
+                    ,''																					--attribute15
+                    ,''																					--attribute16
+                    ,''																					--attribute17
+                    ,''																					--attribute18
+                    ,''																					--attribute19
+                    ,''																					--attribute20
+                    ,''																					--attribute_date1
+                    ,''																					--attribute_date2
+                    ,''																					--attribute_date3
+                    ,''																					--attribute_date4
+                    ,''																					--attribute_date5
+                    ,''																					--attribute_date6
+                    ,''																					--attribute_date7
+                    ,''																					--attribute_date8
+                    ,''																					--attribute_date9
+                    ,''																					--attribute_date10
+                    ,''																					--attribute_number1
+                    ,''																					--attribute_number2
+                    ,''																					--attribute_number3
+                    ,''																					--attribute_number4
+                    ,''																					--attribute_number5
+                    ,''																					--attribute_number6
+                    ,''																					--attribute_number7
+                    ,''																					--attribute_number8
+                    ,''																					--attribute_number9
+                    ,''																					--attribute_number10
+                    ,''																					--attribute_timestamp1
+                    ,''																					--attribute_timestamp2
+                    ,''																					--attribute_timestamp3
+                    ,''																					--attribute_timestamp4
+                    ,''																					--attribute_timestamp5
+                    ,''																					--attribute_timestamp6
+                    ,''																					--attribute_timestamp7
+                    ,''																					--attribute_timestamp8
+                    ,''																					--attribute_timestamp9
+                    ,''																					--attribute_timestamp10
+                    ,''																					--aging_period_days
+                    ,''																					--consignment_line_flag
+                    ,''																					--unit_weight
+                    ,''																					--weight_uom_code
+                    ,''																					--weight_unit_of_measure
+                    ,''																					--unit_volume
+                    ,''																					--volume_uom_code
+                    ,''																					--volume_unit_of_measure
+                    ,''																					--template_name
+                    ,''																					--item_attribute_category
+                    ,''																					--item_attribute1
+                    ,''																					--item_attribute2
+                    ,''																					--item_attribute3
+                    ,''																					--item_attribute4
+                    ,''																					--item_attribute5
+                    ,''																					--item_attribute6
+                    ,''																					--item_attribute7
+                    ,''																					--item_attribute8
+                    ,''																					--item_attribute9
+                    ,''																					--item_attribute10
+                    ,''																					--item_attribute11
+                    ,''																					--item_attribute12
+                    ,''																					--item_attribute13
+                    ,''																					--item_attribute14
+                    ,''																					--item_attribute15
+                    ,''																					--parent_item
+                    ,''																					--top_model
+                    ,''																					--supplier_parent_item
+                    ,''																					--supplier_top_model
+                    ,pla.amount																			--amount
+                    ,pla.price_break_lookup_code														--price_break_lookup_code
+                    ,pla.quantity_committed																--quantity_committed
+                    ,''																					--allow_description_update_flag
+                    ,pha.po_header_id																	--po_header_id
+                    ,pla.po_line_id																		--po_line_id
+            FROM
+                     PO_HEADERS_ALL@XXMX_EXTRACT		    pha
+                    ,PO_LINES_ALL@XXMX_EXTRACT   			pla
+                    ,PO_LINE_TYPES_TL@XXMX_EXTRACT			plt
+                    ,XXMX_PURCHASE_ORDER_SCOPE_V				xpos
+            WHERE  1                                   = 1
+            --
+             AND pha.type_lookup_code                  = 'BLANKET'
+             AND pha.org_id                            = xpos.org_id
+             AND pha.po_header_id				       = xpos.po_header_id
+             --
+             AND pla.po_header_id                  	   = pha.po_header_id
+             AND pla.line_type_id                      = plt.line_type_id
+            ;
+
+                    /*
+            ** Obtain the count of rows inserted.  We cannot use SQL$ROWCOUNT here because of the LIMIT
+            ** clause on the BULK COLLECT statement.  The rowcount will be reset each time the limit
+            ** is reached.
+            */
+            --
+            --** ISV 21/10/2020 - Replace "pt_i_ClientSchemaName" (no longer passed into the extract procedures) with new constant "gct_StgSchema".
+            --**                  Replace "pt_i_StagingTable" (no longer passed into the extract procedures) with new constant "ct_StgTable"
+            --
+            gvn_RowCount := xxmx_utilities_pkg.get_row_count
+                                 (
+                                  gct_StgSchema
+                                 ,cv_StagingTable
+                                 ,pt_i_MigrationSetID
+                                 );
+            --
+            COMMIT;
+
+
+            xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Extraction complete.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+               --** Update the migration details (Migration status will be automatically determined
+               --** in the called procedure dependant on the Phase and if an Error Message has been
+               --** passed).
+               --
+               gvv_ProgressIndicator := '0110';
+               --
+               --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+               --**                  table based on the Application Suite, Application, Business Entity and Sub-Entity parameters.
+               --**
+               --**                  Removed "entity" from procedure_name.
+               --
+               xxmx_utilities_pkg.upd_migration_details
+                    (
+                     pt_i_MigrationSetID          => pt_i_MigrationSetID
+                    ,pt_i_BusinessEntity          => gv_i_BusinessEntity
+                    ,pt_i_SubEntity               => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase                   => ct_Phase
+                    ,pt_i_ExtractCompletionDate   => SYSDATE
+                    ,pt_i_ExtractRowCount         => gvn_RowCount
+                    ,pt_i_TransformTable          => NULL
+                    ,pt_i_TransformStartDate      => NULL
+                    ,pt_i_TransformCompletionDate => NULL
+                    ,pt_i_ExportFileName          => NULL
+                    ,pt_i_ExportStartDate         => NULL
+                    ,pt_i_ExportCompletionDate    => NULL
+                    ,pt_i_ExportRowCount          => NULL
+                    ,pt_i_ErrorFlag               => NULL
+                    );
+               --
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Migration Table "'
+                                             ||cv_StagingTable
+                                             ||'" reporting details updated.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+          ELSE
+               --
+               --
+               gvt_Severity      := 'ERROR';
+               gvt_ModuleMessage := '- Migration Set not initialized.';
+               --
+               --
+               RAISE e_ModuleError;
+               --
+               --
+          END IF;
+          --
+          --
+
+        --
+        gvv_ProgressIndicator := '0030';
+        xxmx_utilities_pkg.log_module_message(
+                         pt_i_ApplicationSuite    => gct_ApplicationSuite
+                        ,pt_i_Application         => gct_Application
+                        ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                        ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                        ,pt_i_Phase               => ct_Phase
+                        ,pt_i_Severity            => 'NOTIFICATION'
+                        ,pt_i_PackageName         => gcv_PackageName
+                        ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                        ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                        ,pt_i_ModuleMessage       => 'End of extraction at ' || to_char(systimestamp,'YYYY-MM-DD HH24:MI:SS.FF2') || '. Procedure completed'
+                        ,pt_i_OracleError         => gvt_ReturnMessage       );
+
+    EXCEPTION
+        WHEN e_ModuleError THEN
+                --
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => gvt_ModuleMessage
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+            --** END e_ModuleError Exception
+            --
+        WHEN e_DateError THEN
+                --
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'From, to or Prev Tax Year variable not populated'
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+
+        WHEN OTHERS THEN
+            --
+            ROLLBACK;
+            --
+            gvt_OracleError := SUBSTR(
+                                        SQLERRM
+                                    ||'** ERROR_BACKTRACE: '
+                                    ||dbms_utility.format_error_backtrace
+                                    ,1
+                                    ,4000
+                                    );
+            --
+            xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'Oracle error encounted at after Progress Indicator.'
+                    ,pt_i_OracleError         => gvt_OracleError       );
+            --
+            RAISE;
+            -- Hr_Utility.raise_error@XXMX_EXTRACT;
+    END export_po_lines_bpa;
+
+
+	/****************************************************************
+	----------------Export BPA PO Line Locations---------------------
+	*****************************************************************/
+
+    PROCEDURE export_po_line_locations_bpa
+       (pt_i_MigrationSetID              IN      xxmx_migration_headers.migration_set_id%TYPE
+        ,pt_i_SubEntity                  IN      xxmx_migration_metadata.sub_entity%TYPE)
+        IS
+
+        cv_ProcOrFuncName                   CONSTANT    VARCHAR2(30) := 'export_po_line_locations_bpa';
+        ct_Phase                            CONSTANT    xxmx_module_messages.phase%TYPE  := 'EXTRACT';
+        cv_StagingTable                     CONSTANT    VARCHAR2(100) DEFAULT 'XXMX_SCM_PO_LINE_LOCATIONS_BPA_STG';
+        cv_i_BusinessEntityLevel            CONSTANT    VARCHAR2(100) DEFAULT 'PO_LINE_LOCATIONS_BPA';
+
+        lvv_migration_date_to                           VARCHAR2(30);
+        lvv_migration_date_from                         VARCHAR2(30);
+        lvv_prev_tax_year_date                          VARCHAR2(30);
+        lvd_migration_date_to                           DATE;
+        lvd_migration_date_from                         DATE;
+        lvd_prev_tax_year_date                          DATE;
+
+        e_DateError                         EXCEPTION;
+    BEGIN
+        --
+        gvv_ReturnStatus  := '';
+        gvt_ReturnMessage := '';
+        gvv_ProgressIndicator := '0000';
+        xxmx_utilities_pkg.clear_messages
+            (pt_i_ApplicationSuite    => gct_ApplicationSuite
+            ,pt_i_Application         => gct_Application
+            ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+            ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+            ,pt_i_Phase               => ct_Phase
+            ,pt_i_MessageType         => 'DATA'
+            ,pv_o_ReturnStatus        => gvv_ReturnStatus
+            );
+        IF   gvv_ReturnStatus = 'F'
+        THEN
+            xxmx_utilities_pkg.log_module_message
+                (pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'ERROR'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                ,pt_i_OracleError         => gvt_ReturnMessage
+                );
+            --
+            RAISE e_ModuleError;
+        END IF;
+        --
+        gvv_ProgressIndicator := '0010';
+        xxmx_utilities_pkg.log_module_message(
+                 pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'NOTIFICATION'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Deleting from "' || cv_StagingTable   || '".'
+                ,pt_i_OracleError         => gvt_ReturnMessage  );
+        --
+        DELETE
+        FROM    XXMX_SCM_PO_LINE_LOCATIONS_BPA_STG
+          ;
+
+        COMMIT;
+        --
+
+        --
+
+        gvv_ProgressIndicator := '0020';
+        --
+        gvt_MigrationSetName := xxmx_utilities_pkg.get_migration_set_name(pt_i_MigrationSetID);
+        --
+        /*
+        ** If the Migration Set Name is NULL then the Migration has not been initialized.
+        */
+        --
+        IF   gvt_MigrationSetName IS NOT NULL
+        THEN
+            --
+            gvv_ProgressIndicator := '0030';
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '- Extracting "'
+                                          ||pt_i_SubEntity
+                                          ||'":'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            /*
+            ** The Migration Set has been initialised, so now initialize the detail record
+            ** for the current entity.
+            */
+            --
+            --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+            --**                  table based on the Application Suite, Application and Business Entity parameters.
+            --**
+            --**                  Removed "entity" from procedure_name.
+            --
+            xxmx_utilities_pkg.init_migration_details
+                 (
+                  pt_i_ApplicationSuite => gct_ApplicationSuite
+                 ,pt_i_Application      => gct_Application
+                 ,pt_i_BusinessEntity   => gv_i_BusinessEntity
+                 ,pt_i_SubEntity        => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID   => pt_i_MigrationSetID
+                 ,pt_i_StagingTable     => cv_StagingTable
+                 ,pt_i_ExtractStartDate => SYSDATE
+                 );
+            --
+            --** ISV 21/10/2020 - "pt_i_StagingTable" no longer needs to be passed as a parameter from the STG_MAIN procedure
+            --**                  as the table name will never change so replace with new constant "ct_StgTable".
+            --
+            --**                  We will still keep the table name in the Metadata table as that can be used for reporting
+            --**                  purposes.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Staging Table "'
+                                          ||cv_StagingTable
+                                          ||'" reporting details initialised.'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            gvv_ProgressIndicator := '0040';
+            --
+            --** Extract the Projects and insert into the staging table.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Extracting data into "'
+                                          ||cv_StagingTable
+                                          ||'".'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            --** ISV 21/10/2020 - The staging table is in the xxmx_stg schema but should not need to be prefixed as there should
+            --**                  by a Synonym in the xxmx_core schema to that table.
+            --
+
+            INSERT
+            INTO    XXMX_SCM_PO_LINE_LOCATIONS_BPA_STG
+                   (MIGRATION_SET_ID					,
+                    MIGRATION_SET_NAME					,
+                    MIGRATION_STATUS					,
+                    INTERFACE_LINE_LOCATION_KEY			,
+                    INTERFACE_LINE_KEY					,
+                    SHIPMENT_NUM						,
+                    SHIP_TO_LOCATION					,
+                    SHIP_TO_ORGANIZATION_CODE			,
+                    QUANTITY							,
+                    PRICE_OVERRIDE 						,
+                    PRICE_DISCOUNT						,
+                    START_DATE							,
+                    END_DATE							,
+                    ATTRIBUTE_CATEGORY					,
+                    ATTRIBUTE1							,
+                    ATTRIBUTE2							,
+                    ATTRIBUTE3							,
+                    ATTRIBUTE4							,
+                    ATTRIBUTE5							,
+                    ATTRIBUTE6							,
+                    ATTRIBUTE7							,
+                    ATTRIBUTE8							,
+                    ATTRIBUTE9							,
+                    ATTRIBUTE10							,
+                    ATTRIBUTE11							,
+                    ATTRIBUTE12							,
+                    ATTRIBUTE13							,
+                    ATTRIBUTE14							,
+                    ATTRIBUTE15							,
+                    ATTRIBUTE16							,
+                    ATTRIBUTE17							,
+                    ATTRIBUTE18							,
+                    ATTRIBUTE19							,
+                    ATTRIBUTE20							,
+                    ATTRIBUTE_DATE1						,
+                    ATTRIBUTE_DATE2						,
+                    ATTRIBUTE_DATE3						,
+                    ATTRIBUTE_DATE4						,
+                    ATTRIBUTE_DATE5						,
+                    ATTRIBUTE_DATE6						,
+                    ATTRIBUTE_DATE7						,
+                    ATTRIBUTE_DATE8						,
+                    ATTRIBUTE_DATE9						,
+                    ATTRIBUTE_DATE10					,
+                    ATTRIBUTE_NUMBER1					,
+                    ATTRIBUTE_NUMBER2					,
+                    ATTRIBUTE_NUMBER3					,
+                    ATTRIBUTE_NUMBER4					,
+                    ATTRIBUTE_NUMBER5					,
+                    ATTRIBUTE_NUMBER6					,
+                    ATTRIBUTE_NUMBER7					,
+                    ATTRIBUTE_NUMBER8					,
+                    ATTRIBUTE_NUMBER9					,
+                    ATTRIBUTE_NUMBER10					,
+                    ATTRIBUTE_TIMESTAMP1				,
+                    ATTRIBUTE_TIMESTAMP2				,
+                    ATTRIBUTE_TIMESTAMP3				,
+                    ATTRIBUTE_TIMESTAMP4				,
+                    ATTRIBUTE_TIMESTAMP5				,
+                    ATTRIBUTE_TIMESTAMP6				,
+                    ATTRIBUTE_TIMESTAMP7				,
+                    ATTRIBUTE_TIMESTAMP8				,
+                    ATTRIBUTE_TIMESTAMP9				,
+                    ATTRIBUTE_TIMESTAMP10				,
+                    PO_HEADER_ID						,
+                    PO_LINE_ID							,
+                    LINE_LOCATION_ID
+                )
+
+            SELECT  distinct pt_i_MigrationSetID  				                						--migration_set_id
+                    ,gvt_migrationsetname        				                						--migration_set_name
+                    ,'EXTRACTED'								                						--migration_status
+                    ,''																					--interface_line_location_key
+                    ,pla.po_line_id																		--interface_line_key
+                    ,plla.shipment_num																	--shipment_num
+                    ,''																					--ship_to_location
+                    ,''																					--ship_to_organization_code
+                    ,plla.quantity																		--quantity
+                    ,plla.price_override																--price_override
+                    ,plla.price_discount																--price_discount
+                    ,plla.start_date																	--start_date
+                    ,plla.end_date																		--end_date
+                    ,''																					--attribute_category
+                    ,''																					--attribute1
+                    ,''																					--attribute2
+                    ,''																					--attribute3
+                    ,''																					--attribute4
+                    ,''																					--attribute5
+                    ,''																					--attribute6
+                    ,''																					--attribute7
+                    ,''																					--attribute8
+                    ,''																					--attribute9
+                    ,''																					--attribute10
+                    ,''																					--attribute11
+                    ,''																					--attribute12
+                    ,''																					--attribute13
+                    ,''																					--attribute14
+                    ,''																					--attribute15
+                    ,''																					--attribute16
+                    ,''																					--attribute17
+                    ,''																					--attribute18
+                    ,''																					--attribute19
+                    ,''																					--attribute20
+                    ,''																					--attribute_date1
+                    ,''																					--attribute_date2
+                    ,''																					--attribute_date3
+                    ,''																					--attribute_date4
+                    ,''																					--attribute_date5
+                    ,''																					--attribute_date6
+                    ,''																					--attribute_date7
+                    ,''																					--attribute_date8
+                    ,''																					--attribute_date9
+                    ,''																					--attribute_date10
+                    ,''																					--attribute_number1
+                    ,''																					--attribute_number2
+                    ,''																					--attribute_number3
+                    ,''																					--attribute_number4
+                    ,''																					--attribute_number5
+                    ,''																					--attribute_number6
+                    ,''																					--attribute_number7
+                    ,''																					--attribute_number8
+                    ,''																					--attribute_number9
+                    ,''																					--attribute_number10
+                    ,''																					--attribute_timestamp1
+                    ,''																					--attribute_timestamp2
+                    ,''																					--attribute_timestamp3
+                    ,''																					--attribute_timestamp4
+                    ,''																					--attribute_timestamp5
+                    ,''																					--attribute_timestamp6
+                    ,''																					--attribute_timestamp7
+                    ,''																					--attribute_timestamp8
+                    ,''																					--attribute_timestamp9
+                    ,''																					--attribute_timestamp10
+                    ,pha.po_header_id																	--po_header_id
+                    ,pla.po_line_id																		--po_line_id
+                    ,plla.line_location_id																--line_location_id
+            FROM
+                     PO_HEADERS_ALL@XXMX_EXTRACT			pha
+                    ,PO_LINES_ALL@XXMX_EXTRACT   			pla
+                    ,PO_LINE_LOCATIONS_ALL@XXMX_EXTRACT	plla
+                    ,XXMX_PURCHASE_ORDER_SCOPE_V				xpos
+              WHERE 1                                   = 1
+              AND pha.type_lookup_code                  = 'BLANKET'
+              AND pha.org_id                 		    = xpos.org_id
+              AND pha.po_header_id				        = xpos.po_header_id
+              --
+              AND pha.po_header_id                      = pla.po_header_id
+              AND pla.po_header_id                      = plla.po_header_id
+              AND pla.po_line_id                        = plla.po_line_id
+              ;
+
+                        /*
+            ** Obtain the count of rows inserted.  We cannot use SQL$ROWCOUNT here because of the LIMIT
+            ** clause on the BULK COLLECT statement.  The rowcount will be reset each time the limit
+            ** is reached.
+            */
+            --
+            --** ISV 21/10/2020 - Replace "pt_i_ClientSchemaName" (no longer passed into the extract procedures) with new constant "gct_StgSchema".
+            --**                  Replace "pt_i_StagingTable" (no longer passed into the extract procedures) with new constant "ct_StgTable"
+            --
+            gvn_RowCount := xxmx_utilities_pkg.get_row_count
+                                 (
+                                  gct_StgSchema
+                                 ,cv_StagingTable
+                                 ,pt_i_MigrationSetID
+                                 );
+            --
+            COMMIT;
+
+
+            xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Extraction complete.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+               --** Update the migration details (Migration status will be automatically determined
+               --** in the called procedure dependant on the Phase and if an Error Message has been
+               --** passed).
+               --
+               gvv_ProgressIndicator := '0110';
+               --
+               --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+               --**                  table based on the Application Suite, Application, Business Entity and Sub-Entity parameters.
+               --**
+               --**                  Removed "entity" from procedure_name.
+               --
+               xxmx_utilities_pkg.upd_migration_details
+                    (
+                     pt_i_MigrationSetID          => pt_i_MigrationSetID
+                    ,pt_i_BusinessEntity          => gv_i_BusinessEntity
+                    ,pt_i_SubEntity               => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase                   => ct_Phase
+                    ,pt_i_ExtractCompletionDate   => SYSDATE
+                    ,pt_i_ExtractRowCount         => gvn_RowCount
+                    ,pt_i_TransformTable          => NULL
+                    ,pt_i_TransformStartDate      => NULL
+                    ,pt_i_TransformCompletionDate => NULL
+                    ,pt_i_ExportFileName          => NULL
+                    ,pt_i_ExportStartDate         => NULL
+                    ,pt_i_ExportCompletionDate    => NULL
+                    ,pt_i_ExportRowCount          => NULL
+                    ,pt_i_ErrorFlag               => NULL
+                    );
+               --
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Migration Table "'
+                                             ||cv_StagingTable
+                                             ||'" reporting details updated.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+          ELSE
+               --
+               --
+               gvt_Severity      := 'ERROR';
+               gvt_ModuleMessage := '- Migration Set not initialized.';
+               --
+               --
+               RAISE e_ModuleError;
+               --
+               --
+          END IF;
+          --
+          --
+
+        --
+        gvv_ProgressIndicator := '0030';
+        xxmx_utilities_pkg.log_module_message(
+                         pt_i_ApplicationSuite    => gct_ApplicationSuite
+                        ,pt_i_Application         => gct_Application
+                        ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                        ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                        ,pt_i_Phase               => ct_Phase
+                        ,pt_i_Severity            => 'NOTIFICATION'
+                        ,pt_i_PackageName         => gcv_PackageName
+                        ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                        ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                        ,pt_i_ModuleMessage       => 'End of extraction at ' || to_char(systimestamp,'YYYY-MM-DD HH24:MI:SS.FF2') || '. Procedure completed'
+                        ,pt_i_OracleError         => gvt_ReturnMessage       );
+
+    EXCEPTION
+        WHEN e_ModuleError THEN
+                --
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => gvt_ModuleMessage
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+            --** END e_ModuleError Exception
+            --
+        WHEN e_DateError THEN
+                --
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'From, to or Prev Tax Year variable not populated'
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+
+        WHEN OTHERS THEN
+            --
+            ROLLBACK;
+            --
+            gvt_OracleError := SUBSTR(
+                                        SQLERRM
+                                    ||'** ERROR_BACKTRACE: '
+                                    ||dbms_utility.format_error_backtrace
+                                    ,1
+                                    ,4000
+                                    );
+            --
+            xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'Oracle error encounted at after Progress Indicator.'
+                    ,pt_i_OracleError         => gvt_OracleError       );
+            --
+            RAISE;
+            -- Hr_Utility.raise_error@XXMX_EXTRACT;
+    END export_po_line_locations_bpa;
+
+	/****************************************************************
+	----------------Export CPA PO Headers----------------------------
+	*****************************************************************/
+
+    PROCEDURE export_po_headers_cpa
+        (pt_i_MigrationSetID              IN      xxmx_migration_headers.migration_set_id%TYPE
+        ,pt_i_SubEntity                  IN      xxmx_migration_metadata.sub_entity%TYPE)
+        IS
+
+        cv_ProcOrFuncName                   CONSTANT    VARCHAR2(30) := 'export_po_headers_cpa';
+        ct_Phase                            CONSTANT    xxmx_module_messages.phase%TYPE  := 'EXTRACT';
+        cv_StagingTable                     CONSTANT    VARCHAR2(100) DEFAULT 'XXMX_SCM_PO_HEADERS_CPA_STG';
+        cv_i_BusinessEntityLevel            CONSTANT    VARCHAR2(100) DEFAULT 'PO_HEADERS_CPA';
+
+        lvv_migration_date_to                           VARCHAR2(30);
+        lvv_migration_date_from                         VARCHAR2(30);
+        lvv_prev_tax_year_date                          VARCHAR2(30);
+        lvd_migration_date_to                           DATE;
+        lvd_migration_date_from                         DATE;
+        lvd_prev_tax_year_date                          DATE;
+
+        e_DateError                         EXCEPTION;
+    BEGIN
+        --
+        gvv_ReturnStatus  := '';
+        gvt_ReturnMessage := '';
+        gvv_ProgressIndicator := '0000';
+        xxmx_utilities_pkg.clear_messages
+            (pt_i_ApplicationSuite    => gct_ApplicationSuite
+            ,pt_i_Application         => gct_Application
+            ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+            ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+            ,pt_i_Phase               => ct_Phase
+            ,pt_i_MessageType         => 'DATA'
+            ,pv_o_ReturnStatus        => gvv_ReturnStatus
+            );
+        IF   gvv_ReturnStatus = 'F'
+        THEN
+            xxmx_utilities_pkg.log_module_message
+                (pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'ERROR'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                ,pt_i_OracleError         => gvt_ReturnMessage
+                );
+            --
+            RAISE e_ModuleError;
+        END IF;
+        --
+        --
+        gvv_ProgressIndicator := '0010';
+        xxmx_utilities_pkg.log_module_message(
+                 pt_i_ApplicationSuite    => gct_ApplicationSuite
+                ,pt_i_Application         => gct_Application
+                ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                ,pt_i_Phase               => ct_Phase
+                ,pt_i_Severity            => 'NOTIFICATION'
+                ,pt_i_PackageName         => gcv_PackageName
+                ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                ,pt_i_ModuleMessage       => 'Deleting from "' || cv_StagingTable   || '".'
+                ,pt_i_OracleError         => gvt_ReturnMessage  );
+        --
+        DELETE
+        FROM    XXMX_SCM_PO_HEADERS_CPA_STG
+          ;
+
+        COMMIT;
+        --
+
+        --
+
+        gvv_ProgressIndicator := '0020';
+        --
+        gvt_MigrationSetName := xxmx_utilities_pkg.get_migration_set_name(pt_i_MigrationSetID);
+        --
+        /*
+        ** If the Migration Set Name is NULL then the Migration has not been initialized.
+        */
+        --
+        IF   gvt_MigrationSetName IS NOT NULL
+        THEN
+            --
+            gvv_ProgressIndicator := '0030';
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '- Extracting "'
+                                          ||pt_i_SubEntity
+                                          ||'":'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            /*
+            ** The Migration Set has been initialised, so now initialize the detail record
+            ** for the current entity.
+            */
+            --
+            --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+            --**                  table based on the Application Suite, Application and Business Entity parameters.
+            --**
+            --**                  Removed "entity" from procedure_name.
+            --
+            xxmx_utilities_pkg.init_migration_details
+                 (
+                  pt_i_ApplicationSuite => gct_ApplicationSuite
+                 ,pt_i_Application      => gct_Application
+                 ,pt_i_BusinessEntity   => gv_i_BusinessEntity
+                 ,pt_i_SubEntity        => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID   => pt_i_MigrationSetID
+                 ,pt_i_StagingTable     => cv_StagingTable
+                 ,pt_i_ExtractStartDate => SYSDATE
+                 );
+            --
+            --** ISV 21/10/2020 - "pt_i_StagingTable" no longer needs to be passed as a parameter from the STG_MAIN procedure
+            --**                  as the table name will never change so replace with new constant "ct_StgTable".
+            --
+            --**                  We will still keep the table name in the Metadata table as that can be used for reporting
+            --**                  purposes.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Staging Table "'
+                                          ||cv_StagingTable
+                                          ||'" reporting details initialised.'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            gvv_ProgressIndicator := '0040';
+            --
+            --** Extract the Projects and insert into the staging table.
+            --
+            xxmx_utilities_pkg.log_module_message
+                 (
+                  pt_i_ApplicationSuite  => gct_ApplicationSuite
+                 ,pt_i_Application       => gct_Application
+                 ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                 ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                 ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                 ,pt_i_Phase             => ct_Phase
+                 ,pt_i_Severity          => 'NOTIFICATION'
+                 ,pt_i_PackageName       => gcv_PackageName
+                 ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                 ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                 ,pt_i_ModuleMessage     => '  - Extracting data into "'
+                                          ||cv_StagingTable
+                                          ||'".'
+                 ,pt_i_OracleError       => NULL
+                 );
+            --
+            --** ISV 21/10/2020 - The staging table is in the xxmx_stg schema but should not need to be prefixed as there should
+            --**                  by a Synonym in the xxmx_core schema to that table.
+            --
+
+            INSERT
+            INTO    XXMX_SCM_PO_HEADERS_CPA_STG
+                   (MIGRATION_SET_ID							,
+                    MIGRATION_SET_NAME							,
+                    MIGRATION_STATUS							,
+                    INTERFACE_HEADER_KEY						,
+                    ACTION										,
+                    BATCH_ID									,
+                    INTERFACE_SOURCE_CODE 						,
+                    APPROVAL_ACTION								,
+                    DOCUMENT_NUM								,
+                    DOCUMENT_TYPE_CODE							,
+                    STYLE_DISPLAY_NAME							,
+                    PRC_BU_NAME									,
+                    AGENT_NAME 									,
+                    CURRENCY_CODE								,
+                    COMMENTS									,
+                    VENDOR_NAME									,
+                    VENDOR_NUM 									,
+                    VENDOR_SITE_CODE							,
+                    VENDOR_CONTACT								,
+                    VENDOR_DOC_NUM								,
+                    FOB											,
+                    FREIGHT_CARRIER								,
+                    FREIGHT_TERMS								,
+                    PAY_ON_CODE									,
+                    PAYMENT_TERMS								,
+                    ORIGINATOR_ROLE								,
+                    CHANGE_ORDER_DESC							,
+                    ACCEPTANCE_REQUIRED_FLAG					,
+                    ACCEPTANCE_WITHIN_DAYS						,
+                    SUPPLIER_NOTIF_METHOD 						,
+                    FAX											,
+                    EMAIL_ADDRESS								,
+                    CONFIRMING_ORDER_FLAG						,
+                    AMOUNT_AGREED								,
+                    AMOUNT_LIMIT								,
+                    MIN_RELEASE_AMOUNT							,
+                    EFFECTIVE_DATE								,
+                    EXPIRATION_DATE								,
+                    NOTE_TO_VENDOR								,
+                    NOTE_TO_RECEIVER							,
+                    GENERATE_ORDERS_AUTOMATIC					,
+                    SUBMIT_APPROVAL_AUTOMATIC					,
+                    GROUP_REQUISITIONS							,
+                    GROUP_REQUISITION_LINES						,
+                    USE_SHIP_TO									,
+                    USE_NEED_BY_DATE							,
+                    ATTRIBUTE_CATEGORY							,
+                    ATTRIBUTE1									,
+                    ATTRIBUTE2									,
+                    ATTRIBUTE3									,
+                    ATTRIBUTE4									,
+                    ATTRIBUTE5									,
+                    ATTRIBUTE6									,
+                    ATTRIBUTE7									,
+                    ATTRIBUTE8									,
+                    ATTRIBUTE9									,
+                    ATTRIBUTE10									,
+                    ATTRIBUTE11									,
+                    ATTRIBUTE12									,
+                    ATTRIBUTE13									,
+                    ATTRIBUTE14									,
+                    ATTRIBUTE15									,
+                    ATTRIBUTE16									,
+                    ATTRIBUTE17									,
+                    ATTRIBUTE18									,
+                    ATTRIBUTE19									,
+                    ATTRIBUTE20									,
+                    ATTRIBUTE_DATE1								,
+                    ATTRIBUTE_DATE2								,
+                    ATTRIBUTE_DATE3								,
+                    ATTRIBUTE_DATE4								,
+                    ATTRIBUTE_DATE5								,
+                    ATTRIBUTE_DATE6								,
+                    ATTRIBUTE_DATE7								,
+                    ATTRIBUTE_DATE8								,
+                    ATTRIBUTE_DATE9								,
+                    ATTRIBUTE_DATE10							,
+                    ATTRIBUTE_NUMBER1							,
+                    ATTRIBUTE_NUMBER2							,
+                    ATTRIBUTE_NUMBER3							,
+                    ATTRIBUTE_NUMBER4							,
+                    ATTRIBUTE_NUMBER5							,
+                    ATTRIBUTE_NUMBER6							,
+                    ATTRIBUTE_NUMBER7							,
+                    ATTRIBUTE_NUMBER8							,
+                    ATTRIBUTE_NUMBER9							,
+                    ATTRIBUTE_NUMBER10							,
+                    ATTRIBUTE_TIMESTAMP1						,
+                    ATTRIBUTE_TIMESTAMP2						,
+                    ATTRIBUTE_TIMESTAMP3						,
+                    ATTRIBUTE_TIMESTAMP4						,
+                    ATTRIBUTE_TIMESTAMP5						,
+                    ATTRIBUTE_TIMESTAMP6						,
+                    ATTRIBUTE_TIMESTAMP7						,
+                    ATTRIBUTE_TIMESTAMP8						,
+                    ATTRIBUTE_TIMESTAMP9						,
+                    ATTRIBUTE_TIMESTAMP10						,
+                    AGENT_EMAIL_ADDR							,
+                    MODE_OF_TRANSPORT							,
+                    SERVICE_LEVEL								,
+                    USE_SALES_ORDER_NUMBER_FLAG					,
+                    BUYER_MANAGED_TRANSPORT_FLAG				,
+                    CONFIGURED_ITEM_FLAG						,
+                    ALLOW_ORDER_FRM_UNASSIGND_SITES		,
+                    OUTSIDE_PROCESS_ENABLED_FLAG				,
+                    DISABLE_AUTOSOURCING_FLAG					,
+                    MASTER_CONTRACT_NUMBER						,
+                    MASTER_CONTRACT_TYPE						,
+                    PO_HEADER_ID
+                )
+
+            SELECT  distinct pt_i_MigrationSetID														--migration_set_id
+                    ,gvt_migrationsetname                              								--migration_set_name
+                    ,'EXTRACTED'																		--migration_status
+                    ,pha.po_header_id																	--interface_header_key
+                    ,''																					--action
+                    ,''																					--batch_id
+                    ,pha.interface_source_code															--interface_source_code
+                    ,pha.authorization_status															--approval_action
+                    ,pha.segment1																		--document_num
+                    ,pha.type_lookup_code																--document_type_code
+                    ,''																					--style_display_name
+                    ,''																					--prc_bu_name
+                    ,''																					--agent_name
+                    ,pha.currency_code																	--currency_code
+                    ,pha.comments																		--comments
+                    ,pv.vendor_name																		--vendor_name
+                    ,pv.segment1																		--vendor_num
+                    ,pvsa.vendor_site_code																--vendor_site_code
+                    ,''																					--vendor_contact
+                    ,''																					--vendor_doc_num
+                    ,pha.fob_lookup_code																--fob
+                    ,''																					--freight_carrier
+                    ,pha.freight_terms_lookup_code														--freight_terms
+                    ,pha.pay_on_code																	--pay_on_code
+                    ,''																					--payment_terms
+                    ,''																					--originator_role
+                    ,pha.change_summary																	--change_order_desc
+                    ,pha.acceptance_required_flag														--acceptance_required_flag
+                    ,''																					--acceptance_within_days
+                    ,pha.supplier_notif_method															--supplier_notif_method
+                    ,pha.fax																			--fax
+                    ,pha.email_address																	--email_address
+                    ,pha.confirming_order_flag															--confirming_order_flag
+                    ,pha.blanket_total_amount															--amount_agreed
+                    ,pha.amount_limit																	--amount_limit
+                    ,pha.min_release_amount																--min_release_amount
+                    ,pha.start_date																		--effective_date
+                    ,pha.end_date																		--expiration_date
+                    ,pha.note_to_vendor																	--note_to_vendor
+                    ,pha.note_to_receiver																--note_to_receiver
+                    ,''																					--generate_orders_automatic
+                    ,''																					--submit_approval_automatic
+                    ,''																					--group_requisitions
+                    ,''																					--group_requisition_lines
+                    ,''																					--use_ship_to
+                    ,''																					--use_need_by_date
+                    ,''																					--attribute_category
+                    ,''																					--attribute1
+                    ,''																					--attribute2
+                    ,''																					--attribute3
+                    ,''																					--attribute4
+                    ,''																					--attribute5
+                    ,''																					--attribute6
+                    ,''																					--attribute7
+                    ,''																					--attribute8
+                    ,''																					--attribute9
+                    ,''																					--attribute10
+                    ,''																					--attribute11
+                    ,''																					--attribute12
+                    ,''																					--attribute13
+                    ,''																					--attribute14
+                    ,''																					--attribute15
+                    ,''																					--attribute16
+                    ,''																					--attribute17
+                    ,''																					--attribute18
+                    ,''																					--attribute19
+                    ,''																					--attribute20
+                    ,''																					--attribute_date1
+                    ,''																					--attribute_date2
+                    ,''																					--attribute_date3
+                    ,''																					--attribute_date4
+                    ,''																					--attribute_date5
+                    ,''																					--attribute_date6
+                    ,''																					--attribute_date7
+                    ,''																					--attribute_date8
+                    ,''																					--attribute_date9
+                    ,''																					--attribute_date10
+                    ,''																					--attribute_number1
+                    ,''																					--attribute_number2
+                    ,''																					--attribute_number3
+                    ,''																					--attribute_number4
+                    ,''																					--attribute_number5
+                    ,''																					--attribute_number6
+                    ,''																					--attribute_number7
+                    ,''																					--attribute_number8
+                    ,''																					--attribute_number9
+                    ,''																					--attribute_number10
+                    ,''																					--attribute_timestamp1
+                    ,''																					--attribute_timestamp2
+                    ,''																					--attribute_timestamp3
+                    ,''																					--attribute_timestamp4
+                    ,''																					--attribute_timestamp5
+                    ,''																					--attribute_timestamp6
+                    ,''																					--attribute_timestamp7
+                    ,''																					--attribute_timestamp8
+                    ,''																					--attribute_timestamp9
+                    ,''																					--attribute_timestamp10
+                    ,''																					--agent_email_addr
+                    ,''																					--mode_of_transport
+                    ,''																					--service_level
+                    ,''																					--use_sales_order_number_flag
+                    ,''																					--buyer_managed_transport_flag
+                    ,''																					--configured_item_flag
+                    ,''																					--allow_ordering_from_unassigned_sites
+                    ,''																					--outside_process_enabled_flag
+                    ,''																					--disable_autosourcing_flag
+                    ,''																					--master_contract_number
+                    ,''																					--master_contract_type
+                    ,pha.po_header_id																	--po_header_id
+            FROM
+                     PO_HEADERS_ALL@XXMX_EXTRACT			pha
+                    ,PO_VENDORS@XXMX_EXTRACT   			pv
+                    ,PO_VENDOR_SITES_ALL@XXMX_EXTRACT		pvsa
+                    ,XXMX_PURCHASE_ORDER_SCOPE_V				xpos
+            WHERE  1                                 = 1
+            --
+            AND pha.type_lookup_code              	= 'CONTRACT'
+            AND pha.org_id                    	 	= xpos.org_id
+            --AND pha.po_header_id				  	= xpos.po_header_id
+            --
+            AND pha.vendor_id                   	= pv.vendor_id
+            AND pha.vendor_site_id               	= pvsa.vendor_site_id
+            ;
+
+                    /*
+            ** Obtain the count of rows inserted.  We cannot use SQL$ROWCOUNT here because of the LIMIT
+            ** clause on the BULK COLLECT statement.  The rowcount will be reset each time the limit
+            ** is reached.
+            */
+            --
+            --** ISV 21/10/2020 - Replace "pt_i_ClientSchemaName" (no longer passed into the extract procedures) with new constant "gct_StgSchema".
+            --**                  Replace "pt_i_StagingTable" (no longer passed into the extract procedures) with new constant "ct_StgTable"
+            --
+            gvn_RowCount := xxmx_utilities_pkg.get_row_count
+                                 (
+                                  gct_StgSchema
+                                 ,cv_StagingTable
+                                 ,pt_i_MigrationSetID
+                                 );
+            --
+            COMMIT;
+
+
+            xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Extraction complete.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+               --** Update the migration details (Migration status will be automatically determined
+               --** in the called procedure dependant on the Phase and if an Error Message has been
+               --** passed).
+               --
+               gvv_ProgressIndicator := '0110';
+               --
+               --** ISV 21/10/2020 - Removed Sequence Number parameters as the procedure will now determine the correct values from the metadata
+               --**                  table based on the Application Suite, Application, Business Entity and Sub-Entity parameters.
+               --**
+               --**                  Removed "entity" from procedure_name.
+               --
+               xxmx_utilities_pkg.upd_migration_details
+                    (
+                     pt_i_MigrationSetID          => pt_i_MigrationSetID
+                    ,pt_i_BusinessEntity          => gv_i_BusinessEntity
+                    ,pt_i_SubEntity               => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase                   => ct_Phase
+                    ,pt_i_ExtractCompletionDate   => SYSDATE
+                    ,pt_i_ExtractRowCount         => gvn_RowCount
+                    ,pt_i_TransformTable          => NULL
+                    ,pt_i_TransformStartDate      => NULL
+                    ,pt_i_TransformCompletionDate => NULL
+                    ,pt_i_ExportFileName          => NULL
+                    ,pt_i_ExportStartDate         => NULL
+                    ,pt_i_ExportCompletionDate    => NULL
+                    ,pt_i_ExportRowCount          => NULL
+                    ,pt_i_ErrorFlag               => NULL
+                    );
+               --
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gv_i_BusinessEntity
+                    ,pt_i_SubEntity         => cv_i_BusinessEntityLevel
+                    ,pt_i_MigrationSetID    => pt_i_MigrationSetID
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '  - Migration Table "'
+                                             ||cv_StagingTable
+                                             ||'" reporting details updated.'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --
+          ELSE
+               --
+               --
+               gvt_Severity      := 'ERROR';
+               gvt_ModuleMessage := '- Migration Set not initialized.';
+               --
+               --
+               RAISE e_ModuleError;
+               --
+               --
+          END IF;
+          --
+          --
+
+        --
+        gvv_ProgressIndicator := '0030';
+        xxmx_utilities_pkg.log_module_message(
+                         pt_i_ApplicationSuite    => gct_ApplicationSuite
+                        ,pt_i_Application         => gct_Application
+                        ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                        ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                        ,pt_i_Phase               => ct_Phase
+                        ,pt_i_Severity            => 'NOTIFICATION'
+                        ,pt_i_PackageName         => gcv_PackageName
+                        ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                        ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                        ,pt_i_ModuleMessage       => 'End of extraction at ' || to_char(systimestamp,'YYYY-MM-DD HH24:MI:SS.FF2') || '. Procedure completed'
+                        ,pt_i_OracleError         => gvt_ReturnMessage       );
+
+    EXCEPTION
+        WHEN e_ModuleError THEN
+                --
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => gvt_ModuleMessage
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+            --** END e_ModuleError Exception
+            --
+        WHEN e_DateError THEN
+                --
+        xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'From, to or Prev Tax Year variable not populated'
+                    ,pt_i_OracleError         => gvt_ReturnMessage       );
+            --
+            RAISE;
+
+        WHEN OTHERS THEN
+            --
+            ROLLBACK;
+            --
+            gvt_OracleError := SUBSTR(
+                                        SQLERRM
+                                    ||'** ERROR_BACKTRACE: '
+                                    ||dbms_utility.format_error_backtrace
+                                    ,1
+                                    ,4000
+                                    );
+            --
+            xxmx_utilities_pkg.log_module_message(
+                     pt_i_ApplicationSuite    => gct_ApplicationSuite
+                    ,pt_i_Application         => gct_Application
+                    ,pt_i_BusinessEntity      => gv_i_BusinessEntity
+                    ,pt_i_SubEntity           => cv_i_BusinessEntityLevel
+                    ,pt_i_Phase               => ct_Phase
+                    ,pt_i_Severity            => 'ERROR'
+                    ,pt_i_PackageName         => gcv_PackageName
+                    ,pt_i_ProcOrFuncName      => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator   => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage       => 'Oracle error encounted at after Progress Indicator.'
+                    ,pt_i_OracleError         => gvt_OracleError       );
+            --
+            RAISE;
+            -- Hr_Utility.raise_error@XXMX_EXTRACT;
+    END export_po_headers_cpa;
+END XXMX_PO_HEADERS_PKG;

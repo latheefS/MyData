@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_PER_DISABILITY_STG
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_STG"."XXMX_PER_DISABILITY_STG" MODIFY ("PERSONNUMBER" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_PER_DISABILITY_STG" MODIFY ("CATEGORY" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_PER_DISABILITY_STG" MODIFY ("EFFECTIVESTARTDATE" NOT NULL ENABLE);

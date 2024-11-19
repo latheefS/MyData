@@ -1,0 +1,22 @@
+MAXIMISE
+
+Host
+
+10.99.82.36
+
+Service Name
+
+MXDM_PDB3.devsubdb.zurichdevvcn.oraclevcn.com
+
+Port
+
+1521
+
+Users
+
+XXMX_CORE, XXMX_STG, XXMX_XFM – all three have same password
+
+Passwords
+
+3xtra#!H0T
+

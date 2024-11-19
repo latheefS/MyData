@@ -1,0 +1,113 @@
+File Picker = barchart.png -> Object storage -> foereach(Var)
+
+->	storein a var -> clickextract -> rest api as inptu oic -> inp will be stored var -> map foreach var 
+
+
+function addDateTimeToFilename(inputFilename) {
+    // Get the current date and time
+    const now = new Date();
+
+    // Format the date and time as DD-MM-YYYY_HH:MM:SS
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const dateTimeString = `${day}-${month}-${year}_${hours}:${minutes}:${seconds}`;
+
+    // Split the filename into name and extension
+    const dotIndex = inputFilename.lastIndexOf('.');
+    const name = inputFilename.substring(0, dotIndex);
+    const extension = inputFilename.substring(dotIndex);
+
+    // Concatenate the date-time string before the extension
+    const resultFilename = `${name}_${dateTimeString}${extension}`;
+
+    return resultFilename;
+}
+
+// Example usage
+const inputFilename = "example.txt";
+const resultFilename = addDateTimeToFilename(inputFilename);
+console.log(resultFilename);
+
+
+
+function addDateTimeToFilenames(filenames) {
+    // Get the current date and time
+    const now = new Date();
+
+    // Format the date and time as DD-MM-YYYY_HH:MM:SS
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const dateTimeString = `${day}-${month}-${year}_${hours}:${minutes}:${seconds}`;
+
+    // Process each filename in the array
+    return filenames.map(filename => {
+        const dotIndex = filename.lastIndexOf('.');
+        const name = filename.substring(0, dotIndex);
+        const extension = filename.substring(dotIndex);
+
+        // Concatenate the date-time string before the extension
+        return `${name}_${dateTimeString}${extension}`;
+    });
+}
+
+// Example usage
+const filenames = ["example1.txt", "example2.txt", "example3.txt", "example4.txt", "example5.txt"];
+const resultFilenames = addDateTimeToFilenames(filenames);
+console.log(resultFilenames);
+
+
+"code" : "InvalidParameter",
+      "message" : "inputLocation.objectLocations[0].objectName size must be between 1 and 1024"
+	  
+	  
+	   !== undefined 
+	   
+	   
+	   
+1. Different fields into single column
+2. Delete statement should be there if anything fails. 9exception deletion satement is not always working)
+
+
+
+
+if filename is not undefined and size is between 1-1024MB
+
+Navigate to extract page
+
+Assgn Vaabls
+
+Reset ADP variables
+
+Call Otherwise rest -> 200 then call Invoice display ELSE raise an error
+
+Call Invoice Display -> response is not null or null call Receipt Display
+
+Call Receipt Display -> response is not null or null call Passport Display
+
+Call Passport Display -> response is null or not null
+
+ent_apps_ai_services
+
+v1erp
+
+[DEFAULT]
+user=ocid1.user.oc1..aaaaaaaa25yjgjf6jfwrdwvcwsb7jmf4d3jgw5b5fgmumsxwaempmsmwbwva
+fingerprint=fc:67:3b:92:e5:9c:91:d0:1d:95:f2:54:62:e7:2d:68
+tenancy=ocid1.tenancy.oc1..aaaaaaaan3flbuthepkgxpoycn5ocqk226a6w3thputcewkcmbyxtpnp6yuq
+region=eu-frankfurt-1
+key_file=<path to your private keyfile> # TODO
+
+ocid1.user.oc1..aaaaaaaa25yjgjf6jfwrdwvcwsb7jmf4d3jgw5b5fgmumsxwaempmsmwbwva
+
+
+ocid1.tenancy.oc1..aaaaaaaan3flbuthepkgxpoycn5ocqk226a6w3thputcewkcmbyxtpnp6yuq/ocid1.user.oc1..aaaaaaaa25yjgjf6jfwrdwvcwsb7jmf4d3jgw5b5fgmumsxwaempmsmwbwva/fc:67:3b:92:e5:9c:91:d0:1d:95:f2:54:62:e7:2d:68	   

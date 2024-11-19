@@ -1,0 +1,41 @@
+create or replace PACKAGE BODY             "XXMX_GL_BALANCES_PKG" 
+AS
+     --
+     --**********************
+     --** Global Declarations
+     --**********************
+     --
+     /* Maximise Integration Globals */
+     --
+     /* Global Constants for use in all xxmx_gl_balances_pkg Procedure/Function Calls within this package */
+     --
+     gcv_PackageName                 CONSTANT  VARCHAR2(30)                                 := 'xxmx_gl_balances_pkg';
+     gct_ApplicationSuite            CONSTANT  xxmx_module_messages.application_suite%TYPE  := 'FIN';
+     gct_Application                 CONSTANT  xxmx_module_messages.application%TYPE        := 'GL';
+     gct_StgSchema                   CONSTANT  VARCHAR2(10)                                 := 'xxmx_stg';
+     gct_XfmSchema                   CONSTANT  VARCHAR2(10)                                 := 'xxmx_xfm';
+     gct_CoreSchema                  CONSTANT  VARCHAR2(10)                                 := 'xxmx_core';
+     gct_BusinessEntity              xxmx_migration_metadata.business_entity%TYPE;
+     --
+
+     --
+
+     PROCEDURE update_accounted_values
+                   (
+                    pt_i_MigrationSetID             IN      xxmx_migration_headers.migration_set_id%TYPE
+                   ) IS
+     BEGIN
+        UPDATE XXMX_XFM.XXMX_GL_BALANCES_XFM x
+        SET    x.accounted_dr = x.entered_dr,
+               x.accounted_cr = x.entered_cr
+        WHERE  x.migration_set_id = pt_i_MigrationSetID
+        AND    x.currency_code = (SELECT s.currency_code
+                                  FROM   xxmx_core.xxmx_gl_source_structures s
+                                  WHERE  s.source_ledger_name = x.source_ledger_name);
+     EXCEPTION
+        WHEN OTHERS THEN
+           null;
+     END;
+     --
+
+END xxmx_gl_balances_pkg;

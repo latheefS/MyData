@@ -1,0 +1,18 @@
+LOAD DATA
+INFILE XXMX_OLC_GLOBAL_ACCESS_GROUP_RELATION.dat
+REPLACE 
+INTO  TABLE XXMX_OLC_GLOB_ACC_GRP_STG
+FIELDS TERMINATED BY "|" TRAILING NULLCOLS 
+(MIGRATION_SET_ID               ,
+MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               ,
+BG_NAME                        ,
+BG_ID                          ,
+EFFECTIVE_START_DATE           ,
+EFFECTIVE_END_DATE             ,
+RELATION_NUMBER                ,
+GLOBAL_ACCESS_GROUP_NUMBER     ,
+LEARNING_ITEM_NUMBER           ,
+PRIORITY                       
+)
+

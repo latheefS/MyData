@@ -1,0 +1,579 @@
+1) Which two statements are true about implementing an API- First Strategy?
+a. The API is to be developed first before any UI or new business logic are created.
+b. It generally is assumed that SOAP/WSDL are the key specifications for defining the API.
+c. The code to execute business logic needs to exist and be exposed as an API first before you build a strategy around it. 
+d. You define the API definition/contract first before any work on its implementation or any applications that use it, allowing to work in parallel.
+
+
+2) Which four statements are valid regarding the differences between WSDL/SOAP and REST/JSON?
+a. unlike WSDL, REST is typically invoked with HTTP verbs.
+b. WSLD is simpler, REST is richer.
+c. Modem API-First architectures prefer to use tried-and-true WSDL services over REST services because they are quicker easier to implement. 
+d. WSDL is a request for a service; REST is a request for a resource. 
+e. WSDL is a tight contract; REST is a loose contract. 
+f. REST more easily used in developing Uls than WSDL REST is also gaining popularity in application development.
+
+
+3) Which three statements are true about SOAP and the advantages it provides? 
+a. It leverages XML-based payloads to communicate between two client machines across any modem network. 
+b. It is platform and programming language independent. 
+c. As compared to RPC (Remote procedure calls), which are sometimes blocked by firewalls and proxy servers, SOAP and HTTP can overcome for instance.
+d. It commonly serves as a cleaning agent to remove excess data from the transmission protocol.
+e. It provides flexibility for message format flexibility allowing for loose coupling between client and server.
+f. SOAP clients can easily hold stateful references to remote server-side SOAP objects.
+
+
+4) When defining the frequency for scheduled orchestration style integration runs you can choose either basic or advanced options.
+   Which expression language is used for defining advanced Scheduled runs?
+a. XSLT
+b. JavaScript
+c. XPath 
+d. iCal
+e. Groovy
+
+
+5) Which two are valid considerations when leveraging the Oracle integration cloud (OIC) connectivity agent for High availability on-premise environments?
+a. Each host on which the agent is installed must be configured on separate subnets assigned to the same OIC agent group.
+b. You should install the connectivity agents on the same host as the target application, then specify different agent group identifiers for each agent during its installation. 
+c. You cannot have more than two agent instances per agent group. Attempting to include a third agent instance in the same group during installation results in an error. 
+d. The File Adapter is not supported in high availability environments. When using the File Adapter and if some groups have multiple instances, use a dedicated agent group (with one agent only). . You will need to have OIC ServiceDeployer role permissions in order to download and install the OIC on-premise connectivity agent.
+
+
+6) Which three actions once they have been configured are allowed to be repositioned to another location within the design canvas of an orchestration style integration flow? 
+a. JavaScript Call 
+b. Stage File with Read File operation
+c. Switch
+d. For Each 
+e. Stage File with Write File operation 
+f. Stage File with Read File in Segments operation
+
+
+7) You provision an Oracle SOA Cloud Service instance and specify a compute shape so that the JVM heap size for WebLogic Serve, and Load Balancer processes are determined automatically.
+    With regard to changing the JVM heap size for WebLogic managed server instance, Which statement is correct after provisioning the instance to this scenario?
+a. You can change the heap size to a maximum of 32GB.
+b. You can change the heap size by logging a Oracle Cloud Support Service Request. 
+c. You can change the heap size by using the Weblogic Server Administration Console.
+d. You cannot change the heap size unless you re-provision the SOA service instance or change the compute shape.
+
+
+8) You are tasked with monitoring the SOA composite applications and the underlying environment within a SOA cloud service instance.
+   Which SOA Cloud Service web application is best for viewing completed composite instances?
+a. WebLogic Server Console
+b. Load Balancer Console
+c. B2B Console
+d. Oracle Service Bus Console 
+e. Fusion Middleware Control
+f. Managed File Transfer Console
+
+
+9) When creating integrations in Oracle Integration Cloud (OIC), a visual mapper enables you to map element nodes between applications by dragging source element nodes onto target element nodes.
+   Which statement is NOT true about the OIC data mapper functionality?
+a. When you navigate to the mapper, the Expression Builder launches in user-friendly mode by default when you select a target element.
+b. All Source and Target data objects will be represented internally as JSON structures.
+c. The data structure for the target service is always displayed on the right side in the Designer view.
+d. In the Designer view, the Sources section contains the data structures of all available data objects to include integration metadata, tracking variables, global variables, and integration property values.
+e. All transformation mappings use extensible Stylesheet Language (XSL).
+
+
+10) The Oracle integration cloud (OIC) Integration design editor provides a data mapper UI tool that is available for Map actions.
+    Which two statements are true regarding mapper tool?
+a. You can drag and drop a source data element to multiple target node elements. 
+b. You cannot drag and drop a source data element to a target node element that is already mapped.
+c. You cannot drag and drop an XPath function activity directly to a target node element.
+d. You cannot drag and drop an XSLT flow control statement directly to a target node element.
+
+
+11) With regards to Oracle Integration Cloud (OIC) Lookups, which two are valid statements?
+a. Lookup values are retrieved from a backend database at runtime.
+b. Changes that are made to Lookups referenced in active integrations will take effect immediately without reactivating those integrations.
+c. A custom OIC XPath function must be used to retrieve data from a Lookup in the Data Mapper.
+d. Lookups values must include two or more domains associated with corresponding SaaS applications.
+e. You cannot clone an existing Lookup if it is being currently referenced in one or more active OIC integrations.
+
+
+12) Which Oracle integration cloud (OIC) XPath function can be used to retrieve data from an OIC lookup within the data mapper tool?
+a. getLookup
+b. get-content-as-string 
+c. lookupValue
+d. get-value-from-lookup
+
+
+13) You are defining application data in an Oracle integration cloud (OIC) process application and are seeking to use the Business Types view because it provides the tools required to create and manage various business types.
+   What task CANNOT be performed on Business Types View?
+a. Create business exceptions
+b. Create business objects
+c. Import a business object from JSON
+d. Import a business object from XML 
+e. Import schema files
+f. Create enum objects
+
+
+14) To use Integration Insight to map milestones to actions in an Oracle integration cloud (OIC) business process implementation, certain prerequisites and conditions must be met.
+   Which is NOT a valid consideration for models and mapping milestones?
+a. The model must be in Draft state in order to map a milestone to an integration action.
+b. Extraction criteria for an instance unique identifier is defined with an XPath expression.
+c. Extraction criteria for the milestone indicator is defined with an XPath expression.
+d. Milestone in a single model can be mapped to multiple business process. 
+e. A business process implementation can be mapped to milestones within only one model.
+
+
+15) Integration Insight in Oracle integration cloud (OIC) dramatically simplifies the process of modeling and extracting meaningful business metrics, allowing business executives to understand, monitor, and react quickly to changing demands.
+   After a model has been activated, which is not a valid model instance state?
+a. Healthy
+b. Failed
+c. Successful
+d. Terminated
+e. Recoverable
+
+
+
+16) Integration Insight in Oracle Integration Cloud (OIC) provides a business-friendly experience, allowing users to model, collect, and monitor metrics for their business processes.
+   Which statement is NOT true about Integration Insight models?
+a. The model identifier value must be unique and is extracted only once for a model instance and cannot be changed.
+b. Model indicators are limited to only one of two types: Dimensions and Measures.
+c. Each model instance is a unique occurrence based on the business process that is associated with the model.
+d. A model must have both an initial milestone and a terminal milestone created in order to be activated.
+e. Integration Insight models can define milestone activities in either OIC Integrations or OIC Process business processes.
+f. The activity associated with an Integration Insight model is a model instance.
+
+
+17) You are tasked with provisioning a Managed File Transfer (MFT) Cloud Service on Oracle Cloud Infrastructure (OCI). 
+    Which statement is valid concerning MFT provisioning?
+a. You must include the B2B cluster configuration since the MFT service runs within the B2B framework. 
+b. MFT requires creating an Oracle SOA Cloud Service instance and choosing "MFT Cluster" as the service type.
+c. Defining virtual machines (compute nodes) for the WebLogic Server cluster is no longer required.
+d. Because MET requires an Oracle ATP database, the database instance must first be provisioned in OCI.
+
+
+18) Which statement is NOT true about decision models in Oracle Integration Cloud (OIC) Process?
+a. Decisions created using the Function notation return a value only when invoked from another decision.
+b. In the Graph view, you can create decision requirement diagrams (DRDs) to visually represent your decision models, but only one DRD per decision model is supported.
+c. A decision model must contain at least one decision service in order to be used in a Process application. 
+d. A decision service exposes output decisions of a decision model as private internal REST APIs to the Process application.
+
+
+19) Within the scope of an Oracle integration cloud (OIC) Process application, which two statements are valid concerning Decision Snapshots and Decision Models? 
+a. A decision model snapshot cannot be deleted once it has been activated. 
+b. Decision snapshots are read-only copies of a decision model.
+c. A decision model can be activated on a Decision Model and Notation (DMN) server.
+d. Decision snapshots, once activated, cannot be used independently in multiple applications.
+e. Decision rules are expressed as rows within a table and consist of only one input entry and only one corresponding output entry.
+
+
+20) You need to create an OIC integration that will be processing many records individually that are contained within a large file. You have been advised to use an implementation approach that includes using the download File operation of an FTP adapter in conjunction with the Stage File action Read file in segments operation to mitigate issues with memory consumption.
+   When using this approach, which is a valid consideration regarding the use of the Read file in segments operation? 
+a. The Read File in Segments operation allows for you to process the segments sequentially or in parallel.
+b. You must provide the actual filename because file references cannot be processed by the Read File in Segments operation.
+c. Segment sizes will default to 50 records but can be configured to any other segment size.
+d. You will need to explicitly configure a Scope action for this operation if you want to add additional actions during the processing of each segment.
+
+
+21) You are designing an OIC integration that will be processing files in a shared file system located within your on-premises data center. You have decided to leverage various Stage File Action operations within the integration flow in conjunction with an on-premises OIC connectivity agent.
+    With regard to the restrictions on using Stage File Action operations with the file and attachment features of the Connectivity agent, which statement is NOT valid concerning file operation capabilities?
+a. Files uploaded through the connectivity agent are not available with the List File operation. 
+b. Files uploaded through the connectivity agent cannot be unzipped using a file reference.
+c. Files uploaded through the connectivity agent are not available with the Zip File operation. .
+d. With regard to both the Read Entire file and Read File in Segments operations, files uploaded through the connectivity agent can only be read with a file reference.
+
+
+22) Which JNDI name value must be provided when configuring the properties of a new database adapter outbound connection pool to support dependent SOA composite applications?
+a. The corresponding XA database adapter plan deployed with this database adapter outbound connection pool.
+b. The corresponding XA database adapter connection factory configured for this WebLogic domain. 
+c. The corresponding XA enterprise resource adapter application deployed to the same WebLogic cluster.
+d. The corresponding XA datasource configuration deployed to the same WebLogic cluster.
+
+
+23) What are two key benefits of Oracle Web Service Manager (OWSM) in the management and security of Web services across the organization?
+a. Security is controlled by the developer of the service and this gives greater control to the development of the service.
+b. OAuth services are used for REST based services. 
+c. OWSM provide a framework that is externalized and declarative outside of the web service implementation. 
+d. Developers no longer need to understand security specifications and security implementation details.
+
+
+24) Oracle Integration Cloud (OIC) is a fully managed cloud service that provides many components and use case capabilities when an OIC Enterprise Edition instance is provisioned. Which three capabilities does OIC Enterprise Edition provide?
+a. Model and extract business metrics in real time and gain insight into business processes by using dashboards.
+b. Leverage an embedded continuous integration server to automate CI/CD workflow.
+c. Leverage an embedded SFTP-compliant repository for storing and retrieving files.
+d. Create digital assistants (chatbots) and skills using natural language conversations to facilitate integration with Oracle SaaS applications.
+e. Create integrations that use B2B e-commerce, which support the EDI X12 business protocol.
+f. Deploy SOA Composite Applications (SCA) developed with JDeveloper SOA Extension and BPEL constructs.
+g. Create blockchain networks and deploy blockchain integration applications.
+
+
+25) Which Process type should you choose to model non-sequential process type in Oracle Integration Cloud (OIC)?
+a. Structured process
+b. Unstructured process 
+c. Dynamic Process
+d. Adaptive Case Management (ACM) Process
+
+26) Within an Oracle Integration Cloud (OIC) Process application business process, the Integrations flow element provides you an option to easily integrate with other services.
+   Which THREE can be added and managed from the Integrations flow element?
+A) OIC invokable dynamic processes hosted within the same OIC environment
+B) OCI Functions deployed in the same OCI compartment hosting the OIC environment
+C) OIC integrations hosted within the same OIC environment
+D) REST Connectors
+E) OIC reusable processes hosted within the same OIC environment
+F) Web Service Connectors
+
+27) In Oracle integration cloud (OIC) Process, you can configure a human task that enable you to model approval task interactions.
+    What are the available options when configuring the Escalation and Expiration tab of a human task?
+a. Expire, Escalate, Skip, Reset
+b. Never Expire, Expire, Never Escalate, Escalate 
+c. Never Expire, Expire, Renew, Escalate
+d. Expire, Reset, Escalate
+
+
+28)  Which fields are used to define static or dynamic list of values in web forms of process application? 
+a. Checklists, Radio button, or Select controls
+b. Text Input and Area Fields
+c. Date, Time, and Number Fields
+d. Links, Email, and Message Fields
+
+
+29) In Oracle integration cloud (OIC) Process, you create web forms to interact with end users. As part of creating a web form, you add its controls, configure its data, and define from behavior.
+    Which statement is true about creating web forms?
+a. You can assign one or more stylesheets and only one presentation to a web form.
+b. You can assign only one stylesheet and one or more presentation to a web form. 
+c. You can assign one or more stylesheets and one or more presentation to a web form.
+d. You can assign only one stylesheet and only one presentation to a web form.
+
+
+30) In Oracle Integration cloud (OIC) Process, you can use human tasks to model user interaction with the application. You can assign the task to a specific user, to a group of users, to users with a certain role, or to the same user that already acted on the instance for a certain role.
+    When assigning the human task based on a dynamic expression, which is a valid option?
+a. You can use an expression to calculate the user or group, but not a shared role.
+b. You can use an expression to calculate the user, group, or a shared role.
+c. You can use an expression to calculate a shared role, but not users or groups.
+d. You can use an expression to calculate the group or shared role, but not specific users.
+e. You can use an expression to calculate a specific user but not a group or a shared role.
+
+
+31) In the Oracle integration cloud (OIC) Process web forms editor, which three background colors are displayed? 
+a. Green for valid binding names 
+b. Red for invalid binding names 
+c. Blue for complex binding names
+d. Orange for unmatched binding names
+e. Blue for unmatched binding names
+f. Purple for complex binding names
+Ans:a,b,c,
+
+
+32) You have a single synchronous integration flow updating systems with several external invocations within multiple loops. Several client applications are experiencing blocking timeouts waiting for confirmation of the complex processing logic.
+   Which is a legitimate strategy to mitigate this issue?
+a. Increase the blocking timeout within the OIC integration settings to allow for extended time
+b. Change to an asynchronous flow that provides a notification when processing is complete
+c. Split into smaller integration flows that can be orchestrated sequentially from a master synchronous flow.
+d. Change the implementation logic to invoke multiple fine-grained external API calls within a single loop.
+
+
+33) One of your downstream application is becoming overwhelmed with too many individual synchronous invocations from your current Oracle integration cloud (OIC) integration. It has been recommended that you redesign the integration to take advantage of the batch processing capabilities of the applications.
+    Which is the most appropriate approach for implementing the OIC design best practice?
+a. Throttle the individual synchronous calls by adding a wait activity prior to each invocation to the application within the loop.
+b. Reactivate the integration and use the disable tracing and message tracking option which will optimize performance for each invocation to the application. 
+c. Use the Append option in the Write file operation of the Stage File action within a loop to create a single batch file to be sent to the application.
+d. Create a custom batch call function, register the function as a Library in your OIC environment, then use the Javascript action to invoke the application.
+
+
+34) You are implementing a synchronous OIC integration flow that is processing file records within a while loop action. At the end of each loop, you want to delay processing of the next record for a certain period of time.
+    Which is a valid consideration when using the wait action?
+a. The maximum wait time cannot exceed two minutes when configuring a Wait action in a synchronous flow.
+b. The minimum wait time cannot be less than five seconds when configuring a Wait action in any integration flow. 
+c. The Wait action cannot be used in a synchronous flow.
+d. The Wait action can only be positioned as the last action in the loop.
+
+
+35)You have a use case requiring the design of a synchronous OIC integration flow that will return a custom business fault message to the client if processing falls due to an external runtime fault encountered during the integration instance execution.
+   Which implementation strategy will best satisfy this requirement?
+A. Implement the Global fault handler to catch the runtime fault, and then use re-throw action to send the custom fault to the client
+B. Implement a scope fault handler to catch the runtime fault, and then use the fault-return action providing mapped data for the custom fault
+C. Implement a scope fault handler to catch the runtime fault, then allow the Global fault handler to automatically send the runtime fault to the Error Hospital,
+D. Create a custom scope fault handler to catch the runtime fault, and then use the re-throw Fault action to send the fault to the Error Hospital
+
+
+36) Your design of an asynchronous OIC integration flow includes the requirement for additional processing logic that is conditionally based on the results returned to the integration instance from earlier external service invocations. You have decided to leverage the Switch action to facilitate this implementation. Which is a valid consideration concerning the configuration and capabilities of the Switch action?
+a. Data objects returned from actions within a branch of a Switch action will not be visible in the main flow of the integration after the Switch action.
+b. Nested Switch actions are not supported, therefore you may need to create more complex conditional expression if necessary. 
+c. All branches within the Switch action must have a conditional expression defined to include the otherwise branch.
+d. XPath version 2.0 functions can be used to create more complex conditional expressions for a switch action branch if the function returns a Boolean result.
+
+
+37) You are tasked with creating an Oracle Integration Cloud (OIC) orchestrated integration flow that supports a B2B document exchange. When configuring the B2B action (formerly known as the EDI Translate action), there are several capabilities as well as limitations.
+   Which statement is NOT true about OIC B2B capabilities?
+a. Performing validations on EDI documents is required for inbound translations, but optional for outbound translations.
+b. You can customize standard EDI documents by adding new schema constructs or by editing existing constructs.
+c. When defining the EDI message type, both the document version and document type must always be explicitly selected.
+d. A previously created Trading Partner Agreement is optional when configuring the inbound or outbound translation.
+
+
+38) Which three are types of certificates in Oracle Integration Cloud (OIC) that can be imported from the Certificates page under settings?
+a. Identity Certificate
+b. Message Protection certificate
+c. Trust Certificate
+d. Multi Domain SSL Certificate
+e. Unified Communications Certificate
+
+
+39) You can recover unsaved changes In an Oracle Integration Cloud (OIC) integration that crashes during design time because of a browser crash, loss of network connectivity, or a server going down. 
+   Which statement Is NOT true about this unsaved changes feature In OIC?
+a. Changes made while editing a Connections page cannot be recovered.
+b. Changes made while working inside the data mapper cannot be recovered. 
+c. Only the person with the Service Developer role that made the changes or an admin with the service Administrator role can recover the unsaved changes.
+d. Because a backup copy is created after each completed task, there is no time limit in which you need to log back in and recover your changes.
+e. All OIC administrator with the service Administrator role can unlock an integration that has unsaved changes.
+
+
+40) Oracle Integration Cloud (OIC) integrations can be exported so that they can later be imported into another OIC instance environment. 
+    Which statement is NOT true about the import and export of OIC integrations?
+a. Imported integrations can be reconfigured to use different connection resources by using the OIC REST API.
+b. Exported integrations will include all of their dependent connection resource information with the exception of URL and credentials.
+c. Imported integrations cannot be immediately activated if their dependent connection resources are not already present in the target OIC environment. 
+d. Integrations must be exported as a package if you want to import them into another OIC environment.
+
+
+41) Which type of certificate requires the uploading of a keystore (.jks) file in Oracle Integration Cloud to facilitate two-way SSL communication with external services?
+a. Identity Certificate
+b. Trust Certificate
+c. Message Protection Certificate
+d. Unified Communications Certificate
+e. Multi Domain Certificate
+
+
+
+42) Which three statements are true about business and data objects in Oracle Integration Cloud (OIC) Process?
+A. Business objects can be created based on a data object.
+B. Business objects can be created from an XML schema or from JSON.
+C. Business objects cannot contain other business objects.
+D. Data objects can be created based on a business object.
+E. Business exceptions can use only the string data type.
+F. Business and data objects are auto-generated when creating web forms.
+G. Enum objects are a special type of business object.
+
+
+43) Which adapter is NOT provided in the Oracle Cloud adapter pack bundled with the Oracle SOA Cloud Service?
+a. Oracle ERP Cloud Adapter
+b. SuccessFactors Adapter
+c. Salesforce Adapter
+d. Oracle E-Business Suite Adapter
+
+
+44) Oracle SOA Cloud Service (SOA CS) includes a number of built-in adapters to include all of the technology adapters delivered with SOA Suite. When using one of these technology adapters in a composite application deployed in SOA CS, which two are valid approaches for facilitating connectivity to on-premises applications and systems? 
+a. VPN Service
+b. WLST script
+c. SOA on-premise connectivity agent
+d. PL/SQL procedure 
+e. SSH tunnel
+
+
+45) Which two are NOT start and end events when creating a structured process In an Oracle Integration Cloud (OlC) Process application?
+a. None start event and None end event
+b. Message start event and None end event
+c. SOAP start event and None end event
+d. Task start event and Task end event
+e. Form start event and None end event
+
+
+46) Oracle Integration Cloud Service (OIC) Is available In two editions: Standard and Enterprise. 
+   Which two OIC Enterprise edition capabilities are ALSO available In the OIC Standard Edition?
+a. B2B Trading Partner Agreements
+b. Integration Insight
+c. Process Applications
+d. Enterprise Application adapters (such as EBS, JOE, SAP, and Siebel)
+e. File Server
+f. Visual Builder
+
+
+47) What are three main capabilities of Oracle integration cloud (OIC)? 
+a. Web and mobile application development
+b. Blockchain application development 
+c. Business process automation
+d. Digital assistant application development
+e. Internet of things (IoT) application development 
+f. Application integration
+g. API management
+
+
+48) Which statement is valid regarding Connection components in Oracle Integration Cloud Service (OIC)?
+a. All Connection component configurations require the association of an active OIC Connectivity Agent group.
+b. All Connection components must be associated with an adapter type regardless of role configuration.
+c. Each Connection component associated with a SaaS adapter type will also require a Lookup component configuration.
+d. Connection components can be configured with either a Trigger role or an Invoke role, but not both.
+
+
+49) Which is NOT a key advantage of using Oracle integration cloud (OIC)?
+a. Public/Private Cloud Portability 
+b. choice of IDE for development
+c. Auto Association of Oracle SaaS Applications
+d. Prebuilt integrations
+e. Data mapping Recommendations.
+
+
+50) Oracle Integration Cloud (OIC) provides the File Server component--an embedded SFTP server that enables organizations to focus on building integrations without needing to host and maintain a separate SFTP server.
+   Which statement is NOT true about the OIC File Server component?
+A) Access to the File Server REST APIs is limited to only users with the ServiceAdministrator role.
+B) Any external SFTP client can access File Server as long as an OIC administrator has configured specific folder access permissions for those clients.
+C) To access File Server from an internal OIC integration flow, a Connection resource of FTP adapter type or REST adapter type is used.
+D) The File Server component is a feature that is disabled by default in a newly provisioned OIC instance.
+
+
+51) Which operation is NOT supported by an OIC connection resource configured with the FTP Adapter in the invoke role?
+a. List Files
+b. Write File 
+c. Read file in segments
+d. Download File
+e. Delete File
+f. Read File
+
+
+52) You are designing a new integration in OIC that needs to expose a REST-full interface trigger for client applications. When choosing request and response options using the REST Adapter Endpoint Configuration Wizard, which is a valid consideration?
+a. Both standard and custom HTTP headers can be defined for either the request or response.
+b. File attachments can be accepted as a request option for the Trigger interface, but you cannot include attachments as a response to the client.
+c. If you select a PUT or POST action (HTTP method), you must define a JSON response payload format.
+d. Although you can define both query and template parameters, only template parameters will be available for mapping in the mapper because query parameters are considered optional.
+
+
+53) You are tasked with creating a new integration in OIC that will be exposed to clients as a SOAP web service. In addition, this integration will be invoking an external SOAP web service as part of the orchestration flow logic. Therefore, you must first create two SOAP adapter connection resources (one for the trigger and one for the invoke action).
+With regard to the creation of these SOAP adapter connection resources, which is valid statement?
+a. You must explicitly specify the target server TLS version for the external web service outbound Invoke connection configuration. 
+b. The WSDL URL property value can be defined by uploading a file for either the inbound Trigger connection or the outbound Invoke connection configurations.
+c. The SAML and OAuth security policies are available options for creating either the inbound Trigger connection or the outbound Invoke connection configurations.
+d. Suppress insertion of timestamp into the request and Ignore timestamp in the response message are optional fields only for the outbound Invoke connection configuration.
+
+
+54) You are assigned to review the specifications of the SOA composite applications that have been deployed to your SOA Cloud Service instance. Part of this analysis requires you to catalog the Service Component Architecture (SCA) components that are implemented within each composite application.
+Which is a valid SCA component in an Oracle SOA composite application?
+A) Mediator
+B) MFT Adapter
+C) BAM Adapter
+D) B2B Agreement
+E) Split-Join
+Ans A
+
+55) Your organization maintains two SOA Cloud Service instances used separately for testing and production. What is the best practice for defining the property values and endpoint
+addresses that may be unique to each environment when deploying the same SOA composite application archive to both instances?
+a. Manually Update any required values for unique properties or endpoint addresses in the Fusion Middleware Control immediately following the deployment of the SOA archive.
+b. Edit each application's deployment descriptor to dynamically retrieve values for properties and endpoint addresses from the environment upon deployment.
+c. You cannot deploy the same archive to two different environments. Instead, define the specific properties and endpoint addresses statically within two separate SOA archives. 
+d. Create two separate configuration plans that contain the environment-specific values for properties and endpoint addresses and then associate the appropriate plan with the SOA archive deployment.
+
+
+==>>>>>>>>>>>>>>>>>>>
+56) Which statement is NOT true about Schedule parameters in Oracle integration cloud (OIC) Integration flows?
+Files uploaded through the connectivity agent cannot be unzipped using the file
+reference.
+a. Schedule parameter can be used only in Scheduled orchestration Style integration. 
+b. Updates to Schedule Parameter values made dynamically in an Assign action will not persist on to the next instance run of the integration.
+c. Updates to Schedule Parameter values ca be made manually when starting a schedule.
+d. Updates to Schedule Parameter values can be made manually before submitting an ad hoc request.
+e. Scheduled parameters are always visible as an additional data source in the source section of the mappers and expression editors within the integration.
+Ans: B
+
+
+57) You can group one or more Oracle integration cloud (OIC) into a single structure called a package.
+    Which statement is NOT true about OIC packages?
+a. Packages enable you to easily import and export a group of integrations to and from OIC.
+b. You can import packages directly from the Oracle Marketplace.
+c. All packages must include at least one integration.
+d. Integrations do not need to be part of a package.
+e. Packages cannot be locked to deny other users access to your integrations.
+f. New packages can be created by clicking the create button on the packages page in the OIC console.
+Ans: f
+
+
+58) Which two are valid execution modes supported by gateway node in API Platform Cloud Service? 
+a. Development 
+b. Production
+c. Testing
+d. Retired
+e. Staging
+Ans: a,b
+
+
+59) You are creating a new Process application from scratch in Oracle Integration Cloud (OIC) and you now choose to create a new structured process. Although you can change the type by editing the process, what is the default Process Type if it is not changed?
+A) Asynchronous Service
+B) Reusable Process
+C) Synchronous Service
+D) Manual Process
+Ans C
+
+
+60) Within an Oracle integration cloud (OIC) process application business process, the integration flow element provides you an option to easily integrate with other services. Which three can be added and managed from the integration flow element?
+a. OIC reusable processes hosted within the same OIC environment.
+b. OIC invokable dynamic processes hosted within the same OIC environment.
+c. OCI Functions deployed in the same OIC compartment hosting the OIC environment. 
+d. OIC integrations hosted within the same OIC environment. 
+e. Web service connectors 
+f. REST connectors
+Ans: d,e,f
+
+
+61) Assuming that a particular user already possesses the Deploy to Gateway grant, which grant on the API is required to allow the user to deploy the API? 
+a. Manage API or Deploy API
+b. Manage API Entitle API
+c. Administer API or Register API
+d. Register API or Deploy API.
+e. Manage API or Register API
+f. Administer API or Deploy API
+Ans:a
+
+
+62) When creating a new Oracle Integration Cloud (OIC) Connection resource, there are several steps that must be done before the Connection resource is fully configured and can be used in an integration flow. Which of task is NOT required in order to transition a new Connection resource from the Draft to the Configured slate?
+A) Configure the required Security properties
+B) Specify the Connection role
+C) Specify the corresponding Lookup
+D) Configure the required Connection properties
+E) Specify an adapter type
+F) Execute a successful test of the Connection
+Ans C
+
+
+63) Which two are valid execution modes supported by the gateway node in API Platform Cloud Service?
+A) Testing
+B) Staging 
+C) Development 
+D) Production
+E) Retired
+Answer: C, D
+
+
+64) Given that a gateway node should have a dedicated user credential for connecting to the API Platform Management Service, what grants should be assigned to that user? 
+a. Node Service Account Grant
+b. API Connect Grant
+c. Gateway Account Grant
+d. Node Connect Grant
+Ans:a
+
+
+65) With regard to the Oracle API Platform Cloud Service, which two tasks can a user with the Application Developer role perform?
+A) Register gateways
+B) Manage applications using Developer Portal
+C) Manage service accounts and services
+D) Manage Plans
+E) Register APIs
+Answer: B, E
+
+
+66) Which is NOT an activity that an application developer (API consumer) can perform in the Developer portal in API Platform Cloud Service? 
+a. Create an API
+b. Create Application
+c. Test an API
+d. Subscribe to a plan
+e. Monitor performance
+f. Learn about APIs
+Ans:a
+
+
+68) When considering the management of plan entitlements in the API Platform Cloud Service, which two statements are valid? 
+a. Two entitlements of the same plan cannot point to the same entire API, or to the same action in an API.
+b. A given API can only be entitled by one plan at a time.
+c. You must have Service Manager role permissions to manage plan entitlements. 
+d. An entitlement is the relationship between a plan and an API that defines how a client application can access the API.
+e. A given plan defines entitlements to only one specific API.
+Ans: a,d
+
+
+69) When considering the configuration of APIs, Services, and Service Accounts in the API Platform Cloud Service, which two statements are valid?
+a. A Service Account is limited to using OAuth credentials only for defining security because Services can be configured to define Basic Authentication.
+b. A Service must include a Service Account reference to invoke a back-end service. 
+c. An API references Services and Service Accounts through the policies defining the API.
+d. An API Platform policy can be configured to reference another policy to override credentials information. 
+e. A Service Account defines the security credentials required to invoke a back-end service.
+Ans: c,e

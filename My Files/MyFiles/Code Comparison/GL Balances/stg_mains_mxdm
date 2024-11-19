@@ -1,0 +1,436 @@
+     --**********************
+     --** PROCEDURE: stg_main
+     --**********************
+     --
+     PROCEDURE stg_main
+                    (
+                     pt_i_ClientCode                 IN      xxmx_client_config_parameters.client_code%TYPE
+                    ,pt_i_MigrationSetName           IN      xxmx_migration_headers.migration_set_name%TYPE
+                    )
+     IS
+          --
+          --**********************
+          --** Cursor Declarations
+          --**********************
+          --
+          CURSOR StagingMetadata_cur
+                      (
+                       pt_ApplicationSuite             xxmx_migration_metadata.application_suite%TYPE
+                      ,pt_Application                  xxmx_migration_metadata.application%TYPE
+                      ,pt_BusinessEntity               xxmx_migration_metadata.business_entity%TYPE
+                      )
+          IS
+               --
+               --
+               SELECT  xmm.sub_entity
+                      ,xmm.entity_package_name
+                      ,xmm.stg_procedure_name
+               FROM    xxmx_migration_metadata  xmm
+               WHERE   1 = 1
+               AND     xmm.application_suite = pt_ApplicationSuite
+               AND     xmm.application       = pt_Application
+               AND     xmm.business_entity   = pt_BusinessEntity
+               AND     xmm.enabled_flag='Y'
+               ORDER BY xmm.sub_entity_seq;
+               --
+               --
+          --** END CURSOR StagingMetadata_cur
+          --
+          --**********************
+          --** Record Declarations
+          --**********************
+          --
+          --
+          --************************
+          --** Constant Declarations
+          --************************
+          --
+          cv_ProcOrFuncName               CONSTANT  VARCHAR2(30)                         := 'stg_main';
+          ct_SubEntity                    CONSTANT  xxmx_module_messages.sub_entity%TYPE := 'ALL';
+          ct_Phase                        CONSTANT  xxmx_module_messages.phase%TYPE      := 'EXTRACT';
+          --
+          --************************
+          --** Variable Declarations
+          --************************
+          --
+          vt_ConfigParameter              xxmx_client_config_parameters.config_parameter%TYPE;
+          vt_BusinessEntitySeq            xxmx_migration_metadata.business_entity_seq%TYPE;
+          vt_MigrationSetID               xxmx_migration_headers.migration_set_id%TYPE;
+          --
+          --*************************
+          --** Exception Declarations
+          --*************************
+          --
+          --** Set gvt_Severity, gvv_ProgressIndicator and gvt_ModuleMessage
+          --** before raising this exception.
+          --
+          e_ModuleError                   EXCEPTION;
+          --
+     --** END Declarations **
+     --
+     BEGIN
+          --
+          gvv_ProgressIndicator := '0010';
+          --
+          IF   pt_i_ClientCode       IS NULL
+          OR   pt_i_MigrationSetName IS NULL
+          THEN
+               --
+               gvt_Severity      := 'ERROR';
+               gvt_ModuleMessage := '- "pt_i_ClientCode" and "pt_i_MigrationSetName" parameters are mandatory.';
+               --
+               RAISE e_ModuleError;
+               --
+          END IF;
+          --
+          --
+          --** ISV 21/10/2020 - Commented out for now as not sure this would remove messages written by other extracts.
+          --/*
+          --** Clear Core Module Messages
+          --*/
+          ----
+          --gvv_ReturnStatus  := '';
+          ----
+          --xxmx_utilities_pkg.clear_messages
+          --     (
+          --      pt_i_ApplicationSuite => 'XXMX'
+          --     ,pt_i_Application      => 'XXMX'
+          --     ,pt_i_BusinessEntity   => 'CORE_REPORTING'
+          --     ,pt_i_SubEntity        => NULL
+          --     ,pt_i_Phase            => 'CORE'
+          --     ,pt_i_MessageType      => 'MODULE'
+          --     ,pv_o_ReturnStatus     => gvv_ReturnStatus
+          --     );
+          ----
+          --IF   gvv_ReturnStatus = 'F'
+          --THEN
+          --     --
+          --     xxmx_utilities_pkg.log_module_message
+          --          (
+          --           pt_i_ApplicationSuite  => gct_ApplicationSuite
+          --          ,pt_i_Application       => gct_Application
+          --          ,pt_i_BusinessEntity    => gct_BusinessEntity
+          --          ,pt_i_SubEntity         => ct_SubEntity
+          --          ,pt_i_Phase             => ct_Phase
+          --          ,pt_i_Severity          => 'ERROR'
+          --          ,pt_i_PackageName       => gcv_PackageName
+          --          ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+          --          ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+          --          ,pt_i_ModuleMessage     => '- Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+          --          ,pt_i_OracleError       => gvt_ReturnMessage
+          --          );
+          --     --
+          --     RAISE e_ModuleError;
+          --     --
+          --END IF;
+          --
+          /*
+          ** Clear GL Balances Module Messages
+          */
+          --
+          gvv_ReturnStatus  := '';
+          --
+          xxmx_utilities_pkg.clear_messages
+               (
+                pt_i_ApplicationSuite => gct_ApplicationSuite
+               ,pt_i_Application      => gct_Application
+               ,pt_i_BusinessEntity   => gct_BusinessEntity
+               ,pt_i_SubEntity        => ct_SubEntity
+               ,pt_i_Phase            => ct_Phase
+               ,pt_i_MessageType      => 'MODULE'
+               ,pv_o_ReturnStatus     => gvv_ReturnStatus
+               );
+          --
+          IF   gvv_ReturnStatus = 'F'
+          THEN
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gct_BusinessEntity
+                    ,pt_i_SubEntity         => ct_SubEntity
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'ERROR'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '- Oracle error in called procedure "xxmx_utilities_pkg.clear_messages".'
+                    ,pt_i_OracleError       => gvt_ReturnMessage
+                    );
+               --
+               RAISE e_ModuleError;
+               --
+          END IF;
+          --
+          gvv_ProgressIndicator := '0020';
+          --
+          xxmx_utilities_pkg.log_module_message
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gct_BusinessEntity
+               ,pt_i_SubEntity         => ct_SubEntity
+               ,pt_i_Phase             => ct_Phase
+               ,pt_i_Severity          => 'NOTIFICATION'
+               ,pt_i_PackageName       => gcv_PackageName
+               ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               ,pt_i_ModuleMessage     => 'Procedure "'
+                                        ||gcv_PackageName
+                                        ||'.'
+                                        ||cv_ProcOrFuncName
+                                        ||'" initiated.'
+               ,pt_i_OracleError       => NULL
+               );
+          --
+          --** ISV 21/10/2020 - Removed Client Schema Name config parameter as schema names will always be "xxmx_stg", "xxmx_xfm" and "xxmx_core".
+          --/*
+          --** Retrieve the Client Config Parameters needed to call subsequent procedures.
+          --*/
+          ----
+          --gvv_ProgressIndicator := '0030';
+          --
+          --vt_ConfigParameter := 'CLIENT_SCHEMA_NAME';
+          ----
+          --vt_ClientSchemaName := xxmx_utilities_pkg.get_client_config_value
+          --                            (
+          --                             pt_i_ClientCode      => pt_i_ClientCode
+          --                            ,pt_i_ConfigParameter => vt_ConfigParameter
+          --                            );
+          ----
+          --IF   vt_ClientSchemaName IS NULL
+          --THEN
+          --     --
+          --     --
+          --     gvt_Severity      := 'ERROR';
+          --     --
+          --     gvt_ModuleMessage := '- Client configuration parameter "'
+          --                        ||vt_ConfigParameter
+          --                        ||'" does not exist in "xxmx_client_config_parameters" table.';
+          --     --
+          --     RAISE e_ModuleError;
+          --     --
+          --     --
+          --END IF;
+          ----
+          --xxmx_utilities_pkg.log_module_message
+          --     (
+          --      pt_i_ApplicationSuite  => gct_ApplicationSuite
+          --     ,pt_i_Application       => gct_Application
+          --     ,pt_i_BusinessEntity    => gct_BusinessEntity
+          --     ,pt_i_SubEntity         => ct_SubEntity
+          --     ,pt_i_Phase             => ct_Phase
+          --     ,pt_i_Severity          => 'NOTIFICATION'
+          --     ,pt_i_PackageName       => gcv_PackageName
+          --     ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+          --     ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+          --     ,pt_i_ModuleMessage     => '- '
+          --                              ||pt_i_ClientCode
+          --                              ||' Client Config Parameter "'
+          --                              ||vt_ConfigParameter
+          --                              ||'" = '
+          --                              ||vt_ClientSchemaName
+          --     ,pt_i_OracleError       => NULL
+          --     );
+          --
+          /*
+          ** Initialize the Migration Set for the Business Entity retrieving
+          ** a new Migration Set ID.
+          */
+          --
+          --** ISV 21/10/2020 - Removed Sequence Number Parameters as "init_migration_set" procedure will determine these
+          --                    from the metadata table based on Application Suite, Application and Business Entity parameters.
+          --
+          gvv_ProgressIndicator := '0040';
+          --
+          xxmx_utilities_pkg.init_migration_set
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gct_BusinessEntity
+               ,pt_i_MigrationSetName  => pt_i_MigrationSetName
+               ,pt_o_MigrationSetID    => vt_MigrationSetID
+               );
+          --
+          xxmx_utilities_pkg.log_module_message
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gct_BusinessEntity
+               ,pt_i_SubEntity         => ct_SubEntity
+               ,pt_i_Phase             => ct_Phase
+               ,pt_i_Severity          => 'NOTIFICATION'
+               ,pt_i_PackageName       => gcv_PackageName
+               ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               ,pt_i_ModuleMessage     => '- Migration Set "'
+                                        ||pt_i_MigrationSetName
+                                        ||'" initialized (Generated Migration Set ID = '
+                                        ||vt_MigrationSetID
+                                        ||').  Processing extracts:'
+               ,pt_i_OracleError       => NULL
+               );
+          --
+          /*
+          ** Loop through the Migration Metadata table to retrieve
+          ** the Staging Package Name, Procedure Name and table name
+          ** for each extract requied for the current Business Entity.
+          */
+          --
+          gvv_ProgressIndicator := '0050';
+          --
+          FOR  StagingMetadata_rec
+          IN   StagingMetadata_cur
+                    (
+                     gct_ApplicationSuite
+                    ,gct_Application
+                    ,gct_BusinessEntity
+                    )
+          LOOP
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gct_BusinessEntity
+                    ,pt_i_SubEntity         => ct_SubEntity
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => '- Calling Procedure "'
+                                             ||StagingMetadata_rec.entity_package_name
+                                             ||'.'
+                                             ||StagingMetadata_rec.stg_procedure_name
+                                             ||'".'
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               --** ISV 21/10/2020 - Removed Client Schema Name, Business Entity and Staging Table parameters from dynamic SQL call
+               --
+               gvv_SQLStatement := 'BEGIN '
+                                 ||StagingMetadata_rec.entity_package_name
+                                 ||'.'
+                                 ||StagingMetadata_rec.stg_procedure_name
+                                 ||gcv_SQLSpace
+                                 ||'('
+                                 ||' pt_i_MigrationSetID          => '
+                                 ||vt_MigrationSetID
+                                 ||',pt_i_SubEntity               => '''
+                                 ||StagingMetadata_rec.sub_entity
+                                 ||''''
+                                 ||'); END;';
+               --
+               xxmx_utilities_pkg.log_module_message
+                    (
+                     pt_i_ApplicationSuite  => gct_ApplicationSuite
+                    ,pt_i_Application       => gct_Application
+                    ,pt_i_BusinessEntity    => gct_BusinessEntity
+                    ,pt_i_SubEntity         => ct_SubEntity
+                    ,pt_i_Phase             => ct_Phase
+                    ,pt_i_Severity          => 'NOTIFICATION'
+                    ,pt_i_PackageName       => gcv_PackageName
+                    ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                    ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                    ,pt_i_ModuleMessage     => SUBSTR(
+                                                      '- Generated SQL Statement: '
+                                                    ||gvv_SQLStatement
+                                                     ,1
+                                                     ,4000
+                                                     )
+                    ,pt_i_OracleError       => NULL
+                    );
+               --
+               EXECUTE IMMEDIATE gvv_SQLStatement;
+               --
+          END LOOP;
+          --
+          gvv_ProgressIndicator := '0060';
+          --
+          --xxmx_utilities_pkg.close_extract_phase
+          --     (
+          --      vt_MigrationSetID
+          --     );
+          --
+          COMMIT;
+          --
+          xxmx_utilities_pkg.log_module_message
+               (
+                pt_i_ApplicationSuite  => gct_ApplicationSuite
+               ,pt_i_Application       => gct_Application
+               ,pt_i_BusinessEntity    => gct_BusinessEntity
+               ,pt_i_SubEntity         => ct_SubEntity
+               ,pt_i_Phase             => ct_Phase
+               ,pt_i_Severity          => 'NOTIFICATION'
+               ,pt_i_PackageName       => gcv_PackageName
+               ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+               ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+               ,pt_i_ModuleMessage     => 'Procedure "'
+                                        ||gcv_PackageName
+                                        ||'.'
+                                        ||cv_ProcOrFuncName
+                                        ||'" completed.'
+               ,pt_i_OracleError       => NULL
+               );
+          --
+          EXCEPTION
+               --
+               WHEN e_ModuleError
+               THEN
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => ct_SubEntity
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => gvt_Severity
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => gvt_ModuleMessage
+                         ,pt_i_OracleError       => NULL
+                         );
+                    --
+                    RAISE;
+                    --
+               --** END e_ModuleError Exception
+               --
+               WHEN OTHERS
+               THEN
+                    --
+                    ROLLBACK;
+                    --
+                    gvt_OracleError := SUBSTR(
+                                             SQLERRM
+                                           ||'** ERROR_BACKTRACE: '
+                                           ||dbms_utility.format_error_backtrace
+                                            ,1
+                                            ,4000
+                                            );
+                    --
+                    xxmx_utilities_pkg.log_module_message
+                         (
+                          pt_i_ApplicationSuite  => gct_ApplicationSuite
+                         ,pt_i_Application       => gct_Application
+                         ,pt_i_BusinessEntity    => gct_BusinessEntity
+                         ,pt_i_SubEntity         => ct_SubEntity
+                         ,pt_i_Phase             => ct_Phase
+                         ,pt_i_Severity          => 'ERROR'
+                         ,pt_i_PackageName       => gcv_PackageName
+                         ,pt_i_ProcOrFuncName    => cv_ProcOrFuncName
+                         ,pt_i_ProgressIndicator => gvv_ProgressIndicator
+                         ,pt_i_ModuleMessage     => 'Oracle error encounted after Progress Indicator.'
+                         ,pt_i_OracleError       => gvt_OracleError
+                         );
+                    --
+                    RAISE;
+                    --
+               --** END OTHERS Exception
+               --
+          --** END Exception Handler
+          --
+     END stg_main;

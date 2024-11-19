@@ -1,0 +1,22 @@
+LOAD DATA
+INFILE XXMX_HCM_BEN_DE_DESG_DPNT.dat
+REPLACE 
+INTO  TABLE XXMX_BEN_DE_DD_STG
+FIELDS TERMINATED BY "|" OPTIONALLY ENCLOSED BY '"'  TRAILING NULLCOLS 
+(MIGRATION_SET_NAME             ,
+MIGRATION_STATUS               ,
+BG_NAME                        ,
+BEN_PLAN                       ,
+BEN_PROGRAM                    ,
+BEN_OPTION                     ,
+ORIGINAL_ENROLLMENT_DATE       ,
+DEPENDENT_PERSON_NUMBER        ,
+DEPENDENT_PERSON_ID            ,
+LINE_NUMBER                    ,
+DEPENDENT_LINE_ID              ,
+DEPENDENT_FIRST_NAME           ,
+DEPENDENT_LAST_NAME            ,
+DEPENDENT_DATE_OF_BIRTH        ,
+PERSON_NUMBER                  
+)
+

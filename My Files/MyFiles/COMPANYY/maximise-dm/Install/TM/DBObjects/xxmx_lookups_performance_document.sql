@@ -1,0 +1,114 @@
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'BUSINESS_ENTITIES'
+         ,'PERFORMANCE_DOCUMENT'
+         ,'Performance Document'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+		 
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'PERFORMANCE_DOCUMENT'
+         ,'Performance Document'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'ATTACHMENT'
+         ,'Attachment'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'PARTICIPANT'
+         ,'Participant'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );
+--
+--
+INSERT
+INTO   xxmx_core.xxmx_lookup_values
+         (
+          application
+         ,lookup_type
+         ,lookup_code
+         ,meaning
+         ,description
+         ,enabled_flag
+         ,seeded
+         )
+VALUES
+         (
+          'XXMX'
+         ,'SUB-ENTITIES'
+         ,'RATINGS_COMMENTS'
+         ,'Ratings And Comments'
+         ,NULL
+         ,'Y'
+         ,'Y'
+         );

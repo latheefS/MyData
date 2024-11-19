@@ -1,0 +1,60 @@
+Performed POCs on OIC and VBCS Error Handling.
+Performed around 400+ tasks in developing Global Handlers, Scope Handlers, Global Variables, Data Stitches, and Mappings in OIC for all the integrations of data migration pages in the maximise.
+Developed Logic to capture Error Handling messages from OIC into VBCS for all the data migration pages in the maximise.
+Performed POCs to enhance the VBCS pages with Refreshing LOVs, Resetting LOVs and to prevent double submission of operations in the VBCS.
+Completed the development of entire data migration Error Handling in 30 days covering 400+ tasks.
+Provided a demo to the working group regarding the Error Handling.
+Mentored and monitored Soundarya in developing PO Receipt as a new entity to maximise from end to end.
+Reviewed and tested team's development tasks.
+Conducted Scrum calls and tracked the team's progress.
+Involved and developed documents for Scrum Planning.
+
+Performed integration testing on SCM, PPM and FIN scope objects.
+Analysed APEX functionality.
+Reviewed BI data models and reports of FIN objects for Dashboard integration.
+Reviewed Filename field addition to VBCS page and it's functionality.
+Developed VBCS screen enhancements like Double Submission Prevention, Disable child fields until parent field is selected, Reset child field values when parent field value is changed, Reset all values, Review and modify business objects in VBCS etc.
+Review Dashboard & HCM changes.
+Mentored and monitored in creating new business entity called HR Locations.
+Guided and assisted in performing complete ETL testing of FIN & SCM objects.
+Reviewed GL CVR changes from Citco and modified tables and integrations accordingly in the Maximise.
+Performed POC on smart reconciliation using Python by installing python drivers and running the developed script to connect with database.
+Lead Aspire Team for OTBI reports development for analysis purposes.
+Conducted KT sessions with Aspire team for reports development.
+Conducted Scrum calls and setup Devops board to track work progress of Aspire team.
+Lead both the Maximise and Aspire teams in achieving development tasks.
+Conducted Scrum calls and tracked the team's progress.
+Involved and developed documents for Scrum Planning.
+
+Integrated GL Historical Rates Package into Maximise from Citco.
+Integrated GL Daily Rates Package into Maximise from Citco.
+Configured the changes needed for Gen2 to upgrade to Gen3 by modifying all the integrations.
+Developed an integration to move files from FTP to DB Server.
+Developed an integration for generating Batching Files of Extract data(STG Upload).
+Developed an integration for generating Batching Files of Transform data(XFM Upload).
+Rebranded Maximise to Cloudbridge by modifying whole code comments and creating a separate branch.
+Tested the Batching Load File Generation through the backend.
+Developed and configured PAYROLL  with new changes as advised.
+Developed and configured a new entity, PERFORMANCE DOCUMENT.
+Modified and tested Customer Tax package and did ETL testing.
+Done and supported the team in complete ETL testing of Batching and Non-Batching.
+Carried out Scrum Meetings and implemented collaboratively.
+Developed Module Coverage and Testing Coverage Documents.
+Reviewed all the tasks assigned to me effectively.
+Researched the AI topics assigned to me.
+Completed 7 Oracle Cloud Certifications.
+
+Handled and completed ETL testing performed in the quarter.
+Modified and updated Extract File Generation and Transformation File Generation integrations with new flows for batching purposes.
+Added scopes for new action items in the integrations.
+Modified and updated Load and Import integration flows for Balances.
+Performed PPM Extract Package Enhancements.
+Modified and updated VBCS DB Objects.
+Fixed VBCS Gateway Error by modifying and adding new logic to every page on VBCS.
+Collaborated with Meenakshi for reviewing, Debugging, and testing the Supplier and PO Validation scripts and integrating them with Cloudbridge.
+Developed documents for the team to know how to configure the DB Server, Connectivity Agent, Vision server, etc.
+Developed documents to track ETL testing progress.
+Updated Module Coverage, Installation, and other configuration documents.
+Mentored Sinchana and Soundarya in progressing their work.
+Conducted Sprint Planning and Retrospective sessions.
+Achieved all the objectives assigned for this quarter.

@@ -1,0 +1,7 @@
+--------------------------------------------------------
+--  Constraints for Table XXMX_AR_CASH_RECEIPTS_STG
+--------------------------------------------------------
+
+  ALTER TABLE "XXMX_STG"."XXMX_AR_CASH_RECEIPTS_STG" MODIFY ("MIGRATION_SET_NAME" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_AR_CASH_RECEIPTS_STG" MODIFY ("RECORD_TYPE" NOT NULL ENABLE);
+  ALTER TABLE "XXMX_STG"."XXMX_AR_CASH_RECEIPTS_STG" MODIFY ("OPERATING_UNIT_NAME" NOT NULL ENABLE);

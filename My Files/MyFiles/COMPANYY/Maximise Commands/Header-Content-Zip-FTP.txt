@@ -1,0 +1,20 @@
+Header will be
+
+write into file- concat( TABLE_NAME, ".xls")
+write into dir - concat( $pBusinessEntity, "/", $pMigrationSetId, "/", BATCH_NAME, "/SRCFiles")
+
+
+Data will be
+
+write into file - concat( TABLE_NAME, ".xls")
+write into dir -  concat( $pBusinessEntity, "/", $pMigrationSetId, "/", BATCH_NAME, "/SRCFiles")
+
+
+Zipping
+
+will be zipped into name - concat( $pBusinessEntity, "_", $pMigrationSetId, "_", "STG_", BATCH_NAME, "_", $StartTime, ".zip")
+will be zipping from     - concat( $pBusinessEntity, "/", $pMigrationSetId, "/", BATCH_NAME, "/SRCFiles")
+will zip into 		 - concat( $pBusinessEntity, "/SRCFiles/Zip")
+
+
+==> that means node will zip the file TABLE_NAME.xls (concat( TABLE_NAME, ".xls")) from directory (concat( $pBusinessEntity, "/", $pMigrationSetId, "/", BATCH_NAME, "/SRCFiles")) with a zip name as (concat( $pBusinessEntity, "_", $pMigrationSetId, "_", "STG_", BATCH_NAME, "_", $StartTime, ".zip")) into a directory (concat( $pBusinessEntity, "/SRCFiles/Zip"))

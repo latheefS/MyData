@@ -1,0 +1,2147 @@
+--
+/******************************
+** HCM Metadata (PAY) - PAYROLL
+*******************************/
+--
+/*
+** PAE Calculation Card
+*/
+--
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_pae_stg'
+         ,'XXMX_PAY_CALC_CARDS_PAE_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_PAE_XFM'
+         ,NULL
+         ,'CalculationCardPae'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_PAE'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_pae_stg'
+         ,'XXMX_PAY_COMP_DTL_PAE_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_PAE_XFM'
+         ,NULL
+         ,'ComponentDetailPae'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,:vn_SubEntitySeq
+         ,'COMP_ASOC_PAE'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_asoc_pae_stg'
+         ,'XXMX_PAY_COMP_ASOC_PAE_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_ASOC_PAE_XFM'
+         ,NULL
+         ,'ComponentAssociationPae'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PAE'
+         ,:vn_SubEntitySeq
+         ,'COMP_ASOC_DTL_PAE'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_asoc_dtl_pae_stg'
+         ,'XXMX_PAY_COMP_ASOC_DTL_PAE_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_ASOC_DTL_PAE_XFM'
+         ,NULL
+         ,'ComponentAssociationDetailPae'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** NI and PAYE Calculation Card (Statutory Deductions)
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SD'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_SD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_sd_stg'
+         ,'XXMX_PAY_CALC_CARDS_SD_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_SD_XFM'
+         ,NULL
+         ,'CalculationCardSd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SD'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_SD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_sd_stg'
+         ,'XXMX_PAY_COMP_DTL_SD_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_SD_XFM'
+         ,NULL
+         ,'ComponentDetailSd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** Student Loan Calculation Card
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_sl_stg'
+         ,'XXMX_PAY_CALC_CARDS_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_SL_XFM'
+         ,NULL
+         ,'CalculationCardSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'COMP_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_sl_stg'
+         ,'XXMX_PAY_COMP_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_SL_XFM'
+         ,NULL
+         ,'CardComponentSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'CARD_ASOC_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_card_asoc_sl_stg'
+         ,'XXMX_PAY_CARD_ASOC_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_CARD_ASOC_SL_XFM'
+         ,NULL
+         ,'CardAssociationSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_sl_stg'
+         ,'XXMX_PAY_COMP_DTL_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_SL_XFM'
+         ,NULL
+         ,'ComponentDetailSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_SL'
+         ,:vn_SubEntitySeq
+         ,'COMP_ASOC_SL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_asoc_sl_stg'
+         ,'XXMX_PAY_COMP_ASOC_SL_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_ASOC_SL_XFM'
+         ,NULL
+         ,'ComponentAssociationSl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** Benefit and Pension Calculation Card
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_bp_stg'
+         ,'XXMX_PAY_CALC_CARDS_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_BP_XFM'
+         ,NULL
+         ,'CalculationCardBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'CARD_COMP_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_card_comp_bp_stg'
+         ,'XXMX_PAY_CARD_COMP_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_CARD_COMP_BP_XFM'
+         ,NULL
+         ,'CardComponentBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'ASOC_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_bp_stg'
+         ,'XXMX_PAY_ASOC_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_BP_XFM'
+         ,NULL
+         ,'CardAssociationBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'ASOC_DTL_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_dtl_bp_stg'
+         ,'XXMX_PAY_ASOC_DTL_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_DTL_BP_XFM'
+         ,NULL
+         ,'CardAssociationDetailBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_bp_stg'
+         ,'XXMX_PAY_COMP_DTL_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_BP_XFM'
+         ,NULL
+         ,'ComponentDetailBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'ENTVAL_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_entval_bp_stg'
+         ,'XXMX_PAY_ENTVAL_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_ENTVAL_BP_XFM'
+         ,NULL
+         ,'EnterableCalculationValueBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_BP'
+         ,:vn_SubEntitySeq
+         ,'CALC_VALDF_BP'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_valdf_bp_stg'
+         ,'XXMX_PAY_CALC_VALDF_BP_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_VALDF_BP_XFM'
+         ,NULL
+         ,'CalculationValueDefinitionBp'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** New Starter Declaration
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_nsd_stg'
+         ,'XXMX_PAY_CALC_CARDS_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_NSD_XFM'
+         ,NULL
+         ,'CalculationCardNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'CARD_COMP_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_card_comp_nsd_stg'
+         ,'XXMX_PAY_CARD_COMP_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_CARD_COMP_NSD_XFM'
+         ,NULL
+         ,'CardComponentNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'ASOC_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_nsd_stg'
+         ,'XXMX_PAY_ASOC_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_NSD_XFM'
+         ,NULL
+         ,'CardAssociationNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'ASOC_DTL_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_dtl_nsd_stg'
+         ,'XXMX_PAY_ASOC_DTL_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_DTL_NSD_XFM'
+         ,NULL
+         ,'CardAssociationDetailNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_nsd_stg'
+         ,'XXMX_PAY_COMP_DTL_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_NSD_XFM'
+         ,NULL
+         ,'ComponentDetailNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'ENTVAL_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_entval_nsd_stg'
+         ,'XXMX_PAY_ENTVAL_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_ENTVAL_NSD_XFM'
+         ,NULL
+         ,'EnterableCalculationValueNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_NSD'
+         ,:vn_SubEntitySeq
+         ,'CALC_VALDF_NSD'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_valdf_nsd_stg'
+         ,'XXMX_PAY_CALC_VALDF_NSD_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_VALDF_NSD_XFM'
+         ,NULL
+         ,'CalculationValueDefinitionNsd'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** Post Graduate Loan Calculation Card
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_cards_pgl_stg'
+         ,'XXMX_PAY_CALC_CARDS_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_CARDS_PGL_XFM'
+         ,NULL
+         ,'CalculationCardPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'CARD_COMP_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_card_comp_pgl_stg'
+         ,'XXMX_PAY_CARD_COMP_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_CARD_COMP_PGL_XFM'
+         ,NULL
+         ,'CardComponentPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'ASOC_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_pgl_stg'
+         ,'XXMX_PAY_ASOC_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_PGL_XFM'
+         ,NULL
+         ,'CardAssociationPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'ASOC_DTL_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_asoc_dtl_pgl_stg'
+         ,'XXMX_PAY_ASOC_DTL_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_ASOC_DTL_PGL_XFM'
+         ,NULL
+         ,'CardAssociationDetailPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'COMP_DTL_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_comp_dtl_pgl_stg'
+         ,'XXMX_PAY_COMP_DTL_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_COMP_DTL_PGL_XFM'
+         ,NULL
+         ,'ComponentDetailPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+		 ---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'ENTVAL_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_entval_pgl_stg'
+         ,'XXMX_PAY_ENTVAL_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_ENTVAL_PGL_XFM'
+         ,NULL
+         ,'EnterableCalculationValuePgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'CALC_CARDS_PGL'
+         ,:vn_SubEntitySeq
+         ,'CALC_VALDF_PGL'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_calc_valdf_pgl_stg'
+         ,'XXMX_PAY_CALC_VALDF_PGL_STG'
+         ,NULL
+         ,'XXMX_PAY_CALC_VALDF_PGL_XFM'
+         ,NULL
+         ,'CalculationValueDefinitionPgl'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** PAY Balances
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'PAY_BALANCES'
+         ,:vn_SubEntitySeq
+         ,'BALANCE_HEADERS'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_balance_headers_stg'
+         ,'XXMX_PAY_BALANCE_HEADERS_STG'
+         ,NULL
+         ,'XXMX_PAY_BALANCE_HEADERS_XFM'
+         ,NULL
+         ,'InitializeBalanceBatchHeader'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'PAY_BALANCES'
+         ,:vn_SubEntitySeq
+         ,'BALANCE_LINES'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_balance_lines_stg'
+         ,'XXMX_PAY_BALANCE_LINES_STG'
+         ,NULL
+         ,'XXMX_PAY_BALANCE_LINES_XFM'
+         ,NULL
+         ,'InitializeBalanceBatchLine'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+--
+/*
+** Element Entry
+*/
+---
+---
+---
+EXECUTE :vn_BusinessEntitySeq := :vn_BusinessEntitySeq + 1;
+EXECUTE :vn_SubEntitySeq := 0;
+--
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'ELEMENTS'
+         ,:vn_SubEntitySeq
+         ,'ELEMENTS'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_elements_stg'
+         ,'XXMX_PAY_ELEMENTS_STG'
+         ,NULL
+         ,'XXMX_PAY_ELEMENTS_XFM'
+         ,NULL
+         ,'ElementEntry'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );
+---
+---
+---
+EXECUTE :vn_SubEntitySeq := :vn_SubEntitySeq + 1;
+--
+INSERT
+INTO   xxmx_core.xxmx_migration_metadata
+         (
+         metadata_id
+		,application_suite
+		,application
+		,business_entity_seq
+		,business_entity
+		,sub_entity_seq
+		,sub_entity
+		,entity_package_name
+		,sql_load_name
+		,stg_procedure_name
+		,stg_table
+		,xfm_procedure_name
+		,xfm_table
+		,file_gen_procedure_name
+		,data_file_name
+		,data_file_extension
+		,file_group_number
+		,enabled_flag
+		,simple_xfm_performed_by
+		,file_gen_performed_by
+		,file_gen_package
+		,batch_load
+		,seq_in_fbdi_data
+		 )
+VALUES
+         (
+          xxmx_migration_metadata_ids_s.NEXTVAL
+         ,'HCM'
+         ,'PAY'
+         ,:vn_BusinessEntitySeq
+         ,'ELEMENTS'
+         ,:vn_SubEntitySeq
+         ,'ELEM_ENTRIES'
+         ,'xxmx_pay_payroll_pkg'
+         ,NULL
+         ,'pay_elem_entries_stg'
+         ,'XXMX_PAY_ELEM_ENTRIES_STG'
+         ,NULL
+         ,'XXMX_PAY_ELEM_ENTRIES_XFM'
+         ,NULL
+         ,'ElementEntry'
+         ,'dat'
+         ,1
+         ,'Y'
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+		 ,NULL
+         );

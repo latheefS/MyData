@@ -1,0 +1,124 @@
+
+SQL*Loader: Release 19.0.0.0.0 - Production on Tue Dec 27 08:40:01 2022
+Version 19.14.0.0.0
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   /u01/APPLTOP/instance/ess/rfd/554844/IbyTempExtBankAccts.ctl
+Data File:      /u01/APPLTOP/instance/ess/rfd/554844/out/IbyTempExtBankAccts.csv
+  Bad File:     /u01/APPLTOP/instance/ess/rfd/554844/out/554844_bad.txt
+  Discard File: /u01/APPLTOP/instance/ess/rfd/554844/out/554844_discard.txt 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table IBY_TEMP_EXT_BANK_ACCTS, loaded from every logical record.
+Insert option in effect for this table: APPEND
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+PAYMENT_FLOW                                              CONSTANT
+    Value is 'DISBURSEMENTS'
+CREATION_DATE                                             EXPRESSION
+    SQL string for column : "systimestamp"
+CREATED_BY                                                CONSTANT
+    Value is 'Data.Migration'
+LAST_UPDATE_DATE                                          EXPRESSION
+    SQL string for column : "systimestamp"
+LAST_UPDATED_BY                                           CONSTANT
+    Value is 'Data.Migration'
+LAST_UPDATE_LOGIN                                         CONSTANT
+    Value is 'F0CA8B7B96A62E10E053D7625C0AB7F7'
+OBJECT_VERSION_NUMBER                                     CONSTANT
+    Value is '1'
+LOAD_REQUEST_ID                                           CONSTANT
+    Value is '554842'
+OWNER_PRIMARY_FLAG                                        CONSTANT
+    Value is 'Y'
+STATUS                                                    CONSTANT
+    Value is 'NEW'
+FEEDER_IMPORT_BATCH_ID              FIRST     *   ,  O(") CHARACTER            
+TEMP_EXT_PARTY_ID                    NEXT     *   ,  O(") CHARACTER            
+TEMP_EXT_BANK_ACCT_ID                NEXT     *   ,  O(") CHARACTER            
+BANK_NAME                            NEXT   360   ,  O(") CHARACTER            
+BRANCH_NAME                          NEXT   360   ,  O(") CHARACTER            
+COUNTRY_CODE                         NEXT     *   ,  O(") CHARACTER            
+BANK_ACCOUNT_NAME                    NEXT     *   ,  O(") CHARACTER            
+BANK_ACCOUNT_NUM                     NEXT     *   ,  O(") CHARACTER            
+CURRENCY_CODE                        NEXT     *   ,  O(") CHARACTER            
+FOREIGN_PAYMENT_USE_FLAG             NEXT     *   ,  O(") CHARACTER            
+START_DATE                           NEXT     *   ,  O(") CHARACTER            
+    SQL string for column : "to_date(nvl(:START_DATE, to_char(sysdate,'YYYY/MM/DD')), 'YYYY/MM/DD')"
+END_DATE                             NEXT     *   ,  O(") CHARACTER            
+    SQL string for column : "to_date(nvl(:END_DATE, '4712/12/31'),'YYYY/MM/DD')"
+IBAN                                 NEXT     *   ,  O(") CHARACTER            
+CHECK_DIGITS                         NEXT     *   ,  O(") CHARACTER            
+BANK_ACCOUNT_NAME_ALT                NEXT   320   ,  O(") CHARACTER            
+BANK_ACCOUNT_TYPE                    NEXT     *   ,  O(") CHARACTER            
+ACCOUNT_SUFFIX                       NEXT     *   ,  O(") CHARACTER            
+DESCRIPTION                          NEXT     *   ,  O(") CHARACTER            
+AGENCY_LOCATION_CODE                 NEXT     *   ,  O(") CHARACTER            
+EXCHANGE_RATE_AGREEMENT_NUM          NEXT     *   ,  O(") CHARACTER            
+EXCHANGE_RATE_AGREEMENT_TYPE         NEXT     *   ,  O(") CHARACTER            
+EXCHANGE_RATE                        NEXT     *   ,  O(") CHARACTER            
+SECONDARY_ACCOUNT_REFERENCE          NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE_CATEGORY                   NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE1                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE2                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE3                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE4                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE5                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE6                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE7                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE8                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE9                           NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE10                          NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE11                          NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE12                          NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE13                          NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE14                          NEXT     *   ,  O(") CHARACTER            
+ATTRIBUTE15                          NEXT     *   ,  O(") CHARACTER            
+
+value used for ROWS parameter changed from 250 to 100
+Record 200: Rejected - Error on table IBY_TEMP_EXT_BANK_ACCTS.
+ORA-00001: unique constraint (FUSION.IBY_TEMP_EXT_BANK_ACCTS_U1) violated
+
+Record 201: Rejected - Error on table IBY_TEMP_EXT_BANK_ACCTS.
+ORA-00001: unique constraint (FUSION.IBY_TEMP_EXT_BANK_ACCTS_U1) violated
+
+Record 520: Rejected - Error on table IBY_TEMP_EXT_BANK_ACCTS.
+ORA-00001: unique constraint (FUSION.IBY_TEMP_EXT_BANK_ACCTS_U1) violated
+
+Record 546: Rejected - Error on table IBY_TEMP_EXT_BANK_ACCTS.
+ORA-00001: unique constraint (FUSION.IBY_TEMP_EXT_BANK_ACCTS_U1) violated
+
+Record 578: Rejected - Error on table IBY_TEMP_EXT_BANK_ACCTS.
+ORA-00001: unique constraint (FUSION.IBY_TEMP_EXT_BANK_ACCTS_U1) violated
+
+
+Table IBY_TEMP_EXT_BANK_ACCTS:
+  1380 Rows successfully loaded.
+  5 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                1042600 bytes(100 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:          1385
+Total logical records rejected:         5
+Total logical records discarded:        0
+
+Run began on Tue Dec 27 08:40:01 2022
+Run ended on Tue Dec 27 08:40:02 2022
+
+Elapsed time was:     00:00:00.76
+CPU time was:         00:00:00.25

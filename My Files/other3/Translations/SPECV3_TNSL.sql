@@ -1,0 +1,46 @@
+INSERT INTO XXMX_OLC_SPEC_TL_STG(
+MIGRATION_SET_ID,
+MIGRATION_SET_NAME,
+MIGRATION_STATUS,
+BG_NAME,
+METADATA,
+OBJECTNAME,
+EFFECTIVE_START_DATE,
+LANGUAGE,
+SPECIALIZATION_NUMBER,
+TITLE,
+SHORT_DESCRIPTION,
+SOURCE_SYSTEM_OWNER,
+SOURCE_SYSTEM_ID)
+
+VALUES(
+2029,
+'TEST_MIGRATION_SPEC_TL',
+'EXTRACTED',
+'TEST_BG',
+'MERGE',
+'SpecializationV3Translation',
+DATE '2021-08-15',
+'US',
+'SPL111224',
+'Next Simplest Specialization Translation',
+'Next Simplest Specialization Translation Short Description',
+'DATAMIGRATION',
+'SPLN1112241')
+/
+
+VALUES(
+2029,
+'TEST_MIGRATION_SPEC_TL',
+'EXTRACTED',
+'TEST_BG',
+'MERGE',
+'SpecializationV3Translation',
+DATE '2021-08-15',
+'US',
+'SPL111225',
+'Next Atypical Specialization Translation',
+'Next Atypical Specialization Translation Short Description',
+'DATAMIGRATION',
+'SPLN1112251')
+/

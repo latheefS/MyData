@@ -1,0 +1,13 @@
+--------------------------------------------------------
+--  DDL for View XXMX_FILE_GROUPS_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "XXMX_CORE"."XXMX_FILE_GROUPS_V" ("APPLICATION_SUITE", "APPLICATION", "BUSINESS_ENTITY", "FILE_GROUP_NUMBER") AS 
+  SELECT DISTINCT APPLICATION_SUITE,
+                   APPLICATION,
+                   BUSINESS_ENTITY,
+                   FILE_GROUP_NUMBER
+   FROM  XXMX_MIGRATION_METADATA
+   WHERE ENABLED_FLAG = 'Y'
+;
+  GRANT SELECT ON "XXMX_CORE"."XXMX_FILE_GROUPS_V" TO "XXMX_READONLY";

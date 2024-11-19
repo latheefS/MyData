@@ -1,0 +1,43 @@
+-- ************
+-- **GL Journal
+-- ************
+
+DECLARE
+
+pv_o_ReturnStatus VARCHAR2(3000);
+BEGIN
+
+xxmx_dynamic_sql_pkg.stg_populate(
+pt_i_ApplicationSuite=>'FIN',
+pt_i_Application=> 'GL',
+pt_i_BusinessEntity=> 'GENERAL_LEDGER',
+pt_i_SubEntity=> 'JOURNAL',
+pt_import_data_file_name => 'XXMX_GL_JOURNAL.dat',
+pt_control_file_name => 'XXMX_GL_JOURNAL.ctl',
+pt_control_file_delimiter => '|',
+pv_o_ReturnStatus=> pv_o_ReturnStatus);
+
+END ;
+/
+
+-- ************
+-- **GL Journal
+-- ************
+
+DECLARE
+
+pv_o_ReturnStatus VARCHAR2(3000);
+BEGIN
+
+xxmx_dynamic_sql_pkg.stg_populate(
+pt_i_ApplicationSuite=>'FIN',
+pt_i_Application=> 'GL',
+pt_i_BusinessEntity=> 'BALANCES',
+pt_i_SubEntity=> 'BALANCES',
+pt_import_data_file_name => 'XXMX_GL_BALANCES.dat',
+pt_control_file_name => 'XXMX_GL_BALANCES.ctl',
+pt_control_file_delimiter => '|',
+pv_o_ReturnStatus=> pv_o_ReturnStatus);
+
+END ;
+/
